@@ -1,106 +1,59 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { DiGoogleCloudPlatform } from "react-icons/di";
 import {
   SiLeetcode,
-  SiHackerrank,
   SiCodeforces,
   SiCodechef,
   SiKaggle,
-  SiGeeksforgeeks,
+  SiHackerrank,
   SiGooglecolab,
+  SiGeeksforgeeks,
 } from "react-icons/si";
 
-const profileLinks = [
-  {
-    name: "LeetCode",
-    url: "https://leetcode.com/your_username",
-    icon: <SiLeetcode color="#f5c518" size={40} />,
-  },
-  {
-    name: "HackerRank",
-    url: "https://www.hackerrank.com/your_username",
-    icon: <SiHackerrank color="#2EC866" size={40} />,
-  },
-  {
-    name: "Codeforces",
-    url: "https://codeforces.com/profile/your_username",
-    icon: <SiCodeforces color="#1f8acb" size={40} />,
-  },
-  {
-    name: "CodeChef",
-    url: "https://www.codechef.com/users/your_username",
-    icon: <SiCodechef color="#DE6B35" size={40} />,
-  },
-  {
-    name: "Kaggle",
-    url: "https://www.kaggle.com/your_username",
-    icon: <SiKaggle color="#20BEFF" size={40} />,
-  },
-  {
-    name: "GFG",
-    url: "https://auth.geeksforgeeks.org/user/your_username",
-    icon: <SiGeeksforgeeks color="#2F8D46" size={40} />,
-  },
-  {
-    name: "Colab",
-    url: "https://colab.research.google.com/drive/your_file",
-    icon: <SiGooglecolab color="#F9AB00" size={40} />,
-  },
-];
-
 function Profiles() {
+  const iconStyle = {
+    fontSize: "2.5em", // slightly smaller
+    margin: "8px",     // closer spacing
+    color: "white",
+    border: "2px solid #a855f7",
+    borderRadius: "10px",
+    padding: "10px",
+    transition: "transform 0.2s ease-in-out",
+  };
+
+  const profiles = [
+    { icon: <SiLeetcode style={iconStyle} />, link: "https://leetcode.com/omchoksi108/", name: "LeetCode" },
+    { icon: <SiHackerrank style={iconStyle} />, link: "https://www.hackerrank.com/OMCHOKSI108", name: "HackerRank" },
+    { icon: <SiCodeforces style={iconStyle} />, link: "https://codeforces.com/profile/OMCHOKSI108", name: "Codeforces" },
+    { icon: <SiCodechef style={iconStyle} />, link: "https://www.codechef.com/users/omchoksi108", name: "CodeChef" },
+    { icon: <SiKaggle style={iconStyle} />, link: "https://www.kaggle.com/omchoksi108", name: "Kaggle" },
+    { icon: <SiGeeksforgeeks style={iconStyle} />, link: "https://auth.geeksforgeeks.org/user/omchoksi108", name: "GFG" },
+    { icon: <SiGooglecolab style={iconStyle} />, link: "https://colab.research.google.com/drive/1eL9wOxFKz4Do6EIPW0c7rRggY6o8iHje", name: "Colab" },
+  ];
+
   return (
     <>
-      <h1 className="project-heading">
+      <h1 className="project-heading" style={{ marginTop: "50px" }}>
         <strong className="purple">My Profiles</strong>
       </h1>
-      <Row
-        style={{
-          justifyContent: "center",
-          paddingBottom: "20px",
-          rowGap: "10px",
-        }}
-      >
-        {profileLinks.map((p, i) => (
+      <Row style={{ justifyContent: "center", paddingBottom: "20px", gap: "10px" }}>
+        {profiles.map((profile, idx) => (
           <Col
-            key={i}
             xs={4}
             sm={3}
             md={2}
-            className="d-flex flex-column align-items-center"
-            style={{ margin: "5px" }}
+            lg={1}
+            key={idx}
+            style={{ textAlign: "center" }}
           >
             <a
-              href={p.url}
+              href={profile.link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                textDecoration: "none",
-                color: "white",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
+              style={{ textDecoration: "none", color: "white" }}
             >
-              <div
-                style={{
-                  border: "2px solid #c084fc",
-                  padding: "10px",
-                  borderRadius: "12px",
-                  backgroundColor: "rgba(192,132,252,0.08)",
-                }}
-              >
-                {p.icon}
-              </div>
-              <span
-                style={{
-                  marginTop: "5px",
-                  fontSize: "0.8rem",
-                }}
-              >
-                {p.name}
-              </span>
+              {profile.icon}
+              <div style={{ fontSize: "0.85em", marginTop: "4px" }}>{profile.name}</div>
             </a>
           </Col>
         ))}
