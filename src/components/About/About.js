@@ -6,7 +6,7 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
-import { FaGlobe } from "react-icons/fa"; // For "Profiles" globe icon
+import { FaGlobe } from "react-icons/fa";
 import { SiLeetcode, SiHackerrank, SiCodeforces, SiCodechef, SiKaggle } from "react-icons/si";
 
 function About() {
@@ -49,40 +49,52 @@ function About() {
           <FaGlobe /> <strong className="purple">Profiles</strong>
         </h1>
         <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-          <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
-            <a href="https://leetcode.com/u/omchoksi_23aiml010/" target="_blank" rel="noopener noreferrer">
-              <SiLeetcode size={40} color="#F7E018" />
-              <p>LeetCode</p>
+          <Col xs={4} md={2} className="profile-card">
+            <a href="https://leetcode.com/u/omchoksi_23aiml010/" target="_blank" rel="noopener noreferrer" className="profile-link">
+              <div className="profile-box">
+                <SiLeetcode size={40} color="#F7E018" />
+                <p>LeetCode</p>
+              </div>
             </a>
           </Col>
-          <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
-            <a href="https://www.hackerrank.com/profile/23aiml010_om" target="_blank" rel="noopener noreferrer">
-              <SiHackerrank size={40} color="#2EC866" />
-              <p>HackerRank</p>
+          <Col xs={4} md={2} className="profile-card">
+            <a href="https://www.hackerrank.com/profile/23aiml010_om" target="_blank" rel="noopener noreferrer" className="profile-link">
+              <div className="profile-box">
+                <SiHackerrank size={40} color="#2EC866" />
+                <p>HackerRank</p>
+              </div>
             </a>
           </Col>
-          <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
-            <a href="https://codeforces.com/profile/omchoksi" target="_blank" rel="noopener noreferrer">
-              <SiCodeforces size={40} color="#3FB6CE" />
-              <p>Codeforces</p>
+          <Col xs={4} md={2} className="profile-card">
+            <a href="https://codeforces.com/profile/omchoksi" target="_blank" rel="noopener noreferrer" className="profile-link">
+              <div className="profile-box">
+                <SiCodeforces size={40} color="#3FB6CE" />
+                <p>Codeforces</p>
+              </div>
             </a>
           </Col>
-          <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
-            <a href="https://www.codechef.com/users/om_23aiml010" target="_blank" rel="noopener noreferrer">
-              <SiCodechef size={40} color="#D16F27" />
-              <p>CodeChef</p>
+          <Col xs={4} md={2} className="profile-card">
+            <a href="https://www.codechef.com/users/om_23aiml010" target="_blank" rel="noopener noreferrer" className="profile-link">
+              <div className="profile-box">
+                <SiCodechef size={40} color="#D16F27" />
+                <p>CodeChef</p>
+              </div>
             </a>
           </Col>
-          <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
-            <a href="https://www.kaggle.com/omchoksi04" target="_blank" rel="noopener noreferrer">
-              <SiKaggle size={40} color="#20BEFF" />
-              <p>Kaggle</p>
+          <Col xs={4} md={2} className="profile-card">
+            <a href="https://www.kaggle.com/omchoksi04" target="_blank" rel="noopener noreferrer" className="profile-link">
+              <div className="profile-box">
+                <SiKaggle size={40} color="#20BEFF" />
+                <p>Kaggle</p>
+              </div>
             </a>
           </Col>
-          <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
-            <a href="https://www.geeksforgeeks.org/user/omchoksii/" target="_blank" rel="noopener noreferrer">
-              <img src={require("../../Assets/gfg-logo.png")} alt="GFG" style={{ width: "40px", height: "40px" }} />
-              <p>GFG</p>
+          <Col xs={4} md={2} className="profile-card">
+            <a href="https://www.geeksforgeeks.org/user/omchoksii/" target="_blank" rel="noopener noreferrer" className="profile-link">
+              <div className="profile-box">
+                <img src={require("../../Assets/gfg-logo.png")} alt="GFG" style={{ width: "40px", height: "40px" }} />
+                <p>GFG</p>
+              </div>
             </a>
           </Col>
         </Row>
