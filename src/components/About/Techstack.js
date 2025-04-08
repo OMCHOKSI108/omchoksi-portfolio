@@ -13,7 +13,6 @@ import {
   DiCss3,
   DiLinux,
   DiCode,
-  DiStreamline,
 } from "react-icons/di";
 import {
   SiFirebase,
@@ -97,6 +96,9 @@ function Techstack() {
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <DiCode />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <GrServices />
       </Col>
     </Row>
   );
