@@ -21,7 +21,6 @@ import {
   SiSqlite,
   SiPandas,
   SiNumpy,
-  SiNltk,
   SiBurpsuite,
   SiGooglegemini,
   SiOpenai,
@@ -82,9 +81,6 @@ function Techstack() {
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <SiNumpy />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiNltk />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <DiGit />
