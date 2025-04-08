@@ -8,7 +8,6 @@ import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 import { FaGlobe } from "react-icons/fa"; // For "Profiles" globe icon
 import { SiLeetcode, SiHackerrank, SiCodeforces, SiCodechef, SiKaggle } from "react-icons/si";
-import { DiGeeksforgeeks } from "react-icons/di"; // For GeeksforGeeks icon
 
 function About() {
   return (
@@ -82,7 +81,7 @@ function About() {
           </Col>
           <Col xs={4} md={2} className="tech-icons" style={{ textAlign: "center" }}>
             <a href="https://www.geeksforgeeks.org/user/omchoksii/" target="_blank" rel="noopener noreferrer">
-              <DiGeeksforgeeks size={40} color="#2F8D46" />
+              <img src={require("../../Assets/gfg-logo.png")} alt="GFG" style={{ width: "40px", height: "40px" }} />
               <p>GFG</p>
             </a>
           </Col>
