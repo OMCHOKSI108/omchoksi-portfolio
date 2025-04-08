@@ -6,14 +6,8 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
-import { FaGlobe } from "react-icons/fa"; // For "Profiles" globe icon
-import { SiLeetcode, SiHackerrank, SiCodeforces, SiCodechef, SiKaggle } from "react-icons/si";
-import {
-  SiC, SiCplusplus, SiJava, SiPython, SiJavascript,
-  SiHtml5, SiCss3, SiNodedotjs, SiReact, SiMongodb,
-  SiMysql, SiGit, SiLinux, SiDocker, SiFirebase,
-  SiVisualstudiocode, SiGithub
-} from "react-icons/si";
+import { FaGlobe, FaCode } from "react-icons/fa"; // Generic code icon for unsupported languages
+import { SiLeetcode, SiHackerrank, SiCodeforces, SiCodechef, SiKaggle, SiPython, SiJavascript, SiHtml5, SiCss3, SiNodedotjs, SiReact, SiMongodb, SiMysql, SiGit, SiLinux, SiDocker, SiFirebase, SiVisualstudiocode, SiGithub } from "react-icons/si";
 
 function About() {
   return (
@@ -111,7 +105,7 @@ function About() {
           <Col xs={4} md={2} className="profile-card">
             <a href="https://devdocs.io/c/" target="_blank" rel="noopener noreferrer" className="profile-link">
               <div className="profile-box">
-                <SiC size={40} color="white" />
+                <img src={require("../../Assets/c-icon.png")} alt="C" style={{ width: "40px", height: "40px" }} />
                 <p>C</p>
               </div>
             </a>
@@ -119,7 +113,7 @@ function About() {
           <Col xs={4} md={2} className="profile-card">
             <a href="https://devdocs.io/cpp/" target="_blank" rel="noopener noreferrer" className="profile-link">
               <div className="profile-box">
-                <SiCplusplus size={40} color="white" />
+                <img src={require("../../Assets/cpp-icon.png")} alt="C++" style={{ width: "40px", height: "40px" }} />
                 <p>C++</p>
               </div>
             </a>
@@ -127,7 +121,7 @@ function About() {
           <Col xs={4} md={2} className="profile-card">
             <a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener noreferrer" className="profile-link">
               <div className="profile-box">
-                <SiJava size={40} color="white" />
+                <img src={require("../../Assets/java-icon.png")} alt="Java" style={{ width: "40px", height: "40px" }} />
                 <p>Java</p>
               </div>
             </a>
