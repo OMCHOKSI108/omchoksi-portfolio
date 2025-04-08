@@ -21,7 +21,6 @@ import {
   SiSqlite,
   SiPandas,
   SiNumpy,
-  SiGooglegemini,
   SiOpenai,
   SiStreamlit,
   SiC,
@@ -86,9 +85,6 @@ function Techstack() {
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <DiLinux />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiGooglegemini />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <SiOpenai />
