@@ -2,12 +2,17 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
-import editor from "../../Assets/Projects/codeEditor.png";
-import chatify from "../../Assets/Projects/chatify.png";
-import suicide from "../../Assets/Projects/suicide.png";
-import bitsOfCode from "../../Assets/Projects/blog.png";
+
+// Import your project images
+import websocketImg from "../../Assets/Projects/websocket.jpg";
+import webscrappingImg from "../../Assets/Projects/webscrapping.jpg";
+import educationalChatbotImg from "../../Assets/Projects/educationalchatbot.jpg";
+import documentNlpImg from "../../Assets/Projects/documentnlp.jpg";
+import textToImageImg from "../../Assets/Projects/texttoimagegenai.jpg";
+import socialMediaImg from "../../Assets/Projects/socialmedia.jpg";
+import employeeImg from "../../Assets/Projects/employee.jpg";
+import faceIdImg from "../../Assets/Projects/faceid.jpg";
+import whatsappImg from "../../Assets/Projects/whatsapp.jpg";
 
 function Projects() {
   return (
@@ -15,7 +20,7 @@ function Projects() {
       <Particle />
       <Container>
         <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+          My Recent <strong className="purple">Projects </strong>
         </h1>
         <p style={{ color: "white" }}>
           Here are a few projects I've worked on recently.
@@ -23,68 +28,91 @@ function Projects() {
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={chatify}
+              imgPath={websocketImg}
               isBlog={false}
-              title="Chatify"
-              description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
-              ghLink="https://github.com/soumyajit4419/Chatify"
-              demoLink="https://chatify-49.web.app/"
+              title="WebSocket Attack Detection & Simulation"
+              description="A project that detects and simulates WebSocket-based attacks in real-time."
+              ghLink="https://github.com/OMCHOKSI108/WEBSOCKET-ATTACK-AND-DETECTION"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={bitsOfCode}
+              imgPath={webscrappingImg}
               isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
+              title="Student Result Web Scraper"
+              description="Extracts student result data from university portals using Python."
+              ghLink="https://github.com/OMCHOKSI108/Web-Scarpping-Tool"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={editor}
+              imgPath={educationalChatbotImg}
               isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
+              title="AI Educational Chatbot"
+              description="A natural language chatbot for academic Q&A with students."
+              ghLink="https://github.com/OMCHOKSI108/CPI-PROJECT-CHATBOT-EDUCATIONAL"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={leaf}
+              imgPath={documentNlpImg}
               isBlog={false}
-              title="Plant AI"
-              description="Used the plant disease dataset from Kaggle and trained a image classifer model using 'PyTorch' framework using CNN and Transfer Learning with 38 classes of various plant leaves. The model was successfully able to detect diseased and healthy leaves of 14 unique plants. I was able to achieve an accuracy of 98% by using Resnet34 pretrained model."
-              ghLink="https://github.com/soumyajit4419/Plant_AI"
-              demoLink="https://plant49-ai.herokuapp.com/"
+              title="NLP Document Chatbot"
+              description="Chat with documents via NLP-based intelligent extraction and Q&A."
+              ghLink="https://github.com/OMCHOKSI108/NLP-DOCUMENT-CHATBOT"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={suicide}
+              imgPath={textToImageImg}
               isBlog={false}
-              title="Ai For Social Good"
-              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
-              ghLink="https://github.com/soumyajit4419/AI_For_Social_Good"
-              // demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" <--------Please include a demo link here
+              title="Text-to-Image Generator AI"
+              description="Generates visual content from text input using deep learning."
+              ghLink="https://github.com/OMCHOKSI108/TEXT-TO-IMAGE-GEN-AI"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={emotion}
+              imgPath={socialMediaImg}
               isBlog={false}
-              title="Face Recognition and Emotion Detection"
-              description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-              Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-              ghLink="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-              // demoLink="https://blogs.soumya-jit.tech/"      <--------Please include a demo link here 
+              title="Social Media Sentiment Analysis"
+              description="Analyzes Instagram and Twitter data to determine sentiment trends."
+              ghLink="https://github.com/OMCHOKSI108/SOCIAL-MEDIA-SENTIMENTAL-ANALYSIS"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={employeeImg}
+              isBlog={false}
+              title="Employee Performance Prediction"
+              description="Predicts employee performance using ML models and HR datasets."
+              ghLink="https://github.com/OMCHOKSI108/EMPLOYEE-PERFORMANCE-PREDICTION-"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={faceIdImg}
+              isBlog={false}
+              title="Face Identification"
+              description="Real-time facial recognition with OpenCV and TensorFlow."
+              ghLink="https://github.com/OMCHOKSI108/FACE-IDENTIFICATION-USING-OPENCV-AND-TENSOR"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={whatsappImg}
+              isBlog={false}
+              title="WhatsApp Chat Analyzer"
+              description="Analyzes WhatsApp chats for patterns, trends and communication metrics."
+              ghLink="https://github.com/OMCHOKSI108/WHATSAPP-CHAT-ANALYZER"
             />
           </Col>
         </Row>
