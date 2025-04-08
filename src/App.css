@@ -37,12 +37,10 @@
   }
 }
 
-/* Styles for Tech Stack and Tools sections */
 .tech-icons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5px;
   color: white;
 }
 
@@ -79,70 +77,114 @@
   display: block;
 }
 
-/* Existing styles remain, update .profile-box */
 .profile-box {
   cursor: pointer;
   border: 2px solid #c084fc;
-  border-radius: 6px; /* Slightly smaller radius for compactness */
-  padding: 3px; /* Reduced from 5px */
+  border-radius: 4px;
+  padding: 2px;
   background-color: rgba(192, 132, 252, 0.05);
   transition: all 0.3s ease-in-out;
-  min-height: 30px; /* Reduced from 40px */
+  min-height: 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px; /* Reduced from 2px */
   user-select: none;
   pointer-events: auto;
 }
 
 .profile-box:hover {
-  transform: translateY(-2px); /* Reduced from 3px */
-  box-shadow: 0 1px 4px rgba(192, 132, 252, 0.2); /* Reduced shadow */
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(192, 132, 252, 0.2);
   background-color: rgba(192, 132, 252, 0.1);
 }
 
-.profile-box p {
-  margin: 0;
-  font-size: 0.6em; /* Reduced from 0.7em */
-  font-weight: 500;
-  color: white;
+.tech-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Responsive adjustments */
+.tech-link:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Techstack styles */
+.techstack-icon {
+  margin: 15px;
+}
+
+.techstack-link {
+  padding: 10px;
+}
+
+.techstack-link:hover {
+  transform: scale(1.15);
+}
+
+/* Toolstack styles */
+.toolstack-icon {
+  margin: 5px;
+}
+
+.toolstack-link {
+  padding: 2px;
+}
+
+.toolstack-link:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .profile-box {
-    min-height: 28px; /* Further reduce */
-    padding: 2px;
+  .techstack-icon {
+    margin: 12px;
   }
 
-  .profile-box p {
-    font-size: 0.55em;
+  .techstack-link {
+    padding: 8px;
+  }
+
+  .techstack-link:hover {
+    transform: scale(1.1);
+  }
+
+  .toolstack-icon {
+    margin: 4px;
+  }
+
+  .toolstack-link {
+    padding: 1px;
+  }
+
+  .toolstack-link:hover {
+    transform: scale(1.02);
   }
 }
 
 @media (max-width: 576px) {
-  .profile-box {
-    min-height: 25px; /* Even smaller for phones */
-    padding: 1px;
+  .techstack-icon {
+    margin: 10px;
   }
 
-  .profile-box p {
-    font-size: 0.45em; /* Smaller text for phones */
+  .techstack-link {
+    padding: 6px;
   }
-}
 
-/* Ensure tech-icons supports the layout */
-.tech-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 4px; /* Reduced from 5px for tighter grid */
-  color: white;
-}
+  .techstack-link:hover {
+    transform: none;
+  }
 
-.tech-icons a {
-  text-decoration: none;
-  color: inherit;
+  .toolstack-icon {
+    margin: 3px;
+  }
+
+  .toolstack-link {
+    padding: 0;
+  }
+
+  .toolstack-link:hover {
+    transform: none;
+  }
 }

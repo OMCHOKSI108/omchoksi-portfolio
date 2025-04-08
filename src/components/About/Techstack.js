@@ -1,149 +1,287 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import {
-  DiJavascript1,
-  DiReact,
-  DiNodejs,
-  DiMongodb,
-  DiPython,
-  DiGit,
-  DiJava,
-} from "react-icons/di";
-import { SiPytorch, SiTensorflow, SiKeras } from "react-icons/si";
+  SiC,
+  SiCplusplus,
+  SiPython,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiNodedotjs,
+  SiReact,
+  SiExpress,
+  SiFirebase,
+  SiMongodb,
+  SiPostgresql,
+  SiSqlite,
+  SiChartdotjs,
+  SiNextdotjs,
+  SiGit,
+  SiLinux,
+  SiOpenai,
+  SiPostman,
+  SiGithub,
+} from "react-icons/si";
+import { FaCode } from "react-icons/fa"; // Generic fallback for Web Development
 
 function Techstack() {
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons">
+    <Row style={{ justifyContent: "center", paddingBottom: "50px", gap: "20px" }}>
+      {/* 1. C */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://www.tutorialspoint.com/cprogramming/index.htm"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiC size={50} color="white" />
+        </a>
+      </Col>
+
+      {/* 2. C++ */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://en.cppreference.com/w/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiCplusplus size={60} color="white" />
+        </a>
+      </Col>
+
+    
+
+      {/* 4. Python */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
           href="https://docs.python.org/3/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiPython size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Python</p>
-          </div>
+          <SiPython size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 5. JavaScript */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiJavascript1 size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>JavaScript</p>
-          </div>
+          <SiJavascript size={55} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 6. HTML */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiHtml5 size={60} color="white" />
+        </a>
+      </Col>
+
+      {/* 7. CSS */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiCss3 size={65} color="white" />
+        </a>
+      </Col>
+
+      {/* 8. Node.js */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://nodejs.org/en/docs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiNodedotjs size={60} color="white" />
+        </a>
+      </Col>
+
+      {/* 9. React */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
           href="https://reactjs.org/docs/getting-started.html"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiReact size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>React</p>
-          </div>
+          <SiReact size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 10. Express.js */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
-          href="https://nodejs.org/docs/latest/api/"
+          href="https://expressjs.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiNodejs size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Node.js</p>
-          </div>
+          <SiExpress size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 11. Firebase */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
-          href="https://docs.mongodb.com/"
+          href="https://firebase.google.com/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiMongodb size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>MongoDB</p>
-          </div>
+          <SiFirebase size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 12. MongoDB */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://www.mongodb.com/docs/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiMongodb size={65} color="white" />
+        </a>
+      </Col>
+
+      {/* 13. PostgreSQL */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://www.postgresql.org/docs/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiPostgresql size={60} color="white" />
+        </a>
+      </Col>
+
+      {/* 14. SQLite */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://sqlite.org/docs.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiSqlite size={60} color="white" />
+        </a>
+      </Col>
+
+      {/* 15. Chart.js */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://www.chartjs.org/docs/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiChartdotjs size={60} color="white" />
+        </a>
+      </Col>
+
+      {/* 16. Next.js */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://nextjs.org/docs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <SiNextdotjs size={60} color="white" />
+        </a>
+      </Col>
+
+      {/* 17. Git */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
           href="https://git-scm.com/doc"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiGit size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Git</p>
-          </div>
+          <SiGit size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 18. Linux */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
-          href="https://docs.oracle.com/javase/tutorial/"
+          href="https://www.kernel.org/doc/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <DiJava size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Java</p>
-          </div>
+          <SiLinux size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 19. OpenAI */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
-          href="https://pytorch.org/docs/stable/index.html"
+          href="https://platform.openai.com/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <SiPytorch size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>PyTorch</p>
-          </div>
+          <SiOpenai size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 20. Postman */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
-          href="https://www.tensorflow.org/api_docs"
+          href="https://learning.postman.com/docs/getting-started/introduction/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <SiTensorflow size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>TensorFlow</p>
-          </div>
+          <SiPostman size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+
+      {/* 21. GitHub */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
         <a
-          href="https://keras.io/api/"
+          href="https://docs.github.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link techstack-link"
         >
-          <div className="profile-box">
-            <SiKeras size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Keras</p>
-          </div>
+          <SiGithub size={60} color="white" />
         </a>
       </Col>
+
+      {/* 22. Web Development */}
+      <Col xs={4} md={2} className="tech-icons techstack-icon">
+        <a
+          href="https://developer.mozilla.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tech-link techstack-link"
+        >
+          <FaCode size={60} color="white" /> {/* Generic fallback */}
+        </a>
+      </Col>
+
+
     </Row>
   );
 }

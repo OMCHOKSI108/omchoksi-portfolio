@@ -16,148 +16,115 @@ import {
 
 function Toolstack() {
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons">
+    <Row style={{ justifyContent: "center", paddingBottom: "50px", gap: "20px" }}>
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://code.visualstudio.com/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiVisualstudiocode size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>VS Code</p>
-          </div>
+          <SiVisualstudiocode size={50} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://jupyter.org/documentation"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiJupyter size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Jupyter</p>
-          </div>
+          <SiJupyter size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://colab.research.google.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiGooglecolab size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Google Colab</p>
-          </div>
+          <SiGooglecolab size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://docs.streamlit.io/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiStreamlit size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Streamlit</p>
-          </div>
+          <SiStreamlit size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://www.kaggle.com/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiKaggle size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Kaggle</p>
-          </div>
+          <SiKaggle size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://docs.github.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiGithub size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>GitHub</p>
-          </div>
+          <SiGithub size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://learning.postman.com/docs/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiPostman size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Postman</p>
-          </div>
+          <SiPostman size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://vercel.com/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiVercel size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Vercel</p>
-          </div>
+          <SiVercel size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://docs.netlify.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiNetlify size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Netlify</p>
-          </div>
+          <SiNetlify size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://www.apachefriends.org/docs/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiXampp size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>XAMPP</p>
-          </div>
+          <SiXampp size={60} color="white" />
         </a>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
+      <Col xs={4} md={2} className="tech-icons toolstack-icon">
         <a
           href="https://help.figma.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="profile-link"
+          className="tech-link toolstack-link"
         >
-          <div className="profile-box">
-            <SiFigma size={15} color="white" /> {/* Reduced from 20 to 15 */}
-            <p>Figma</p>
-          </div>
+          <SiFigma size={60} color="white" />
         </a>
       </Col>
     </Row>
