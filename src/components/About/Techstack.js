@@ -9,27 +9,54 @@ import {
   DiPython,
   DiGit,
   DiJava,
+  DiHtml5,
+  DiCss3,
+  DiLinux,
+  DiCode,
+  DiStreamline,
 } from "react-icons/di";
 import {
-  SiRedis,
   SiFirebase,
-  SiNextdotjs,
-  SiSolidity,
   SiPostgresql,
+  SiSqlite,
+  SiPandas,
+  SiNumpy,
+  SiMatplotlib,
+  SiSeaborn,
+  SiNltk,
+  SiBurpsuite,
+  SiGooglegemini,
+  SiOpenai,
+  SiStreamlit,
+  SiC,
 } from "react-icons/si";
-import { TbBrandGolang } from "react-icons/tb";
+import { GrServices } from "react-icons/gr";
+import { VscSymbolClass } from "react-icons/vsc";
+import { AiOutlineApi } from "react-icons/ai";
 
 function Techstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <Col xs={4} md={2} className="tech-icons">
+        <SiC />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
         <CgCPlusPlus />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiJava />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiPython />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <DiJavascript1 />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <TbBrandGolang />
+        <DiHtml5 />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiCss3 />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <DiNodejs />
@@ -38,31 +65,58 @@ function Techstack() {
         <DiReact />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiSolidity />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiMongodb />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiNextdotjs />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
+        <SiStreamlit />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <SiFirebase />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiRedis />
+        <DiMongodb />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <SiPostgresql />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiPython />
+        <SiSqlite />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiJava />
+        <SiPandas />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiNumpy />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiMatplotlib />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiSeaborn />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiNltk />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiGit />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiLinux />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiBurpsuite />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiGooglegemini />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiOpenai />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <AiOutlineApi />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <VscSymbolClass />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiCode />
       </Col>
     </Row>
   );
