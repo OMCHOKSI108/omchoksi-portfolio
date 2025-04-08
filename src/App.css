@@ -42,7 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
+  margin: 5px;
   color: white;
 }
 
@@ -52,15 +52,15 @@
 }
 
 .tech-icons p {
-  margin: 5px 0 0;
+  margin: 2.5px 0 0;
   font-size: 0.9em;
 }
 
 .project-heading {
   text-align: center;
   color: white;
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 1em;
+  margin-bottom: 10px;
 }
 
 .project-heading .purple {
