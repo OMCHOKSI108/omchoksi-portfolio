@@ -19,37 +19,36 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I fell in love with programming and I have at least learnt
-              something, I think… 🤷‍♂️
+              I’m passionate about solving real-world problems using{" "}
+              <b className="purple">Artificial Intelligence</b> and{" "}
+              <b className="purple">Machine Learning</b>.
               <br />
-              <br />I am fluent in classics like
+              <br />
+              I am proficient in languages like{" "}
               <i>
-                <b className="purple"> C++, Javascript and Go. </b>
-              </i>
-              <br />
-              <br />
-              My field of Interest's are building new &nbsp;
+                <b className="purple">Python, C++,</b>
+              </i>{" "}
+              and familiar with frameworks like{" "}
               <i>
-                <b className="purple">Web Technologies and Products </b> and
-                also in areas related to{" "}
-                <b className="purple">
-                  Blockchain.
-                </b>
-              </i>
+                <b className="purple">TensorFlow, OpenCV, Pandas</b>
+              </i>.
               <br />
               <br />
-              Whenever possible, I also apply my passion for developing products
-              with <b className="purple">Node.js</b> and
+              My interests lie in developing intelligent solutions and working on projects involving{" "}
+              <b className="purple">Data Science</b> and{" "}
+              <b className="purple">Deep Learning</b>.
+              <br />
+              <br />
+              I enjoy working with tools like{" "}
+              <b className="purple">Flask</b>,{" "}
               <i>
-                <b className="purple">
-                  {" "}
-                  Modern Javascript Library and Frameworks
-                </b>
-              </i>
-              &nbsp; like
+                <b className="purple">Streamlit</b>
+              </i>{" "}
+              and libraries like{" "}
               <i>
-                <b className="purple"> React.js and Next.js</b>
-              </i>
+                <b className="purple">Scikit-learn</b>
+              </i>{" "}
+              to bring ML-powered ideas to life.
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -67,7 +66,7 @@ function Home2() {
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
-                  href="https://github.com/soumyajit4419"
+                  href="https://github.com/OMCHOKSI108"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -77,7 +76,7 @@ function Home2() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://twitter.com/Soumyajit4419"
+                  href="https://twitter.com/yourhandle"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -87,7 +86,7 @@ function Home2() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.linkedin.com/in/soumyajit4419/"
+                  href="https://www.linkedin.com/in/om-choksi/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -97,7 +96,7 @@ function Home2() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.instagram.com/soumyajit4419"
+                  href="https://www.instagram.com/yourhandle"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour home-social-icons"
@@ -112,4 +111,5 @@ function Home2() {
     </Container>
   );
 }
+
 export default Home2;
