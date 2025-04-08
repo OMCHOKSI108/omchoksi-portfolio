@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+/* New styles for Profiles section */
+.tech-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  color: white;
+}
+
+.tech-icons a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tech-icons p {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+}
+
+.project-heading {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.project-heading .purple {
+  color: #c084fc;
+}
