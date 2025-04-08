@@ -79,90 +79,70 @@
   display: block;
 }
 
+/* Existing styles remain, update .profile-box */
 .profile-box {
   cursor: pointer;
-  border: 2px solid #c084fc; /* Matches screenshot purple border */
-  border-radius: 8px;
-  padding: 15px;
-  background-color: rgba(192, 132, 252, 0.05); /* Dark background with slight purple tint */
+  border: 2px solid #c084fc;
+  border-radius: 6px; /* Slightly smaller radius for compactness */
+  padding: 3px; /* Reduced from 5px */
+  background-color: rgba(192, 132, 252, 0.05);
   transition: all 0.3s ease-in-out;
-  min-height: 90px;
+  min-height: 30px; /* Reduced from 40px */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 1px; /* Reduced from 2px */
   user-select: none;
-  pointer-events: auto; /* Ensure links are clickable */
+  pointer-events: auto;
 }
 
 .profile-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(192, 132, 252, 0.2);
+  transform: translateY(-2px); /* Reduced from 3px */
+  box-shadow: 0 1px 4px rgba(192, 132, 252, 0.2); /* Reduced shadow */
   background-color: rgba(192, 132, 252, 0.1);
 }
 
 .profile-box p {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 0.6em; /* Reduced from 0.7em */
   font-weight: 500;
   color: white;
 }
 
-/* About Section Styles */
-.about-section {
-  position: relative;
-  padding-top: 150px;
-  padding-bottom: 30px;
-  background-image: var(--section-background-color);
-  color: white;
-}
-
-.about-img {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.about-img img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Responsive Styles */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .project-heading {
-    font-size: 1.5em;
-  }
-
   .profile-box {
-    min-height: 80px;
-    padding: 10px;
+    min-height: 28px; /* Further reduce */
+    padding: 2px;
   }
 
   .profile-box p {
-    font-size: 0.8em;
-  }
-
-  .tech-icons {
-    margin: 3px;
+    font-size: 0.55em;
   }
 }
 
 @media (max-width: 576px) {
-  .project-heading {
-    font-size: 1.2em;
-  }
-
-  .profile-card {
-    padding: 5px;
-  }
-
   .profile-box {
-    min-height: 70px;
-    padding: 8px;
+    min-height: 25px; /* Even smaller for phones */
+    padding: 1px;
   }
 
-  .tech-icons p {
-    font-size: 0.8em;
+  .profile-box p {
+    font-size: 0.45em; /* Smaller text for phones */
   }
+}
+
+/* Ensure tech-icons supports the layout */
+.tech-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4px; /* Reduced from 5px for tighter grid */
+  color: white;
+}
+
+.tech-icons a {
+  text-decoration: none;
+  color: inherit;
 }

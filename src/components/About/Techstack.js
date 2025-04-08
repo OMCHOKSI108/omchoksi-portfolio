@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { CgCPlusPlus } from "react-icons/cg";
 import {
   DiJavascript1,
   DiReact,
@@ -9,96 +8,141 @@ import {
   DiPython,
   DiGit,
   DiJava,
-  DiHtml5,
-  DiCss3,
-  DiLinux,
-  DiCode,
 } from "react-icons/di";
-import {
-  SiFirebase,
-  SiPostgresql,
-  SiSqlite,
-  SiPandas,
-  SiNumpy,
-  SiOpenai,
-  SiStreamlit,
-  SiC,
-} from "react-icons/si";
-import { GrServices } from "react-icons/gr";
-import { VscSymbolClass } from "react-icons/vsc";
-import { AiOutlineApi } from "react-icons/ai";
+import { SiPytorch, SiTensorflow, SiKeras } from "react-icons/si";
 
 function Techstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <Col xs={4} md={2} className="tech-icons">
-        <SiC />
+        <a
+          href="https://docs.python.org/3/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiPython size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>Python</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <CgCPlusPlus />
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiJavascript1 size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>JavaScript</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiJava />
+        <a
+          href="https://reactjs.org/docs/getting-started.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiReact size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>React</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiPython />
+        <a
+          href="https://nodejs.org/docs/latest/api/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiNodejs size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>Node.js</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiJavascript1 />
+        <a
+          href="https://docs.mongodb.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiMongodb size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>MongoDB</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiHtml5 />
+        <a
+          href="https://git-scm.com/doc"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiGit size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>Git</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiCss3 />
+        <a
+          href="https://docs.oracle.com/javase/tutorial/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <DiJava size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>Java</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiNodejs />
+        <a
+          href="https://pytorch.org/docs/stable/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <SiPytorch size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>PyTorch</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiReact />
+        <a
+          href="https://www.tensorflow.org/api_docs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <SiTensorflow size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>TensorFlow</p>
+          </div>
+        </a>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiStreamlit />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiFirebase />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiMongodb />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiPostgresql />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiSqlite />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiPandas />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiNumpy />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiLinux />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiOpenai />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <AiOutlineApi />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <VscSymbolClass />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiCode />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <GrServices />
+        <a
+          href="https://keras.io/api/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profile-link"
+        >
+          <div className="profile-box">
+            <SiKeras size={15} color="white" /> {/* Reduced from 20 to 15 */}
+            <p>Keras</p>
+          </div>
+        </a>
       </Col>
     </Row>
   );
