@@ -22,13 +22,13 @@ function Profiles() {
   };
 
   const profiles = [
-    { icon: <SiLeetcode style={iconStyle} />, link: "https://leetcode.com/omchoksi108/", name: "LeetCode" },
-    { icon: <SiHackerrank style={iconStyle} />, link: "https://www.hackerrank.com/OMCHOKSI108", name: "HackerRank" },
-    { icon: <SiCodeforces style={iconStyle} />, link: "https://codeforces.com/profile/OMCHOKSI108", name: "Codeforces" },
-    { icon: <SiCodechef style={iconStyle} />, link: "https://www.codechef.com/users/omchoksi108", name: "CodeChef" },
-    { icon: <SiKaggle style={iconStyle} />, link: "https://www.kaggle.com/omchoksi108", name: "Kaggle" },
-    { icon: <SiGeeksforgeeks style={iconStyle} />, link: "https://auth.geeksforgeeks.org/user/omchoksi108", name: "GFG" },
-    { icon: <SiGooglecolab style={iconStyle} />, link: "https://colab.research.google.com/drive/1eL9wOxFKz4Do6EIPW0c7rRggY6o8iHje", name: "Colab" },
+    { icon: <SiLeetcode style={iconStyle} />, link: "https://leetcode.com/u/OmChoksi_23aiml010/", name: "LeetCode" },
+    { icon: <SiHackerrank style={iconStyle} />, link: "https://www.hackerrank.com/23aiml010_om", name: "HackerRank" },
+    { icon: <SiCodeforces style={iconStyle} />, link: "https://codeforces.com/profile/omchoksi", name: "Codeforces" },
+    { icon: <SiCodechef style={iconStyle} />, link: "https://www.codechef.com/users/om_23aiml010", name: "CodeChef" },
+    { icon: <SiKaggle style={iconStyle} />, link: "https://www.kaggle.com/omchoksi04", name: "Kaggle" },
+    { icon: <SiGeeksforgeeks style={iconStyle} />, link: "https://www.geeksforgeeks.org/user/omchoksii/?_gl=1*tl5rje*_up*MQ..*_gs*MQ..&gclid=CjwKCAjwtdi_BhACEiwA97y8BK-CiyfP3eEWFshfbiN2dkSRN1dSToHW8exkz-sDi0dZUYimSfxg2xoCODcQAvD_BwE", name: "GFG" },
+    { icon: <SiGooglecolab style={iconStyle} />, link: "https://colab.research.google.com", name: "Colab" },
   ];
 
   return (
