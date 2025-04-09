@@ -12,12 +12,12 @@ import {
 
 function Profiles() {
   const iconStyle = {
-    fontSize: "2.5em", // slightly smaller
-    margin: "8px",     // closer spacing
+    fontSize: "2em",      // reduced from 2.5em
+    margin: "4px",        // reduced from 8px
     color: "white",
     border: "2px solid #a855f7",
-    borderRadius: "10px",
-    padding: "10px",
+    borderRadius: "8px",  // reduced from 10px
+    padding: "8px",       // reduced from 10px
     transition: "transform 0.2s ease-in-out",
   };
 
@@ -33,27 +33,37 @@ function Profiles() {
 
   return (
     <>
-      <h1 className="project-heading" style={{ marginTop: "50px" }}>
+      <h1 className="project-heading" style={{ marginTop: "30px" }}> {/* reduced from 50px */}
         <strong className="purple">My Profiles</strong>
       </h1>
-      <Row style={{ justifyContent: "center", paddingBottom: "20px", gap: "10px" }}>
+      <Row style={{ 
+        justifyContent: "center", 
+        paddingBottom: "15px",  // reduced from 20px
+        gap: "5px"             // reduced from 10px
+      }}>
         {profiles.map((profile, idx) => (
           <Col
-            xs={4}
-            sm={3}
+            xs={3}    // changed from 4 to reduce width on mobile
+            sm={2}    // changed from 3 to show more icons per row
             md={2}
             lg={1}
             key={idx}
-            style={{ textAlign: "center" }}
+            style={{ 
+              textAlign: "center",
+              padding: "2px"  // added minimal padding
+            }}
           >
             <a
               href={profile.link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ 
+                textDecoration: "none", 
+                color: "white",
+                display: "inline-block"  // ensures proper icon alignment
+              }}
             >
               {profile.icon}
-              <div style={{ fontSize: "0.85em", marginTop: "4px" }}>{profile.name}</div>
             </a>
           </Col>
         ))}
