@@ -12,12 +12,12 @@ import {
 
 function Profiles() {
   const iconStyle = {
-    fontSize: "2em",      // reduced from 2.5em
-    margin: "4px",        // reduced from 8px
+    fontSize: "7em",      // Larger icons
+    margin: "0",         // No margin
     color: "white",
     border: "2px solid #a855f7",
-    borderRadius: "8px",  // reduced from 10px
-    padding: "8px",       // reduced from 10px
+    borderRadius: "18px",  // Slight rounding
+    padding: "15px",      // Increased from 2px to 3px
     transition: "transform 0.2s ease-in-out",
   };
 
@@ -33,41 +33,60 @@ function Profiles() {
 
   return (
     <>
-      <h1 className="project-heading" style={{ marginTop: "30px" }}> {/* reduced from 50px */}
+      <h1 className="project-heading" style={{ marginTop: "30px" }}>
         <strong className="purple">My Profiles</strong>
       </h1>
-      <Row style={{ 
-        justifyContent: "center", 
-        paddingBottom: "15px",  // reduced from 20px
-        gap: "5px"             // reduced from 10px
+      <div style={{ 
+        textAlign: "center", 
+        display: "inline-block", 
+        border: "2px solid #a855f7", 
+        padding: "15px", 
+        borderRadius: "70px" 
       }}>
-        {profiles.map((profile, idx) => (
-          <Col
-            xs={3}    // changed from 4 to reduce width on mobile
-            sm={2}    // changed from 3 to show more icons per row
-            md={2}
-            lg={1}
-            key={idx}
-            style={{ 
-              textAlign: "center",
-              padding: "2px"  // added minimal padding
-            }}
-          >
-            <a
-              href={profile.link}
-              target="_blank"
-              rel="noopener noreferrer"
+        <span style={{ color: "white", fontSize: "2em" }}>[</span>
+        <Row style={{ 
+          justifyContent: "center", 
+          paddingBottom: "15px",
+          gap: "35px",          // Increased from 2px to 3px
+          margin: "0",
+          display: "flex",
+          flexWrap: "nowrap",
+        }}>
+          {profiles.map((profile, idx) => (
+            <Col
+              xs={3.8}    // Slightly increased to prevent overlap
+              sm={2.4}
+              md={1.2}
+              lg={1}
+              key={idx}
               style={{ 
-                textDecoration: "none", 
-                color: "white",
-                display: "inline-block"  // ensures proper icon alignment
+                textAlign: "center",
+                padding: "0",
+                margin: "0",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              {profile.icon}
-            </a>
-          </Col>
-        ))}
-      </Row>
+              <a
+                href={profile.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ 
+                  textDecoration: "none", 
+                  color: "white",
+                  display: "inline-block",
+                  margin: "0",
+                  padding: "0",
+                }}
+              >
+                {profile.icon}
+              </a>
+            </Col>
+          ))}
+        </Row>
+        <span style={{ color: "white", fontSize: "2em" }}>]</span>
+      </div>
     </>
   );
 }
