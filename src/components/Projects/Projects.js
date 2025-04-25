@@ -13,6 +13,8 @@ import socialMediaImg from "../../Assets/Projects/socialmedia.jpg";
 import employeeImg from "../../Assets/Projects/employee.jpg";
 import faceIdImg from "../../Assets/Projects/faceid.jpg";
 import whatsappImg from "../../Assets/Projects/whatsapp.jpg";
+import fastapiImg from "../../Assets/Projects/fast-api.jpg";
+
 
 function Projects() {
   return (
@@ -43,6 +45,16 @@ function Projects() {
               title="Student Result Web Scraper"
               description="Extracts student result data from university portals using Python."
               ghLink="https://github.com/OMCHOKSI108/Web-Scarpping-Tool"
+            />
+          </Col>
+          
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={fastapiImg}
+              isBlog={false}
+              title="AI RESUME ANALYZER & IMPROVEMENT ADVISOR"
+              description="AI-powered resume analyzer and improvement advisor using FastAPI."
+              ghLink="https://github.com/OMCHOKSI108/AI-RESUME-ANALZER-FASTAPI"
             />
           </Col>
 
