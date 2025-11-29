@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Light Amazon-like admin theme */
+  --page-bg: #f3f4f6; /* light gray page background */
+  --topbar-bg: #131921; /* very dark navy */
+  --card-bg: #ffffff;
+  --accent: #f59e0b; /* warm yellow/orange */
+  --accent-strong: #fbbf24;
+  --link-blue: #2563eb;
+  --text-primary: #111827; /* near black */
+  --text-muted: #6b7280;
+  --border-subtle: #e6e6e6;
+  --btn-accent: var(--accent);
+  --btn-accent-text: #111827;
+  --btn-danger: #dc2626;
+  --btn-neutral: #ffffff;
+  --radius-md: 6px;
+  --shadow-soft: 0 4px 12px rgba(16,24,40,0.06);
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+* { box-sizing: border-box }
+
+body {
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography helpers */
+.h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em }
+.h2 { font-size: 1.125rem; font-weight: 600 }
+.muted { color: var(--text-muted) }
+.section-hint { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted) }
+
+/* Surface helpers */
+.card { background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
+
+/* Product / project card style */
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(16,24,40,0.08);
+}
+
+/* Ensure interactive controls inside cards are clickable even if layering occurs */
+.product-card button,
+.product-card a { position: relative; z-index: 10; pointer-events: auto; }
+
+/* Buttons */
+.btn-accent { background: var(--btn-accent); color: var(--btn-accent-text); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.04); font-weight:600 }
+.btn-neutral { background: var(--btn-neutral); color: var(--text-primary); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-subtle); }
+.btn-danger { background: transparent; color: var(--btn-danger); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(220,38,38,0.08); }
+
+/* Utility to make thumbnails feel like product images */
+.product-image { width: 100%; height: 220px; object-fit: cover; display:block }
+.product-thumb { width: 120px; height: 80px; object-fit: cover; border-radius: 4px; }
+
+/* Links and accents */
+a, .link { color: var(--link-blue); text-decoration: none }
+
+/* Fallback font variables for components */
+code, pre, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace; }
+
+/* Make buttons show pointer on hover and disabled state visual */
+button, .btn-accent, .btn-neutral, .btn-danger, .cursor-pointer, a, .link {
+  cursor: pointer;
+}
+
+button:disabled, .btn-accent[disabled], .btn-neutral[disabled], .btn-danger[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+

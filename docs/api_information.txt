@@ -1,0 +1,104 @@
+
+API Reference - omchoksi-portfolio (backend)
+Generated: 2025-11-29
+
+Base path: `/api`
+
+AUTH
+----
+
+/auth/register (POST)
+- Purpose: Create the initial admin account. This endpoint only allows creation when no admin exists.
+- Auth: none (only allowed once)
+- Request JSON: { "email": string, "password": string }
+- Success Response: { "success": true, "message": "Admin created" }
+- Error Responses: 400 (Admin already exists), 400 (missing fields), 500
+
+/auth/login (POST)
+- Purpose: Authenticate admin and set an HTTP-only cookie `admin_token`.
+- Auth: none
+- Request JSON: { "email": string, "password": string }
+- Success Response: { "success": true } and sets `Set-Cookie: admin_token=...; HttpOnly; Path=/; SameSite=Lax; Max-Age=604800` (7 days)
+- Error Responses: 400 (missing fields), 401 (invalid credentials), 500
+
+/auth/me (GET)
+- Purpose: Verify current session from `admin_token` cookie and return admin identity.
+- Auth: cookie `admin_token` required
+- Response: { "id": string, "email": string } or 401 if unauthorized
+
+/auth/update (POST)
+- Purpose: Update admin email and/or password (authenticated). If email changes, a new `admin_token` cookie is issued.
+- Auth: cookie `admin_token` required
+- Request JSON: { "email"?: string, "password"?: string }
+- Success Response: { "success": true } and (if email changed) a new `Set-Cookie` header with refreshed token
+- Error Responses: 400 (email already in use), 401 (unauthorized), 404 (admin not found), 500
+
+PROJECTS
+--------
+
+/projects (GET)
+- Purpose: Return a list of projects. (Currently implemented to require authentication.)
+- Auth: cookie `admin_token` required (note: you may opt to make this public)
+- Response: Array of project objects (full document as stored in MongoDB)
+- Error Responses: 401 (unauthorized), 500
+
+/projects (POST)
+- Purpose: Create a new project document.
+- Auth: cookie `admin_token` required
+- Request JSON: Project fields (example below)
+- Success Response: 201 + created project object
+- Error Responses: 401, 500
+
+Example project document shape (Mongoose `Project` model):
+{
+	"title": string,
+	"slug": string,
+	"description": string,
+	"tags": string[],
+	"liveUrl": string,
+	"githubUrl": string,
+	"imageUrl": string,
+	"featured": boolean,
+	"createdAt": string,
+	"updatedAt": string,
+	"_id": string
+}
+
+/projects/:id (GET)
+- Purpose: Get a single project by id.
+- Auth: none required in current implementation (public GET)
+- Response: project object or 404
+
+/projects/:id (PUT)
+- Purpose: Update a project document by id.
+- Auth: cookie `admin_token` required
+- Request JSON: fields to update
+- Response: updated project object or 404
+
+/projects/:id (DELETE)
+- Purpose: Delete a project by id.
+- Auth: cookie `admin_token` required
+- Response: { "success": true } or 404
+
+UPLOADS
+-------
+
+/upload (POST)
+- Purpose: Upload image files to Cloudinary (stored under folder `portfolio`) and return a secure URL.
+- Auth: cookie `admin_token` required
+- Request: multipart/form-data with field `image` (file)
+- Response: { "url": string } (secure Cloudinary URL)
+- Error Responses: 400 (no file), 401, 500
+
+AUTH FLOW NOTES
+----------------
+- Authentication is implemented with JWTs stored in an HTTP-only cookie named `admin_token`.
+- Client-side requests that rely on the cookie must send `credentials: 'same-origin'` with `fetch` so the browser includes cookies and receives `Set-Cookie` headers.
+
+MISC / DEV
+----------
+- Route protection for `/admin` pages is implemented by `proxy.ts` (root) which checks `admin_token` cookie and redirects unauthenticated requests to `/admin/login`.
+- There is a client-side login page at `/admin/login` which POSTs to `/api/auth/login` and then verifies the session via `/api/auth/me` before redirecting to `/admin/projects`.
+
+If you want this file expanded with sample curl commands or TypeScript client helpers for each endpoint, tell me which endpoints you'd like examples for and I will add them.
+

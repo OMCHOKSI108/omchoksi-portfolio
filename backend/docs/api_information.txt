@@ -1,0 +1,299 @@
+API Reference — Backend
+Generated: 2025-11-29
+
+Base URL (development): http://localhost:3000/api
+
+Summary
+- This file documents the server API implemented in the repository: authentication, project CRUD, file uploads and maintenance scripts.
+- Responses are wrapped in a consistent envelope: { success: boolean, message: string, data?: any } unless otherwise noted.
+ This file documents the server API implemented in the repository: authentication, project CRUD, file uploads and maintenance scripts.
+ Responses are wrapped in a consistent envelope: { success: boolean, message: string, data?: any } unless otherwise noted.
+
+Response envelope examples
+
+- Success:
+  {
+    "success": true,
+  }
+
+- Error:
+  {
+    "success": false,
+  }
+
+AUTH (admin)
+- Cookie name: `admin_token` (httpOnly cookie). Admin endpoints expect this cookie and verify it server-side.
+- When calling from client-side code, include credentials. Example: `fetch('/api/auth/me', { credentials: 'include' })`.
+
+1) POST /api/auth/register
+- Create the initial admin account (usually allowed once during setup).
+- Body (JSON): { "email": string, "password": string }
+- Example curl:
+  curl -X POST http://localhost:3000/api/auth/register \
+    -H "Content-Type: application/json" \
+  -d '{"email":"you@example.com","password":"StrongPass123"}'
+
+2) POST /api/auth/login
+- Authenticate and receive an httpOnly cookie `admin_token` on success.
+- Body (JSON): { "email": string, "password": string }
+- Example (curl with cookie jar):
+  curl -i -c cookies.txt -X POST http://localhost:3000/api/auth/login \
+    -H "Content-Type: application/json" \
+    -d '{"email":"you@example.com","password":"StrongPass123"}'
+3) POST /api/auth/logout
+- Clears the admin cookie (server-side logout). Call with saved cookies.
+  curl -b cookies.txt -X POST http://localhost:3000/api/auth/logout
+
+4) GET /api/auth/me
+- Verify current session from the `admin_token` cookie and return admin info.
+- Example response data: { id: string, email: string }
+5) POST /api/auth/update
+- Update admin details (email/password). Requires auth.
+- Body example: { "email": "new@example.com", "password": "NewPass123" }
+PROJECTS API
+----------------
+Overview
+- Collection: Projects persisted in MongoDB via Mongoose.
+- Public consumers only see `active: true` projects. Authenticated admin (valid `admin_token`) sees all projects.
+- Project image objects have the shape: { url: string, caption?: string, showOnProject?: boolean }.
+GET /api/projects
+- Public, paginated list with search and filters.
+- Query parameters:
+  - q: full-text search string (title/description)
+  - tags: comma-separated list of tags
+  - status: optional status (draft/live/archived)
+  - page: page number (default 1)
+  - limit: page size (default 24)
+  - t: optional cache-busting timestamp (client may append `&t=${Date.now()}`)
+- Example: GET /api/projects?q=react&tags=ui,web&page=1&limit=24
+- Successful response envelope.data shape:
+  {
+  items: [ /* array of project objects */ ],
+  total: number,
+  page: number,
+    limit: number
+  }
+
+POST /api/projects
+- Create a new project (admin only — requires `admin_token`).
+- Body (JSON) example:
+  {
+  "title": "My Project",
+  "slug": "my-project",
+  "description": "A short description",
+  "tags": ["react","tailwind"],
+  "liveUrl": "https://example.com",
+  "githubUrl": "https://github.com/me/repo",
+  "images": [{ "url": "https://.../img1.jpg", "caption": "Hero", "showOnProject": true }],
+  "active": true,
+  "featured": false
+  }
+- If `images` is empty or not provided, server will set a default image (see `DEFAULT_PROJECT_IMAGE`).
+
+GET /api/projects/:id
+- Fetch a single project by id. Public access allowed for active projects; admin access returns full object regardless of `active`.
+
+PUT /api/projects/:id
+- Update a project (admin only). The server expects the full fields you want to update. Example request body includes `images` array when updating images.
+- Important: images should be provided as the full desired array — this repository uses replacement semantics (arrays are replaced when provided). Example:
+  {
+    "title": "My Project v2",
+    "images": [
+      { "url": "https://res.cloudinary.com/..../img-a.jpg", "caption": "New main", "showOnProject": true },
+      { "url": "https://res.cloudinary.com/..../img-b.jpg", "caption": "detail" }
+    ],
+    "active": true
+  }
+- Successful response returns the updated project in `data`.
+
+DELETE /api/projects/:id
+- Delete a project (admin only). Returns success envelope on deletion.
+
+UPLOADS
+--------
+POST /api/upload
+- Upload image file (multipart/form-data). Field name: `image`.
+- Auth: the uploader endpoint may require auth depending on your environment. Use cookie: `admin_token` when needed.
+- Example curl:
+  curl -b cookies.txt -X POST http://localhost:3000/api/upload -F "image=@./screenshot.png"
+- Example success response:
+  {
+    "success": true,
+    "message": "File uploaded",
+    "data": { "url": "https://res.cloudinary.com/.../uploaded.jpg" }
+  }
+
+MAINTENANCE & SCRIPTS
+----------------------
+- Seed script (upsert projects): `backend/seeds/seed.js`
+  - Usage (PowerShell):
+    $env:MONGODB_URI='your-mongodb-uri'; node .\backend\seeds\seed.js
+  - The script parses `Final_project_description.txt` and upserts projects using slug key.
+
+- Copy default image to Next public: `backend/seeds/copy_default_image.js`
+  - Copies `docs/image.png` into `backend/public/docs/image.png` so Next serves `/docs/image.png`.
+  - Usage: `node .\backend\seeds\copy_default_image.js`
+
+- Fix images utility: `backend/seeds/fix_images.js`
+  - Replaces every project's `images` array with a single default image (useful for bulk repair).
+  - Usage: `$env:MONGODB_URI='your-uri'; node .\backend\seeds\fix_images.js`
+
+ERRORS & STATUS CODES
+---------------------
+- 200 — Success (envelope.success: true)
+- 400 — Bad request / validation errors (envelope.success: false; may include `errors` map)
+- 401 — Unauthorized (missing/invalid `admin_token`)
+- 404 — Not found (e.g., Project not found)
+- 500 — Server error
+
+Example error response:
+  {
+    "success": false,
+    "message": "Missing required fields: title and slug",
+    "errors": { "title": "Required" }
+  }
+
+CLIENT GUIDANCE & CACHING
+------------------------
+- Always call admin routes with credentials included so the httpOnly cookie is sent:
+  `fetch('/api/projects', { credentials: 'include' })` or `credentials: 'same-origin'` on same-origin.
+- To avoid stale thumbnails after an edit, append a cache-busting query to image URLs or list requests, e.g. `?v=<timestamp>` or `&t=${Date.now()}`. Admin UI in this repo already uses this approach for thumbnails and list fetches.
+- When updating arrays (images), send the full desired array. The server uses `$set` semantics so providing the new array replaces the previous one.
+
+SCHEMAS (quick reference)
+-------------------------
+Project (partial):
+{
+  _id: string,
+  title: string,
+  slug: string,
+  description: string,
+  tags: string[],
+  liveUrl?: string,
+  githubUrl?: string,
+  images: [ { url: string, caption?: string, showOnProject?: boolean } ],
+  active: boolean,
+  featured: boolean,
+  createdAt: string,
+  updatedAt: string
+}
+
+Image object:
+{
+  url: string,
+  caption?: string,
+  showOnProject?: boolean
+}
+
+ADDITIONAL NOTES
+----------------
+- Public `GET /api/projects` will filter by `active: true` unless the request includes a valid `admin_token` cookie (admin access).
+- The admin cookie is intentionally httpOnly for security — client-side JS cannot read it, only the browser sends it automatically when `credentials` is used.
+- For diagnosing image persistence problems: the server logs update attempts (see `src/controllers/projectController.ts`), and the seed/fix utilities are located under `backend/seeds`.
+
+If you want, I can also generate an OpenAPI (Swagger) spec or add machine-readable JSON Schema files for the Project model. Tell me which you'd prefer and I will add it.
+
+API Reference + Examples
+Generated: 2025-11-29
+
+Base URL: http://localhost:3000/api
+
+AUTH
+----
+
+1) POST /auth/register
+- Create the initial admin (only allowed once).
+- Body (JSON): { "email": "you@example.com", "password": "StrongPass123" }
+- Curl:
+  curl -X POST http://localhost:3000/api/auth/register \
+    -H "Content-Type: application/json" \
+    -d '{"email":"you@example.com","password":"StrongPass123"}'
+
+2) POST /auth/login
+- Authenticate and receive an httpOnly cookie `admin_token`.
+- Body (JSON): { "email": "you@example.com", "password": "StrongPass123" }
+- Curl (preserve cookies):
+  curl -i -c cookies.txt -X POST http://localhost:3000/api/auth/login \
+    -H "Content-Type: application/json" \
+    -d '{"email":"you@example.com","password":"StrongPass123"}'
+
+3) POST /auth/logout
+- Clear the session cookie.
+- Curl (send saved cookies):
+  curl -b cookies.txt -X POST http://localhost:3000/api/auth/logout
+
+4) GET /auth/me
+- Verify current session from cookie. Returns { id, email } on success.
+- Curl:
+  curl -b cookies.txt http://localhost:3000/api/auth/me
+
+5) POST /auth/update
+- Update admin email/password. Auth required.
+- Body (JSON): { "email": "new@example.com", "password": "NewPass" }
+- Curl:
+  curl -b cookies.txt -X POST http://localhost:3000/api/auth/update -H "Content-Type: application/json" -d '{"email":"new@example.com"}'
+
+PROJECTS
+--------
+
+GET /projects
+- Public, optimized list with pagination, search and filters.
+- Query params: q (text search), tags (comma-separated), status, page, limit
+- Example:
+  curl "http://localhost:3000/api/projects?q=react&tags=ui,web&page=1&limit=24"
+
+POST /projects
+- Create a new project (auth required - cookie).
+- Body (JSON): project fields (title, slug, description, tags[], imageUrl, liveUrl, githubUrl, status)
+- Curl:
+  curl -b cookies.txt -X POST http://localhost:3000/api/projects \
+    -H "Content-Type: application/json" \
+    -d '{"title":"My Project","slug":"my-project","description":"Short desc","tags":["react"],"status":"live"}'
+
+GET /projects/:id
+- Get single project by id.
+
+PUT /projects/:id
+- Update project (auth required).
+
+DELETE /projects/:id
+- Delete project (auth required).
+
+UPLOADS
+-------
+
+POST /upload
+- Upload image file (multipart/form-data, field name `image`). Auth required.
+- Example curl (attach file) — make sure server running and cookies present:
+  curl -b cookies.txt -X POST http://localhost:3000/api/upload -F "image=@./screenshot.png"
+
+TypeScript Fetch Examples
+-------------------------
+
+Login (client-side)
+```
+await fetch('/api/auth/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  credentials: 'same-origin',
+  body: JSON.stringify({ email, password }),
+});
+```
+
+Fetch projects (with search and pagination)
+```
+const res = await fetch(`/api/projects?q=${encodeURIComponent(q)}&page=${page}&limit=${limit}`);
+const data = await res.json(); // { items, total, page, limit }
+```
+
+Upload file (client)
+```
+const fd = new FormData();
+fd.append('image', fileInput.files[0]);
+const res = await fetch('/api/upload', { method: 'POST', body: fd, credentials: 'same-origin' });
+const body = await res.json(); // { url }
+```
+
+Notes
+- Always call `fetch` with `credentials: 'same-origin'` where cookie auth is expected.
+- Endpoints return consistent JSON objects for success and error. Errors include HTTP status codes and an `{ error: string }` body.
