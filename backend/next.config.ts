@@ -10,9 +10,19 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'source.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/**',
+      },
     ],
     // Add other known external hosts you expect to use (optional)
-    domains: ['source.unsplash.com', 'res.cloudinary.com', 'images.pexels.com'],
+    // `domains` is deprecated; using `remotePatterns` instead to restrict remote images
   },
 };
 
