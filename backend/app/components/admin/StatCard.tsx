@@ -1,5 +1,4 @@
 "use client";
-import React from 'react';
 
 export default function StatCard({ title, value, hint }: { title: string; value: string | number; hint?: string }) {
   return (
@@ -7,19 +6,6 @@ export default function StatCard({ title, value, hint }: { title: string; value:
       <div className="text-sm text-muted">{title}</div>
       <div className="text-2xl font-semibold mt-2">{value}</div>
       {hint ? <div className="text-xs text-muted mt-1">{hint}</div> : null}
-    </div>
-  );
-}
-"use client";
-
-import React from 'react';
-
-export default function StatCard({ title, value, hint }: { title: string; value: string | number; hint?: string }) {
-  return (
-    <div className="card p-4">
-      <div className="section-hint">{title}</div>
-      <div className="text-2xl font-semibold mt-2">{value}</div>
-      {hint && <div className="muted text-sm mt-1">{hint}</div>}
     </div>
   );
 }
