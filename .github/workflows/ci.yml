@@ -1,0 +1,45 @@
+name: CI / Build & Smoke Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        working-directory: ./backend
+        run: |
+          npm ci --prefer-offline --no-audit --progress=false
+
+      - name: Build
+        working-directory: ./backend
+        run: npm run build
+
+      - name: Start server (background)
+        working-directory: ./backend
+        run: |
+          nohup npm run start &> backend-server.log &
+          # wait for server to respond
+          for i in {1..30}; do
+            if curl -sS --fail http://localhost:3000 >/dev/null 2>&1; then
+              echo "server is up"; break
+            fi
+            echo "waiting for server... ($i)"; sleep 2
+          done
+
+      - name: Run smoke tests
+        env:
+          BASE_URL: http://localhost:3000
+        run: |
+          node backend/tests/run_smoke_tests.js
