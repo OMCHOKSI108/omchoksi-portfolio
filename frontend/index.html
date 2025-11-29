@@ -16,7 +16,7 @@
                 extend: {
                     colors: {
                         background: '#ffffff', 
-                        darkBackground: '#050505', /* Deep Black */
+                        darkBackground: '#050505',
                         surface: '#f4f4f5',    
                         darkSurface: '#121212',
                     },
@@ -28,6 +28,8 @@
                         'blob': 'blob 10s infinite',
                         'spin-slow': 'spin 12s linear infinite',
                         'twinkle': 'twinkle 4s ease-in-out infinite',
+                        /* NEW */
+                        'marquee': 'marquee 22s linear infinite',
                     },
                     keyframes: {
                         blob: {
@@ -39,6 +41,11 @@
                         twinkle: {
                             '0%, 100%': { opacity: '0.2' },
                             '50%': { opacity: '1' },
+                        },
+                        /* NEW: marquee for skills row */
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         }
                     }
                 }
@@ -48,6 +55,13 @@
     <style>
         body {
             cursor: none;
+            opacity: 0;                  /* NEW: page fade-in */
+            animation: bodyFade 0.6s ease-out forwards;
+        }
+
+        @keyframes bodyFade {           /* NEW */
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
         
         /* Starry Background */
@@ -87,6 +101,7 @@
             width: 8px;
             height: 8px;
             background-color: #000;
+            transition: transform 0.12s ease-out;      /* NEW: subtle scale */
         }
         .dark .cursor-dot { background-color: #fff; }
 
@@ -94,11 +109,12 @@
             width: 40px;
             height: 40px;
             border: 1px solid rgba(0, 0, 0, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.2s;
+            transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.24s ease-out, border-color 0.2s, opacity 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            backdrop-filter: blur(6px);                /* NEW: glass feel */
         }
         .dark .cursor-outline { border: 1px solid rgba(255, 255, 255, 0.5); }
         
@@ -115,10 +131,11 @@
         body.hovering .cursor-outline {
             width: 60px;
             height: 60px;
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.08);
             border-color: transparent;
+            transform: scale(1.02);
         }
-        body.dark.hovering .cursor-outline { background-color: rgba(255, 255, 255, 0.1); }
+        body.dark.hovering .cursor-outline { background-color: rgba(255, 255, 255, 0.08); }
 
         /* VIEW Cursor State */
         body.viewing .cursor-outline {
@@ -127,6 +144,7 @@
             background-color: #000;
             border-color: transparent;
             mix-blend-mode: normal;
+            transform: scale(1.04);
         }
         body.dark.viewing .cursor-outline {
             background-color: #fff;
@@ -160,6 +178,79 @@
         }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
+
+        /* NEW: hero staggered entry */
+        .hero-animate {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeInUp 0.7s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+        }
+        .hero-delay-1 { animation-delay: 0.15s; }
+        .hero-delay-2 { animation-delay: 0.3s; }
+        .hero-delay-3 { animation-delay: 0.45s; }
+
+        @keyframes fadeInUp {           /* NEW */
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* NEW: floating motion */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .float-slow {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* NEW: nav glow */
+        .nav-glass {
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-glass::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 999px;
+            padding: 1px;
+            background: linear-gradient(120deg, rgba(59,130,246,0.3), rgba(236,72,153,0.2), rgba(45,212,191,0.25));
+            -webkit-mask:
+              linear-gradient(#000 0 0) content-box,
+              linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            animation: navGlow 8s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes navGlow {
+            0% { transform: translateX(-30%); }
+            50% { transform: translateX(0); }
+            100% { transform: translateX(30%); }
+        }
+
+        /* NEW: 3D tilt */
+        .tilt {
+            transform-style: preserve-3d;
+            transition: transform 0.22s ease-out;
+        }
+
+        /* NEW: skills marquee */
+        .marquee-track {
+            display: inline-flex;
+            white-space: nowrap;
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            body { opacity: 1 !important; }
+        }
     </style>
 </head>
 <body class="antialiased bg-background dark:bg-darkBackground text-zinc-900 dark:text-zinc-50 transition-colors duration-300">
@@ -175,7 +266,7 @@
         <span class="font-bold text-3xl font-sans tracking-tighter">OC</span>
     </a>
 
-    <nav class="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white/80 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 rounded-full px-2 py-2 shadow-sm items-center gap-1">
+    <nav class="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white/80 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 rounded-full px-2 py-2 shadow-sm items-center gap-1 nav-glass">
         <div class="flex items-center px-4 gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-400">
             <a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover px-2 py-1">Home</a>
             <a href="#about" class="hover:text-black dark:hover:text-white transition-colors cursor-hover px-2 py-1">About</a>
@@ -197,51 +288,54 @@
     <!-- Hero Section -->
     <header class="relative pt-40 pb-32 px-6 min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
         
-        <!-- Animated Background Elements (Matches Original) -->
+        <!-- Animated Background Elements -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
             <!-- Stars -->
-            <div class="absolute inset-0 stars dark:block hidden"></div>
+            <div class="absolute inset-0 stars dark:block hidden" data-parallax="0.12"></div>
             <!-- Horizon Glow (Bottom) -->
-            <div class="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[120%] h-[300px] horizon-glow dark:block hidden"></div>
+            <div class="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[120%] h-[300px] horizon-glow dark:block hidden" data-parallax="-0.06"></div>
             <!-- Top Subtle Gradient -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-blue-900/10 to-transparent rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-blue-900/10 to-transparent rounded-full blur-[120px] pointer-events-none" data-parallax="0.18"></div>
+
+            <!-- NEW: floating blobs -->
+            <div class="hidden md:block">
+                <div class="animate-blob absolute -top-10 -left-10 w-72 h-72 bg-purple-500/25 dark:bg-purple-500/30 rounded-full blur-3xl"></div>
+                <div class="animate-blob absolute top-40 -right-16 w-80 h-80 bg-blue-500/20 dark:bg-blue-500/30 rounded-full blur-3xl" style="animation-delay: 2s;"></div>
+                <div class="animate-blob absolute bottom-10 left-1/2 -translate-x-1/2 w-72 h-72 bg-emerald-400/20 dark:bg-emerald-400/30 rounded-full blur-3xl" style="animation-delay: 4s;"></div>
+            </div>
         </div>
 
         <!-- Upcoming Pill -->
-        <div class="reveal active inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-300 mb-10 backdrop-blur-sm shadow-sm cursor-hover">
+        <div class="reveal active inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-300 mb-10 backdrop-blur-sm shadow-sm cursor-hover float-slow">
             <span class="px-2 py-0.5 rounded bg-blue-600 text-white text-[10px] font-bold shadow-lg shadow-blue-900/50">Upcoming</span>
             Nextnode is launching soon! <i class="fa-solid fa-chevron-right text-[10px] text-zinc-500"></i>
         </div>
 
-        <!-- Main Heading (Refined Typography) -->
+        <!-- Main Heading -->
         <h1 class="text-6xl md:text-8xl lg:text-[7rem] font-medium tracking-tight mb-10 max-w-6xl mx-auto leading-[1.1] text-zinc-900 dark:text-zinc-100">
-            <!-- First Line: Standard Serif, Regular Weight -->
-            <div class="reveal active delay-100 font-serif font-normal mb-2 text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300 tracking-normal">
+            <div class="font-serif font-normal mb-2 text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300 tracking-normal hero-animate hero-delay-1">
                 I help founders turn ideas
             </div>
-            <!-- Second Line: Serif + Italic Mix -->
-            <div class="reveal active delay-200">
+            <div class="hero-animate hero-delay-2">
                 into seamless <span class="font-serif italic font-light text-zinc-500 dark:text-zinc-200">digital experiences</span>
             </div>
         </h1>
 
         <!-- Subheading / Avatar -->
-        <div class="flex items-center gap-4 mb-14 reveal active delay-300">
+        <div class="flex items-center gap-4 mb-14 hero-animate hero-delay-3">
             <span class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 font-light">Hello, I'm <span class="font-medium text-black dark:text-white">Om Choksi</span></span>
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Om Choksi" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-zinc-800 shadow-lg">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Om Choksi" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-zinc-800 shadow-lg float-slow">
             <span class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 font-light">a Full Stack Developer</span>
         </div>
 
-        <!-- Buttons (Refined for Dark Mode) -->
-        <div class="flex flex-col sm:flex-row gap-5 reveal active delay-300">
-            <!-- Let's Connect: Dark Grey in Dark Mode -->
-            <a href="#contact" class="cursor-hover group px-9 py-4 bg-zinc-900 dark:bg-[#1a1a1a] border border-transparent dark:border-zinc-800 text-white font-medium rounded-full hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 shadow-xl dark:shadow-none text-lg">
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-5 hero-animate hero-delay-3">
+            <a href="#contact" class="cursor-hover group px-9 py-4 bg-zinc-900 dark:bg-[#1a1a1a] border border-transparent dark:border-zinc-800 text-white font-medium rounded-full hover:scale-105 active:scale-95 transition-transform duration-300 flex items-center justify-center gap-3 shadow-xl dark:shadow-none text-lg">
                 Let's Connect 
                 <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-[-45deg] transition-transform">
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </div>
             </a>
-            <!-- Copy Email: Transparent/Outline -->
             <a href="mailto:hello@omchoksi.in" class="cursor-hover px-9 py-4 bg-transparent border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-300 font-medium rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center justify-center gap-3 text-lg">
                 <i class="fa-regular fa-copy"></i> hello@omchoksi.in
             </a>
@@ -249,22 +343,56 @@
     </header>
 
     <!-- Skills Section -->
-    <section class="py-32 bg-surface dark:bg-darkSurface overflow-hidden">
-        <div class="text-center mb-20">
+    <section id="about" class="py-32 bg-surface dark:bg-darkSurface overflow-hidden">
+        <div class="text-center mb-16 reveal">
             <span class="text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase">My Skills</span>
             <h2 class="text-5xl md:text-6xl font-serif mt-4">The Secret <span class="italic text-purple-600 dark:text-purple-400">Sauce</span></h2>
+            <p class="mt-4 text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto text-sm md:text-base">
+                A tech stack crafted for fast, modern and scalable products — from idea to launch.
+            </p>
         </div>
 
-        <div class="flex gap-4 justify-center flex-wrap max-w-6xl mx-auto mb-6 px-4">
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-react"></i></div>
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-black dark:text-white border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-node"></i></div>
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-600 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-js"></i></div>
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-sky-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-css3"></i></div>
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-orange-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-html5"></i></div>
+        <!-- NEW: marquee-style tech strip -->
+        <div class="relative py-4 mb-12">
+            <div class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface dark:from-darkSurface to-transparent"></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface dark:from-darkSurface to-transparent"></div>
+            <div class="overflow-hidden">
+                <div class="marquee-track animate-marquee text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                    <span class="mx-6">React</span>
+                    <span class="mx-6">Next.js</span>
+                    <span class="mx-6">Node.js</span>
+                    <span class="mx-6">TypeScript</span>
+                    <span class="mx-6">Tailwind CSS</span>
+                    <span class="mx-6">MongoDB</span>
+                    <span class="mx-6">PostgreSQL</span>
+                    <span class="mx-6">Docker</span>
+                    <span class="mx-6">GitHub Actions</span>
+                    <span class="mx-6">REST APIs</span>
+                    <!-- repeat for seamless loop -->
+                    <span class="mx-6">React</span>
+                    <span class="mx-6">Next.js</span>
+                    <span class="mx-6">Node.js</span>
+                    <span class="mx-6">TypeScript</span>
+                    <span class="mx-6">Tailwind CSS</span>
+                    <span class="mx-6">MongoDB</span>
+                    <span class="mx-6">PostgreSQL</span>
+                    <span class="mx-6">Docker</span>
+                    <span class="mx-6">GitHub Actions</span>
+                    <span class="mx-6">REST APIs</span>
+                </div>
+            </div>
         </div>
-         <div class="flex gap-4 justify-center flex-wrap max-w-5xl mx-auto px-4">
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-gray-800 dark:text-gray-200 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></div>
-             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-400 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-docker"></i></div>
+
+        <div class="flex gap-4 justify-center flex-wrap max-w-6xl mx-auto mb-6 px-4 reveal delay-100">
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:rotate-3"><i class="fa-brands fa-react"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-black dark:text-white border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:-rotate-3"><i class="fa-brands fa-node"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-600 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:rotate-2"><i class="fa-brands fa-js"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-sky-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:-rotate-2"><i class="fa-brands fa-css3"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-orange-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:rotate-1"><i class="fa-brands fa-html5"></i></div>
+        </div>
+        <div class="flex gap-4 justify-center flex-wrap max-w-5xl mx-auto px-4 reveal delay-200">
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-gray-800 dark:text-gray-200 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:-rotate-1"><i class="fa-brands fa-github"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-400 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1 hover:rotate-1"><i class="fa-brands fa-docker"></i></div>
         </div>
     </section>
 
@@ -277,14 +405,13 @@
 
         <div class="space-y-32">
             
-            <!-- Project 1: Snippix (Teal/Green Theme) -->
+            <!-- Project 1 -->
             <div class="group relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm reveal">
                 <div class="grid lg:grid-cols-5 gap-0">
-                    <!-- Image Section (Left) -->
-                    <div class="lg:col-span-3 bg-[#0d9488] relative h-[450px] lg:h-[650px] flex items-center justify-center p-8 overflow-hidden cursor-view">
+                    <!-- Image Section -->
+                    <div class="lg:col-span-3 bg-[#0d9488] relative h-[450px] lg:h-[650px] flex items-center justify-center p-8 overflow-hidden cursor-view tilt">
                          <div class="absolute inset-0 bg-gradient-to-br from-[#14b8a6] to-[#0f766e]"></div>
                          
-                         <!-- Mockup -->
                          <div class="relative w-[90%] max-w-md bg-[#1e1e1e] rounded-xl shadow-2xl p-4 transform group-hover:scale-105 transition-transform duration-500 border border-white/10">
                             <div class="flex gap-2 mb-4">
                                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
@@ -306,7 +433,7 @@
                          <div class="absolute top-10 right-10 text-white text-3xl"><i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i></div>
                     </div>
 
-                    <!-- Text Content (Right) -->
+                    <!-- Text Content -->
                     <div class="lg:col-span-2 p-10 lg:p-16 flex flex-col justify-center">
                         <div class="flex items-center gap-3 mb-8">
                             <span class="w-8 h-[2px] bg-black dark:bg-white"></span>
@@ -341,10 +468,10 @@
                 </div>
             </div>
 
-            <!-- Project 2: Next Ventures (Pink Theme - Layout Swapped for Visual Flow) -->
+            <!-- Project 2 -->
             <div class="group relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm reveal">
                 <div class="grid lg:grid-cols-5 gap-0">
-                    <!-- Text Content (Left) -->
+                    <!-- Text Content -->
                     <div class="lg:col-span-2 p-10 lg:p-16 flex flex-col justify-center order-2 lg:order-1">
                         <div class="flex items-center gap-3 mb-8">
                             <span class="w-8 h-[2px] bg-black dark:bg-white"></span>
@@ -376,8 +503,8 @@
                         </a>
                     </div>
 
-                    <!-- Image Section (Right) -->
-                    <div class="lg:col-span-3 bg-[#e91e63] relative h-[450px] lg:h-[650px] flex items-center justify-center overflow-hidden cursor-view order-1 lg:order-2">
+                    <!-- Image Section -->
+                    <div class="lg:col-span-3 bg-[#e91e63] relative h-[450px] lg:h-[650px] flex items-center justify-center overflow-hidden cursor-view order-1 lg:order-2 tilt">
                          <div class="absolute inset-0 bg-gradient-to-br from-[#f06292] to-[#c2185b]"></div>
                          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop" class="absolute left-10 top-1/2 -translate-y-1/2 w-[90%] rounded-xl shadow-2xl rotate-2 group-hover:rotate-0 transition-all duration-500 border border-white/10">
                          <div class="absolute top-10 left-10 text-white text-3xl"><i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i></div>
@@ -385,17 +512,17 @@
                 </div>
             </div>
 
-            <!-- Project 3: Finote App (Purple Theme) -->
+            <!-- Project 3 -->
             <div class="group relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm reveal">
                 <div class="grid lg:grid-cols-5 gap-0">
-                    <!-- Image Section (Left) -->
-                    <div class="lg:col-span-3 bg-[#7c3aed] relative h-[450px] lg:h-[650px] flex items-center justify-center p-8 overflow-hidden cursor-view">
+                    <!-- Image Section -->
+                    <div class="lg:col-span-3 bg-[#7c3aed] relative h-[450px] lg:h-[650px] flex items-center justify-center p-8 overflow-hidden cursor-view tilt">
                          <div class="absolute inset-0 bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9]"></div>
                          <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2670&auto=format&fit=crop" class="absolute right-10 top-1/2 -translate-y-1/2 w-[80%] rounded-xl shadow-2xl -rotate-2 group-hover:rotate-0 transition-all duration-500 border border-white/10">
                          <div class="absolute top-10 right-10 text-white text-3xl"><i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i></div>
                     </div>
 
-                    <!-- Text Content (Right) -->
+                    <!-- Text Content -->
                     <div class="lg:col-span-2 p-10 lg:p-16 flex flex-col justify-center">
                         <div class="flex items-center gap-3 mb-8">
                             <span class="w-8 h-[2px] bg-black dark:bg-white"></span>
@@ -440,7 +567,7 @@
              
              <!-- Top Call to Action -->
              <div class="flex flex-col items-center justify-center mb-32 reveal text-center">
-                 <div class="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-zinc-100 dark:bg-zinc-800 mb-10 cursor-hover shadow-sm">
+                 <div class="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-zinc-100 dark:bg-zinc-800 mb-10 cursor-hover shadow-sm float-slow">
                      <span class="text-zinc-600 dark:text-zinc-300 font-medium text-lg">Get In Touch</span>
                      <div class="w-8 h-8 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center">
                          <i class="fa-solid fa-arrow-right -rotate-45"></i>
@@ -505,7 +632,6 @@
                  </div>
                  
                  <div class="flex items-center gap-6">
-                     <!-- Theme Toggle -->
                     <button id="theme-toggle" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-300 hover:scale-110 transition-transform cursor-hover">
                         <i class="fa-solid fa-moon dark:hidden text-sm"></i>
                         <i class="fa-solid fa-sun hidden dark:block text-sm"></i>
@@ -522,17 +648,15 @@
 
     <script>
         // Theme Toggle
-        const themeToggleBtn = document.querySelectorAll('#theme-toggle'); // Select all (navbar + footer)
+        const themeToggleBtn = document.querySelectorAll('#theme-toggle');
         const htmlElement = document.documentElement;
 
-        // Init
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlElement.classList.add('dark');
         } else {
             htmlElement.classList.remove('dark');
         }
 
-        // Toggle Function
         themeToggleBtn.forEach(btn => {
             btn.addEventListener('click', () => {
                 htmlElement.classList.toggle('dark');
@@ -557,15 +681,19 @@
                 left: `${posX}px`,
                 top: `${posY}px`
             }, { duration: 500, fill: "forwards" });
+
+            cursorDot.style.transform = 'scale(1.2)';
+            clearTimeout(cursorDot._timeout);
+            cursorDot._timeout = setTimeout(() => {
+                cursorDot.style.transform = 'scale(1)';
+            }, 80);
         });
 
-        // Standard Hover
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
-        // "View" Hover (Project Images)
         viewElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('viewing'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('viewing'));
@@ -581,6 +709,37 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // NEW: simple parallax for background pieces
+        const parallaxEls = document.querySelectorAll('[data-parallax]');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            parallaxEls.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax) || 0.1;
+                el.style.transform = `translateY(${scrollY * speed * -1}px)`;
+            });
+        });
+
+        // NEW: 3D tilt for project visuals
+        const tiltEls = document.querySelectorAll('.tilt');
+        tiltEls.forEach(el => {
+            el.addEventListener('mousemove', (event) => {
+                const rect = el.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+            });
+        });
     </script>
 </body>
 </html>
