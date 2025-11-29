@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Choksi - Developer, Freelancer & Problem Solver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#ffffff', 
+                        darkBackground: '#050505', /* Deep Black */
+                        surface: '#f4f4f5',    
+                        darkSurface: '#121212',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'twinkle': 'twinkle 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        twinkle: {
+                            '0%, 100%': { opacity: '0.2' },
+                            '50%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            cursor: none;
+        }
+        
+        /* Starry Background */
+        .stars {
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 160px 120px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+        }
+
+        /* Horizon Glow */
+        .horizon-glow {
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 100% 100% 0 0;
+            transform: scaleX(2);
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+        }
+        .dark .cursor-dot { background-color: #fff; }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .dark .cursor-outline { border: 1px solid rgba(255, 255, 255, 0.5); }
+        
+        .cursor-text {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.2s, transform 0.2s;
+            color: white;
+        }
+
+        body.hovering .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-color: transparent;
+        }
+        body.dark.hovering .cursor-outline { background-color: rgba(255, 255, 255, 0.1); }
+
+        /* VIEW Cursor State */
+        body.viewing .cursor-outline {
+            width: 90px;
+            height: 90px;
+            background-color: #000;
+            border-color: transparent;
+            mix-blend-mode: normal;
+        }
+        body.dark.viewing .cursor-outline {
+            background-color: #fff;
+            mix-blend-mode: difference;
+        }
+        body.viewing .cursor-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+        body.viewing .cursor-dot { opacity: 0; }
+
+        /* General UI Tweaks */
+        .key-shadow {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .key-shadow:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 0 rgba(0,0,0,0.1);
+        }
+        .dark .key-shadow { box-shadow: 0 4px 0 0 rgba(255,255,255,0.1); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+    </style>
+</head>
+<body class="antialiased bg-background dark:bg-darkBackground text-zinc-900 dark:text-zinc-50 transition-colors duration-300">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block">
+        <span class="cursor-text">VIEW</span>
+    </div>
+
+    <!-- Navigation -->
+    <a href="#" class="fixed top-6 left-6 md:left-10 z-50 text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center gap-2 cursor-hover">
+        <span class="font-bold text-3xl font-sans tracking-tighter">OC</span>
+    </a>
+
+    <nav class="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white/80 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 rounded-full px-2 py-2 shadow-sm items-center gap-1">
+        <div class="flex items-center px-4 gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+            <a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover px-2 py-1">Home</a>
+            <a href="#about" class="hover:text-black dark:hover:text-white transition-colors cursor-hover px-2 py-1">About</a>
+            <a href="#work" class="hover:text-black dark:hover:text-white transition-colors cursor-hover px-2 py-1">Work</a>
+            <a href="#blog" class="hover:text-black dark:hover:text-white transition-colors cursor-hover px-2 py-1">Blog</a>
+        </div>
+        <a href="#contact" class="px-5 py-2 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors font-medium text-sm cursor-hover">
+            Book a Call
+        </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <div class="fixed top-6 right-6 md:right-10 z-50 md:hidden">
+        <button class="w-10 h-10 flex items-center justify-center text-2xl cursor-hover">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative pt-40 pb-32 px-6 min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
+        
+        <!-- Animated Background Elements (Matches Original) -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+            <!-- Stars -->
+            <div class="absolute inset-0 stars dark:block hidden"></div>
+            <!-- Horizon Glow (Bottom) -->
+            <div class="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[120%] h-[300px] horizon-glow dark:block hidden"></div>
+            <!-- Top Subtle Gradient -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-blue-900/10 to-transparent rounded-full blur-[120px] pointer-events-none"></div>
+        </div>
+
+        <!-- Upcoming Pill -->
+        <div class="reveal active inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-300 mb-10 backdrop-blur-sm shadow-sm cursor-hover">
+            <span class="px-2 py-0.5 rounded bg-blue-600 text-white text-[10px] font-bold shadow-lg shadow-blue-900/50">Upcoming</span>
+            Nextnode is launching soon! <i class="fa-solid fa-chevron-right text-[10px] text-zinc-500"></i>
+        </div>
+
+        <!-- Main Heading (Refined Typography) -->
+        <h1 class="text-6xl md:text-8xl lg:text-[7rem] font-medium tracking-tight mb-10 max-w-6xl mx-auto leading-[1.1] text-zinc-900 dark:text-zinc-100">
+            <!-- First Line: Standard Serif, Regular Weight -->
+            <div class="reveal active delay-100 font-serif font-normal mb-2 text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300 tracking-normal">
+                I help founders turn ideas
+            </div>
+            <!-- Second Line: Serif + Italic Mix -->
+            <div class="reveal active delay-200">
+                into seamless <span class="font-serif italic font-light text-zinc-500 dark:text-zinc-200">digital experiences</span>
+            </div>
+        </h1>
+
+        <!-- Subheading / Avatar -->
+        <div class="flex items-center gap-4 mb-14 reveal active delay-300">
+            <span class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 font-light">Hello, I'm <span class="font-medium text-black dark:text-white">Om Choksi</span></span>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Om Choksi" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-zinc-800 shadow-lg">
+            <span class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 font-light">a Full Stack Developer</span>
+        </div>
+
+        <!-- Buttons (Refined for Dark Mode) -->
+        <div class="flex flex-col sm:flex-row gap-5 reveal active delay-300">
+            <!-- Let's Connect: Dark Grey in Dark Mode -->
+            <a href="#contact" class="cursor-hover group px-9 py-4 bg-zinc-900 dark:bg-[#1a1a1a] border border-transparent dark:border-zinc-800 text-white font-medium rounded-full hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 shadow-xl dark:shadow-none text-lg">
+                Let's Connect 
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-[-45deg] transition-transform">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+            <!-- Copy Email: Transparent/Outline -->
+            <a href="mailto:hello@omchoksi.in" class="cursor-hover px-9 py-4 bg-transparent border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-300 font-medium rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center justify-center gap-3 text-lg">
+                <i class="fa-regular fa-copy"></i> hello@omchoksi.in
+            </a>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section class="py-32 bg-surface dark:bg-darkSurface overflow-hidden">
+        <div class="text-center mb-20">
+            <span class="text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase">My Skills</span>
+            <h2 class="text-5xl md:text-6xl font-serif mt-4">The Secret <span class="italic text-purple-600 dark:text-purple-400">Sauce</span></h2>
+        </div>
+
+        <div class="flex gap-4 justify-center flex-wrap max-w-6xl mx-auto mb-6 px-4">
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-react"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-black dark:text-white border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-node"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-600 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-js"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-sky-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-css3"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-orange-500 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-html5"></i></div>
+        </div>
+         <div class="flex gap-4 justify-center flex-wrap max-w-5xl mx-auto px-4">
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-gray-800 dark:text-gray-200 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></div>
+             <div class="w-20 h-20 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center text-4xl text-blue-400 border-b-4 border-zinc-200 dark:border-zinc-700 key-shadow cursor-hover transition-transform hover:-translate-y-1"><i class="fa-brands fa-docker"></i></div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="work" class="py-32 px-6 max-w-[1600px] mx-auto">
+        <div class="text-center mb-24 reveal">
+            <span class="text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase">Featured Case Studies</span>
+            <h2 class="text-5xl md:text-6xl font-serif mt-4">Curated <span class="italic text-pink-500">work</span></h2>
+        </div>
+
+        <div class="space-y-32">
+            
+            <!-- Project 1: Snippix (Teal/Green Theme) -->
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm reveal">
+                <div class="grid lg:grid-cols-5 gap-0">
+                    <!-- Image Section (Left) -->
+                    <div class="lg:col-span-3 bg-[#0d9488] relative h-[450px] lg:h-[650px] flex items-center justify-center p-8 overflow-hidden cursor-view">
+                         <div class="absolute inset-0 bg-gradient-to-br from-[#14b8a6] to-[#0f766e]"></div>
+                         
+                         <!-- Mockup -->
+                         <div class="relative w-[90%] max-w-md bg-[#1e1e1e] rounded-xl shadow-2xl p-4 transform group-hover:scale-105 transition-transform duration-500 border border-white/10">
+                            <div class="flex gap-2 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="space-y-2 font-mono text-xs">
+                                <div class="text-gray-400">// Snippet.tsx</div>
+                                <div class="text-purple-400">const <span class="text-yellow-300">Snippix</span> = () => {</div>
+                                <div class="pl-4 text-pink-400">return (</div>
+                                <div class="pl-8 text-blue-300">&lt;div&gt;</div>
+                                <div class="pl-12 text-white">Share beautiful code.</div>
+                                <div class="pl-8 text-blue-300">&lt;/div&gt;</div>
+                                <div class="pl-4 text-pink-400">)</div>
+                                <div class="text-purple-400">}</div>
+                            </div>
+                            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/20 blur-3xl rounded-full"></div>
+                         </div>
+                         <div class="absolute top-10 right-10 text-white text-3xl"><i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i></div>
+                    </div>
+
+                    <!-- Text Content (Right) -->
+                    <div class="lg:col-span-2 p-10 lg:p-16 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="w-8 h-[2px] bg-black dark:bg-white"></span>
+                            <h3 class="text-4xl font-serif font-bold text-zinc-900 dark:text-white">Snippix</h3>
+                        </div>
+                        <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-10">
+                            A platform for creating and sharing code snippets with a clean and intuitive design. It allows you to create, share, and discover code snippets with ease.
+                        </p>
+                        
+                        <div class="space-y-4 mb-12">
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-teal-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Choose from over 10+ code editor themes.</span>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-teal-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Automatic syntax highlighting powered by Highlight.js.</span>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-teal-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Export your snippet as PNG or SVG.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300 flex items-center gap-2"><i class="fa-brands fa-react"></i> React</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300 flex items-center gap-2"><i class="fa-brands fa-node-js"></i> Next.js</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300">Tailwind CSS</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300">Zustand</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Next Ventures (Pink Theme - Layout Swapped for Visual Flow) -->
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm reveal">
+                <div class="grid lg:grid-cols-5 gap-0">
+                    <!-- Text Content (Left) -->
+                    <div class="lg:col-span-2 p-10 lg:p-16 flex flex-col justify-center order-2 lg:order-1">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="w-8 h-[2px] bg-black dark:bg-white"></span>
+                            <h3 class="text-4xl font-serif font-bold text-zinc-900 dark:text-white">Next Ventures</h3>
+                        </div>
+                        <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-10">
+                            A platform designed for early-stage entrepreneurs to pitch, browse, and engage with startup ideas.
+                        </p>
+                        
+                        <div class="space-y-4 mb-12">
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-pink-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Leveraged Partial Prerendering.</span>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-pink-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Simplified idea submission flow.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300 flex items-center gap-2"><i class="fa-brands fa-react"></i> React</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300">Sanity CMS</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300">Better Auth</span>
+                        </div>
+                        
+                         <a href="#" class="inline-flex items-center gap-2 mt-8 font-bold text-zinc-900 dark:text-white hover:opacity-70 transition-opacity cursor-hover">
+                            View Case Study <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Image Section (Right) -->
+                    <div class="lg:col-span-3 bg-[#e91e63] relative h-[450px] lg:h-[650px] flex items-center justify-center overflow-hidden cursor-view order-1 lg:order-2">
+                         <div class="absolute inset-0 bg-gradient-to-br from-[#f06292] to-[#c2185b]"></div>
+                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop" class="absolute left-10 top-1/2 -translate-y-1/2 w-[90%] rounded-xl shadow-2xl rotate-2 group-hover:rotate-0 transition-all duration-500 border border-white/10">
+                         <div class="absolute top-10 left-10 text-white text-3xl"><i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Finote App (Purple Theme) -->
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm reveal">
+                <div class="grid lg:grid-cols-5 gap-0">
+                    <!-- Image Section (Left) -->
+                    <div class="lg:col-span-3 bg-[#7c3aed] relative h-[450px] lg:h-[650px] flex items-center justify-center p-8 overflow-hidden cursor-view">
+                         <div class="absolute inset-0 bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9]"></div>
+                         <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2670&auto=format&fit=crop" class="absolute right-10 top-1/2 -translate-y-1/2 w-[80%] rounded-xl shadow-2xl -rotate-2 group-hover:rotate-0 transition-all duration-500 border border-white/10">
+                         <div class="absolute top-10 right-10 text-white text-3xl"><i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i></div>
+                    </div>
+
+                    <!-- Text Content (Right) -->
+                    <div class="lg:col-span-2 p-10 lg:p-16 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="w-8 h-[2px] bg-black dark:bg-white"></span>
+                            <h3 class="text-4xl font-serif font-bold text-zinc-900 dark:text-white">Finote App</h3>
+                        </div>
+                        <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-10">
+                            An intuitive mobile companion for organizing your digital wallets and analyzing your financial health.
+                        </p>
+                        
+                        <div class="space-y-4 mb-12">
+                             <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-purple-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Create and manage multiple wallets.</span>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-star text-purple-500 mt-1"></i>
+                                <span class="text-sm text-zinc-600 dark:text-zinc-400 font-medium">Visualize spending trends efficiently.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300 flex items-center gap-2"><i class="fa-brands fa-react"></i> React Native</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300">Expo</span>
+                            <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-xs font-bold text-zinc-600 dark:text-zinc-300">Firebase</span>
+                        </div>
+
+                        <a href="#" class="inline-flex items-center gap-2 mt-8 font-bold text-zinc-900 dark:text-white hover:opacity-70 transition-opacity cursor-hover">
+                            View Case Study <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="pt-32 pb-8 px-6 bg-white dark:bg-darkBackground relative overflow-hidden">
+         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-zinc-100 to-transparent dark:from-zinc-900 dark:to-transparent rounded-full blur-3xl -z-10 pointer-events-none opacity-50"></div>
+         
+         <div class="max-w-[1400px] mx-auto">
+             
+             <!-- Top Call to Action -->
+             <div class="flex flex-col items-center justify-center mb-32 reveal text-center">
+                 <div class="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-zinc-100 dark:bg-zinc-800 mb-10 cursor-hover shadow-sm">
+                     <span class="text-zinc-600 dark:text-zinc-300 font-medium text-lg">Get In Touch</span>
+                     <div class="w-8 h-8 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center">
+                         <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                     </div>
+                 </div>
+                 
+                 <h2 class="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white mb-6">
+                     I'm available for full-time roles & freelance projects.
+                 </h2>
+                 <p class="text-zinc-500 dark:text-zinc-400 text-xl max-w-3xl leading-relaxed">
+                     I thrive on crafting dynamic web applications, and delivering seamless user experiences.
+                 </p>
+             </div>
+
+             <!-- Bottom Grid -->
+             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 items-start border-t border-zinc-100 dark:border-zinc-800 pt-20">
+                 <!-- Brand Column -->
+                 <div class="md:col-span-1">
+                     <span class="text-4xl font-bold font-sans tracking-tighter block mb-6">OC</span>
+                     <p class="text-base text-zinc-500 leading-relaxed max-w-xs">
+                         I'm Om - a full-stack developer, freelancer & problem solver. Thanks for checking out my site!
+                     </p>
+                 </div>
+
+                 <!-- Links Columns -->
+                 <div class="md:col-span-3 grid grid-cols-3 gap-8">
+                     <div>
+                         <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-8">General</h4>
+                         <ul class="space-y-5 text-base font-medium text-zinc-700 dark:text-zinc-300">
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Home</a></li>
+                             <li><a href="#about" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">About</a></li>
+                             <li><a href="#work" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Projects</a></li>
+                             <li><a href="#blog" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Blog</a></li>
+                         </ul>
+                     </div>
+                     <div>
+                         <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-8">Specifics</h4>
+                         <ul class="space-y-5 text-base font-medium text-zinc-700 dark:text-zinc-300">
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Guest Book</a></li>
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Bucket List</a></li>
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Uses</a></li>
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Attribution</a></li>
+                         </ul>
+                     </div>
+                     <div>
+                         <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-8">More</h4>
+                         <ul class="space-y-5 text-base font-medium text-zinc-700 dark:text-zinc-300">
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Book a call</a></li>
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Links</a></li>
+                             <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">RSS</a></li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+             
+             <!-- Footer Bottom Bar -->
+             <div class="flex flex-col md:flex-row justify-between items-center mt-20 pt-10 border-t border-zinc-100 dark:border-zinc-800 gap-4">
+                 <div class="flex flex-wrap gap-8 text-sm text-zinc-500 font-medium">
+                     <span>© 2024 Om Choksi. All rights reserved</span>
+                     <a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Privacy Policy</a>
+                     <a href="#" class="hover:text-black dark:hover:text-white transition-colors cursor-hover">Terms & Conditions</a>
+                 </div>
+                 
+                 <div class="flex items-center gap-6">
+                     <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-300 hover:scale-110 transition-transform cursor-hover">
+                        <i class="fa-solid fa-moon dark:hidden text-sm"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-sm"></i>
+                    </button>
+                    
+                    <a href="#" class="text-zinc-400 hover:text-black dark:hover:text-white transition-colors cursor-hover"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-zinc-400 hover:text-black dark:hover:text-white transition-colors cursor-hover"><i class="fa-brands fa-github text-xl"></i></a>
+                    <a href="#" class="text-zinc-400 hover:text-black dark:hover:text-white transition-colors cursor-hover"><i class="fa-brands fa-twitter text-xl"></i></a>
+                 </div>
+             </div>
+
+         </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.querySelectorAll('#theme-toggle'); // Select all (navbar + footer)
+        const htmlElement = document.documentElement;
+
+        // Init
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        // Toggle Function
+        themeToggleBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+            });
+        });
+
+        // Advanced Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const hoverElements = document.querySelectorAll('.cursor-hover');
+        const viewElements = document.querySelectorAll('.cursor-view');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Standard Hover
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // "View" Hover (Project Images)
+        viewElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('viewing'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('viewing'));
+        });
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
