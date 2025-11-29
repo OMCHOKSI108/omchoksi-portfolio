@@ -3,8 +3,16 @@
 import React from "react";
 import TopNav from "../components/admin/TopNav";
 import SubNav from "../components/admin/SubNav";
+import { usePathname } from 'next/navigation';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const path = usePathname() || '';
+
+  // If we're on the login page, render only the children so the login
+  // UI can take over the full viewport without the admin chrome.
+  if (path === '/admin/login') {
+    return <>{children}</>;
+  }
   return (
     <div
       className="min-h-screen flex flex-col"
