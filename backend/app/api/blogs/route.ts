@@ -2,6 +2,17 @@ import { NextRequest } from 'next/server';
 import { listBlogsHandler, createBlogHandler } from '@/controllers/blogController';
 import { success, error as errorRes } from '@/lib/response';
 
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  });
+}
+
 export async function GET(request: NextRequest) {
   const result = await listBlogsHandler(request as NextRequest);
   // listBlogsHandler returns a plain object via build(); convert to NextResponse
