@@ -1,6 +1,6 @@
 
 API Reference - omchoksi-portfolio (backend)
-Generated: 2025-11-29
+Generated: 2025-11-30
 
 Base path: `/api`
 
@@ -13,6 +13,7 @@ AUTH
 - Request JSON: { "email": string, "password": string }
 - Success Response: { "success": true, "message": "Admin created" }
 - Error Responses: 400 (Admin already exists), 400 (missing fields), 500
+- Curl: curl -X POST https://portfolio-admin-panel-sigma.vercel.app/api/auth/register -H "Content-Type: application/json" -d '{"email":"omchoksi99@gmail.com","password":"sanskari"}'
 
 /auth/login (POST)
 - Purpose: Authenticate admin and set an HTTP-only cookie `admin_token`.
@@ -20,11 +21,13 @@ AUTH
 - Request JSON: { "email": string, "password": string }
 - Success Response: { "success": true } and sets `Set-Cookie: admin_token=...; HttpOnly; Path=/; SameSite=Lax; Max-Age=604800` (7 days)
 - Error Responses: 400 (missing fields), 401 (invalid credentials), 500
+- Curl: curl -X POST https://portfolio-admin-panel-sigma.vercel.app/api/auth/login -H "Content-Type: application/json" -d '{"email":"omchoksi99@gmail.com","password":"sanskari"}' -c cookies.txt
 
 /auth/me (GET)
 - Purpose: Verify current session from `admin_token` cookie and return admin identity.
 - Auth: cookie `admin_token` required
 - Response: { "id": string, "email": string } or 401 if unauthorized
+- Curl: curl -X GET https://portfolio-admin-panel-sigma.vercel.app/api/auth/me -b cookies.txt
 
 /auth/update (POST)
 - Purpose: Update admin email and/or password (authenticated). If email changes, a new `admin_token` cookie is issued.
@@ -32,15 +35,19 @@ AUTH
 - Request JSON: { "email"?: string, "password"?: string }
 - Success Response: { "success": true } and (if email changed) a new `Set-Cookie` header with refreshed token
 - Error Responses: 400 (email already in use), 401 (unauthorized), 404 (admin not found), 500
+- Curl: curl -X POST "https://portfolio-admin-panel-sigma.vercel.app/api/auth/update" -H "Content-Type: application/json" -d '{"email":"newemail@example.com"}' -b cookies.txt -c cookies.txt
 
 PROJECTS
 --------
 
 /projects (GET)
-- Purpose: Return a list of projects. (Currently implemented to require authentication.)
-- Auth: cookie `admin_token` required (note: you may opt to make this public)
-- Response: Array of project objects (full document as stored in MongoDB)
-- Error Responses: 401 (unauthorized), 500
+- Purpose: Return a list of projects. For public access (e.g., portfolio website), only active projects are returned. Admin sees all.
+- Auth: Optional cookie `admin_token` (if provided, returns all projects; otherwise, only active ones)
+- Query Params: ?q=search&tags=tag1,tag2&status=draft|live|archived&page=1&limit=24
+- Response: { items: Project[], total: number, page: number, limit: number }
+- Error Responses: 500
+- Curl (public): curl "https://portfolio-admin-panel-sigma.vercel.app/api/projects?page=1&limit=10"
+- Curl (admin): curl "https://portfolio-admin-panel-sigma.vercel.app/api/projects?page=1&limit=10" -b cookies.txt
 
 /projects (POST)
 - Purpose: Create a new project document.
@@ -48,6 +55,7 @@ PROJECTS
 - Request JSON: Project fields (example below)
 - Success Response: 201 + created project object
 - Error Responses: 401, 500
+- Curl: curl -X POST "https://portfolio-admin-panel-sigma.vercel.app/api/projects" -H "Content-Type: application/json" -d '{"title":"New Project","slug":"new-project","description":"Description","tags":["tag1"],"liveUrl":"https://example.com","githubUrl":"https://github.com/example","imageUrl":"image_url","featured":false}' -b cookies.txt
 
 Example project document shape (Mongoose `Project` model):
 {
@@ -68,17 +76,72 @@ Example project document shape (Mongoose `Project` model):
 - Purpose: Get a single project by id.
 - Auth: none required in current implementation (public GET)
 - Response: project object or 404
+- Curl: curl "https://portfolio-admin-panel-sigma.vercel.app/api/projects/64f1a2b3c4d5e6f7g8h9i0j1"
 
 /projects/:id (PUT)
 - Purpose: Update a project document by id.
 - Auth: cookie `admin_token` required
 - Request JSON: fields to update
 - Response: updated project object or 404
+- Curl: curl -X PUT "https://portfolio-admin-panel-sigma.vercel.app/api/projects/64f1a2b3c4d5e6f7g8h9i0j1" -H "Content-Type: application/json" -d '{"title":"Updated Title"}' -b cookies.txt
 
 /projects/:id (DELETE)
 - Purpose: Delete a project by id.
 - Auth: cookie `admin_token` required
 - Response: { "success": true } or 404
+- Curl: curl -X DELETE "https://portfolio-admin-panel-sigma.vercel.app/api/projects/64f1a2b3c4d5e6f7g8h9i0j1" -b cookies.txt
+
+BLOGS
+-----
+
+/blogs (GET)
+- Purpose: Return a list of blogs. For public access (e.g., portfolio website), only active blogs are returned. Admin sees all.
+- Auth: Optional cookie `admin_token` (if provided, returns all blogs; otherwise, only active ones)
+- Query Params: ?q=search&tags=tag1,tag2&status=draft|published|archived&page=1&limit=24
+- Response: { items: Blog[], total: number, page: number, limit: number }
+- Error Responses: 500
+
+/blogs (POST)
+- Purpose: Create a new blog document.
+- Auth: cookie `admin_token` required
+- Request JSON: Blog fields (example below)
+- Success Response: 201 + created blog object
+- Error Responses: 401, 500
+- Curl: curl -X POST "https://portfolio-admin-panel-sigma.vercel.app/api/blogs" -H "Content-Type: application/json" -d '{"title":"New Blog","slug":"new-blog","description":"Description","tags":["tag1"],"link":"https://example.com","image":"image_url","featured":false,"active":true}' -b cookies.txt
+
+Example blog document shape (Mongoose `Blog` model):
+{
+	"title": string,
+	"slug": string,
+	"description": string,
+	"tags": string[],
+	"link": string,
+	"image": string,
+	"featured": boolean,
+	"active": boolean,
+	"createdAt": string,
+	"updatedAt": string,
+	"_id": string
+}
+
+/blogs/:id (GET)
+- Purpose: Get a single blog by id.
+- Auth: none required in current implementation (public GET)
+- Response: blog object or 404
+- Curl: curl "https://portfolio-admin-panel-sigma.vercel.app/api/blogs/64f1a2b3c4d5e6f7g8h9i0j1"
+
+/blogs/:id (PUT)
+- Purpose: Update a blog document by id.
+- Auth: cookie `admin_token` required
+- Request JSON: fields to update
+- Response: updated blog object or 404
+- Curl: curl -X PUT "https://portfolio-admin-panel-sigma.vercel.app/api/blogs/64f1a2b3c4d5e6f7g8h9i0j1" -H "Content-Type: application/json" -d '{"title":"Updated Title"}' -b cookies.txt
+
+/blogs/:id (DELETE)
+- Purpose: Delete a blog by id.
+- Auth: cookie `admin_token` required
+- Response: { "success": true } or 404
+- Curl: curl -X DELETE "https://portfolio-admin-panel-sigma.vercel.app/api/blogs/64f1a2b3c4d5e6f7g8h9i0j1" -b cookies.txt
 
 UPLOADS
 -------
@@ -89,16 +152,26 @@ UPLOADS
 - Request: multipart/form-data with field `image` (file)
 - Response: { "url": string } (secure Cloudinary URL)
 - Error Responses: 400 (no file), 401, 500
+- Curl: curl -X POST "https://portfolio-admin-panel-sigma.vercel.app/api/upload" -F "image=@path/to/image.jpg" -b cookies.txt
 
 AUTH FLOW NOTES
 ----------------
 - Authentication is implemented with JWTs stored in an HTTP-only cookie named `admin_token`.
 - Client-side requests that rely on the cookie must send `credentials: 'same-origin'` with `fetch` so the browser includes cookies and receives `Set-Cookie` headers.
 
+USING API FOR PUBLIC PORTFOLIO WEBSITES
+----------------------------------------
+- For future portfolio websites, use the GET endpoints for /projects and /blogs without authentication.
+- These endpoints return only active and featured items when no admin_token is provided.
+- Example fetch for projects: fetch('https://portfolio-admin-panel-sigma.vercel.app/api/projects?page=1&limit=10')
+- Response format: { items: [...], total: number, page: number, limit: number }
+- Items include all public fields like title, description, tags, images, etc.
+- For blogs, same as above: fetch('https://portfolio-admin-panel-sigma.vercel.app/api/blogs?page=1&limit=10')
+- Ensure CORS is configured if calling from a different domain.
+- No authentication needed for public reads; admin panel handles CRUD with JWT.
+
 MISC / DEV
 ----------
 - Route protection for `/admin` pages is implemented by `proxy.ts` (root) which checks `admin_token` cookie and redirects unauthenticated requests to `/admin/login`.
 - There is a client-side login page at `/admin/login` which POSTs to `/api/auth/login` and then verifies the session via `/api/auth/me` before redirecting to `/admin/projects`.
-
-If you want this file expanded with sample curl commands or TypeScript client helpers for each endpoint, tell me which endpoints you'd like examples for and I will add them.
 
