@@ -159,12 +159,12 @@ const ProjectRow = ({ project }: { project: Project }) => {
             <div className="w-1 h-10 bg-blue-500 rounded-full" />
           </div>
           <div>
-            <h3 className="text-3xl md:text-4xl font-serif font-semibold text-slate-900 dark:text-white leading-tight">
+            <h3 className="text-3xl md:text-4xl font-serif font-semibold text-[var(--foreground)] leading-tight">
               {project.title}
             </h3>
 
             {/* Render description as multiple paragraphs (supports future markdown endpoint) */}
-            <div className="mt-3 text-sm text-slate-500 dark:text-slate-400 max-w-2xl space-y-3">
+            <div className="mt-3 text-sm text-[var(--muted-foreground)] max-w-2xl space-y-3">
               {project.description.split('\n').map((line, idx) => (
                 <p key={idx} className="leading-relaxed">
                   {line}
@@ -175,13 +175,13 @@ const ProjectRow = ({ project }: { project: Project }) => {
             {/* Quick info card with live/source links (theme-friendly) */}
             {(project.liveUrl || project.githubUrl) && (
               <div className="mt-6 max-w-2xl">
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-slate-200 shadow-sm dark:bg-slate-800 dark:border-slate-700">
+                <div className="flex items-start gap-4 p-4 rounded-lg bg-[var(--card)] border border-[var(--card-border)] shadow-sm">
                   <div className="flex-shrink-0 mt-1">
-                    <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">✓</div>
+                    <div className="w-8 h-8 rounded-full bg-[var(--success-bg)] text-[var(--success-text)] flex items-center justify-center font-bold">✓</div>
                   </div>
                   <div>
-                    <p className="font-medium text-slate-900 dark:text-white">Want to explore it live?</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">
+                    <p className="font-medium text-[var(--foreground)]">Want to explore it live?</p>
+                    <p className="text-sm text-[var(--muted-foreground)]">
                       {project.liveUrl && (
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-700">Visit the live app</a>
                       )}
@@ -202,8 +202,8 @@ const ProjectRow = ({ project }: { project: Project }) => {
         {/* Feature bullets (small list like attachment) */}
         <ul className="mt-6 mb-6 space-y-3 max-w-2xl">
           {project.features.slice(0, 4).map((feature, i) => (
-            <li key={i} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-              <span className="mt-1 text-blue-500">
+            <li key={i} className="flex items-start gap-3 text-sm text-[var(--muted-foreground)]">
+              <span className="mt-1 text-[var(--primary)]">
                 <Star className="w-4 h-4" />
               </span>
               <span className="leading-relaxed">{feature}</span>
@@ -216,9 +216,9 @@ const ProjectRow = ({ project }: { project: Project }) => {
           {project.tech.map((tech) => (
             <div
               key={tech.name}
-              className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 text-slate-800 rounded-full text-xs font-medium shadow-sm"
+              className="flex items-center gap-2 px-3 py-2 bg-[var(--card)]/60 border border-[var(--card-border)] text-[var(--foreground)] rounded-full text-xs font-medium shadow-sm"
             >
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-slate-600 text-[10px]">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[var(--muted)]/30 text-[var(--muted-foreground)] text-[10px]">
                 {tech.icon ? tech.icon.charAt(0).toUpperCase() : tech.name.charAt(0).toUpperCase()}
               </span>
               {tech.name}

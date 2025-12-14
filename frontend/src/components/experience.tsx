@@ -211,8 +211,9 @@ export default function Experience() {
             {/* Header */}
             <div className="text-center mb-12 space-y-4">
                 <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">Developer Insights</span>
-                <h2 className="text-4xl md:text-5xl font-serif-display">
-                    GitHub <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Activity</span>
+                <h2 className="text-4xl md:text-5xl font-serif-display leading-tight text-[var(--foreground)]">
+                    <span className="block">GitHub</span>
+                    <span className="block mt-2 italic font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Activity</span>
                 </h2>
             </div>
 
@@ -286,8 +287,8 @@ export default function Experience() {
              <div className="text-center mb-16 space-y-2">
                 <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">My Site</span>
                 <h2 className="text-4xl md:text-5xl font-serif-display leading-tight text-[var(--foreground)]">
-                    Explore, experiment <br />
-                    <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">&& say hello</span>
+                    <span className="block">Explore, experiment</span>
+                    <span className="block mt-2 font-semibold text-[var(--foreground)]">&& say hello</span>
                 </h2>
             </div>
 

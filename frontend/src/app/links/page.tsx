@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Navbar from "@/components/navbar";
+import FloatingElements from "@/components/floating-elements";
 import {
   Github,
   Linkedin,
@@ -17,11 +19,10 @@ import {
 // --- Link Data ---
 const LINKS = [
   { id: 1, title: "LinkedIn", url: "https://linkedin.com/in/omchoksi", icon: Linkedin },
-  { id: 2, title: "Telegram", url: "#", icon: Send },
+  { id: 2, title: "Telegram", url: "https://t.me/om_395", icon: Send },
   { id: 3, title: "GitHub", url: "https://github.com/omchoksi108", icon: Github },
-  { id: 4, title: "Guestbook", url: "#", icon: Book },
-  { id: 5, title: "X (Twitter)", url: "https://x.com/ChoksiOm", icon: Twitter },
-  { id: 6, title: "Kaggle", url: "https://kaggle.com/omchoksi04", icon: BookOpen },
+  { id: 4, title: "X (Twitter)", url: "https://x.com/ChoksiOm", icon: Twitter },
+  { id: 5, title: "Kaggle", url: "https://kaggle.com/omchoksi04", icon: BookOpen },
 ];
 
 const BADGES = [
@@ -33,6 +34,8 @@ const BADGES = [
 export default function Links() {
   return (
     <>
+      <FloatingElements />
+      <Navbar />
       {/* MAIN CONTAINER */}
       <section className="relative w-full min-h-screen py-20 bg-[var(--background)] font-sans text-[var(--foreground)] flex flex-col items-center">
 
@@ -48,22 +51,19 @@ export default function Links() {
         <div className="w-full max-w-xl px-6 relative z-10 flex flex-col items-center space-y-8">
 
           {/* --- Header Section --- */}
-          <div className="flex flex-col items-center text-center space-y-4">
+            <div className="flex flex-col items-center text-center space-y-4">
 
-              {/* Avatar */}
-              <div className="relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-purple-500 shadow-xl">
-                  <div className="w-full h-full rounded-full overflow-hidden border-2 border-[var(--background)] bg-[var(--card)]">
-                      <img
-                          src="https://api.dicebear.com/7.x/avataaars/svg?seed=omchoksi108"
-                          alt="Om Choksi"
-                          className="w-full h-full object-cover"
-                      />
-                  </div>
+              {/* Avatar - larger, framed, and tactile */}
+              <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-purple-500 shadow-2xl transform-gpu hover:scale-102 transition-transform">
+                <div className="w-full h-full rounded-full overflow-hidden border-4 border-[var(--background)] bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center">
+                  <span className="text-white text-5xl sm:text-6xl font-extrabold drop-shadow-md select-none">OC</span>
+                </div>
+                <div className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-white/20 dark:ring-black/30" />
               </div>
 
               {/* Name */}
-              <h1 className="text-2xl font-bold text-[var(--foreground)]">
-                  Om Choksi
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)]">
+                Om Choksi
               </h1>
 
               {/* Badges */}
@@ -90,10 +90,10 @@ export default function Links() {
 
                   {/* Email Button */}
                   <a
-                      href="mailto:hello@omchoksi.dev"
+                      href="mailto:omchoksi99@gmail.com"
                       className="flex items-center gap-2 px-5 py-2.5 bg-[var(--muted)] text-[var(--foreground)] rounded-full text-sm font-medium hover:bg-[var(--muted)]/80 transition-colors"
                   >
-                      hello@omchoksi.dev <ArrowUpRight className="w-3 h-3" />
+                      omchoksi99@gmail.com <ArrowUpRight className="w-3 h-3" />
                   </a>
               </div>
           </div>

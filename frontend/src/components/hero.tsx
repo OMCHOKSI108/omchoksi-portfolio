@@ -82,7 +82,11 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <button className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary)] text-[var(--primary-foreground)] px-8 py-4 rounded-full font-medium hover:from-[var(--primary)]/80 hover:to-[var(--primary)]/80 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 hover:shadow-lg">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-quick-connect'))}
+            aria-label="Open contact modal"
+            className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary)] text-[var(--primary-foreground)] px-8 py-4 rounded-full font-medium hover:from-[var(--primary)]/80 hover:to-[var(--primary)]/80 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 hover:shadow-lg"
+          >
             Let's Connect
             <ArrowRight size={20} />
           </button>

@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Navbar from "@/components/navbar";
+import FloatingElements from "@/components/floating-elements";
 import {
   Brain,
   Eye,
@@ -63,9 +65,44 @@ const TECH_STACK = {
   ]
 };
 
+const TECH_LINKS: Record<string, string> = {
+  TensorFlow: "https://www.tensorflow.org/",
+  "Scikit-learn": "https://scikit-learn.org/stable/",
+  XGBoost: "https://xgboost.readthedocs.io/",
+  OpenCV: "https://docs.opencv.org/",
+  Statsmodels: "https://www.statsmodels.org/",
+  PCA: "https://en.wikipedia.org/wiki/Principal_component_analysis",
+  Clustering: "https://en.wikipedia.org/wiki/Cluster_analysis",
+  Embeddings: "https://en.wikipedia.org/wiki/Word_embedding",
+  "Prompt Engineering": "https://en.wikipedia.org/wiki/Prompt_engineering",
+  "Semantic Search": "https://en.wikipedia.org/wiki/Semantic_search",
+  "Tone Transformation": "https://en.wikipedia.org/wiki/Style_transfer_(computer_science)",
+  "Feature Engineering": "https://en.wikipedia.org/wiki/Feature_engineering",
+  "Statistical Modeling": "https://en.wikipedia.org/wiki/Statistical_model",
+  EDA: "https://en.wikipedia.org/wiki/Exploratory_data_analysis",
+  "KPI Tracking": "https://en.wikipedia.org/wiki/Key_performance_indicator",
+  "A/B Testing": "https://en.wikipedia.org/wiki/A/B_testing",
+  FastAPI: "https://fastapi.tiangolo.com/",
+  Flask: "https://flask.palletsprojects.com/",
+  Streamlit: "https://streamlit.io/",
+  PostgreSQL: "https://www.postgresql.org/docs/",
+  "REST APIs": "https://restfulapi.net/",
+  Python: "https://www.python.org/doc/",
+  "C++": "https://en.cppreference.com/w/",
+  Java: "https://docs.oracle.com/en/java/",
+  R: "https://cran.r-project.org/manuals.html",
+  SQL: "https://www.w3schools.com/sql/",
+  Jupyter: "https://jupyter.org/documentation",
+  Git: "https://git-scm.com/doc",
+  GitHub: "https://docs.github.com/",
+  "VS Code": "https://code.visualstudio.com/docs",
+};
+
 export default function Stack() {
   return (
     <>
+      <FloatingElements />
+      <Navbar />
       <section className="relative w-full min-h-screen py-20 bg-[var(--background)] overflow-hidden">
         {/* Background Effects */}
         {/* Top subtle gridlines — low opacity, repeating lines for texture */}
@@ -101,7 +138,7 @@ export default function Stack() {
           .font-serif-display { font-family: 'Playfair Display', serif; }
         `}} />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 antialiased">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -120,48 +157,63 @@ export default function Stack() {
             </p>
           </motion.div>
 
+          {/* Animated translucent decorative blob */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0.18, scale: 0.9, x: -40 }}
+            animate={{ x: [ -40, 40, -40 ], y: [0, -10, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="pointer-events-none absolute -left-40 -top-16 w-96 h-96 rounded-full bg-gradient-to-tr from-purple-400 to-pink-400 blur-3xl opacity-30 mix-blend-screen"
+          />
+
           {/* Tech Stack Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(TECH_STACK).map(([category, technologies], categoryIndex) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                className="group relative bg-[var(--card)] backdrop-blur-lg border border-[var(--border)] rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <motion.article
+                  key={category}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                  className="group relative bg-[var(--card)] backdrop-blur-lg border border-[var(--border)] rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden />
 
-                <div className="relative">
-                  {/* Category Title */}
-                  <h3 className="text-xl font-semibold mb-6 text-[var(--foreground)] text-center">
-                    {category}
-                  </h3>
+                  <div className="relative">
+                    <header className="mb-4 text-center">
+                      <h3 className="text-lg sm:text-xl font-semibold text-[var(--foreground)]">
+                        {category}
+                      </h3>
+                      <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+                        {`Core ${category.toLowerCase()} skills and tools`}
+                      </p>
+                    </header>
 
-                  {/* Technologies */}
-                  <div className="space-y-4">
+                    {/* Technologies rendered as clickable chips */}
+                    <div className="flex flex-wrap gap-3 items-stretch">
                     {technologies.map((tech, techIndex) => (
-                      <motion.div
+                      <motion.button
                         key={tech.name}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: categoryIndex * 0.1 + techIndex * 0.05
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.36, delay: categoryIndex * 0.06 + techIndex * 0.04 }}
+                        onClick={() => {
+                          const url = TECH_LINKS[tech.name] || `https://www.google.com/search?q=${encodeURIComponent(tech.name + ' documentation')}`;
+                          window.open(url, "_blank", "noopener,noreferrer");
                         }}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-[var(--muted)]/20 transition-colors group/item"
+                        className="flex items-center gap-3 px-3 py-2 rounded-lg bg-[var(--background)]/40 border border-[var(--border)] hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-left focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 cursor-pointer min-w-[10rem] sm:min-w-[12rem]"
+                        aria-label={`Open documentation for ${tech.name}`}
                       >
-                        <div className={`p-2 rounded-lg bg-[var(--muted)]/30 ${tech.color}`}>
-                          <tech.icon className="w-5 h-5" />
+                        <div className={`p-2 rounded-md bg-[var(--muted)]/20 ${tech.color}`}>
+                          <tech.icon className="w-4 h-4" />
                         </div>
-                        <span className="font-medium text-[var(--foreground)] group-hover/item:text-[var(--primary)] transition-colors">
+                        <span className="text-base font-semibold text-[var(--foreground)] leading-tight whitespace-normal break-words">
                           {tech.name}
                         </span>
-                      </motion.div>
+                      </motion.button>
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
 

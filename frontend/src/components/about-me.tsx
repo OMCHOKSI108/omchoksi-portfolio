@@ -68,22 +68,20 @@ export default function AboutMe() {
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-xs font-bold tracking-[0.2em] text-black/60 dark:text-white/70 uppercase"
+              className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase"
             >
               More About Me
             </motion.span>
             
             {/* HEADLINE */}
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-serif-display text-black dark:text-white leading-[1.1]"
+              className="text-5xl md:text-6xl font-serif-display text-[var(--foreground)] leading-[1.05]"
             >
-              I'm Om, an <br />
-                <span className="italic font-normal bg-gradient-to-r from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] bg-clip-text text-transparent">
-                  AI & Machine Learning Engineer
-                </span>
+              <span className="block">I'm Om, an</span>
+              <span className="block mt-2 font-semibold text-[var(--foreground)]">AI & Machine Learning Engineer</span>
             </motion.h2>
           </div>
 
@@ -92,7 +90,7 @@ export default function AboutMe() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="space-y-6 text-black/70 dark:text-white/85 text-lg leading-relaxed font-sans"
+            className="space-y-6 text-[var(--muted-foreground)] text-lg leading-relaxed font-sans"
           >
             <p>
               I'm Om Choksi — an AI & Machine Learning engineer focused on building deployable, production-ready intelligence systems. I specialize in transforming raw datasets into scalable ML products through end-to-end engineering, including data pipelines, model architecture, evaluation, and deployment.
@@ -101,7 +99,7 @@ export default function AboutMe() {
               My work spans ML model development, deep learning, computer vision, NLP, LLM-powered automation, full-stack ML application deployment, and data storytelling for business decisions. I believe AI is only successful when people — not just models — can use it.
             </p>
 
-            <p className="text-black dark:text-white font-medium">
+            <p className="text-[var(--foreground)] font-medium">
               I work with curiosity, speed, and product-thinking: every project I build must solve a real problem and make someone's workflow better.
             </p>
           </motion.div>
@@ -113,16 +111,16 @@ export default function AboutMe() {
             transition={{ delay: 0.3 }}
             className="flex gap-6 pt-4"
           >
-            <a href="https://linkedin.com/in/omchoksi" target="_blank" rel="noopener noreferrer" className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://linkedin.com/in/omchoksi" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
               <Linkedin className="w-5 h-5" />
             </a>
-            <a href="https://github.com/omchoksi108" target="_blank" rel="noopener noreferrer" className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://github.com/omchoksi108" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
               <Github className="w-5 h-5" />
             </a>
-            <a href="https://kaggle.com/omchoksi04" target="_blank" rel="noopener noreferrer" className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://kaggle.com/omchoksi04" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
               <span className="text-sm font-bold">K</span>
             </a>
-            <a href="https://x.com/ChoksiOm" target="_blank" rel="noopener noreferrer" className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://x.com/ChoksiOm" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
               <Twitter className="w-5 h-5" />
             </a>
           </motion.div>

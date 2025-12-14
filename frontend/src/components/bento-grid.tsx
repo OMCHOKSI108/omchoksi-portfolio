@@ -122,7 +122,10 @@ export default function BentoGrid() {
               <Mail className="w-8 h-8 text-[var(--primary)] mb-4 group-hover:scale-110 transition-transform duration-300" />
               <h3 className="text-xl font-semibold mb-3 text-[var(--foreground)]">Let's work together</h3>
               <p className="text-[var(--muted-foreground)] mb-4">on your next project</p>
-              <button className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--primary)] text-[var(--primary-foreground)] py-3 rounded-full font-medium hover:from-[var(--primary)]/80 hover:to-[var(--primary)]/80 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 hover:shadow-lg">
+              <button
+                onClick={() => { window.dispatchEvent(new CustomEvent('open-quick-connect')); }}
+                className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--primary)] text-[var(--primary-foreground)] py-3 rounded-full font-medium hover:from-[var(--primary)]/80 hover:to-[var(--primary)]/80 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 hover:shadow-lg"
+              >
                 <Mail size={16} />
                 Get in touch
               </button>

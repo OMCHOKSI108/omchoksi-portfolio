@@ -4,6 +4,7 @@ import "./globals.css";
 import CustomCursor from "@/components/custom-cursor";
 import { ThemeProvider } from "@/components/theme-provider";
 import FloatingThemeToggle from "@/components/floating-theme-toggle";
+import QuickConnectRoot from "@/components/quick-connect-root";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfairDisplay.variable} antialiased`}
       >
         <ThemeProvider>
+          <QuickConnectRoot />
           <div className="noise-overlay" />
           <div className="site-vignette" />
           {/* Top-aligned subtle repeating square grid visible on every page */}

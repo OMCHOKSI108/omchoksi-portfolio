@@ -116,15 +116,16 @@ export default function ContactFooter() {
         </motion.div>
 
         {/* Button */}
-        <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-3 px-8 py-4 bg-[var(--muted)] hover:bg-[var(--secondary)] rounded-full text-[var(--foreground)] font-medium transition-colors mb-16 shadow-sm"
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => { window.dispatchEvent(new CustomEvent('open-quick-connect')); }}
+          className="flex items-center gap-3 px-8 py-4 bg-[var(--muted)] hover:bg-[var(--secondary)] rounded-full text-[var(--foreground)] font-medium transition-colors mb-16 shadow-sm"
         >
-            <span>Get In Touch</span>
-            <div className="bg-white rounded-full p-1">
-                <ArrowRight className="w-4 h-4 text-gray-900" />
-            </div>
+          <span>Get In Touch</span>
+          <div className="bg-white rounded-full p-1">
+            <ArrowRight className="w-4 h-4 text-gray-900" />
+          </div>
         </motion.button>
 
         {/* Status Text */}
@@ -186,7 +187,7 @@ export default function ContactFooter() {
             <div className="md:col-span-2 space-y-6">
                 <h4 className="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-widest">More</h4>
                 <ul className="space-y-3 text-sm font-medium text-[var(--foreground)]">
-                    <li><a href="/book" className="hover:text-[var(--primary)] transition-colors">Book a call</a></li>
+                    <li><a href="#" onClick={() => { window.dispatchEvent(new CustomEvent('open-quick-connect')); }} className="hover:text-[var(--primary)] transition-colors">Book a call</a></li>
                     <li><a href="/links" className="hover:text-[var(--primary)] transition-colors">Links</a></li>
                     <li><a href="/rss" className="hover:text-[var(--primary)] transition-colors">RSS</a></li>
                 </ul>

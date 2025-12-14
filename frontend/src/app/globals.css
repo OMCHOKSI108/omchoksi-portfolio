@@ -323,10 +323,12 @@ body::before {
 /* Dark theme variant: use lighter grid strokes for visibility */
 .dark .site-grid {
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-  opacity: 0.5;
+    linear-gradient(to right, rgba(255,255,255,0.20) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.20) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 1.9;
   mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 /* Dark theme: slightly lighter overlay so content stays readable but still shows gradient */

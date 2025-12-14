@@ -93,7 +93,9 @@ export default function LandingPage() {
           </h1>
 
           {/* CTA Button */}
-          <button className={`group mt-8 flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm border transition-all hover:scale-105 active:scale-95 ${theme === 'dark' ? 'bg-white/10 border-white/20 hover:bg-white/20' : 'bg-white/40 border-neutral-300 hover:bg-white/60 shadow-sm'}`}>
+          <button
+              onClick={() => { window.dispatchEvent(new CustomEvent('open-quick-connect')); }}
+            className={`group mt-8 flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm border transition-all hover:scale-105 active:scale-95 ${theme === 'dark' ? 'bg-white/10 border-white/20 hover:bg-white/20' : 'bg-white/40 border-neutral-300 hover:bg-white/60 shadow-sm'}`}>
             <span className="font-medium">Get In Touch</span>
             <span className={`flex items-center justify-center w-8 h-8 rounded-full transition-transform group-hover:translate-x-1 ${theme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'}`}>
               <ArrowRight size={16} />
@@ -151,7 +153,7 @@ export default function LandingPage() {
             <div className="md:col-span-3">
               <h3 className={`text-xs font-semibold tracking-wider uppercase mb-6 ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-500'}`}>More</h3>
               <ul className="space-y-4 text-sm">
-                <li><a href="#" className="hover:underline">Book a call</a></li>
+                <li><a href="/contact?book-call" className="hover:underline">Book a call</a></li>
                 <li><a href="#" className="hover:underline">Links</a></li>
                 <li><a href="#" className="hover:underline">RSS</a></li>
               </ul>

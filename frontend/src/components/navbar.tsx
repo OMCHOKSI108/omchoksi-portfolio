@@ -85,9 +85,16 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
 
           <div className="w-px h-5 bg-[var(--border)] mx-2"></div>
 
-          <button 
-            onClick={onContactClick}
-            className="px-5 py-2 rounded-full bg-[var(--foreground)] text-[var(--background)] hover:bg-[var(--foreground)]/80 text-sm font-medium transition-all shadow-lg hover:shadow-xl active:scale-95" 
+          <button
+            onClick={() => {
+              if (onContactClick) {
+                onContactClick();
+              } else {
+                // Fallback: open the global QuickConnect modal for inline booking
+                window.dispatchEvent(new CustomEvent('open-quick-connect'));
+              }
+            }}
+            className="px-5 py-2 rounded-full bg-[var(--foreground)] text-[var(--background)] hover:bg-[var(--foreground)]/80 text-sm font-medium transition-all shadow-lg hover:shadow-xl active:scale-95"
           >
             Book a Call
           </button>
