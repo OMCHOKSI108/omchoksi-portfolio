@@ -24,6 +24,21 @@ const nextConfig: NextConfig = {
     // Add other known external hosts you expect to use (optional)
     // `domains` is deprecated; using `remotePatterns` instead to restrict remote images
   },
+  // Redirect some legacy or convenience routes to the admin area
+  async redirects() {
+    return [
+      {
+        source: '/projects',
+        destination: '/admin/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/:path*',
+        destination: '/admin/projects/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

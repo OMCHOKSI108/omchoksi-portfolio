@@ -1,0 +1,223 @@
+
+# 📌 Portfolio Data – Corrected & Updated
+
+## Portfolio Owner Information
+
+**Name:** Om Choksi
+**Title:** AI & Machine Learning Engineer
+**Tagline:** *"I build practical AI systems that go beyond notebooks and deliver real-world impact."*
+
+---
+
+## Personal Profile & About
+
+**About Me:**
+"I’m Om Choksi — an AI & Machine Learning engineer focused on building deployable, production-ready intelligence systems. I specialize in transforming raw datasets into scalable ML products through end-to-end engineering, including data pipelines, model architecture, evaluation, and deployment."
+
+"My work spans ML model development, deep learning, computer vision, NLP, LLM-powered automation, full-stack ML application deployment, and data storytelling for business decisions. I believe AI is only successful when people — not just models — can use it."
+
+"I work with curiosity, speed, and product-thinking: every project I build must solve a real problem and make someone's workflow better."
+
+**Interests/Hobbies:**
+
+* Machine Learning & Applied AI
+* Cybersecurity & Intelligent Threat Detection
+* Autonomous Systems & Reinforcement Learning
+* Portfolio Web Development with Next.js
+* Researching new AI papers and architectures
+
+---
+
+## Social Links & Contact
+
+* **LinkedIn:** linkedin.com/in/omchoksi
+* **GitHub:** github.com/omchoksi108
+* **Kaggle:** *omchoksi04*
+* **Portfolio:** *(after deployment add URL)*
+
+---
+
+## Skills & Technologies
+
+**Core Skills:**
+
+* Machine Learning • Deep Learning • Computer Vision • NLP • Data Science • LLM Apps
+
+**Technical Expertise:**
+
+* **ML & AI:** TensorFlow, Scikit-learn, XGBoost, Random Forest, OpenCV, Statsmodels, PCA, Clustering
+* **NLP / LLM:** Embeddings, Prompt Engineering, Resume Scoring Systems, Semantic Search, Tone Transformation
+* **Data & Pipelines:** Feature Engineering, Statistical Modeling, EDA, KPI Tracking, A/B Testing
+* **Backend & Deployment:** FastAPI, Flask, Streamlit, REST APIs, PostgreSQL, CI/CD fundamentals
+* **Programming:** Python (primary), C++, Java, R, SQL
+* **Tools:** Jupyter, Google Colab, Git, GitHub, VS Code
+
+---
+
+## Professional Experience
+
+### 🚀 AI Product Development Intern
+
+**Company:** Samatrix Consulting Pvt. Ltd.
+**Location:** Remote
+**Date:** JUN 2025
+
+**Key Responsibilities & Achievements:**
+
+* Engineered supervised and unsupervised ML models for production-grade decision systems (not research-only prototypes)
+* Designed feature pipelines to minimize leakage and maximize signal strength across noisy datasets
+* Implemented clustering for customer behavioral segmentation, improving audience targeting and insight generation
+* Constructed analytics dashboards visualizing model KPIs, explainability metrics, and business lift estimates
+* Developed cross-department mindset: AI should be understandable and usable by non-technical decision makers
+
+**Skills Gained:** ML Engineering • Feature Pipelines • Model Explainability • KPI Dashboards • Product Strategy
+
+---
+
+### 📊 Data Analytics Intern
+
+**Company:** Oasis Infobyte
+**Location:** Remote
+**Date:** MAY 2025
+
+**Key Responsibilities & Achievements:**
+
+* Performed full-cycle EDA on large datasets with statistical reasoning and storytelling-based insight delivery
+* Identified data issues, engineered analytical features, normalized structure, and uncovered actionable patterns
+* Evaluated business hypotheses using descriptive statistics and experimentation
+* Designed dynamic analytical dashboards to help stakeholders quickly understand trends and actions
+
+**Skills Gained:** EDA • Statistical Analysis • Data Storytelling • Dashboarding • Insight Communication
+
+---
+
+## GitHub Statistics
+
+*(Auto-fetched through GitHub API in the portfolio — dynamic values)*
+
+* Followers
+* Total Stars
+* Public Repos
+* Total Forks
+
+---
+
+## Client Testimonials
+
+⚠️ **You currently do not have verified client testimonials.**
+→ Instead of fake testimonials, your portfolio should show **projects, case studies, and GitHub**.
+I will replace this section with a **“Mentions & Recognition”** block which is 100% real:
+
+### 🎖 Mentions & Recognition
+
+* Finalist – **IMMunoQuest Kaggle Contest**
+* Winner – **Data Science Treasure Hunt**
+* Competitor – **HPC Event (AIML Club)**
+
+---
+
+## Header Section
+
+* **Featured Work** (subtitle)
+* **My AI Projects** (main title with gradient styling)
+* **Description:**
+  *"A portfolio of AI applications, ML research experiments, cybersecurity tools, and deployed web apps — each built to solve a real-world problem, not just get an accuracy score."*
+
+---
+
+## Projects
+
+### Project 1 — Employee Performance Prediction (ML + Deployment)
+
+**Description:**
+An end-to-end ML system that predicts employee performance scores using HR metrics, integrated with a Flask dashboard for HR analytics.
+
+**Features:**
+
+1. Random Forest + XGBoost Hybrid pipeline
+2. Hyperparameter tuning and feature importance analytics
+3. Interactive dashboard for prediction and insights
+4. CSV input support and data visualization
+5. Exportable analytics report generation
+
+**Tech Stack:** Python, Scikit-learn, XGBoost, Flask, Pandas, Matplotlib
+**Color Theme:** bg-blue-700
+
+---
+
+### Project 2 — AI Resume Analyzer (FastAPI + LLMs)
+
+**Description:**
+A Resume Parsing and Job-Fit scoring system for recruiters using embeddings + LLM reasoning.
+
+**Features:**
+
+1. FastAPI backend for processing PDFs
+2. PostgreSQL database for candidate resume storage
+3. LLM engine for semantic job-fit analysis
+4. Streamlit dashboard for recruiter workflow
+5. Candidate ranking and filtering system
+
+**Tech Stack:** FastAPI, LLM, PostgreSQL, Streamlit, Python
+**Color Theme:** bg-purple-700
+
+---
+
+### Project 3 — Keylogger Detection for Windows (Cybersecurity + AI)
+
+**Description:**
+A tool that detects keyloggers on Windows using anomaly detection on system-process behavior.
+
+**Features:**
+
+1. Background monitoring of system hooks
+2. Behavioral fingerprinting using anomaly scores
+3. Gemini AI–powered threat evaluation
+4. Action-based warnings and recommendations
+5. Process whitelist and ignore mode
+
+**Tech Stack:** Python, Gemini API, Windows APIs
+**Color Theme:** bg-red-700
+
+---
+
+### Project 4 — Face Identification System (Real-time CV)
+
+**Description:**
+Real-time face recognition for webcam and recorded video streams using TensorFlow embeddings.
+
+**Tech Stack:** Python, TensorFlow, OpenCV, dlib
+**Color Theme:** bg-indigo-700
+
+---
+
+### Project 5 — IPL Mega Auction Analysis (Data Science)
+
+**Description:**
+Exploratory analysis of IPL 2025 auction dataset to understand role-based team budget strategies.
+
+**Tech Stack:** Python, Pandas, Matplotlib, Seaborn, Jupyter
+**Color Theme:** bg-yellow-600
+
+---
+
+### Project 6 — Email Rewriter AI (NLP)
+
+**Description:**
+A Streamlit app that rewrites emails into different tones using Cohere NLP API while preserving semantic intent.
+
+**Tech Stack:** Python, Streamlit, Cohere API
+**Color Theme:** bg-green-700
+
+---
+
+## Additional Notes
+
+* Portfolio built with **Next.js 16, React 19, TypeScript, Tailwind CSS v4**
+* **Framer Motion** used for animations
+* **GitHub API integration** for real-time repository statistics
+* Projects page supports **live demos, repo links, and case study pages**
+* Layout is **fully responsive**, includes **scroll animations, hover dynamics, staggered cards, and parallax sections**
+
+---
+

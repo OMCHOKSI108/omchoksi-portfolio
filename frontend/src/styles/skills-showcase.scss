@@ -1,0 +1,417 @@
+// SkillsShowcase Component Styles
+// Making the "Secret Sauce" area Sass-friendly
+
+.skills-showcase {
+  position: relative;
+  background: var(--background);
+  padding: 6rem 0 8rem 0;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0 10rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 10rem 0 12rem 0;
+  }
+
+  overflow: hidden;
+
+  // Background gradients
+  background: radial-gradient(circle at 20% 80%, rgba(167, 116, 88, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(212, 167, 116, 0.1) 0%, transparent 50%),
+              var(--background);
+
+  // Subtle background texture
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/cta.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
+    z-index: -1;
+  }
+
+  // Floating background elements
+  &__background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    // Large floating orbs
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      animation: float 6s ease-in-out infinite;
+
+      &--large {
+        top: 5rem;
+        left: 2.5rem;
+        width: 8rem;
+        height: 8rem;
+        background: linear-gradient(135deg, rgba(167, 116, 88, 0.2) 0%, rgba(248, 248, 248, 0.2) 100%);
+      }
+
+      &--medium {
+        top: 10rem;
+        right: 5rem;
+        width: 6rem;
+        height: 6rem;
+        background: linear-gradient(135deg, rgba(248, 248, 248, 0.15) 0%, rgba(167, 116, 88, 0.15) 100%);
+        animation: float 8s ease-in-out infinite reverse;
+      }
+
+      &--small {
+        bottom: 8rem;
+        left: 25%;
+        width: 10rem;
+        height: 10rem;
+        background: linear-gradient(135deg, rgba(167, 116, 88, 0.1) 0%, rgba(248, 248, 248, 0.1) 100%);
+        filter: blur(50px);
+        animation: float 10s ease-in-out infinite;
+      }
+    }
+
+    // Small floating particles
+    .floating-particle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: float 4s ease-in-out infinite;
+
+      &--1 {
+        top: 33.333%;
+        left: 20%;
+        width: 0.75rem;
+        height: 0.75rem;
+        background: rgba(167, 116, 88, 0.3);
+      }
+
+      &--2 {
+        top: 66.667%;
+        right: 33.333%;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: rgba(248, 248, 248, 0.25);
+        animation: float 5s ease-in-out infinite reverse;
+      }
+
+      &--3 {
+        bottom: 25%;
+        right: 20%;
+        width: 1rem;
+        height: 1rem;
+        background: rgba(167, 116, 88, 0.2);
+        animation: float 7s ease-in-out infinite;
+      }
+    }
+
+    // Geometric floating shapes
+    .floating-shape {
+      position: absolute;
+      border: 1px solid rgba(167, 116, 88, 0.2);
+      animation: float 9s ease-in-out infinite;
+
+      &--square {
+        top: 25%;
+        right: 25%;
+        width: 4rem;
+        height: 4rem;
+        transform: rotate(45deg);
+      }
+
+      &--circle {
+        bottom: 33.333%;
+        left: 33.333%;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite reverse;
+      }
+    }
+  }
+
+  // Main content container
+  &__content {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Title section with flower
+  &__title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    will-change: transform;
+    transition: opacity 0.15s linear, transform 0.15s linear;
+
+    .flower-container {
+      width: 20rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+
+      @media (min-width: 768px) {
+        width: 22rem;
+      }
+
+      @media (min-width: 1024px) {
+        width: 28rem;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        user-select: none;
+        pointer-events: none;
+        filter: drop-shadow(0 2.5rem 6.25rem rgba(167, 116, 88, 0.3));
+        animation: gentle-float 4s ease-in-out infinite;
+      }
+
+      // Floating particles around flower
+      .flower-particles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+
+        .particle {
+          position: absolute;
+          border-radius: 50%;
+          opacity: 0.6;
+          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+          &--1 {
+            top: 2.5rem;
+            left: 2.5rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--primary);
+            animation-delay: 0s;
+          }
+
+          &--2 {
+            top: 5rem;
+            right: 3.75rem;
+            width: 0.375rem;
+            height: 0.375rem;
+            background: var(--secondary);
+            opacity: 0.4;
+            animation-delay: 1s;
+          }
+
+          &--3 {
+            bottom: 3.75rem;
+            left: 5rem;
+            width: 0.25rem;
+            height: 0.25rem;
+            background: var(--primary);
+            opacity: 0.5;
+            animation-delay: 2s;
+          }
+        }
+      }
+    }
+
+    .title-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.3em;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+      @media (min-width: 768px) {
+        font-size: 0.75rem;
+      }
+    }
+
+    .main-title {
+      font-size: 1.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+      @media (min-width: 768px) {
+        font-size: 2.25rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      @media (min-width: 1280px) {
+        font-size: 3rem;
+      }
+
+      .title-highlight {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+    }
+  }
+
+  // Skills icons container
+  &__skills-container {
+    margin-top: 3rem;
+
+    @media (min-width: 768px) {
+      margin-top: 3.75rem;
+    }
+
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 0.75rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        gap: 0.75rem 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Icon Row Component Styles
+.icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+
+  @media (min-width: 768px) {
+    gap: 0.75rem 1rem;
+  }
+
+  // Individual skill icon
+  .skill-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 1rem;
+    background: var(--card-background);
+    box-shadow: 0 2.5rem 6.25rem rgba(15, 23, 42, 0.08);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: 768px) {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: 0 3.5rem 7.5rem rgba(15, 23, 42, 0.16);
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--primary);
+      transition: color 0.3s ease;
+
+      @media (min-width: 768px) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      .skill-icon:hover & {
+        color: var(--secondary);
+      }
+    }
+
+    // Floating particles around icons
+    .icon-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+
+      .skill-icon:hover & {
+        opacity: 1;
+      }
+
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+        &--1 {
+          top: -0.25rem;
+          right: -0.25rem;
+          width: 0.25rem;
+          height: 0.25rem;
+          background: var(--primary);
+          animation-delay: 0s;
+        }
+
+        &--2 {
+          bottom: -0.25rem;
+          left: -0.25rem;
+          width: 0.125rem;
+          height: 0.125rem;
+          background: var(--secondary);
+          animation-delay: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+// Keyframe Animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.25rem) rotate(2.5deg);
+  }
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-0.625rem) rotate(1deg);
+  }
+}
+
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-0.1875rem) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-0.375rem) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-0.1875rem) rotate(-0.5deg);
+  }
+}

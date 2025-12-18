@@ -8,6 +8,7 @@ import { DEFAULT_PROJECT_IMAGE } from '@/lib/constants';
 function parseListParams(url: string) {
   const u = new URL(url);
   const q = u.searchParams.get('q') || '';
+  const slug = u.searchParams.get('slug') || '';
   const tags = (u.searchParams.get('tags') || '')
     .split(',')
     .map((t) => t.trim())
@@ -15,18 +16,18 @@ function parseListParams(url: string) {
   const status = u.searchParams.get('status') || '';
   const page = Math.max(1, parseInt(u.searchParams.get('page') || '1'));
   const limit = Math.min(100, parseInt(u.searchParams.get('limit') || '24'));
-  return { q, tags, status, page, limit };
+  return { q, slug, tags, status, page, limit };
 }
 
 export async function listProjectsHandler(request: NextRequest) {
   try {
     await dbConnect();
-    const { q, tags, status, page, limit } = parseListParams(request.url);
+    const { q, slug, tags, status, page, limit } = parseListParams(request.url);
     // if requester is admin (has valid admin_token) then return all projects regardless of active flag
     const cookie = request.cookies.get('admin_token')?.value;
     const isAdmin = cookie ? !!verifyToken(cookie) : false;
     // for public users, only return active projects
-    const result = await service.listProjects({ q, tags, status, page, limit, active: isAdmin ? undefined : true });
+    const result = await service.listProjects({ q, slug, tags, status, page, limit, active: isAdmin ? undefined : true });
     return build(true, 'Projects fetched', result);
   } catch (err) {
     console.error('listProjectsHandler', err);

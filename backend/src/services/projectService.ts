@@ -3,6 +3,7 @@ import { PaginatedResult } from '@/types/api';
 
 type ListOpts = {
   q?: string;
+  slug?: string;
   tags?: string[];
   status?: string;
   active?: boolean; // when true, only return active projects; undefined => no filter
@@ -11,6 +12,16 @@ type ListOpts = {
 };
 
 export async function listProjects(opts: ListOpts = {}): Promise<PaginatedResult<IProject>> {
+  // If slug is provided, return a single project
+  if (opts.slug) {
+    const project = await Project.findOne({ slug: opts.slug }).lean();
+    if (project) {
+      return { items: [project], total: 1, page: 1, limit: 1 };
+    } else {
+      return { items: [], total: 0, page: 1, limit: 1 };
+    }
+  }
+
   const page = Math.max(1, opts.page || 1);
   const limit = Math.min(100, opts.limit || 24);
   const skip = (page - 1) * limit;

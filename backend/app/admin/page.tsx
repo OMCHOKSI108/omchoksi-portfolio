@@ -1,12 +1,19 @@
 import React from 'react';
 import dbConnect from '@/lib/db';
 import Project from '@/models/Project';
+import Blog from '@/models/Blog';
+import Certification from '@/models/Certification';
 
 export default async function AdminDashboard() {
   // Query the database directly on the server to avoid internal HTTP calls
   await dbConnect();
-  const total = (await Project.countDocuments()) || 0;
-  const featured = (await Project.countDocuments({ featured: true })) || 0;
+  const totalProjects = (await Project.countDocuments()) || 0;
+  const featuredProjects = (await Project.countDocuments({ featured: true })) || 0;
+  const totalBlogs = (await Blog.countDocuments()) || 0;
+  console.log('Total blogs in DB:', totalBlogs);
+  const featuredBlogs = (await Blog.countDocuments({ featured: true })) || 0;
+  const totalCertifications = (await Certification.countDocuments()) || 0;
+  const featuredCertifications = (await Certification.countDocuments({ featured: true })) || 0;
 
   return (
     <div>
@@ -14,18 +21,30 @@ export default async function AdminDashboard() {
         <h1 className="text-3xl font-semibold">Dashboard</h1>
       </header>
 
-      <section className="grid grid-cols-3 gap-4 mb-8">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="product-card p-4">
           <div className="text-sm text-gray-500">Total Projects</div>
-          <div className="text-2xl font-bold">{total}</div>
+          <div className="text-2xl font-bold">{totalProjects}</div>
         </div>
         <div className="product-card p-4">
-          <div className="text-sm text-gray-500">Featured</div>
-          <div className="text-2xl font-bold">{featured}</div>
+          <div className="text-sm text-gray-500">Featured Projects</div>
+          <div className="text-2xl font-bold">{featuredProjects}</div>
         </div>
         <div className="product-card p-4">
-          <div className="text-sm text-gray-500">Views (N/A)</div>
-          <div className="text-2xl font-bold">—</div>
+          <div className="text-sm text-gray-500">Total Blogs</div>
+          <div className="text-2xl font-bold">{totalBlogs}</div>
+        </div>
+        <div className="product-card p-4">
+          <div className="text-sm text-gray-500">Featured Blogs</div>
+          <div className="text-2xl font-bold">{featuredBlogs}</div>
+        </div>
+        <div className="product-card p-4">
+          <div className="text-sm text-gray-500">Total Certifications</div>
+          <div className="text-2xl font-bold">{totalCertifications}</div>
+        </div>
+        <div className="product-card p-4">
+          <div className="text-sm text-gray-500">Featured Certifications</div>
+          <div className="text-2xl font-bold">{featuredCertifications}</div>
         </div>
       </section>
 
