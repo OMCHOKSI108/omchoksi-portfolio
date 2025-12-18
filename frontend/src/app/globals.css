@@ -310,11 +310,16 @@ body::before {
   pointer-events: none;
   /* Create small square grid using two linear gradients */
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.15) 1px, transparent 1px);
   background-size: 12px 12px;
-  opacity: 0.65;
-  mix-blend-mode: overlay;
+  opacity: 1;
+  mix-blend-mode: multiply;
+  /* keep the grid visually fixed at the top of the viewport */
+  background-attachment: fixed;
+  /* promote to its own layer to avoid paint/scroll jank */
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
   /* Fade grid downwards so it doesn't abruptly end */
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0) 80%);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0) 80%);
@@ -326,9 +331,12 @@ body::before {
     linear-gradient(to right, rgba(255,255,255,0.20) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,0.20) 1px, transparent 1px);
   background-size: 20px 20px;
-  opacity: 1.9;
+  opacity: 0.95;
   mix-blend-mode: screen;
   pointer-events: none;
+  background-attachment: fixed;
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
 }
 
 /* Dark theme: slightly lighter overlay so content stays readable but still shows gradient */

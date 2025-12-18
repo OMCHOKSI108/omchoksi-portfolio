@@ -11,33 +11,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20 relative">
-      {/* Curved grid overlays — placed above page background but behind content */}
-      <div aria-hidden className="absolute left-0 right-0 top-0 h-1/2 pointer-events-none z-0">
-        {/* Light theme grid */}
-        <div
-          className="absolute inset-0 block dark:hidden"
-          style={{
-            backgroundImage:
-              "radial-gradient(1000px 260px at 50% 0%, rgba(0,0,0,0.22), rgba(0,0,0,0) 50%), linear-gradient(rgba(0,0,0,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.14) 1px, transparent 1px)",
-            backgroundSize: "cover, 18px 18px, 18px 18px",
-            backgroundRepeat: "no-repeat, repeat, repeat",
-            opacity: 0.95,
-          }}
-        />
-
-        {/* Dark theme grid */}
-        <div
-          className="absolute inset-0 hidden dark:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(1000px 260px at 50% 0%, rgba(255,255,255,0.18), rgba(255,255,255,0) 50%), linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
-            backgroundSize: "cover, 18px 18px, 18px 18px",
-            backgroundRepeat: "no-repeat, repeat, repeat",
-            opacity: 0.9,
-            mixBlendMode: "overlay",
-          }}
-        />
-      </div>
+      {/* Removed local grid overlay to avoid double grid with global .site-grid */}
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div

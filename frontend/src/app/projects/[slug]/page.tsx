@@ -118,8 +118,9 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             style={{
               backgroundImage:
                 'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
-              backgroundSize: '12px 12px',
-              opacity: 0.06,
+              /* make this page-local grid very subtle so it doesn't double up with the global .site-grid */
+              backgroundSize: '24px 24px',
+              opacity: 0.02,
               mixBlendMode: 'overlay'
             }}
           />

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const blogPosts = [
   {
@@ -28,6 +29,7 @@ const blogPosts = [
 ];
 
 export default function Blog() {
+  const router = useRouter();
   return (
     <section className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
@@ -81,7 +83,10 @@ export default function Blog() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <button className="bg-[var(--primary)] text-[var(--primary-foreground)] px-8 py-4 rounded-full font-medium hover:bg-[var(--primary)]/80 transition-colors">
+          <button
+            onClick={() => router.push('/blog')}
+            className="bg-[var(--primary)] text-[var(--primary-foreground)] px-8 py-4 rounded-full font-medium hover:bg-[var(--primary)]/80 transition-colors"
+          >
             View All Posts
           </button>
         </motion.div>
