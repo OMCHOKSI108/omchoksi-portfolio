@@ -34,6 +34,7 @@ export default function SubNav() {
           <Link href="/admin" className={`py-3 inline-block ${isActive('/admin') ? 'font-semibold border-b-2' : 'text-gray-600'}`} style={{ borderColor: '#f59e0b' }}>Dashboard</Link>
           <Link href="/admin/projects" className={`py-3 inline-block ${isActive('/admin/projects') ? 'font-semibold border-b-2' : 'text-gray-600'}`} style={{ borderColor: '#f59e0b' }}>Projects</Link>
           <Link href="/admin/blogs" className={`py-3 inline-block ${isActive('/admin/blogs') ? 'font-semibold border-b-2' : 'text-gray-600'}`} style={{ borderColor: '#f59e0b' }}>Blogs</Link>
+          <Link href="/admin/certifications" className={`py-3 inline-block ${isActive('/admin/certifications') ? 'font-semibold border-b-2' : 'text-gray-600'}`} style={{ borderColor: '#f59e0b' }}>Certifications</Link>
           <Link href="/admin/profile" className={`py-3 inline-block ${isActive('/admin/profile') ? 'font-semibold border-b-2' : 'text-gray-600'}`} style={{ borderColor: '#f59e0b' }}>Profile</Link>
           <Link href="/admin/settings" className={`py-3 inline-block ${isActive('/admin/settings') ? 'font-semibold border-b-2' : 'text-gray-600'}`} style={{ borderColor: '#f59e0b' }}>Settings</Link>
         </div>

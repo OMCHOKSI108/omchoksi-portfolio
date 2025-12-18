@@ -2,13 +2,18 @@ import React from 'react';
 import dbConnect from '@/lib/db';
 import Project from '@/models/Project';
 import Blog from '@/models/Blog';
+import Certification from '@/models/Certification';
 
 export default async function AdminDashboard() {
   // Query the database directly on the server to avoid internal HTTP calls
   await dbConnect();
-  const totalProjects = (await Project.countDocuments()) || 0;  console.log('Total blogs in DB:', totalBlogs);  const featuredProjects = (await Project.countDocuments({ featured: true })) || 0;
+  const totalProjects = (await Project.countDocuments()) || 0;
+  const featuredProjects = (await Project.countDocuments({ featured: true })) || 0;
   const totalBlogs = (await Blog.countDocuments()) || 0;
+  console.log('Total blogs in DB:', totalBlogs);
   const featuredBlogs = (await Blog.countDocuments({ featured: true })) || 0;
+  const totalCertifications = (await Certification.countDocuments()) || 0;
+  const featuredCertifications = (await Certification.countDocuments({ featured: true })) || 0;
 
   return (
     <div>
@@ -32,6 +37,14 @@ export default async function AdminDashboard() {
         <div className="product-card p-4">
           <div className="text-sm text-gray-500">Featured Blogs</div>
           <div className="text-2xl font-bold">{featuredBlogs}</div>
+        </div>
+        <div className="product-card p-4">
+          <div className="text-sm text-gray-500">Total Certifications</div>
+          <div className="text-2xl font-bold">{totalCertifications}</div>
+        </div>
+        <div className="product-card p-4">
+          <div className="text-sm text-gray-500">Featured Certifications</div>
+          <div className="text-2xl font-bold">{featuredCertifications}</div>
         </div>
       </section>
 
