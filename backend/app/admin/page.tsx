@@ -6,8 +6,7 @@ import Blog from '@/models/Blog';
 export default async function AdminDashboard() {
   // Query the database directly on the server to avoid internal HTTP calls
   await dbConnect();
-  const totalProjects = (await Project.countDocuments()) || 0;
-  const featuredProjects = (await Project.countDocuments({ featured: true })) || 0;
+  const totalProjects = (await Project.countDocuments()) || 0;  console.log('Total blogs in DB:', totalBlogs);  const featuredProjects = (await Project.countDocuments({ featured: true })) || 0;
   const totalBlogs = (await Blog.countDocuments()) || 0;
   const featuredBlogs = (await Blog.countDocuments({ featured: true })) || 0;
 
