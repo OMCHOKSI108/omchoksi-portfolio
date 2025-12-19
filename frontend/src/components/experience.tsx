@@ -128,23 +128,23 @@ export default function Experience() {
             {/* Timeline */}
             <div ref={containerRef} className="relative">
                 
-                {/* --- Static Base Line (Gray) --- */}
-                <div className="absolute left-[18px] md:left-1/2 md:-ml-0.5 top-0 bottom-0 w-1 bg-[var(--border)] hidden md:block rounded-full" />
-                
-                {/* --- Animated Scroll Line (Gradient) --- */}
-                <motion.div 
-                    style={{ height }}
-                    className="absolute left-[18px] md:left-1/2 md:-ml-0.5 top-0 w-1 bg-gradient-to-b from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] hidden md:block rounded-full origin-top"
-                >
-                    {/* --- Moving Profile Icon --- */}
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white border-[3px] border-[var(--border)] shadow-xl overflow-hidden z-20">
-                        <img 
-                            src="https://github.com/omchoksi108.png" 
-                            alt="Moving Avatar" 
-                            className="w-full h-full object-cover" 
-                        />
-                    </div>
-                </motion.div>
+                                {/* --- Static Base Line (Subtle) --- */}
+                                <div className="absolute left-[18px] md:left-1/2 md:-ml-0.5 top-0 bottom-0 w-px bg-[var(--border)] hidden md:block rounded-full" />
+
+                                {/* --- Animated Scroll Line (Gradient) --- */}
+                                <motion.div
+                                    style={{ height }}
+                                    className="absolute left-[18px] md:left-1/2 md:-ml-0.5 top-0 w-px bg-gradient-to-b from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] hidden md:block rounded-full origin-top"
+                                >
+                                    {/* moving profile marker */}
+                                    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[var(--card)] border-2 border-[var(--border)] shadow z-20 overflow-hidden">
+                                        <img
+                                            src="https://github.com/omchoksi108.png"
+                                            alt="Moving Avatar"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </motion.div>
                 
                 <div className="space-y-16 py-10">
                     {EXPERIENCE.map((exp, index) => (

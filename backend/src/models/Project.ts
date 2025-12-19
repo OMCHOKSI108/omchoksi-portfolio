@@ -4,6 +4,7 @@ export interface IProject extends Document {
   title: string;
   slug: string;
   description: string;
+  projectMarkdown?: string;
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -18,6 +19,8 @@ const ProjectSchema: Schema = new Schema({
   title: { type: String, required: true, index: true },
   slug: { type: String, required: true, unique: true, index: true },
   description: { type: String, required: true },
+  // Markdown content for richer project pages (admin can supply `project-markdown`)
+  projectMarkdown: { type: String },
   tags: [{ type: String, index: true }],
   liveUrl: { type: String },
   githubUrl: { type: String },
@@ -35,7 +38,7 @@ const ProjectSchema: Schema = new Schema({
   timestamps: true,
 });
 
-// Text index for fast title/description search
-ProjectSchema.index({ title: 'text', description: 'text' });
+// Text index for fast title/description/markdown search
+ProjectSchema.index({ title: 'text', description: 'text', projectMarkdown: 'text' });
 
 export default mongoose.models.Project || mongoose.model<IProject>('Project', ProjectSchema);

@@ -67,28 +67,7 @@ export default function LandingPage() {
             <br />
             LET'S MAKE IT <span className="font-bold relative inline-block">
               HAPPEN!
-              {/* Spinning Badge */}
-              <div className="absolute -top-8 -right-16 md:-top-10 md:-right-24 w-20 h-20 md:w-28 md:h-28 hidden sm:block animate-spin-slow">
-                <div className="relative w-full h-full">
-                  <svg viewBox="0 0 100 100" width="100%" height="100%" className="overflow-visible">
-                    <path
-                      id="circlePath"
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                      fill="transparent"
-                    />
-                    <text fill="currentColor" fontSize="13" fontWeight="bold" letterSpacing="2">
-                      <textPath href="#circlePath" startOffset="0%">
-                        • OPEN TO WORK • OPEN TO WORK
-                      </textPath>
-                    </text>
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white">
-                        <X size={16} />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* rotating badge removed */}
             </span>
           </h1>
 

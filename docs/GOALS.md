@@ -1,4 +1,4 @@
-# 🚀 Full-Stack Portfolio + Admin Panel — Technical Blueprint
+#  Full-Stack Portfolio + Admin Panel — Technical Blueprint
 
 ## 🎯 Project Goal
 
@@ -331,7 +331,7 @@ Images Storage: Cloudinary:
 
 Far below free limit
 
-🚀 Deployment Plan
+ Deployment Plan
 Frontend
 Platform: Vercel
 

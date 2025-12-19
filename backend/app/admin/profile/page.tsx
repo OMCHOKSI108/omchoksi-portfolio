@@ -54,7 +54,7 @@ export default function ProfilePage() {
         <hr />
 
         <h2>Professional Experience</h2>
-        <h3>🚀 AI Product Development Intern</h3>
+        <h3> AI Product Development Intern</h3>
         <p><strong>Company:</strong> Samatrix Consulting Pvt. Ltd.</p>
         <p><strong>Location:</strong> Remote</p>
         <p><strong>Date:</strong> JUN 2025</p>

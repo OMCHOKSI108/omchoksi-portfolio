@@ -3,10 +3,23 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
-import { Search, Clock, ArrowUpRight, Calendar } from "lucide-react";
-import { useState } from "react";
+import { Search, Clock, ArrowUpRight, Calendar, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-// --- Mock Data ---
+// --- API Data Types ---
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  image?: string;
+  createdAt: string;
+  active: boolean;
+}
+
 const TOPICS = [
   "nextjs", "react", "css", "tailwindcss", "java", "flexbox",
   "design", "tips", "grid", "tools", "vite", "core-concept",
@@ -14,44 +27,56 @@ const TOPICS = [
   "productivity", "web", "animation"
 ];
 
-const POSTS = [
-  {
-    id: 1,
-    title: "My 2025 Stack as a Frontend Developer",
-    excerpt: "As a Frontend Developer in 2025, I've fine-tuned my development environment with a set of powerful tools that enhance productivity, efficiency, and customization. Let me walk you through my stack and how these tools help me build better, faster, and more maintainable projects!",
-    date: "Mar 19, 2025",
-    timeAgo: "9 mo ago",
-    readTime: "4 min read",
-    isNew: true,
-    tags: ["frontend", "tools", "productivity"],
-    image: "https://images.unsplash.com/photo-1548625361-9872e454f05b?q=80&w=1000&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    title: "How to Build a Blog with Next.js and MDX",
-    excerpt: "Build a blazing fast markdown blog using Next.js and MDX with this complete walkthrough. Learn how to set up dynamic routing, render markdown content, and style your blog for optimal performance.",
-    date: "Jun 28, 2025",
-    timeAgo: "5 mo ago",
-    readTime: "14 min read",
-    isNew: true,
-    tags: ["typescript", "nextjs", "mdx"],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Mastering Framer Motion: A Complete Guide",
-    excerpt: "Animations can breathe life into your web applications. Discover how to create complex, fluid animations with Framer Motion, from simple transitions to layout animations and scroll-linked effects.",
-    date: "Dec 16, 2024",
-    timeAgo: "12 mo ago",
-    readTime: "8 min read",
-    isNew: true,
-    tags: ["animation", "react", "framer"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
-  }
-];
-
 export default function Blog() {
   const [activeTab, setActiveTab] = useState("Newest First");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("https://portfolio-admin-panel-sigma.vercel.app/api/blogs?page=1&limit=50");
+        const data = await res.json();
+        if (data.success) {
+          setPosts(data.data.items.filter((b: BlogPost) => b.active));
+        } else {
+          setError("Failed to fetch blogs");
+        }
+      } catch (err) {
+        setError("Error fetching blogs");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  const filteredPosts = posts.filter(post => {
+    const query = searchQuery.toLowerCase();
+    return post.title.toLowerCase().includes(query) ||
+           post.description.toLowerCase().includes(query) ||
+           post.tags.some(tag => tag.toLowerCase().includes(query));
+  });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-transparent transition-colors duration-300 flex items-center justify-center">
+        <div className="animate-pulse">Loading blogs...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-transparent transition-colors duration-300 flex items-center justify-center">
+        <div className="text-red-500">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-transparent transition-colors duration-300">
@@ -105,9 +130,16 @@ export default function Blog() {
                     <input
                         type="text"
                         placeholder="Search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full pl-12 pr-16 py-3 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-sm text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--ring)] transition-colors"
                     />
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                        {searchQuery && (
+                            <button onClick={() => setSearchQuery("")} className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+                                <X className="w-4 h-4" />
+                            </button>
+                        )}
                         <kbd className="hidden sm:inline-block px-2 py-1 bg-[var(--muted)] border border-[var(--border)] rounded-md text-[10px] font-bold text-[var(--muted-foreground)] shadow-sm">
                             Ctrl
                         </kbd>
@@ -123,62 +155,78 @@ export default function Blog() {
 
                 {/* --- Left Column: Blog Posts (Span 8) --- */}
                 <div className="lg:col-span-8 space-y-12">
-                    {POSTS.map((post) => (
+                    {filteredPosts.map((post) => (
                         <motion.div
-                            key={post.id}
+                            key={post._id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="group flex flex-col md:flex-row gap-8 items-start border-b border-[var(--border)] pb-12 last:border-0"
+                            className="group flex flex-col md:flex-row gap-8 items-start border-b border-[var(--border)] pb-12 last:border-0 cursor-pointer"
+                            onClick={() => router.push(`/blog/${post.slug}`)}
                         >
                             {/* Text Content */}
                             <div className="flex-1 space-y-4">
                                 {/* Meta Row */}
                                 <div className="flex items-center gap-3 text-xs">
-                                    <span className="text-[var(--muted-foreground)] font-medium">{post.date} ({post.timeAgo})</span>
-                                    {post.isNew && (
-                                        <span className="px-2 py-0.5 bg-green-500 text-white rounded-md font-bold text-[10px] uppercase tracking-wide">
-                                            Recently released
-                                        </span>
-                                    )}
+                                    <span className="text-[var(--muted-foreground)] font-medium">{new Date(post.createdAt).toLocaleDateString()}</span>
                                 </div>
 
                                 {/* Title */}
-                                <h3 className="text-2xl font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors cursor-pointer">
+                                <h3 className="text-2xl font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
                                     {post.title}
                                 </h3>
 
                                 {/* Excerpt */}
                                 <p className="text-[var(--muted-foreground)] text-sm leading-relaxed line-clamp-3">
-                                    {post.excerpt}
+                                    {post.description.length > 150 ? post.description.substring(0, 150) + "..." : post.description}
                                 </p>
 
                                 {/* Footer Row */}
                                 <div className="flex items-center justify-between pt-2">
                                     <div className="flex items-center gap-2 text-xs text-[var(--muted-foreground)]">
                                         <Clock className="w-3 h-3" />
-                                        <span>{post.readTime}</span>
+                                        <span>5 min read</span>
                                     </div>
                                     <div className="flex gap-2">
-                                        {post.tags.map(tag => (
-                                            <span key={tag} className="px-2 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] rounded-md text-xs font-medium">
+                                        {post.tags.slice(0, 3).map(tag => (
+                                            <span key={tag} className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md text-xs font-medium">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
+
+                                {/* Read More Button */}
+                                {post.link && (
+                                    <div className="pt-4">
+                                        <a
+                                            href={post.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-lg text-sm font-medium hover:bg-[var(--primary)]/80 transition-colors"
+                                        >
+                                            Read Full Article
+                                            <ArrowUpRight className="w-4 h-4" />
+                                        </a>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Image Thumbnail */}
                             <div className="w-full md:w-48 aspect-video md:aspect-[4/3] rounded-xl overflow-hidden shrink-0">
                                 <img
-                                    src={post.image}
+                                    src={post.image || "/assets/cta.avif"}
                                     alt={post.title}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
                         </motion.div>
                     ))}
+                    {filteredPosts.length === 0 && searchQuery && (
+                        <div className="text-center py-12">
+                            <p className="text-[var(--muted-foreground)]">No blogs found matching "{searchQuery}"</p>
+                        </div>
+                    )}
                 </div>
 
                 {/* --- Right Column: Sidebar (Span 4) --- */}

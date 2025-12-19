@@ -5,48 +5,7 @@ import { ArrowRight, Github, Linkedin, Twitter, Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { useRef } from "react";
 
-/* ---------------- ROTATING BADGE ---------------- */
-const RotatingBadge = () => (
-  <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-    <motion.div
-      animate={{ rotate: -360 }}
-      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      className="absolute inset-0"
-    >
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <defs>
-          <path
-            id="circlePath"
-            d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-          />
-        </defs>
-
-        <circle cx="50" cy="50" r="38" fill="var(--primary)" opacity="0.9" />
-
-        <text
-          className="text-[10px] font-bold uppercase tracking-widest"
-          fill="white"
-        >
-          <textPath href="#circlePath">
-            • Open To Work • Open To Work • Open To Work
-          </textPath>
-        </text>
-      </svg>
-    </motion.div>
-
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="text-[var(--primary-foreground)]"
-      >
-        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-      </svg>
-    </div>
-  </div>
-);
+/* Rotating badge removed */
 
 /* ---------------- MAIN FOOTER ---------------- */
 export default function ContactFooter() {
@@ -74,6 +33,26 @@ export default function ContactFooter() {
         ref={containerRef}
         className="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-6 pt-32 pb-20 max-w-5xl mx-auto"
       >
+        {/* Wings Background */}
+        <div className="absolute inset-0 flex items-start justify-center pointer-events-none pt-16">
+          <div className="relative">
+            <img
+              src="/wings.svg"
+              alt=""
+              className="w-full max-w-4xl h-auto opacity-60 dark:opacity-40"
+            />
+            {/* OM Text in center of wings */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="rounded-full border-2 border-foreground/30 p-4">
+                <span className={`text-6xl font-bold select-none ${
+                  theme === 'dark' ? 'text-white' : 'text-black'
+                }`}>
+                  OM
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
         <motion.div
           initial={{ scale: 0.85, opacity: 0.3 }}
           whileInView={{ scale: 1, opacity: 1 }}
@@ -99,9 +78,7 @@ export default function ContactFooter() {
               Let’s Make it Happen!
             </motion.h2>
 
-            <div className="absolute -top-8 -right-20 md:-right-32 hidden sm:block">
-              <RotatingBadge />
-            </div>
+            {/* rotating badge removed */}
           </div>
         </motion.div>
 
@@ -128,7 +105,7 @@ export default function ContactFooter() {
       </div>
 
       {/* ---------- FOOTER BAR ---------- */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-10 border-t border-border">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[var(--muted-foreground)]">
           <span>© 2025 Om Choksi. All rights reserved.</span>
 
@@ -167,6 +144,13 @@ export default function ContactFooter() {
             >
               <Twitter className="w-4 h-4" />
             </a>
+          </div>
+        </div>
+
+        {/* Open to Work Roller */}
+        <div className="w-full overflow-hidden bg-gradient-to-r from-transparent via-[var(--accent)]/10 to-transparent py-2 mt-8">
+          <div className="animate-marquee text-sm font-medium text-[var(--foreground)]/70 whitespace-nowrap">
+             Open to work • Available for freelance projects • Let's build something amazing together •  Open to work • Available for freelance projects • Let's build something amazing together •
           </div>
         </div>
       </div>

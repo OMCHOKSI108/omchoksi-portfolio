@@ -53,7 +53,7 @@ html {
   --secondary: #f5f5f5;
   --secondary-foreground: #171717;
   --muted: #f5f5f5;
-  --muted-foreground: #737373;
+  --muted-foreground: #4b5563;
   --accent: #f5f5f5;
   --accent-foreground: #171717;
   --destructive: #e40014;
@@ -267,13 +267,14 @@ body::before {
   width: 100%;
   height: 100%;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A97458' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.5;
+  opacity: 0.06;
   pointer-events: none;
   z-index: 0;
 }
 
 .dark body::before {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A574' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
 }
 
 .noise-overlay {
@@ -292,11 +293,8 @@ body::before {
   inset: 0;
   z-index: 10; /* above subtle noise but below UI like nav (nav uses z-50) */
   pointer-events: none;
-  /* Linear-gradient based overlay (top -> transparent) to avoid a centered foggy vignette.
-     Keeps a subtle gradient feel across pages without creating a central dark spot. */
-  background-image: linear-gradient(180deg, rgba(0,0,0,0.14) 0%, rgba(0,0,0,0.08) 30%, rgba(0,0,0,0) 70%);
-  mix-blend-mode: multiply;
-  opacity: 0.6;
+  /* Hide vignette in light mode to keep header areas bright */
+  display: none;
 }
 
 /* Top repeating square grid overlay used site-wide (subtle, theme-aware) */
@@ -308,42 +306,55 @@ body::before {
   height: 38vh; /* visible on the upper portion of pages */
   z-index: 12; /* above vignette but well below nav (nav z-50) */
   pointer-events: none;
-  /* Create small square grid using two linear gradients */
-  background-image:
-    linear-gradient(to right, rgba(0,0,0,0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.15) 1px, transparent 1px);
-  background-size: 12px 12px;
-  opacity: 1;
-  mix-blend-mode: multiply;
+  /* Show grid by default (will be theme-aware below) */
+  display: block;
   /* keep the grid visually fixed at the top of the viewport */
   background-attachment: fixed;
-  /* promote to its own layer to avoid paint/scroll jank */
   transform: translate3d(0,0,0);
   will-change: transform, opacity;
-  /* Fade grid downwards so it doesn't abruptly end */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0) 80%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0) 80%);
+}
+
+/* Light theme: subtle dark grid lines */
+:root:not(.dark) .site-grid {
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.9;
+  mix-blend-mode: multiply;
 }
 
 /* Dark theme variant: use lighter grid strokes for visibility */
 .dark .site-grid {
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.20) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.20) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255,255,255,0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.10) 1px, transparent 1px);
   background-size: 20px 20px;
-  opacity: 0.95;
+  opacity: 0.9;
   mix-blend-mode: screen;
-  pointer-events: none;
-  background-attachment: fixed;
-  transform: translate3d(0,0,0);
-  will-change: transform, opacity;
 }
 
 /* Dark theme: slightly lighter overlay so content stays readable but still shows gradient */
 .dark .site-vignette {
+  display: block;
   background-image: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0) 70%);
   mix-blend-mode: overlay;
   opacity: 0.5;
+}
+
+/* Keep vignette and noise overlays hidden (we only re-enable the site grid) */
+:root:not(.dark) .site-vignette,
+:root:not(.dark) .noise-overlay {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.site-vignette,
+.noise-overlay {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .font-serif-italic {
@@ -385,6 +396,32 @@ body::before {
   background-color: var(--primary);
   border-radius: 50%;
   opacity: 0.9;
+}
+
+/* Marquee animations for SecretSauce component */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse linear infinite;
+  will-change: transform;
+}
+
+/* Ensure marquee content preserves layout on smaller screens */
+.animate-marquee > *, .animate-marquee-reverse > * {
+  flex: 0 0 auto;
 }
 
 @keyframes rotate {

@@ -7,13 +7,14 @@ import MagicProfile from "@/components/magic-profile";
 import BentoGridRow from "@/components/bento-grid-row";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
-import SkillsShowcase from "@/components/skills-showcase";
+import SecretSauce from "@/components/SecretSauce";
 import Marquee from "@/components/marquee";
 import Testimonials from "@/components/testimonials";
 import Blog from "@/components/blog";
 import Footer from "@/components/footer";
 import FloatingElements from "@/components/floating-elements";
 import FloatingThemeToggle from "@/components/floating-theme-toggle";
+import Certifications from "@/components/certifications";
 
 export default function Home() {
   const [showQuickConnect, setShowQuickConnect] = useState(false);
@@ -23,15 +24,14 @@ export default function Home() {
       <FloatingElements />
       <Navbar onContactClick={() => setShowQuickConnect(true)} />
       <Hero />
-      <MagicProfile />
       <BentoGridRow 
         showQuickConnect={showQuickConnect} 
         onCloseQuickConnect={() => setShowQuickConnect(false)}
         onOpenQuickConnect={() => setShowQuickConnect(true)}
       />
       <Projects />
-    
-      <SkillsShowcase />
+      <Certifications />
+      <SecretSauce />
       <Marquee />
       <Testimonials />
       <Blog />

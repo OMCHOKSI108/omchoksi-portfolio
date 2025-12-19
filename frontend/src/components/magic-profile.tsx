@@ -32,10 +32,12 @@ function MagicProfile() {
     const threshold = 120; // px
 
     const check = () => {
+      // Defensive: refs may be null during mount/unmount; bail out if not available
+      if (!sectionRef.current || !cardRef.current) return;
       const x = smoothX.get();
       const y = smoothY.get();
-      const sectionRect = sectionRef.current!.getBoundingClientRect();
-      const cardRect = cardRef.current!.getBoundingClientRect();
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      const cardRect = cardRef.current.getBoundingClientRect();
 
       const cardCenterX = cardRect.left - sectionRect.left + cardRect.width / 2;
       const cardCenterY = cardRect.top - sectionRect.top + cardRect.height / 2;
@@ -221,7 +223,7 @@ function SocialLink({ icon, href }: { icon: React.ReactNode; href: string }) {
 }
 
 // --- Sub-Component: The Magic Card & Reveal ---
-function MagicCard({ isHovering, cardRef, theme }: { isHovering?: boolean; cardRef?: React.RefObject<HTMLDivElement>; theme?: string }) {
+function MagicCard({ isHovering, cardRef, theme }: { isHovering?: boolean; cardRef?: React.RefObject<HTMLDivElement | null>; theme?: string }) {
   // MagicCard no longer manages wand motion; it accepts isHovering from parent to control reveal mask
   return (
     <div ref={cardRef} className="relative w-full max-w-[550px] aspect-square mx-auto group">

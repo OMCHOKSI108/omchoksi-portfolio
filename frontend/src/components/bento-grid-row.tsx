@@ -32,7 +32,7 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
   };
 
   return (
-    <div className="w-full bg-[var(--muted)]/30 p-8 font-sans text-[var(--foreground)]">
+    <div className="w-full p-8 font-sans text-[var(--foreground)]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {/* --- CARD 1: Time Zone (Left) --- */}

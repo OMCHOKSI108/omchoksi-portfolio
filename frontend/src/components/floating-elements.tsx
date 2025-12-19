@@ -13,55 +13,6 @@ const floatingElements = [
 ];
 
 export default function FloatingElements() {
-  const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {floatingElements.map((element, index) => (
-        <motion.div
-          key={index}
-          className={`absolute rounded-full ${element.color} opacity-40`}
-          style={{
-            width: element.size,
-            height: element.size,
-          }}
-          initial={{
-            x: Math.random() * dimensions.width,
-            y: Math.random() * dimensions.height,
-          }}
-          animate={{
-            x: [
-              Math.random() * dimensions.width,
-              Math.random() * dimensions.width,
-              Math.random() * dimensions.width,
-            ],
-            y: [
-              Math.random() * dimensions.height,
-              Math.random() * dimensions.height,
-              Math.random() * dimensions.height,
-            ],
-          }}
-          transition={{
-            duration: 20 + Math.random() * 10,
-            repeat: Infinity,
-            delay: element.delay,
-            ease: "linear",
-          }}
-        />
-      ))}
-    </div>
-  );
+  // Floating elements disabled per user request
+  return null;
 }

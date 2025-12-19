@@ -10,6 +10,7 @@ export default function AddProjectPage() {
     title: '',
     slug: '',
     description: '',
+    projectMarkdown: '',
     tags: '',
     liveUrl: '',
     githubUrl: '',
@@ -104,6 +105,14 @@ export default function AddProjectPage() {
           onChange={(e) => setForm({ ...form, description: e.target.value })}
           className="w-full p-2 border rounded"
           rows={6}
+        />
+        <label className="block mt-2 text-sm font-medium">Project Markdown (optional, supports Markdown)</label>
+        <textarea
+          placeholder="Project markdown (renders on public project page)"
+          value={form.projectMarkdown}
+          onChange={(e) => setForm({ ...form, projectMarkdown: e.target.value })}
+          className="w-full p-2 border rounded"
+          rows={8}
         />
         <input
           type="text"

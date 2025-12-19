@@ -9,7 +9,7 @@ export default function Marquee() {
   const { theme } = useTheme();
 
   return (
-    <section className="py-8 overflow-hidden text-[var(--foreground)]">
+    <section className="py-20 overflow-hidden text-[var(--foreground)]">
       <motion.div
         initial={{ x: "100%" }}
         animate={{ x: "-100%" }}

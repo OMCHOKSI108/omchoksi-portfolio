@@ -259,6 +259,56 @@ PUT /projects/:id
 DELETE /projects/:id
 - Delete project (auth required).
 
+BLOGS
+-----
+
+GET /blogs
+- Public, paginated list with search and filters.
+- Query parameters: q (full-text search), tags (comma-separated), status, page, limit
+- Auth: Optional cookie `admin_token` (if provided, returns all blogs; otherwise, only active ones)
+- Example: GET /api/blogs?q=react&tags=web&page=1&limit=10
+- Response: { success: true, message: "Blogs fetched", data: { items: [...], total, page, limit } }
+
+POST /blogs
+- Create a new blog (auth required).
+- Body (JSON): { title, slug, description, tags[], link?, image?, active?, featured?, status? }
+- Curl: curl -X POST http://localhost:3000/api/blogs -H "Content-Type: application/json" -d '{"title":"New Blog","slug":"new-blog","description":"Desc","tags":["tag"],"active":true}' -b cookies.txt
+
+GET /blogs/:id
+- Get single blog by id or slug (if ?slug= provided).
+- Public for active blogs; admin sees all.
+
+PUT /blogs/:id
+- Update blog (auth required).
+
+DELETE /blogs/:id
+- Delete blog (auth required).
+
+CERTIFICATIONS
+--------------
+
+GET /certifications
+- Public, paginated list with search and filters.
+- Query parameters: q (full-text search), tags (comma-separated), status, page, limit
+- Auth: Optional cookie `admin_token` (if provided, returns all; otherwise, only active ones)
+- Example: GET /api/certifications?q=aws&page=1&limit=10
+- Response: { success: true, message: "Certifications fetched", data: { items: [...], total, page, limit } }
+
+POST /certifications
+- Create a new certification (auth required).
+- Body (JSON): { title, slug, issuer, issueDate, expiryDate?, credentialId, description?, tags[], image?, active?, featured? }
+- Curl: curl -X POST http://localhost:3000/api/certifications -H "Content-Type: application/json" -d '{"title":"AWS Cert","slug":"aws-cert","issuer":"Amazon","issueDate":"2023-01-01","credentialId":"123"}' -b cookies.txt
+
+GET /certifications/:id
+- Get single certification by id or slug (if ?slug= provided).
+- Public for active certifications; admin sees all.
+
+PUT /certifications/:id
+- Update certification (auth required).
+
+DELETE /certifications/:id
+- Delete certification (auth required).
+
 UPLOADS
 -------
 

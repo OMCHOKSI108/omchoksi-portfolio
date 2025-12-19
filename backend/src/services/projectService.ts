@@ -36,7 +36,7 @@ export async function listProjects(opts: ListOpts = {}): Promise<PaginatedResult
   }
 
   const [items, total] = await Promise.all([
-    Project.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit).select('title slug images tags status description createdAt updatedAt active').lean(),
+    Project.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit).select('title slug images tags status description projectMarkdown createdAt updatedAt active').lean(),
     Project.countDocuments(filter),
   ]);
 

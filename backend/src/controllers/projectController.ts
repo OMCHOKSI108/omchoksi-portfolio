@@ -42,6 +42,10 @@ export async function createProjectHandler(request: NextRequest, verifyToken: (t
 
     await dbConnect();
     const body = await request.json();
+    // Accept hyphenated incoming field `project-markdown` from API clients and map to camelCase schema field
+    if (body && typeof body['project-markdown'] !== 'undefined' && typeof body.projectMarkdown === 'undefined') {
+      body.projectMarkdown = body['project-markdown'];
+    }
     // basic server-side validation
     if (!body.title || !body.slug) return build(false, 'Missing required fields: title and slug');
 
@@ -80,6 +84,10 @@ export async function updateProjectHandler(request: NextRequest, id: string, ver
 
     await dbConnect();
     const body = await request.json();
+    // Map hyphenated `project-markdown` to camelCase `projectMarkdown` if present
+    if (body && typeof body['project-markdown'] !== 'undefined' && typeof body.projectMarkdown === 'undefined') {
+      body.projectMarkdown = body['project-markdown'];
+    }
     // Log incoming update for debugging image persistence issues
     try {
       console.log(`updateProjectHandler: id=${id} incoming images=${Array.isArray(body.images) ? body.images.length : 'none'}`);

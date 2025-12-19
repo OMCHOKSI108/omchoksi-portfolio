@@ -79,6 +79,12 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 <Link href="/stack" className="flex items-center w-full px-3 py-2 rounded-lg hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)]">
                   Tech Stack
                 </Link>
+                <Link href="/certifications" className="flex items-center w-full px-3 py-2 rounded-lg hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)]">
+                  Certifications
+                </Link>
+                <a href="https://drive.google.com/file/d/1TJjCk-HImfvgH-v8vygzeWan1mB8RGB-/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center w-full px-3 py-2 rounded-lg hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)]">
+                  Resume
+                </a>
               </div>
             </div>
           </div>

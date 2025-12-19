@@ -1,6 +1,7 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Star } from 'lucide-react';
 
@@ -10,6 +11,7 @@ interface ApiProject {
   title: string;
   slug: string;
   description: string;
+  projectMarkdown?: string;
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -31,6 +33,7 @@ interface Project {
   color: string;
   liveUrl?: string;
   githubUrl?: string;
+  markdown?: string;
 }
 
 const ProjectShowcase = () => {
@@ -57,6 +60,9 @@ const ProjectShowcase = () => {
           color: ["bg-blue-700", "bg-purple-700", "bg-red-700"][index % 3],
           liveUrl: apiProj.liveUrl,
           githubUrl: apiProj.githubUrl
+        ,
+          // Prefer rich markdown content when provided by backend
+          markdown: apiProj.projectMarkdown || undefined,
         }));
 
         setProjects(mappedProjects);
@@ -82,7 +88,7 @@ const ProjectShowcase = () => {
     );
   }
   return (
-    <section className="relative w-full bg-[var(--background)] py-4 px-6">
+    <section className="relative w-full py-20 px-6">
       {/* Inject Fonts */}
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
@@ -96,7 +102,7 @@ const ProjectShowcase = () => {
             Featured Work
           </span>
           <h2 className="text-5xl md:text-7xl font-serif text-[var(--foreground)] mb-6">
-            My <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">AI Projects</span>
+            My <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--primary)]/80">AI Projects</span>
           </h2>
           <p className="text-xl text-[var(--muted-foreground)] max-w-3xl mx-auto">
             A portfolio of AI applications, ML research experiments, cybersecurity tools, and deployed web apps — each built to solve a real-world problem, not just get an accuracy score.
@@ -104,7 +110,7 @@ const ProjectShowcase = () => {
         </div>
 
         {/* Projects Layout */}
-        <div className="space-y-18">
+        <div className="space-y-0 snap-y snap-mandatory">
           {projects.map((project) => (
             <ProjectRow key={project.id} project={project} />
           ))}
@@ -137,45 +143,46 @@ const ProjectRow = ({ project }: { project: Project }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+      transition={{ duration: 0.3 }}
+      className="flex flex-col lg:flex-row gap-12 items-start min-h-[200vh] snap-start"
     >
       {/* Left: Image */}
-      <div className="w-full flex items-center justify-center">
-        <div className="relative w-full max-w-lg aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl group border border-[var(--border)] bg-[var(--card)]">
+      <div className="w-full lg:w-1/2 flex items-center justify-center">
+        <div className="relative w-full max-w-4xl aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-2xl group border border-[var(--border)] bg-[var(--card)]">
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
       </div>
 
       {/* Right: Text Content */}
-      <div className="w-full flex flex-col justify-center py-8">
-        {/* Title & Accent */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center py-8 lg:sticky lg:top-20">
+        {/* Title */}
         <div className="flex items-start gap-6 mb-4">
-          <div className="mt-2">
-            <div className="w-1 h-10 bg-blue-500 rounded-full" />
-          </div>
           <div>
-            <h3 className="text-3xl md:text-4xl font-serif font-semibold text-[var(--foreground)] leading-tight">
+            <h3 className="text-4xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--foreground)] via-[var(--primary)] to-purple-400 leading-tight">
               {project.title}
             </h3>
 
-            {/* Render description as multiple paragraphs (supports future markdown endpoint) */}
-            <div className="mt-3 text-sm text-[var(--muted-foreground)] max-w-2xl space-y-3">
-              {project.description.split('\n').map((line, idx) => (
-                <p key={idx} className="leading-relaxed">
-                  {line}
-                </p>
-              ))}
+            {/* Render description / markdown (prefer markdown when provided) */}
+            <div className="mt-4 text-lg text-[var(--foreground)]/90 max-w-3xl space-y-4 prose prose-invert">
+              {project.markdown ? (
+                <ReactMarkdown>{project.markdown}</ReactMarkdown>
+              ) : (
+                project.description.split('\n').map((line, idx) => (
+                  <p key={idx} className="leading-relaxed">
+                    {line}
+                  </p>
+                ))
+              )}
             </div>
 
             {/* Quick info card with live/source links (theme-friendly) */}
             {(project.liveUrl || project.githubUrl) && (
-              <div className="mt-6 max-w-2xl">
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-[var(--card)] border border-[var(--card-border)] shadow-sm">
+              <div className="mt-8 max-w-3xl">
+                <div className="flex items-start gap-5 p-6 rounded-xl bg-gradient-to-r from-[var(--card)] to-[var(--muted)]/50 border border-[var(--border)] shadow-lg backdrop-blur-sm">
                   <div className="flex-shrink-0 mt-1">
                     <div className="w-8 h-8 rounded-full bg-[var(--success-bg)] text-[var(--success-text)] flex items-center justify-center font-bold">✓</div>
                   </div>
@@ -200,13 +207,13 @@ const ProjectRow = ({ project }: { project: Project }) => {
         </div>
 
         {/* Feature bullets (small list like attachment) */}
-        <ul className="mt-6 mb-6 space-y-3 max-w-2xl">
+        <ul className="mt-8 mb-8 space-y-4 max-w-3xl">
           {project.features.slice(0, 4).map((feature, i) => (
-            <li key={i} className="flex items-start gap-3 text-sm text-[var(--muted-foreground)]">
-              <span className="mt-1 text-[var(--primary)]">
-                <Star className="w-4 h-4" />
+            <li key={i} className="flex items-start gap-4 text-lg text-[var(--foreground)]/95">
+              <span className="mt-1 text-[var(--primary)] flex-shrink-0">
+                <Star className="w-5 h-5 fill-current" />
               </span>
-              <span className="leading-relaxed">{feature}</span>
+              <span className="leading-relaxed font-medium">{feature}</span>
             </li>
           ))}
         </ul>

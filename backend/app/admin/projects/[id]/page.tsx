@@ -13,6 +13,7 @@ interface Project {
   title: string;
   slug: string;
   description: string;
+  projectMarkdown?: string;
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -36,6 +37,7 @@ export default function EditProjectPage() {
     title: '',
     slug: '',
     description: '',
+    projectMarkdown: '',
     tags: [],
     liveUrl: '',
     githubUrl: '',
@@ -80,6 +82,7 @@ export default function EditProjectPage() {
           title: project.title,
           slug: project.slug,
           description: project.description || '',
+          projectMarkdown: (project as any).projectMarkdown || '',
           tags: project.tags || [],
           liveUrl: project.liveUrl || '',
           githubUrl: project.githubUrl || '',
@@ -113,6 +116,7 @@ export default function EditProjectPage() {
       initial.title !== form.title ||
       initial.slug !== form.slug ||
       initial.description !== form.description ||
+      (initial as any).projectMarkdown !== form.projectMarkdown ||
       initial.liveUrl !== form.liveUrl ||
       initial.githubUrl !== form.githubUrl ||
       initial.featured !== form.featured ||
@@ -281,6 +285,16 @@ export default function EditProjectPage() {
                   rows={8}
                   className="w-full px-4 py-3 border rounded-lg resize-none"
                 />
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium mb-2">Project Markdown (optional)</label>
+                    <textarea
+                      placeholder="Full project markdown (renders on public page)"
+                      value={form.projectMarkdown}
+                      onChange={(e) => setForm({ ...form, projectMarkdown: e.target.value })}
+                      rows={10}
+                      className="w-full px-4 py-3 border rounded-lg resize-none"
+                    />
+                  </div>
               </div>
 
               <div>
