@@ -202,7 +202,7 @@ export default function ProjectsPage() {
           <p className="text-sm text-gray-500 mt-1">Manage your portfolio projects</p>
         </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <input
             type="text"
             value={query}
@@ -214,21 +214,23 @@ export default function ProjectsPage() {
           <div className="flex border rounded-lg overflow-hidden">
             <button
               onClick={() => setViewMode('grid')}
-              className={`px-4 py-2 text-sm font-medium transition ${
-                viewMode === 'grid' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
-              }`}
+              className={`px-4 py-2 text-sm font-medium transition ${viewMode === 'grid' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
+                }`}
             >
               Grid
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`px-4 py-2 text-sm font-medium transition ${
-                viewMode === 'list' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
-              }`}
+              className={`px-4 py-2 text-sm font-medium transition ${viewMode === 'list' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
+                }`}
             >
               Table
             </button>
           </div>
+
+          <Link href="/admin/projects/priority" className="px-5 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition">
+            Reorder Priority
+          </Link>
 
           <Link href="/admin/projects/add" className="btn-accent px-5 py-2 rounded-lg font-medium transition">
             Add Project

@@ -31,6 +31,7 @@ async function main() {
     description: String,
     projectMarkdown: String,
     tags: [String],
+    priority: { type: Number, default: 999, index: true },
     liveUrl: String,
     githubUrl: String,
     images: [

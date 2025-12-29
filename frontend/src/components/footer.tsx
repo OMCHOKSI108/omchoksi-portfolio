@@ -23,9 +23,9 @@ export default function ContactFooter() {
         <img
           src="/assets/cta.avif"
           alt=""
-          className="w-full h-full object-cover opacity-5"
+          className="w-full h-full object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)]/70 via-transparent to-[var(--background)]/70 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)]/60 via-transparent to-[var(--background)]/60 backdrop-blur-sm" />
       </div>
 
       {/* ---------- CTA SECTION ---------- */}
