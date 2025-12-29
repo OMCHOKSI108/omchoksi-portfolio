@@ -45,12 +45,12 @@ export default function GalaxyBackground() {
       window.removeEventListener("scroll", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const gradient = theme === "dark"
     ? "radial-gradient(600px 200px at 10% 10%, rgba(120, 90, 240, 0.08), transparent 20%), radial-gradient(800px 300px at 90% 30%, rgba(0, 200, 255, 0.05), transparent 25%)"
-    : "radial-gradient(600px 200px at 10% 10%, rgba(99,102,241,0.06), transparent 20%), radial-gradient(800px 300px at 90% 30%, rgba(99,102,241,0.04), transparent 25%)";
+    : "radial-gradient(ellipse 1200px 600px at 50% 0%, rgba(147, 51, 234, 0.15), rgba(99, 102, 241, 0.12) 30%, rgba(59, 130, 246, 0.08) 50%, transparent 70%)";
 
   return (
     <div

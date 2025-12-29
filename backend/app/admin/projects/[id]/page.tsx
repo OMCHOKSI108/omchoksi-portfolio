@@ -12,6 +12,7 @@ interface Project {
   _id: string;
   title: string;
   slug: string;
+  priority: number;
   description: string;
   projectMarkdown?: string;
   tags: string[];
@@ -39,6 +40,7 @@ export default function EditProjectPage() {
     description: '',
     projectMarkdown: '',
     tags: [],
+    priority: 0,
     liveUrl: '',
     githubUrl: '',
     images: [],
@@ -84,6 +86,7 @@ export default function EditProjectPage() {
           description: project.description || '',
           projectMarkdown: (project as any).projectMarkdown || '',
           tags: project.tags || [],
+          priority: project.priority || 0,
           liveUrl: project.liveUrl || '',
           githubUrl: project.githubUrl || '',
           images: project.images || [],
@@ -117,6 +120,7 @@ export default function EditProjectPage() {
       initial.slug !== form.slug ||
       initial.description !== form.description ||
       (initial as any).projectMarkdown !== form.projectMarkdown ||
+      initial.priority !== form.priority ||
       initial.liveUrl !== form.liveUrl ||
       initial.githubUrl !== form.githubUrl ||
       initial.featured !== form.featured ||
@@ -285,16 +289,16 @@ export default function EditProjectPage() {
                   rows={8}
                   className="w-full px-4 py-3 border rounded-lg resize-none"
                 />
-                  <div className="mt-4">
-                    <label className="block text-sm font-medium mb-2">Project Markdown (optional)</label>
-                    <textarea
-                      placeholder="Full project markdown (renders on public page)"
-                      value={form.projectMarkdown}
-                      onChange={(e) => setForm({ ...form, projectMarkdown: e.target.value })}
-                      rows={10}
-                      className="w-full px-4 py-3 border rounded-lg resize-none"
-                    />
-                  </div>
+                <div className="mt-4">
+                  <label className="block text-sm font-medium mb-2">Project Markdown (optional)</label>
+                  <textarea
+                    placeholder="Full project markdown (renders on public page)"
+                    value={form.projectMarkdown}
+                    onChange={(e) => setForm({ ...form, projectMarkdown: e.target.value })}
+                    rows={10}
+                    className="w-full px-4 py-3 border rounded-lg resize-none"
+                  />
+                </div>
               </div>
 
               <div>
@@ -373,6 +377,22 @@ export default function EditProjectPage() {
               </div>
 
               <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Priority Order</label>
+                  <input
+                    type="number"
+                    value={form.priority}
+                    onChange={(e) => setForm({ ...form, priority: parseInt(e.target.value) || 0 })}
+                    placeholder="0"
+                    min="0"
+                    max="999"
+                    className="w-full px-3 py-2 border rounded-lg text-sm"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    Lower numbers appear first (1, 2, 3...). Default: 999
+                  </p>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium mb-1">Live URL</label>
                   <input

@@ -18,19 +18,6 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 flex justify-center"
-        >
-          <span className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer">
-            <span className="bg-white text-blue-600 text-[10px] font-bold px-1.5 py-0.5 rounded-sm">Upcoming</span>
-            <span>NextNode is launching soon!</span>
-            <ArrowRight size={12} />
-          </span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-12"
         >
