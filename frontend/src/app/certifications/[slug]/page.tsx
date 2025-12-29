@@ -19,6 +19,8 @@ interface Certification {
   description?: string;
   tags: string[];
   image?: string;
+  pdf?: string;
+  link?: string;
   active: boolean;
   featured: boolean;
 }
@@ -32,7 +34,8 @@ export default function CertificationPage() {
   useEffect(() => {
     const fetchCertification = async () => {
       try {
-        const res = await fetch(`https://portfolio-admin-panel-sigma.vercel.app/api/certifications?slug=${slug}`);
+        const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://portfolio-admin-panel-sigma.vercel.app";
+        const res = await fetch(`${baseUrl}/api/certifications?slug=${slug}`);
         const data = await res.json();
         if (data.success && data.data.items.length > 0) {
           setCertification(data.data.items[0]);
@@ -256,17 +259,55 @@ export default function CertificationPage() {
               </div>
 
               {/* Verification Link */}
+              {/* Resources / Verification */}
               <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
                 <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
                   <ExternalLink size={18} className="text-purple-400" />
-                  Verification
+                  Resources
                 </h3>
-                <p className="text-[var(--muted-foreground)] text-sm mb-4">
-                  Verify this certification on the issuer's platform using the credential ID.
-                </p>
-                <button className="w-full px-4 py-3 text-white rounded-full font-medium shadow-lg hover:shadow-purple-500/20 active:scale-95 transition-all" style={{ backgroundImage: 'var(--gradient-accent)' }}>
-                  Verify Certificate
-                </button>
+
+                <div className="space-y-4">
+                  {/* PDF Download/View */}
+                  {certification.pdf && (
+                    <div>
+                      <p className="text-[var(--muted-foreground)] text-sm mb-3">
+                        View the official certificate document.
+                      </p>
+                      <a
+                        href={certification.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[var(--foreground)] text-[var(--background)] rounded-full font-medium shadow-lg hover:opacity-90 active:scale-95 transition-all text-center"
+                      >
+                        <ExternalLink size={16} />
+                        View Certificate PDF
+                      </a>
+                    </div>
+                  )}
+
+                  {/* External Verification Link */}
+                  {certification.link && (
+                    <div className={certification.pdf ? "pt-4 border-t border-[var(--border)]" : ""}>
+                      <p className="text-[var(--muted-foreground)] text-sm mb-3">
+                        Verify directly on the issuer's website.
+                      </p>
+                      <a
+                        href={certification.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[var(--border)] text-[var(--foreground)] rounded-full font-medium hover:bg-[var(--muted)] active:scale-95 transition-all"
+                      >
+                        Verify on {certification.issuer}
+                      </a>
+                    </div>
+                  )}
+
+                  {!certification.pdf && !certification.link && (
+                    <p className="text-[var(--muted-foreground)] text-sm italic">
+                      No external resources available.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

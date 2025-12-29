@@ -15,6 +15,8 @@ interface Certification {
   credentialId: string;
   tags: string[];
   image?: string;
+  pdf?: string;
+  link?: string;
   active: boolean;
   featured: boolean;
 }
@@ -27,7 +29,8 @@ export default function Certifications() {
   useEffect(() => {
     const fetchCertifications = async () => {
       try {
-        const res = await fetch("https://portfolio-admin-panel-sigma.vercel.app/api/certifications?page=1&limit=6");
+        const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://portfolio-admin-panel-sigma.vercel.app";
+        const res = await fetch(`${baseUrl}/api/certifications?page=1&limit=6`);
         const data = await res.json();
         if (data.success) {
           setCertifications(data.data.items.filter((c: Certification) => c.active).slice(0, 6));
