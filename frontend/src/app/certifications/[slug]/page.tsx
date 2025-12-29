@@ -102,7 +102,8 @@ export default function CertificationPage() {
 
             {/* Hero Section with Image */}
             <div className="mb-12">
-              {certification.image && (
+              {/* Image Preview */}
+              {certification.image && !certification.image.toLowerCase().endsWith('.pdf') && (
                 <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-2xl">
                   <Image
                     src={certification.image}
@@ -112,6 +113,21 @@ export default function CertificationPage() {
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+              )}
+
+              {/* PDF Embed */}
+              {certification.pdf && (
+                <div className="mb-8 w-full bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="p-4 bg-[var(--muted)] border-b border-[var(--border)] flex items-center gap-2">
+                    <Award size={20} className="text-purple-500" />
+                    <span className="font-semibold text-sm">Certificate Preview</span>
+                  </div>
+                  <iframe
+                    src={`${certification.pdf}#view=FitH`}
+                    className="w-full h-[500px] md:h-[700px]"
+                    title="Certificate Preview"
+                  />
                 </div>
               )}
 

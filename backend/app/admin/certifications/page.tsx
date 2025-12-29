@@ -179,7 +179,18 @@ export default function certificationsPage() {
 
   // Helper to get thumbnail safely
   const getThumbnail = (b: certification): string => {
-    const base = b.image || '/placeholder.svg';
+    let base = b.image || '/placeholder.svg';
+
+    // PDF Handling
+    if (base.toLowerCase().endsWith('.pdf')) {
+      if (base.includes('cloudinary.com')) {
+        base = base.replace(/\.pdf$/i, '.jpg');
+      } else {
+        // For non-cloudinary PDFs, use a placeholder since we can't easy-thumbnail
+        base = '/placeholder.svg';
+      }
+    }
+
     // Append updatedAt as a cache-buster to ensure new uploads show immediately in admin
     try {
       const ts = (b as any).updatedAt || (b as any).createdAt;
@@ -213,17 +224,15 @@ export default function certificationsPage() {
           <div className="flex border rounded-lg overflow-hidden">
             <button
               onClick={() => setViewMode('grid')}
-              className={`px-4 py-2 text-sm font-medium transition ${
-                viewMode === 'grid' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
-              }`}
+              className={`px-4 py-2 text-sm font-medium transition ${viewMode === 'grid' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
+                }`}
             >
               Grid
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`px-4 py-2 text-sm font-medium transition ${
-                viewMode === 'list' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
-              }`}
+              className={`px-4 py-2 text-sm font-medium transition ${viewMode === 'list' ? 'btn-accent text-btn-accent-text' : 'bg-white text-gray-700'
+                }`}
             >
               Table
             </button>

@@ -201,7 +201,7 @@ export default function StatsDashboard() {
 
     const fetchLeetCode = async () => {
         try {
-            const res = await fetch("https://leetcode-stats-api.herokuapp.com/omchoksi_23aiml010");
+            const res = await fetch("https://leetcode-api-faisalshohag.vercel.app/omchoksi_23aiml010");
             const data = await res.json();
             if (data.status === "success" || data.totalSolved !== undefined) {
                 setLeetcodeData({

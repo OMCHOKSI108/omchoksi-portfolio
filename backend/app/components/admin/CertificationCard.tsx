@@ -17,20 +17,35 @@ export default function CertificationCard({ certification, onDelete }: { certifi
     <div className="product-card">
       <div style={{ width: '100%', height: 160, position: 'relative', overflow: 'hidden' }}>
         {(() => {
-          const base = certification.image || '/placeholder.svg';
-          // Append updatedAt as cache-buster when available
-          let src = base;
+          const isPdf = certification.image?.toLowerCase().endsWith('.pdf');
+          let src = certification.image || '/placeholder.svg';
+
+          if (isPdf && src.includes('cloudinary.com')) {
+            src = src.replace(/\.pdf$/i, '.jpg');
+          }
+
+          // Cache buster
           try {
             const ts = (certification as any).updatedAt || (certification as any).createdAt;
-            if (ts && base && !base.includes('?')) {
+            if (ts && src && !src.includes('?')) {
               const t = new Date(ts).getTime();
-              src = `${base}?v=${t}`;
+              src = `${src}?v=${t}`;
             }
           } catch (e) {
             // ignore
           }
 
-          return <img src={src} alt={certification.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />;
+          if (isPdf && !src.endsWith('.jpg')) {
+            // Fallback for non-cloudinary PDFs or if we decided not to change extension
+            return (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-red-50 text-red-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" /><polyline points="14 2 14 8 20 8" /><path d="M12 18v-6" /><path d="M9 15h6" /></svg>
+                <span className="text-xs font-semibold mt-2">PDF Document</span>
+              </div>
+            )
+          }
+
+          return <img src={src} alt={certification.title} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} onError={(e) => (e.currentTarget.src = '/placeholder.svg')} />;
         })()}
       </div>
 

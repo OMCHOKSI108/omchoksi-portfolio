@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Award, Calendar, ExternalLink } from "lucide-react";
+import { Award, Calendar, ExternalLink, FileText } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -23,6 +23,16 @@ interface Certification {
   active: boolean;
   featured: boolean;
 }
+
+// Helper to try and get a JPG thumbnail from a PDF URL (Cloudinary specific)
+const getPdfThumbnail = (url: string) => {
+  if (!url) return null;
+  // If it's a Cloudinary URL and ends with .pdf, replace with .jpg to get a thumbnail
+  if (url.includes('cloudinary.com') && url.toLowerCase().endsWith('.pdf')) {
+    return url.replace(/\.pdf$/i, '.jpg');
+  }
+  return null;
+};
 
 export default function CertificationsPage() {
   const [certifications, setCertifications] = useState<Certification[]>([]);
@@ -79,90 +89,118 @@ export default function CertificationsPage() {
           </p>
         </div>
 
+
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
-            <Link key={cert._id} href={`/certifications/${cert.slug}`} className="block group h-full">
-              <div className="h-full bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1 flex flex-col">
-                {cert.image && (
-                  <div className="relative h-48 overflow-hidden shrink-0">
-                    <Image
-                      src={cert.image}
-                      alt={cert.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-                )}
+          {certifications.map((cert, index) => {
+            const isPdfImage = cert.image?.toLowerCase().endsWith('.pdf');
+            // Try to get a real thumbnail if possible
+            const pdfThumbnail = isPdfImage ? getPdfThumbnail(cert.image!) : (cert.pdf ? getPdfThumbnail(cert.pdf) : null);
 
-                <div className="p-6 flex flex-col grow">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-[var(--muted)] rounded-full border border-[var(--border)]">
-                      <Award className="w-5 h-5 text-purple-400" />
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-bold text-[var(--foreground)] group-hover:text-purple-400 transition-colors duration-300">
-                        {cert.title}
-                      </h2>
-                      <p className="text-[var(--muted-foreground)] text-sm">{cert.issuer}</p>
-                    </div>
-                  </div>
+            // If we have a valid image (not PDF) use it. OR if we found a pdfThumbnail, use that.
+            const displayImage = (cert.image && !isPdfImage) ? cert.image : pdfThumbnail;
 
-                  <div className="space-y-3 mb-6 grow">
-                    <div className="flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
-                      <Calendar size={14} />
-                      <span>Issued: {new Date(cert.issueDate).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}</span>
+            const hasPdf = !!cert.pdf || isPdfImage;
+
+            return (
+              <Link key={cert._id} href={`/certifications/${cert.slug}`} className="block group h-full">
+                <div className="h-full bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1 flex flex-col relative">
+
+                  {hasPdf && (
+                    <div className="absolute top-4 right-4 z-20 bg-red-500/90 text-white text-xs font-bold px-2 py-1 rounded shadow-sm flex items-center gap-1">
+                      <FileText size={12} />
+                      PDF
                     </div>
-                    {cert.expiryDate && (
+                  )}
+
+                  {displayImage ? (
+                    <div className="relative h-48 overflow-hidden shrink-0">
+                      <Image
+                        src={displayImage}
+                        alt={cert.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+                  ) : hasPdf ? (
+                    <div className="relative h-48 overflow-hidden shrink-0 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-900/10 flex flex-col items-center justify-center p-6 text-center border-b border-[var(--border)]">
+                      <div className="bg-red-500 text-white p-3 rounded-full mb-2 shadow-lg group-hover:scale-110 transition-transform">
+                        <FileText size={24} />
+                      </div>
+                      <span className="text-red-600 dark:text-red-400 font-medium text-sm">Certificate Document</span>
+                    </div>
+                  ) : null}
+
+                  <div className="p-6 flex flex-col grow">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-[var(--muted)] rounded-full border border-[var(--border)]">
+                        <Award className="w-5 h-5 text-purple-400" />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold text-[var(--foreground)] group-hover:text-purple-400 transition-colors duration-300">
+                          {cert.title}
+                        </h2>
+                        <p className="text-[var(--muted-foreground)] text-sm">{cert.issuer}</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 mb-6 grow">
                       <div className="flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
                         <Calendar size={14} />
-                        <span>Expires: {new Date(cert.expiryDate).toLocaleDateString('en-US', {
+                        <span>Issued: {new Date(cert.issueDate).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric'
                         })}</span>
                       </div>
-                    )}
-                    <p className="text-sm text-[var(--muted-foreground)] font-mono bg-[var(--muted)] px-3 py-1.5 rounded-lg border border-[var(--border)] inline-block">
-                      ID: {cert.credentialId}
-                    </p>
-                  </div>
-
-                  {cert.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {cert.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)] rounded-full text-xs font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {cert.tags.length > 3 && (
-                        <span className="text-xs text-[var(--muted-foreground)]">
-                          +{cert.tags.length - 3} more
-                        </span>
+                      {cert.expiryDate && (
+                        <div className="flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
+                          <Calendar size={14} />
+                          <span>Expires: {new Date(cert.expiryDate).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          })}</span>
+                        </div>
                       )}
+                      <p className="text-sm text-[var(--muted-foreground)] font-mono bg-[var(--muted)] px-3 py-1.5 rounded-lg border border-[var(--border)] inline-block">
+                        ID: {cert.credentialId}
+                      </p>
                     </div>
-                  )}
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${cert.active ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                      <span className="text-sm text-[var(--muted-foreground)]">
-                        {cert.active ? 'Active' : 'Expired'}
-                      </span>
+                    {cert.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {cert.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)] rounded-full text-xs font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {cert.tags.length > 3 && (
+                          <span className="text-xs text-[var(--muted-foreground)]">
+                            +{cert.tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-2 h-2 rounded-full ${cert.active ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                        <span className="text-sm text-[var(--muted-foreground)]">
+                          {cert.active ? 'Active' : 'Expired'}
+                        </span>
+                      </div>
+                      <ExternalLink size={16} className="text-[var(--primary)] group-hover:translate-x-1 transition-transform" />
                     </div>
-                    <ExternalLink size={16} className="text-[var(--primary)] group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {certifications.length === 0 && (
