@@ -1,178 +1,140 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
-import { useState } from "react";
+import React from "react";
+import Image from "next/image";
+import { Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-// Card Data
-const CARDS = [
-  {
-    id: 1,
-    title: "Machine Learning & Applied AI",
-    src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop",
-    rotation: -5
-  },
-  {
-    id: 2,
-    title: "Cybersecurity & Intelligent Threat Detection",
-    src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
-    rotation: 0
-  },
-  {
-    id: 3,
-    title: "Autonomous Systems & Reinforcement Learning",
-    src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop",
-    rotation: 5
-  }
-];
-
-export default function AboutMe() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const nextCard = () => {
-    setActiveIndex((prev) => (prev + 1) % CARDS.length);
-  };
-
-  const getCardStyle = (index: number) => {
-    const total = CARDS.length;
-    const diff = (index - activeIndex + total) % total;
-
-    if (diff === 0) {
-      return { zIndex: 10, x: 0, rotate: 0, scale: 1, opacity: 1, filter: "brightness(1)" };
-    } else if (diff === 1) {
-      return { zIndex: 5, x: 120, rotate: 10, scale: 0.85, opacity: 0.6, filter: "brightness(0.7)" };
-    } else {
-      return { zIndex: 5, x: -120, rotate: -10, scale: 0.85, opacity: 0.6, filter: "brightness(0.7)" };
-    }
-  };
-
+const AboutMe = () => {
   return (
-    <section className="relative w-full py-20 bg-[var(--background)] overflow-hidden">
-      
-      {/* Inject Fonts */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
-        .font-serif-display { font-family: 'Playfair Display', serif; }
-      `}} />
+    <section className="py-24 px-6 bg-[var(--background)] overflow-hidden">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-      {/* BACKGROUND TEXTURE */}
-        {/* Background texture removed to eliminate foggy overlay */}
-
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-        
-        {/* --- Left Column: Text Content --- */}
-        <div className="space-y-8">
-          
-          <div className="space-y-4">
-            {/* SUBHEADER */}
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase"
-            >
-              More About Me
-            </motion.span>
-            
-            {/* HEADLINE */}
-            <motion.h2
+          {/* TEXT SIDE */}
+          <div className="w-full lg:w-1/2 space-y-8">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-serif-display text-[var(--foreground)] leading-[1.05]"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <span className="block">I'm Om, an</span>
-              <span className="block mt-2 font-semibold text-[var(--foreground)]">AI & Machine Learning Engineer</span>
-            </motion.h2>
-          </div>
-
-          {/* PARAGRAPHS */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-6 text-[var(--muted-foreground)] text-lg leading-relaxed font-sans"
-          >
-            <p>
-              I'm Om Choksi — an AI & Machine Learning engineer focused on building deployable, production-ready intelligence systems. I specialize in transforming raw datasets into scalable ML products through end-to-end engineering, including data pipelines, model architecture, evaluation, and deployment.
-            </p>
-            <p>
-              My work spans ML model development, deep learning, computer vision, NLP, LLM-powered automation, full-stack ML application deployment, and data storytelling for business decisions. I believe AI is only successful when people — not just models — can use it.
-            </p>
-
-            <p className="text-[var(--foreground)] font-medium">
-              I work with curiosity, speed, and product-thinking: every project I build must solve a real problem and make someone's workflow better.
-            </p>
-          </motion.div>
-
-          {/* SOCIAL ICONS */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex gap-6 pt-4"
-          >
-            <a href="https://linkedin.com/in/omchoksi" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a href="https://github.com/omchoksi108" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
-              <Github className="w-5 h-5" />
-            </a>
-            <a href="https://kaggle.com/omchoksi04" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
-              <span className="text-sm font-bold">K</span>
-            </a>
-            <a href="https://x.com/ChoksiOm" target="_blank" rel="noopener noreferrer" className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors transform hover:scale-110">
-              <Twitter className="w-5 h-5" />
-            </a>
-          </motion.div>
-        </div>
-
-        {/* --- Right Column: Image Stack --- */}
-        <div className="relative h-[500px] flex flex-col items-center justify-center">
-            
-            <div className="relative w-[300px] h-[400px] flex items-center justify-center cursor-pointer" onClick={nextCard}>
-              <AnimatePresence mode="popLayout">
-                {CARDS.map((card, index) => {
-                  const style = getCardStyle(index);
-                  
-                  return (
-                    <motion.div
-                      key={card.id}
-                      layoutId={`card-${card.id}`}
-                      animate={style}
-                      transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                      className="absolute top-0 w-full h-full rounded-[30px] overflow-hidden shadow-2xl bg-black"
-                      style={{
-                        transformOrigin: "bottom center"
-                      }}
-                    >
-                        <img 
-                            src={card.src} 
-                            alt={card.title} 
-                            className="w-full h-full object-cover pointer-events-none"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
-            </div>
-
-            {/* CAPTION */}
-            <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mt-12 text-center"
-            >
-                <span className="text-xl font-medium text-[var(--foreground)] font-serif-display">
-                    {CARDS[activeIndex].title}
+              <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase mb-6 block">
+                Know About Me
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif text-[var(--foreground)] leading-[1.1] mb-8">
+                Full-Stack Developer and <br className="hidden lg:block" /> a little bit of{" "}
+                <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                  everything
                 </span>
+              </h2>
             </motion.div>
 
-        </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-6 text-xl text-[var(--foreground)] leading-relaxed font-medium"
+            >
+              <p>
+                I&apos;m Om Choksi, a proactive full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I thrive on solving complex problems with clean, efficient code. My expertise spans React, Next.js, and Node.js, and I&apos;m always eager to learn more.
+              </p>
+              <p>
+                When I&apos;m not immersed in work, I&apos;m exploring new ideas and staying curious. Life&apos;s about balance, and I love embracing every part of it.
+              </p>
+              <p className="font-bold text-[var(--foreground)]">
+                I believe in waking up each day eager to make a difference!
+              </p>
+            </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center gap-6 pt-4"
+            >
+              <SocialLink icon={<Linkedin size={22} />} href="https://linkedin.com/in/omchoksi" />
+              <SocialLink icon={<Github size={22} />} href="https://github.com/omchoksi108" />
+              <SocialLink icon={<Twitter size={22} />} href="https://x.com/ChoksiOm" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="pt-8"
+            >
+              <a href="/about#experience" className="inline-flex items-center gap-2 text-lg text-[var(--foreground)] font-bold border-b-2 border-[var(--foreground)] pb-1 hover:text-purple-500 hover:border-purple-500 transition-colors">
+                Check my Work Experience <ArrowRight size={20} />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* PHOTO SIDE */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative w-full max-w-md aspect-[4/5]"
+            >
+              {/* Abstract Blob Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-[3rem] transform rotate-3 scale-105 opacity-20 blur-2xl" />
+
+              {/* Main Card */}
+              <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-[var(--border)] shadow-2xl bg-[#0a0a0a]">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-50">
+                  <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-purple-900/20 to-transparent" />
+                  <svg className="w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0 0 C 50 100 80 100 100 0 Z" fill="url(#grad1)" />
+                    <defs>
+                      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style={{ stopColor: 'rgb(59, 130, 246)', stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: 'rgb(147, 51, 234)', stopOpacity: 1 }} />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+
+                {/* Image - Placeholder URL as requested, but set up for local file */}
+                <div className="absolute inset-0 flex items-end justify-center">
+                  {/* 
+                            REPLACE THIS SRC with your local file path like: "/assets/my-photo.png" 
+                            For now using a generic placeholder that looks professional
+                         */}
+                  <Image
+                    src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop"
+                    alt="Om Choksi"
+                    fill
+                    className="object-cover object-top"
+                  />
+                  {/* Gradient Fade at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
-}
+};
+
+const SocialLink = ({ icon, href }: { icon: React.ReactNode; href: string }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="w-10 h-10 flex items-center justify-center rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:border-[var(--foreground)] hover:bg-[var(--muted)] transition-all"
+  >
+    {icon}
+  </a>
+);
+
+export default AboutMe;

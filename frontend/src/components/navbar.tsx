@@ -82,6 +82,9 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 <Link href="/certifications" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
                   Certifications
                 </Link>
+                <Link href="/stats" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
+                  Stats
+                </Link>
                 <a href="https://drive.google.com/file/d/1TJjCk-HImfvgH-v8vygzeWan1mB8RGB-/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
                   Resume
                 </a>
@@ -100,7 +103,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 window.dispatchEvent(new CustomEvent('open-quick-connect'));
               }
             }}
-            className="px-5 py-2 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-medium transition-all shadow-md hover:shadow-lg hover:shadow-purple-500/30 hover:scale-105 active:scale-95"
+            className="px-5 py-2 rounded-full bg-[var(--foreground)]/5 border border-[var(--foreground)]/10 text-[var(--foreground)] font-medium transition-all hover:bg-[var(--foreground)]/10 hover:scale-105 active:scale-95"
           >
             Book a Call
           </button>
@@ -184,6 +187,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                   { title: "Blog", href: "/blog", desc: "Latest articles & insights" },
                   { title: "Tech Stack", href: "/stack", desc: "Technologies I use" },
                   { title: "Certifications", href: "/certifications", desc: "My certifications & achievements" },
+                  { title: "Attribution", href: "/attribution", desc: "Credits & inspiration" },
                 ].map((item) => (
                   <Link
                     key={item.href}

@@ -11,6 +11,7 @@ export interface ICertification extends Document {
   issueDate: Date;
   expiryDate?: Date;
   credentialId?: string;
+  pdf?: string;
   active?: boolean;
   featured: boolean;
   createdAt: Date;
@@ -24,6 +25,7 @@ const CertificationSchema: Schema = new Schema({
   tags: [{ type: String, index: true }],
   link: { type: String },
   image: { type: String },
+  pdf: { type: String },
   issuer: { type: String, required: true },
   issueDate: { type: Date, required: true },
   expiryDate: { type: Date },

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import DropzoneFileUpload from '../../../components/ui/DropzoneFileUpload';
 import Image from 'next/image';
 
 type certification = {
@@ -12,6 +13,7 @@ type certification = {
   tags: string[];
   link?: string;
   image?: string;
+  pdf?: string;
   issuer: string;
   issueDate: string;
   expiryDate?: string;
@@ -30,6 +32,7 @@ export default function EditcertificationPage() {
     tags: '',
     link: '',
     image: '',
+    pdf: '',
     issuer: '',
     issueDate: '',
     expiryDate: '',
@@ -69,6 +72,7 @@ export default function EditcertificationPage() {
           tags: certification.tags.join(', '),
           link: certification.link || '',
           image: certification.image || '',
+          pdf: certification.pdf || '',
           issuer: certification.issuer || '',
           issueDate: certification.issueDate ? new Date(certification.issueDate).toISOString().split('T')[0] : '',
           expiryDate: certification.expiryDate ? new Date(certification.expiryDate).toISOString().split('T')[0] : '',
@@ -198,16 +202,29 @@ export default function EditcertificationPage() {
           onChange={(e) => setForm({ ...form, credentialId: e.target.value })}
           className="w-full p-2 border rounded"
         />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          className="w-full p-2 border rounded"
-        />
-        {uploading && <p>Uploading...</p>}
-        {form.image && (
-          <Image src={form.image} alt="Preview" width={128} height={128} className="w-32 h-32" />
-        )}
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Upload Certificate PDF (Optional)</label>
+          <DropzoneFileUpload
+            onUploaded={(url) => setForm(f => ({ ...f, pdf: url }))}
+            initialUrl={form.pdf}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Company/Issuer Logo or Cover Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="w-full p-2 border rounded mb-2"
+          />
+          {uploading && <p>Uploading...</p>}
+          {form.image && (
+            <Image src={form.image} alt="Preview" width={128} height={128} className="w-32 h-32 object-cover rounded" />
+          )}
+        </div>
+
         <div>
           <label className="inline-flex items-center gap-2">
             <input type="checkbox" checked={form.active} onChange={(e) => setForm({ ...form, active: e.target.checked })} />

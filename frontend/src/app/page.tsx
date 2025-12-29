@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import MagicProfile from "@/components/magic-profile";
@@ -15,9 +15,16 @@ import Footer from "@/components/footer";
 import FloatingElements from "@/components/floating-elements";
 import FloatingThemeToggle from "@/components/floating-theme-toggle";
 import Certifications from "@/components/certifications";
+import AboutMe from "@/components/about-me";
 
 export default function Home() {
   const [showQuickConnect, setShowQuickConnect] = useState(false);
+
+  useEffect(() => {
+    const handleOpenQuickConnect = () => setShowQuickConnect(true);
+    window.addEventListener('open-quick-connect', handleOpenQuickConnect);
+    return () => window.removeEventListener('open-quick-connect', handleOpenQuickConnect);
+  }, []);
 
   return (
     <main className="min-h-screen relative bg-[var(--background)]">
@@ -30,6 +37,7 @@ export default function Home() {
         onOpenQuickConnect={() => setShowQuickConnect(true)}
       />
       <Projects />
+      <AboutMe />
       <Certifications />
       <SecretSauce />
       <Marquee />

@@ -25,7 +25,7 @@ export default function ContactFooter() {
           alt=""
           className="w-full h-full object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)]/60 via-transparent to-[var(--background)]/60 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-transparent to-[var(--background)]/60 backdrop-blur-sm" />
       </div>
 
       {/* ---------- CTA SECTION ---------- */}
@@ -87,12 +87,11 @@ export default function ContactFooter() {
           onClick={() =>
             window.dispatchEvent(new CustomEvent("open-quick-connect"))
           }
-          className="flex items-center gap-3 px-8 py-4 rounded-full text-white shadow-lg shadow-purple-500/20 mb-16 transition-all"
-          style={{ backgroundImage: 'var(--gradient-accent)' }}
+          className="flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--foreground)] text-[var(--background)] shadow-lg shadow-[var(--foreground)]/20 mb-16 transition-all border border-[var(--border)]"
         >
           <span className="font-medium">Get In Touch</span>
-          <span className="bg-white/20 backdrop-blur-sm rounded-full p-1">
-            <ArrowRight className="w-4 h-4 text-white" />
+          <span className="bg-[var(--background)]/20 backdrop-blur-sm rounded-full p-1">
+            <ArrowRight className="w-4 h-4 text-[var(--background)]" />
           </span>
         </motion.button>
 
@@ -107,7 +106,11 @@ export default function ContactFooter() {
       {/* ---------- FOOTER BAR ---------- */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pb-10 border-t border-border">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[var(--muted-foreground)]">
-          <span>© 2025 Om Choksi. All rights reserved.</span>
+          <div className="flex gap-4">
+            <span>© 2025 Om Choksi. All rights reserved.</span>
+            <span className="hidden md:inline">•</span>
+            <a href="/attribution" className="hover:text-[var(--foreground)] transition-colors">Attribution</a>
+          </div>
 
           <div className="flex items-center gap-4">
             <button

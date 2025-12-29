@@ -25,11 +25,25 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
   const [copied, setCopied] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
 
+  // Booking State
+  const [selectedDate, setSelectedDate] = useState<number>(15);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+
   const handleCopy = () => {
     navigator.clipboard.writeText('omchoksi108@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const handleConfirmBooking = () => {
+    if (!selectedTime) {
+      alert("Please select a time slot.");
+      return;
+    }
+    alert(`Booking Confirmed for December ${selectedDate}, 2025 at ${selectedTime}.\n(This is a demo action)`);
+    setShowBooking(false);
+    setSelectedTime(null);
+  }
 
   return (
     <div className="w-full p-8 font-sans text-[var(--foreground)]">
@@ -211,7 +225,8 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
                 {Array.from({ length: 31 }, (_, i) => (
                   <button
                     key={i + 1}
-                    className={`aspect-square text-sm rounded-lg hover:bg-[var(--muted)] transition-colors ${i + 1 === 15 ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--foreground)]'
+                    onClick={() => setSelectedDate(i + 1)}
+                    className={`aspect-square text-sm rounded-lg hover:bg-[var(--muted)] transition-colors ${i + 1 === selectedDate ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--foreground)]'
                       }`}
                   >
                     {i + 1}
@@ -229,7 +244,11 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
                   {['9:00 AM', '10:00 AM', '11:00 AM', '2:00 PM', '3:00 PM', '4:00 PM'].map((time) => (
                     <button
                       key={time}
-                      className="p-3 bg-[var(--card)] border border-[var(--border)] rounded-lg text-sm font-medium text-[var(--foreground)] hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)] transition-all"
+                      onClick={() => setSelectedTime(time)}
+                      className={`p-3 border rounded-lg text-sm font-medium transition-all ${selectedTime === time
+                          ? 'bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)]'
+                          : 'bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)]'
+                        }`}
                     >
                       {time}
                     </button>
@@ -238,7 +257,10 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
               </div>
 
               {/* Book Button */}
-              <button className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/80 text-[var(--primary-foreground)] font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98] mt-6 cursor-pointer">
+              <button
+                onClick={handleConfirmBooking}
+                className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)] font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98] mt-6 cursor-pointer"
+              >
                 <Calendar className="w-4 h-4" />
                 Confirm Booking
               </button>

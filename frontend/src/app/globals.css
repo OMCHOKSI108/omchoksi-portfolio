@@ -192,7 +192,7 @@ html {
 }
 
 body {
-  background-image: linear-gradient(to bottom, #d9d7f1 0%, #ffffff 100%);
+  background-color: var(--background);
   background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;

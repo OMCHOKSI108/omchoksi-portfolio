@@ -31,7 +31,7 @@ export default function WorkPage() {
     const fetchProjects = async () => {
       try {
         console.log('Fetching from:', `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects?limit=20`);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects?limit=20`); // Fetch up to 20 active projects
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects?limit=20`, { cache: 'no-store' }); // Fetch up to 20 active projects, no cache for live updates
         console.log('Response status:', response.status);
         if (!response.ok) throw new Error('Failed to fetch projects');
         const data = await response.json();

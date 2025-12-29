@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     }
 
     const formData = await request.formData();
-    const file = formData.get('image') as File;
+    const file = (formData.get('image') || formData.get('file')) as File;
 
     if (!file) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       const buffer = Buffer.from(await file.arrayBuffer());
       const result = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
-          { folder: 'portfolio' },
+          { folder: 'portfolio', resource_type: 'auto' },
           (error, result) => {
             if (error) reject(error);
             else resolve(result);
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     const nodeStream = await webStreamToNodeReadable(webStream);
 
     const result: any = await new Promise((resolve, reject) => {
-      const uploadStream = cloudinary.uploader.upload_stream({ folder: 'portfolio' }, (error: any, res: any) => {
+      const uploadStream = cloudinary.uploader.upload_stream({ folder: 'portfolio', resource_type: 'auto' }, (error: any, res: any) => {
         if (error) return reject(error);
         resolve(res);
       });

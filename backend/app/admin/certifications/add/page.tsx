@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Image from 'next/image';
 
-export default function AddBlogPage() {
+import DropzoneFileUpload from '../../../components/ui/DropzoneFileUpload';
+
+export default function AddCertificationPage() {
   const [form, setForm] = useState({
     title: '',
     slug: '',
@@ -13,6 +15,7 @@ export default function AddBlogPage() {
     tags: '',
     link: '',
     image: '',
+    pdf: '', // Add pdf state
     issuer: '',
     issueDate: '',
     expiryDate: '',
@@ -149,16 +152,31 @@ export default function AddBlogPage() {
           onChange={(e) => setForm({ ...form, credentialId: e.target.value })}
           className="w-full p-2 border rounded"
         />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          className="w-full p-2 border rounded"
-        />
-        {uploading && <p>Uploading...</p>}
-        {form.image && (
-          <Image src={form.image} alt="Preview" width={128} height={128} className="w-32 h-32" />
-        )}
+
+        {/* PDF Upload */}
+        <div>
+          <label className="block text-sm font-medium mb-1">Upload Certificate PDF (Optional)</label>
+          <DropzoneFileUpload
+            onUploaded={(url) => setForm(f => ({ ...f, pdf: url }))}
+            initialUrl={form.pdf}
+          />
+        </div>
+
+        {/* Image Upload */}
+        <div>
+          <label className="block text-sm font-medium mb-1">Company/Issuer Logo or Cover Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="w-full p-2 border rounded mb-2"
+          />
+          {uploading && <p>Uploading...</p>}
+          {form.image && (
+            <Image src={form.image} alt="Preview" width={128} height={128} className="w-32 h-32 object-cover rounded" />
+          )}
+        </div>
+
         <div>
           <label className="inline-flex items-center gap-2">
             <input type="checkbox" checked={form.active} onChange={(e) => setForm({ ...form, active: e.target.checked })} />

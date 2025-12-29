@@ -91,14 +91,17 @@ export default function SecretSauce() {
           {techIcons.map((item, i) => (
             <div
               key={i}
-              className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-transparent border-2 border-black backdrop-blur-none dark:bg-gradient-to-br dark:from-white/10 dark:to-white/5 dark:border-2 dark:border-white/20 dark:backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-gray-600 dark:hover:border-white/40 hover:shadow-lg hover:shadow-gray-300/20 dark:hover:shadow-white/10"
+              className={`flex items-center justify-center p-3 rounded-2xl border transition-all duration-300 w-16 h-16 md:w-20 md:h-20 ${isDarkMode
+                  ? 'bg-[#111111] border-gray-800 hover:border-gray-500 hover:bg-[#1a1a1a] shadow-sm'
+                  : 'bg-white border-gray-200 hover:border-gray-400 shadow-sm hover:shadow-md'
+                }`}
             >
               <item.icon
-                size={28}
+                size={32}
                 style={{
-                  color: isDarkMode ? item.darkColor : item.color,
-                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                  color: isDarkMode ? item.darkColor || '#ffffff' : item.color,
                 }}
+                className={`transition-all duration-300 transform group-hover:scale-110 ${!isDarkMode ? 'opacity-90' : ''}`}
               />
             </div>
           ))}
