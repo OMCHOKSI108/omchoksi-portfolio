@@ -11,6 +11,7 @@ export interface IProject extends Document {
   images?: Array<{ url: string; caption?: string; showOnProject?: boolean }>;
   active?: boolean;
   featured: boolean;
+  priority?: number; // Display order: lower numbers appear first (1, 2, 3...)
   createdAt: Date;
   updatedAt: Date;
 }
@@ -34,6 +35,7 @@ const ProjectSchema: Schema = new Schema({
   active: { type: Boolean, default: true, index: true },
   featured: { type: Boolean, default: false, index: true },
   status: { type: String, enum: ['draft', 'live', 'archived'], default: 'draft', index: true },
+  priority: { type: Number, default: 999, index: true }, // Display order: lower = higher priority
 }, {
   timestamps: true,
 });

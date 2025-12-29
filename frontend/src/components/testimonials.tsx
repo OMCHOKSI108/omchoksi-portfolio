@@ -79,7 +79,7 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-4xl font-bold text-center mb-16"
         >
-          Mentions & <span className="font-serif-italic text-[var(--primary)]">Recognition</span>
+          Mentions & <span className="font-serif-italic text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>Recognition</span>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -128,7 +128,7 @@ export default function Testimonials() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-             
+
             </div>
           </div>
         </motion.div>

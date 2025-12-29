@@ -143,7 +143,7 @@ export default function CertificationPage() {
             </div>
 
             {/* Certification Details */}
-            <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-8 md:p-12 shadow-sm">
+            <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 md:p-12 shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div className="space-y-6">
                   <div>
@@ -179,7 +179,7 @@ export default function CertificationPage() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-[var(--foreground)] mb-2">Credential ID</h3>
-                    <p className="text-[var(--foreground)] font-normal font-mono bg-[var(--muted)] px-3 py-2 rounded border">
+                    <p className="text-[var(--foreground)] font-normal font-mono bg-[var(--muted)] px-3 py-2 rounded-lg border border-[var(--border)]">
                       {certification.credentialId}
                     </p>
                   </div>
@@ -212,16 +212,16 @@ export default function CertificationPage() {
             <div className="sticky top-32 space-y-8">
               {/* Tags */}
               {certification.tags && certification.tags.length > 0 && (
-                <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
+                <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
                   <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
-                    <Award size={18} />
+                    <Award size={18} className="text-purple-400" />
                     Skills & Topics
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {certification.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm font-medium"
+                        className="px-3 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)] rounded-full text-sm font-medium"
                       >
                         {tag}
                       </span>
@@ -231,7 +231,7 @@ export default function CertificationPage() {
               )}
 
               {/* Quick Stats */}
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
                 <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4">
                   Certificate Details
                 </h3>
@@ -256,15 +256,15 @@ export default function CertificationPage() {
               </div>
 
               {/* Verification Link */}
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
                 <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
-                  <ExternalLink size={18} />
+                  <ExternalLink size={18} className="text-purple-400" />
                   Verification
                 </h3>
                 <p className="text-[var(--muted-foreground)] text-sm mb-4">
                   Verify this certification on the issuer's platform using the credential ID.
                 </p>
-                <button className="w-full px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-lg font-medium hover:bg-[var(--primary)]/90 transition-colors">
+                <button className="w-full px-4 py-3 text-white rounded-full font-medium shadow-lg hover:shadow-purple-500/20 active:scale-95 transition-all" style={{ backgroundImage: 'var(--gradient-accent)' }}>
                   Verify Certificate
                 </button>
               </div>

@@ -44,9 +44,8 @@ export default function ContactFooter() {
             {/* OM Text in center of wings */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="rounded-full border-2 border-foreground/30 p-4">
-                <span className={`text-6xl font-bold select-none ${
-                  theme === 'dark' ? 'text-white' : 'text-black'
-                }`}>
+                <span className={`text-6xl font-bold select-none ${theme === 'dark' ? 'text-white' : 'text-black'
+                  }`}>
                   OM
                 </span>
               </div>
@@ -88,11 +87,12 @@ export default function ContactFooter() {
           onClick={() =>
             window.dispatchEvent(new CustomEvent("open-quick-connect"))
           }
-          className="flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--muted)] hover:bg-[var(--secondary)] transition-colors shadow-sm mb-16"
+          className="flex items-center gap-3 px-8 py-4 rounded-full text-white shadow-lg shadow-purple-500/20 mb-16 transition-all"
+          style={{ backgroundImage: 'var(--gradient-accent)' }}
         >
-          <span>Get In Touch</span>
-          <span className="bg-white rounded-full p-1">
-            <ArrowRight className="w-4 h-4 text-gray-900" />
+          <span className="font-medium">Get In Touch</span>
+          <span className="bg-white/20 backdrop-blur-sm rounded-full p-1">
+            <ArrowRight className="w-4 h-4 text-white" />
           </span>
         </motion.button>
 
@@ -150,7 +150,7 @@ export default function ContactFooter() {
         {/* Open to Work Roller */}
         <div className="w-full overflow-hidden bg-gradient-to-r from-transparent via-[var(--accent)]/10 to-transparent py-2 mt-8">
           <div className="animate-marquee text-sm font-medium text-[var(--foreground)]/70 whitespace-nowrap">
-             Open to work • Available for freelance projects • Let's build something amazing together •  Open to work • Available for freelance projects • Let's build something amazing together •
+            Open to work • Available for freelance projects • Let's build something amazing together •  Open to work • Available for freelance projects • Let's build something amazing together •
           </div>
         </div>
       </div>

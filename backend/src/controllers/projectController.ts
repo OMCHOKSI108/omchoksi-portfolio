@@ -125,3 +125,53 @@ export async function deleteProjectHandler(request: NextRequest, id: string, ver
     return build(false, 'Failed to delete project');
   }
 }
+
+// Update priority for a single project
+export async function updateProjectPriorityHandler(request: NextRequest, id: string, verifyToken: (t: string) => { id: string; email: string } | null) {
+  try {
+    const cookie = request.cookies.get('admin_token')?.value;
+    if (!cookie || !verifyToken(cookie)) return build(false, 'Unauthorized');
+
+    await dbConnect();
+    const body = await request.json();
+
+    if (typeof body.priority !== 'number') {
+      return build(false, 'Priority must be a number');
+    }
+
+    const updated = await service.updateProjectPriority(id, body.priority);
+    if (!updated) return build(false, 'Project not found');
+    return build(true, 'Project priority updated', updated);
+  } catch (err) {
+    console.error('updateProjectPriorityHandler', err);
+    return build(false, 'Failed to update project priority');
+  }
+}
+
+// Bulk update priorities for multiple projects
+export async function bulkUpdatePrioritiesHandler(request: NextRequest, verifyToken: (t: string) => { id: string; email: string } | null) {
+  try {
+    const cookie = request.cookies.get('admin_token')?.value;
+    if (!cookie || !verifyToken(cookie)) return build(false, 'Unauthorized');
+
+    await dbConnect();
+    const body = await request.json();
+
+    if (!Array.isArray(body.updates)) {
+      return build(false, 'Updates must be an array of {id, priority} objects');
+    }
+
+    // Validate each update
+    for (const update of body.updates) {
+      if (!update.id || typeof update.priority !== 'number') {
+        return build(false, 'Each update must have id (string) and priority (number)');
+      }
+    }
+
+    const result = await service.bulkUpdatePriorities(body.updates);
+    return build(true, `Updated ${result.modifiedCount} projects`, result);
+  } catch (err) {
+    console.error('bulkUpdatePrioritiesHandler', err);
+    return build(false, 'Failed to bulk update priorities');
+  }
+}

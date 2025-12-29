@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ReactMarkdown from 'react-markdown';
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
@@ -11,6 +12,7 @@ interface Project {
   title: string;
   slug: string;
   description: string;
+  projectMarkdown?: string;
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -68,7 +70,7 @@ export default function WorkPage() {
       <section className="pt-20 pb-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-[var(--foreground)] mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-primary)' }}>
               All My Projects
             </h1>
             <p className="text-xl text-[var(--muted-foreground)] max-w-2xl mx-auto">
@@ -83,27 +85,34 @@ export default function WorkPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[var(--card)] rounded-lg overflow-hidden shadow-lg border border-[var(--border)] hover:shadow-xl transition-shadow"
+                className="group h-full bg-[var(--card)] rounded-3xl overflow-hidden shadow-lg border border-[var(--border)] hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500"
               >
                 {project.images?.[0]?.url && (
-                  <img
-                    src={project.images[0].url}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                  />
+                  <div className="relative overflow-hidden h-48">
+                    <img
+                      src={project.images[0].url}
+                      alt={project.title}
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
+                  </div>
                 )}
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-[var(--foreground)] mb-2">
+                  <h3 className="text-xl font-bold text-[var(--foreground)] mb-2 font-serif">
                     {project.title}
                   </h3>
-                  <p className="text-[var(--muted-foreground)] mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="text-[var(--muted-foreground)] mb-6 line-clamp-3 text-sm leading-relaxed">
+                    {project.projectMarkdown && project.projectMarkdown.trim() ? (
+                      <ReactMarkdown>{project.projectMarkdown}</ReactMarkdown>
+                    ) : (
+                      <p>{project.description}</p>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] text-xs rounded-full"
+                        className="px-3 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] text-xs font-medium rounded-full border border-[var(--border)]"
                       >
                         {tag}
                       </span>
@@ -112,7 +121,7 @@ export default function WorkPage() {
                   <div className="flex gap-3">
                     <a
                       href={`/projects/${project.slug}`}
-                      className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                      className="flex-1 inline-flex justify-center items-center gap-2 px-4 py-2.5 rounded-full bg-[var(--foreground)] text-[var(--background)] font-medium text-sm hover:opacity-90 transition-opacity"
                     >
                       View Project
                     </a>
@@ -121,10 +130,10 @@ export default function WorkPage() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-lg hover:bg-[var(--primary)]/80 transition-colors"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+                        title="Live Demo"
                       >
                         <ExternalLink size={16} />
-                        Live Demo
                       </a>
                     )}
                     {project.githubUrl && (
@@ -132,10 +141,10 @@ export default function WorkPage() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-lg hover:bg-[var(--muted)] transition-colors"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+                        title="View Code"
                       >
                         <Github size={16} />
-                        Code
                       </a>
                     )}
                   </div>

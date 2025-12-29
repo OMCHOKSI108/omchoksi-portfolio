@@ -24,8 +24,8 @@ export default function Home() {
       <FloatingElements />
       <Navbar onContactClick={() => setShowQuickConnect(true)} />
       <Hero />
-      <BentoGridRow 
-        showQuickConnect={showQuickConnect} 
+      <BentoGridRow
+        showQuickConnect={showQuickConnect}
         onCloseQuickConnect={() => setShowQuickConnect(false)}
         onOpenQuickConnect={() => setShowQuickConnect(true)}
       />
@@ -35,8 +35,7 @@ export default function Home() {
       <Marquee />
       <Testimonials />
       <Blog />
-      <Footer/>
-      <FloatingThemeToggle />
+      <Footer />
     </main>
   );
 }

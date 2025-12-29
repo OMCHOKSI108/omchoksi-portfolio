@@ -7,7 +7,15 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['var(--font-playfair)', 'serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+    },
   },
   plugins: [],
 }

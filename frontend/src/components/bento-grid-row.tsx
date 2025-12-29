@@ -17,10 +17,10 @@ import {
 } from 'lucide-react';
 import QuickConnect from './quick-connect';
 
-const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnect }: { 
-  showQuickConnect?: boolean; 
-  onCloseQuickConnect?: () => void; 
-  onOpenQuickConnect?: () => void; 
+const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnect }: {
+  showQuickConnect?: boolean;
+  onCloseQuickConnect?: () => void;
+  onOpenQuickConnect?: () => void;
 }) => {
   const [copied, setCopied] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
@@ -38,7 +38,7 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
         {/* --- CARD 1: Time Zone (Left) --- */}
         <div className="relative group overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--card)] shadow-sm backdrop-blur-xl h-[420px] flex flex-col transition-all hover:shadow-md">
           <div className="p-8 relative z-20 text-center">
-            <h3 className="mb-6 font-serif text-3xl leading-tight text-[var(--foreground)]">
+            <h3 className="mb-6 font-serif text-2xl leading-tight text-[var(--foreground)]">
               I'm very flexible with time zone communications
             </h3>
 
@@ -58,27 +58,25 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
 
           {/* Dotted Globe Visual */}
           <div className="absolute inset-0 top-24 w-full h-full pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--muted)]/50 via-transparent to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] via-transparent to-transparent z-10" />
             <img
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-              alt="Dotted Globe"
-              className="h-full w-full object-cover opacity-80 mix-blend-multiply dark:mix-blend-screen filter brightness-110 grayscale-[0.1]"
+              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2000&auto=format&fit=crop"
+              alt="World Map"
+              className="h-full w-full object-cover opacity-60 dark:opacity-40"
             />
-            {/* Overlay to create the blue fade at the bottom */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[var(--muted)]/30 via-transparent to-[var(--muted)]/20 z-20 mix-blend-overlay"></div>
           </div>
 
           {/* Bottom Location Info */}
           <div className="absolute bottom-8 left-8 z-30">
             <div className="flex flex-col items-start gap-1">
               <div className="flex flex-col items-center">
-                 <MapPin className="h-6 w-6 text-[var(--foreground)] mb-1" strokeWidth={2.5} />
-                 <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)]">Remote</span>
-                 <span className="text-xl font-bold text-[var(--foreground)]">India</span>
+                <MapPin className="h-6 w-6 text-[var(--foreground)] mb-1" strokeWidth={2.5} />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)]">Remote</span>
+                <span className="text-lg font-bold text-[var(--foreground)]">India</span>
               </div>
 
               <button
-                onClick={onOpenQuickConnect || (() => {})}
+                onClick={onOpenQuickConnect || (() => { })}
                 className="mt-4 flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] transition-all hover:gap-3 cursor-pointer"
               >
                 Connect now <ArrowRight className="h-4 w-4" />
@@ -89,7 +87,7 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
 
         {/* --- CARD 2: CTA (Middle) --- */}
         <div className="relative flex flex-col items-center justify-center rounded-[2rem] border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:shadow-md h-[420px]">
-          <h3 className="mb-8 font-serif text-4xl text-[var(--foreground)] leading-[1.1]">
+          <h3 className="mb-8 font-serif text-3xl text-[var(--foreground)] leading-[1.1]">
             Let's work together <br />
             on your next project
           </h3>
@@ -116,10 +114,10 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
         <div className="relative flex flex-col overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--card)] h-[420px] transition-all hover:shadow-md">
           {/* Top Tags Section */}
           <div className="p-6">
-             <div className="flex gap-2 overflow-hidden mb-4">
-                <span className="px-2 py-1 bg-[var(--muted)] border border-[var(--border)] rounded text-xs flex items-center gap-1"><Terminal className="w-3 h-3"/> Bash</span>
-                <span className="px-2 py-1 bg-[var(--muted)] border border-[var(--border)] rounded text-xs flex items-center gap-1"><Database className="w-3 h-3"/> SQL</span>
-             </div>
+            <div className="flex gap-2 overflow-hidden mb-4">
+              <span className="px-2 py-1 bg-[var(--muted)] border border-[var(--border)] rounded text-xs flex items-center gap-1"><Terminal className="w-3 h-3" /> Bash</span>
+              <span className="px-2 py-1 bg-[var(--muted)] border border-[var(--border)] rounded text-xs flex items-center gap-1"><Database className="w-3 h-3" /> SQL</span>
+            </div>
           </div>
 
           {/* Browser Mockup Visual */}
@@ -136,7 +134,7 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
               {/* Browser Content */}
               <div className="flex h-full flex-col items-center justify-center bg-[radial-gradient(var(--muted)_1px,transparent_1px)] [background-size:16px_16px] p-6 text-center">
                 <h4 className="text-sm font-bold text-[var(--foreground)]">Websites that</h4>
-                <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--primary)]">
+                <span className="text-2xl font-black text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-primary)' }}>
                   Impact.
                 </span>
 
@@ -158,7 +156,7 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
       {/* Quick Connect Modal */}
       <QuickConnect
         isOpen={showQuickConnect || false}
-        onClose={onCloseQuickConnect || (() => {})}
+        onClose={onCloseQuickConnect || (() => { })}
         onBookCall={() => setShowBooking(true)}
       />
 
@@ -213,9 +211,8 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
                 {Array.from({ length: 31 }, (_, i) => (
                   <button
                     key={i + 1}
-                    className={`aspect-square text-sm rounded-lg hover:bg-[var(--muted)] transition-colors ${
-                      i + 1 === 15 ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--foreground)]'
-                    }`}
+                    className={`aspect-square text-sm rounded-lg hover:bg-[var(--muted)] transition-colors ${i + 1 === 15 ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--foreground)]'
+                      }`}
                   >
                     {i + 1}
                   </button>

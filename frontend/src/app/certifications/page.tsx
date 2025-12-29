@@ -69,7 +69,7 @@ export default function CertificationsPage() {
       <div className="pt-24 px-6 max-w-7xl mx-auto pb-12">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-4">
-            My <span className="font-serif-italic text-[var(--primary)]">Certifications</span>
+            My <span className="font-serif-italic text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>Certifications</span>
           </h1>
           <p className="text-[var(--muted-foreground)] text-lg max-w-2xl mx-auto">
             Professional certifications and credentials that validate my expertise and commitment to continuous learning.
@@ -78,34 +78,34 @@ export default function CertificationsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certifications.map((cert, index) => (
-            <Link key={cert._id} href={`/certifications/${cert.slug}`} className="block group">
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <Link key={cert._id} href={`/certifications/${cert.slug}`} className="block group h-full">
+              <div className="h-full bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1 flex flex-col">
                 {cert.image && (
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden shrink-0">
                     <Image
                       src={cert.image}
                       alt={cert.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
                 )}
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col grow">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-[var(--primary)]/10 rounded-full">
-                      <Award className="w-5 h-5 text-[var(--primary)]" />
+                    <div className="p-2 bg-[var(--muted)] rounded-full border border-[var(--border)]">
+                      <Award className="w-5 h-5 text-purple-400" />
                     </div>
                     <div>
-                      <h2 className="text-xl font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                      <h2 className="text-xl font-bold text-[var(--foreground)] group-hover:text-purple-400 transition-colors duration-300">
                         {cert.title}
                       </h2>
                       <p className="text-[var(--muted-foreground)] text-sm">{cert.issuer}</p>
                     </div>
                   </div>
 
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-3 mb-6 grow">
                     <div className="flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
                       <Calendar size={14} />
                       <span>Issued: {new Date(cert.issueDate).toLocaleDateString('en-US', {
@@ -124,17 +124,17 @@ export default function CertificationsPage() {
                         })}</span>
                       </div>
                     )}
-                    <p className="text-sm text-[var(--muted-foreground)] font-mono bg-[var(--muted)] px-2 py-1 rounded">
+                    <p className="text-sm text-[var(--muted-foreground)] font-mono bg-[var(--muted)] px-3 py-1.5 rounded-lg border border-[var(--border)] inline-block">
                       ID: {cert.credentialId}
                     </p>
                   </div>
 
                   {cert.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mt-auto">
                       {cert.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-xs font-medium"
+                          className="px-3 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)] rounded-full text-xs font-medium"
                         >
                           {tag}
                         </span>

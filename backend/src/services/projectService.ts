@@ -36,7 +36,12 @@ export async function listProjects(opts: ListOpts = {}): Promise<PaginatedResult
   }
 
   const [items, total] = await Promise.all([
-    Project.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit).select('title slug images tags status description projectMarkdown createdAt updatedAt active').lean(),
+    Project.find(filter)
+      .sort({ priority: 1, createdAt: -1 }) // Sort by priority (ascending), then by createdAt (descending)
+      .skip(skip)
+      .limit(limit)
+      .select('title slug images tags status description projectMarkdown createdAt updatedAt active priority')
+      .lean(),
     Project.countDocuments(filter),
   ]);
 
@@ -60,4 +65,24 @@ export async function updateProject(id: string, payload: Partial<IProject>) {
 
 export async function deleteProject(id: string) {
   return Project.findByIdAndDelete(id).lean();
+}
+
+// Update priority for a single project
+export async function updateProjectPriority(id: string, priority: number) {
+  return Project.findByIdAndUpdate(id, { $set: { priority } }, { new: true, runValidators: true }).lean();
+}
+
+// Bulk update priorities for multiple projects
+export async function bulkUpdatePriorities(updates: Array<{ id: string; priority: number }>) {
+  const bulkOps = updates.map(({ id, priority }) => ({
+    updateOne: {
+      filter: { _id: id },
+      update: { $set: { priority } },
+    },
+  }));
+
+  if (bulkOps.length === 0) return { modifiedCount: 0 };
+
+  const result = await Project.bulkWrite(bulkOps);
+  return result;
 }

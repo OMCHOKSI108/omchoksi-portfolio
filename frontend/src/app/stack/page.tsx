@@ -133,7 +133,8 @@ export default function Stack() {
         />
 
         {/* Inject Fonts */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
           .font-serif-display { font-family: 'Playfair Display', serif; }
         `}} />
@@ -150,7 +151,7 @@ export default function Stack() {
               Technology Stack
             </span>
             <h1 className="text-5xl md:text-7xl font-serif-display text-[var(--foreground)] mb-6">
-              My <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">Tech Arsenal</span>
+              My <span className="italic font-light text-transparent bg-clip-text bg-cover" style={{ backgroundImage: 'var(--gradient-accent)' }}>Tech Arsenal</span>
             </h1>
             <p className="text-xl text-[var(--muted-foreground)] max-w-3xl mx-auto">
               The tools, frameworks, and technologies I use to build intelligent systems and solve complex problems.
@@ -161,7 +162,7 @@ export default function Stack() {
           <motion.div
             aria-hidden
             initial={{ opacity: 0.18, scale: 0.9, x: -40 }}
-            animate={{ x: [ -40, 40, -40 ], y: [0, -10, 0] }}
+            animate={{ x: [-40, 40, -40], y: [0, -10, 0] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             className="pointer-events-none absolute -left-40 -top-16 w-96 h-96 rounded-full bg-gradient-to-tr from-purple-400 to-pink-400 blur-3xl opacity-30 mix-blend-screen"
           />
@@ -170,26 +171,26 @@ export default function Stack() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(TECH_STACK).map(([category, technologies], categoryIndex) => (
               <motion.article
-                  key={category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                  className="group relative bg-[var(--card)] backdrop-blur-lg border border-[var(--border)] rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden />
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                className="group relative bg-[var(--card)] backdrop-blur-lg border border-[var(--border)] rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden />
 
-                  <div className="relative">
-                    <header className="mb-4 text-center">
-                      <h3 className="text-lg sm:text-xl font-semibold text-[var(--foreground)]">
-                        {category}
-                      </h3>
-                      <p className="mt-1 text-sm text-[var(--muted-foreground)]">
-                        {`Core ${category.toLowerCase()} skills and tools`}
-                      </p>
-                    </header>
+                <div className="relative">
+                  <header className="mb-4 text-center">
+                    <h3 className="text-lg sm:text-xl font-semibold text-[var(--foreground)]">
+                      {category}
+                    </h3>
+                    <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+                      {`Core ${category.toLowerCase()} skills and tools`}
+                    </p>
+                  </header>
 
-                    {/* Technologies rendered as clickable chips */}
-                    <div className="flex flex-wrap gap-3 items-stretch">
+                  {/* Technologies rendered as clickable chips */}
+                  <div className="flex flex-wrap gap-3 items-stretch">
                     {technologies.map((tech, techIndex) => (
                       <motion.button
                         key={tech.name}

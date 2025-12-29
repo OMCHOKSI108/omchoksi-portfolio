@@ -53,15 +53,16 @@ const ProjectShowcase = () => {
           id: apiProj._id,
           title: apiProj.title,
           slug: apiProj.slug,
-          description: apiProj.description,
+          // Prefer rich markdown from backend when available, fall back to plain description
+          description: apiProj.projectMarkdown && apiProj.projectMarkdown.trim() ? apiProj.projectMarkdown : apiProj.description,
           features: apiProj.tags, // Use tags as features
           tech: apiProj.tags.slice(0, 4).map(tag => ({ name: tag, icon: tag.toLowerCase() })), // Simple mapping
           image: apiProj.images?.[0]?.url || "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop",
           color: ["bg-blue-700", "bg-purple-700", "bg-red-700"][index % 3],
           liveUrl: apiProj.liveUrl,
           githubUrl: apiProj.githubUrl
-        ,
-          // Prefer rich markdown content when provided by backend
+          ,
+          // Keep explicit markdown field as well for components that render it directly
           markdown: apiProj.projectMarkdown || undefined,
         }));
 
@@ -90,7 +91,8 @@ const ProjectShowcase = () => {
   return (
     <section className="relative w-full py-20 px-6">
       {/* Inject Fonts */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
         .font-serif { font-family: 'Playfair Display', serif; }
       `}} />
@@ -102,7 +104,7 @@ const ProjectShowcase = () => {
             Featured Work
           </span>
           <h2 className="text-5xl md:text-7xl font-serif text-[var(--foreground)] mb-6">
-            My <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--primary)]/80">AI Projects</span>
+            My <span className="italic font-light text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>AI Projects</span>
           </h2>
           <p className="text-xl text-[var(--muted-foreground)] max-w-3xl mx-auto">
             A portfolio of AI applications, ML research experiments, cybersecurity tools, and deployed web apps — each built to solve a real-world problem, not just get an accuracy score.
@@ -237,12 +239,12 @@ const ProjectRow = ({ project }: { project: Project }) => {
         <div className="flex items-center gap-4">
           <a
             href={`/projects/${project.slug}`}
-            className="group inline-flex items-center gap-3 px-5 py-3 border border-slate-200 rounded-full text-slate-900 bg-white hover:shadow-md transition-all duration-200"
+            className="group inline-flex items-center gap-3 px-5 py-3 border border-[var(--border)] rounded-full text-[var(--foreground)] bg-[var(--card)] hover:bg-[var(--muted)] hover:shadow-md transition-all duration-200"
             aria-label={`View ${project.title}`}
           >
             <span className="text-sm font-medium">View Project</span>
             <svg
-              className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 text-slate-700"
+              className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -256,7 +258,7 @@ const ProjectRow = ({ project }: { project: Project }) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-10 h-10 bg-white border border-slate-200 rounded-full text-slate-700 hover:bg-slate-50 transition-colors"
+              className="inline-flex items-center justify-center w-10 h-10 bg-[var(--card)] border border-[var(--border)] rounded-full text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />

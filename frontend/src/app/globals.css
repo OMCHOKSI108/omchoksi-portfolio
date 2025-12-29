@@ -1,222 +1,163 @@
 @import "tailwindcss";
 
+body::before {
+  content: "";
+  position: fixed;
+  bottom: -20%;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: radial-gradient(ellipse at center, rgba(120, 119, 198, 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: 100;
+}
+
 html {
   font-size: 15px;
 }
 
 @supports (color:lab(0% 0 0)) {
   :root {
-    --background: lab(95.8026% .164002 -1.12609);
-    --foreground: lab(2.75381% 0 0);
-    --card: lab(95.8026% .164002 -1.12609);
-    --card-foreground: lab(2.75381% 0 0);
-    --popover: lab(95.8026% .164002 -1.12609);
-    --popover-foreground: lab(2.75381% 0 0);
-    --primary: lab(7.78201% -.0000149012 0);
-    --primary-foreground: lab(98.26% 0 0);
-    --secondary: lab(96.52% -.0000298023 .0000119209);
-    --secondary-foreground: lab(7.78201% -.0000149012 0);
-    --muted: lab(96.52% -.0000298023 .0000119209);
-    --muted-foreground: lab(48.496% 0 0);
-    --accent: lab(96.52% -.0000298023 .0000119209);
-    --accent-foreground: lab(7.78201% -.0000149012 0);
-    --destructive: lab(48.4493% 77.4328 61.5452);
-    --border: lab(90.952% 0 -.0000119209);
-    --input: lab(90.952% 0 -.0000119209);
-    --ring: lab(66.128% -.0000298023 .0000119209);
-    --chart-1: lab(57.1026% 64.2584 89.8886);
-    --chart-2: lab(55.0223% -41.0774 -3.90277);
-    --chart-3: lab(30.372% -13.1853 -18.7887);
-    --chart-4: lab(80.1641% 16.6016 99.2089);
-    --chart-5: lab(72.7183% 31.8672 97.9407);
-    --sidebar: lab(98.26% 0 0);
-    --sidebar-foreground: lab(2.75381% 0 0);
-    --sidebar-primary: lab(7.78201% -.0000149012 0);
-    --sidebar-primary-foreground: lab(98.26% 0 0);
-    --sidebar-accent: lab(96.52% -.0000298023 .0000119209);
-    --sidebar-accent-foreground: lab(7.78201% -.0000149012 0);
-    --sidebar-border: lab(90.952% 0 -.0000119209);
-    --sidebar-ring: lab(66.128% -.0000298023 .0000119209);
+    --background: lab(98% 0 0);
+    --foreground: lab(5% 0 0);
+    --card: lab(98% 0 0);
+    --card-foreground: lab(5% 0 0);
+    --popover: lab(98% 0 0);
+    --popover-foreground: lab(5% 0 0);
+    --primary: lab(5% 0 0);
+    --primary-foreground: lab(98% 0 0);
+    --secondary: lab(96% 0 0);
+    --secondary-foreground: lab(5% 0 0);
+    --muted: lab(96% 0 0);
+    --muted-foreground: lab(40% 0 0);
+    --accent: lab(96% 0 0);
+    --accent-foreground: lab(5% 0 0);
+    --destructive: lab(50% 40 30);
+    --border: lab(92% 0 0);
+    --input: lab(92% 0 0);
+    --ring: lab(5% 0 0);
+    --radius: 0.75rem;
   }
 }
 
 :root {
-  --radius: .625rem;
-  --background: #f2f3f5;
-  --foreground: #0a0a0a;
-  --card: #f2f3f5;
-  --card-foreground: #0a0a0a;
-  --popover: #f2f3f5;
-  --popover-foreground: #0a0a0a;
-  --primary: #171717;
+  /* Light Mode - Clean & Minimal */
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #18181b;
   --primary-foreground: #fafafa;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #4b5563;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --destructive: #e40014;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #a1a1a1;
-  --chart-1: #f05100;
-  --chart-2: #009588;
-  --chart-3: #104e64;
-  --chart-4: #fcbb00;
-  --chart-5: #f99c00;
-  --sidebar: #fafafa;
-  --sidebar-foreground: #0a0a0a;
-  --sidebar-primary: #171717;
-  --sidebar-primary-foreground: #fafafa;
-  --sidebar-accent: #f5f5f5;
-  --sidebar-accent-foreground: #171717;
-  --sidebar-border: #e5e5e5;
-  --sidebar-ring: #a1a1a1;
-  --gradient-secondary: linear-gradient(145deg, #8B5A3C 0%, #A97458 100%);
-  --gradient-accent: linear-gradient(145deg, #F8F8F8 0%, #A97458 100%);
-  --text-primary: #0a0a0a;
-  --text-secondary: #737373;
-  --text-muted: #a1a1a1;
-  --card-background: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --destructive: #ef4444;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
+  --radius: 0.75rem;
+
+  /* Gradients & Extras */
+  --gradient-primary: linear-gradient(to right, #18181b, #27272a);
+  --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
 }
 
 .dark {
-  --background: #1a1a1a;
+  /* Premium Dark Mode - Deep Black & Subtle Depth */
+  --background: #030303;
+  /* Deepest Black */
   --foreground: #ffffff;
-  --card: #2a2a2a;
+  /* Pure White Text */
+
+  --card: #0a0a0a;
+  /* Slightly lighter for cards */
   --card-foreground: #ffffff;
-  --popover: #2a2a2a;
+
+  --popover: #0a0a0a;
   --popover-foreground: #ffffff;
+
   --primary: #ffffff;
-  --primary-foreground: #1a1a1a;
-  --secondary: #3a3a3a;
+  --primary-foreground: #000000;
+
+  --secondary: #121212;
+  /* Subtle separation */
   --secondary-foreground: #ffffff;
-  --muted: #3a3a3a;
-  --muted-foreground: #a1a1a1;
-  --accent: #3a3a3a;
+
+  --muted: #121212;
+  --muted-foreground: #a1a1aa;
+  /* Zinc-400 for readable muted text */
+
+  --accent: #1c1c1c;
+  /* Lighter interaction state */
   --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  --border: #404040;
-  --input: #404040;
-  --ring: #a1a1a1;
-  --chart-1: #f05100;
-  --chart-2: #009588;
-  --chart-3: #104e64;
-  --chart-4: #fcbb00;
-  --chart-5: #f99c00;
-  --sidebar: #1a1a1a;
+
+  --destructive: #7f1d1d;
+
+  --border: #1f1f1f;
+  /* Very subtle border */
+  --input: #1f1f1f;
+  --ring: #3f3f46;
+
+  /* Refined Charts (Vibrant on Dark) */
+  --chart-1: #3b82f6;
+  /* Blue */
+  --chart-2: #10b981;
+  /* Emerald */
+  --chart-3: #f59e0b;
+  /* Amber */
+  --chart-4: #8b5cf6;
+  /* Violet */
+  --chart-5: #ec4899;
+  /* Pink */
+
+  --sidebar: #050505;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #1a1a1a;
-  --sidebar-accent: #3a3a3a;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #121212;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #404040;
-  --sidebar-ring: #a1a1a1;
-  --gradient-secondary: linear-gradient(145deg, #8B5A3C 0%, #A97458 100%);
-  --gradient-accent: linear-gradient(145deg, #F8F8F8 0%, #A97458 100%);
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1a1;
-  --text-muted: #737373;
-  --card-background: #2a2a2a;
+  --sidebar-border: #1f1f1f;
+  --sidebar-ring: #3f3f46;
+
+  --card-background: rgba(10, 10, 10, 0.6);
+  /* For glassmorphism */
+  --card-border: rgba(255, 255, 255, 0.08);
+  /* Crisp white alpha border */
+
+  /* Premium Gradients */
+  --gradient-primary: linear-gradient(to right, #ffffff, #a1a1aa);
+  /* Metallic text */
+  --gradient-secondary: linear-gradient(135deg, #18181b 0%, #000000 100%);
+  --gradient-accent: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  /* Indigo to Purple */
 }
 
 @supports (color:lab(0% 0 0)) {
   .dark {
-    --background: lab(10% 0 0);
+    --background: lab(1% 0 0);
     --foreground: lab(98% 0 0);
-    --card: lab(15% 0 0);
+    --card: lab(3% 0 0);
     --card-foreground: lab(98% 0 0);
-    --popover: lab(15% 0 0);
+    --popover: lab(3% 0 0);
     --popover-foreground: lab(98% 0 0);
-    --primary: lab(90% 0 0);
-    --primary-foreground: lab(10% 0 0);
-    --secondary: lab(20% 0 0);
+    --primary: lab(98% 0 0);
+    --primary-foreground: lab(0% 0 0);
+    --secondary: lab(6% 0 0);
     --secondary-foreground: lab(98% 0 0);
-    --muted: lab(20% 0 0);
+    --muted: lab(6% 0 0);
     --muted-foreground: lab(60% 0 0);
-    --accent: lab(20% 0 0);
+    --accent: lab(10% 0 0);
     --accent-foreground: lab(98% 0 0);
-    --destructive: lab(50% 50 50);
-    --border: lab(25% 0 0);
-    --input: lab(25% 0 0);
-    --ring: lab(60% 0 0);
-    --chart-1: lab(36.9089% 35.0961 -85.6872);
-    --chart-2: lab(66.9756% -58.27 19.5419);
-    --chart-3: lab(72.7183% 31.8672 97.9407);
-    --chart-4: lab(52.0183% 66.11 -78.2316);
-    --chart-5: lab(56.101% 79.4328 31.4532);
-    --sidebar: lab(10% 0 0);
-    --sidebar-foreground: lab(98% 0 0);
-    --sidebar-primary: lab(90% 0 0);
-    --sidebar-primary-foreground: lab(10% 0 0);
-    --sidebar-accent: lab(20% 0 0);
-    --sidebar-accent-foreground: lab(98% 0 0);
-    --sidebar-border: lab(25% 0 0);
-    --sidebar-ring: lab(60% 0 0);
+    --destructive: lab(20% 40 30);
+    --border: lab(12% 0 0);
+    --input: lab(12% 0 0);
+    --ring: lab(20% 0 0);
   }
-}
-
-.dark {
-  --background: #121212;
-  --foreground: #fafafa;
-  --card: #161616;
-  --card-foreground: #fafafa;
-  --popover: #161616;
-  --popover-foreground: #fafafa;
-  --primary: #e5e5e5;
-  --primary-foreground: #171717;
-  --secondary: #262626;
-  --secondary-foreground: #fafafa;
-  --muted: #262626;
-  --muted-foreground: #a1a1a1;
-  --accent: #262626;
-  --accent-foreground: #fafafa;
-  --destructive: #ff6568;
-  --border: #ffffff1a;
-  --input: #ffffff26;
-  --ring: #737373;
-  --chart-1: #1447e6;
-  --chart-2: #00bb7f;
-  --chart-3: #f99c00;
-  --chart-4: #ac4bff;
-  --chart-5: #ff2357;
-  --sidebar: #171717;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #1447e6;
-  --sidebar-primary-foreground: #fafafa;
-  --sidebar-accent: #262626;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #ffffff1a;
-  --sidebar-ring: #737373;
-  --card-background: rgba(22, 22, 22, 0.8);
-  --card-border: rgba(169, 116, 88, 0.2);
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1a1;
-  --text-muted: #737373;
-
-  /* Status Colors */
-  --success: #10b981; /* Green */
-  --success-bg: #064e3b; /* Dark green background */
-  --success-text: #6ee7b7; /* Light green text */
-
-  /* Browser Colors */
-  --browser-red: #ef4444;
-  --browser-amber: #f59e0b;
-  --browser-green: #10b981;
-
-  /* Border Colors */
-  --border-light: #2A2A2A;
-  --border-dark: #1F1F1F;
-
-  /* Hover Colors */
-  --hover-bg: #1F1F1F;
-  --hover-border: #2A2A2A;
-
-  /* Gradients */
-  --gradient-primary: linear-gradient(145deg, #0B0B0B 0%, #161616 50%, #0B0B0B 100%);
-  --gradient-secondary: linear-gradient(145deg, #A97458 0%, #D4A574 100%);
-  --gradient-accent: linear-gradient(145deg, #161616 0%, #A97458 100%);
 }
 
 /* Custom theme variables for Tailwind CSS v4 */
@@ -251,12 +192,19 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-image: linear-gradient(to bottom, #d9d7f1 0%, #ffffff 100%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   position: relative;
   cursor: none;
   overflow-x: hidden;
+}
+
+/* Ensure Dark Mode overrides the background image */
+.dark body {
+  background-image: none;
+  background-color: var(--background);
 }
 
 body::before {
@@ -291,7 +239,8 @@ body::before {
 .site-vignette {
   position: fixed;
   inset: 0;
-  z-index: 10; /* above subtle noise but below UI like nav (nav uses z-50) */
+  z-index: 10;
+  /* above subtle noise but below UI like nav (nav uses z-50) */
   pointer-events: none;
   /* Hide vignette in light mode to keep header areas bright */
   display: none;
@@ -303,22 +252,24 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: 38vh; /* visible on the upper portion of pages */
-  z-index: 12; /* above vignette but well below nav (nav z-50) */
+  height: 38vh;
+  /* visible on the upper portion of pages */
+  z-index: 12;
+  /* above vignette but well below nav (nav z-50) */
   pointer-events: none;
   /* Show grid by default (will be theme-aware below) */
   display: block;
   /* keep the grid visually fixed at the top of the viewport */
   background-attachment: fixed;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
   will-change: transform, opacity;
 }
 
 /* Light theme: subtle dark grid lines */
 :root:not(.dark) .site-grid {
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0.9;
   mix-blend-mode: multiply;
@@ -327,8 +278,8 @@ body::before {
 /* Dark theme variant: use lighter grid strokes for visibility */
 .dark .site-grid {
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.10) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0.9;
   mix-blend-mode: screen;
@@ -337,7 +288,7 @@ body::before {
 /* Dark theme: slightly lighter overlay so content stays readable but still shows gradient */
 .dark .site-vignette {
   display: block;
-  background-image: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0) 70%);
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0) 70%);
   mix-blend-mode: overlay;
   opacity: 0.5;
 }
@@ -400,13 +351,23 @@ body::before {
 
 /* Marquee animations for SecretSauce component */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-marquee {
@@ -420,7 +381,8 @@ body::before {
 }
 
 /* Ensure marquee content preserves layout on smaller screens */
-.animate-marquee > *, .animate-marquee-reverse > * {
+.animate-marquee>*,
+.animate-marquee-reverse>* {
   flex: 0 0 auto;
 }
 
@@ -428,6 +390,7 @@ body::before {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -514,22 +477,43 @@ body::before {
 
 /* Animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0) }
-  50% { transform: translateY(-10px) }
+
+  0%,
+  100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-10px)
+  }
 }
 
 @keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px) }
-  100% { opacity: 1; transform: translateY(0) }
+  0% {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+  }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0 }
-  100% { opacity: 1 }
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 

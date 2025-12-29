@@ -15,6 +15,7 @@ interface Project {
   _id: string;
   title: string;
   description: string;
+  projectMarkdown?: string;
   slug: string;
   images?: { url: string; alt: string }[];
   technologies?: string[];
@@ -106,25 +107,25 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   return (
     <div className="min-h-screen bg-[var(--background)] relative overflow-hidden">
       {/* Foggy Background Effects + subtle grid texture */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-[color:var(--accent)/0.08] rounded-full blur-3xl"></div>
-          <div className="absolute top-1/4 right-0 w-80 h-80 bg-[color:var(--accent)/0.06] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-[color:var(--muted)/0.04] rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[color:var(--accent)/0.08] rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 right-0 w-80 h-80 bg-[color:var(--accent)/0.06] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-[color:var(--muted)/0.04] rounded-full blur-3xl"></div>
 
-          {/* Subtle repeating grid texture (CSS gradients) - visually similar to the supplied attachment */}
-          <div
-            aria-hidden
-            className="absolute inset-0 z-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
-              /* make this page-local grid very subtle so it doesn't double up with the global .site-grid */
-              backgroundSize: '24px 24px',
-              opacity: 0.02,
-              mixBlendMode: 'overlay'
-            }}
-          />
-        </div>
+        {/* Subtle repeating grid texture (CSS gradients) - visually similar to the supplied attachment */}
+        <div
+          aria-hidden
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
+            /* make this page-local grid very subtle so it doesn't double up with the global .site-grid */
+            backgroundSize: '24px 24px',
+            opacity: 0.02,
+            mixBlendMode: 'overlay'
+          }}
+        />
+      </div>
       {/* Use shared Navbar (contains search) */}
       <Navbar />
 
@@ -134,17 +135,17 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
         <div className="relative mb-12 pt-6">
 
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-[var(--foreground)] mb-4">{project.title}</h1>
+            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-primary)' }}>{project.title}</h1>
             <p className="text-lg md:text-xl text-[var(--muted-foreground)] leading-relaxed max-w-2xl mx-auto mb-6 font-light">A focused case study exploring the architecture, design and technical choices behind {project.title}.</p>
 
-              <div className="flex flex-wrap justify-center gap-3 mb-6">
-                {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
-                  (project.technologies ?? project.tags ?? []).slice(0,6).map((t,i) => (
-                    <span key={i} className="px-3 py-1 bg-[var(--muted)] border border-[var(--border)] rounded-md text-xs font-medium text-[var(--foreground)] uppercase">{t}</span>
-                  ))
-                ) : null}
-                <span className="px-3 py-1 text-[var(--muted-foreground)] text-xs">{new Date(project.createdAt).toLocaleDateString()}</span>
-              </div>
+            <div className="flex flex-wrap justify-center gap-3 mb-6">
+              {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
+                (project.technologies ?? project.tags ?? []).slice(0, 6).map((t, i) => (
+                  <span key={i} className="px-3 py-1 bg-[var(--muted)] border border-[var(--border)] rounded-md text-xs font-medium text-[var(--foreground)] uppercase">{t}</span>
+                ))
+              ) : null}
+              <span className="px-3 py-1 text-[var(--muted-foreground)] text-xs">{new Date(project.createdAt).toLocaleDateString()}</span>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-4">
               {project.liveUrl && (
@@ -153,9 +154,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <ExternalLink className="w-4 h-4 text-[var(--foreground)]" />
                   </span>
                   <span
-                    className={`px-5 py-3 font-medium text-sm flex items-center gap-2 transition-all group-hover:brightness-95 ${
-                      theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'
-                    }`}
+                    className={`px-5 py-3 font-medium text-sm flex items-center gap-2 transition-all group-hover:brightness-95 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'
+                      }`}
                   >
                     Check it out
                     <ArrowUpRight className="w-4 h-4" />
@@ -209,9 +209,9 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               </div>
             )}
 
-            {/* Rich markdown article */}
+            {/* Rich markdown article (prefer rich `projectMarkdown` when available) */}
             <article className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:font-light prose-p:leading-7 prose-a:text-[var(--accent)] prose-strong:font-semibold prose-img:rounded-xl prose-img:shadow-lg">
-              <ReactMarkdown>{project.description}</ReactMarkdown>
+              <ReactMarkdown>{project.projectMarkdown && project.projectMarkdown.trim() ? project.projectMarkdown : project.description}</ReactMarkdown>
             </article>
 
             {/* Tags + Action Row (below article) */}

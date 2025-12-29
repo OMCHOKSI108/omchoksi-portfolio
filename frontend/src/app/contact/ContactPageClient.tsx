@@ -85,7 +85,7 @@ export default function ContactPageClient() {
         <div className="text-center mb-8">
           <p className="text-xs font-semibold text-[var(--muted-foreground)] uppercase">Contact</p>
           <h1 className="text-4xl sm:text-6xl font-extrabold mt-3">
-            Let's Get <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--primary)]/80">In Touch</span>
+            Let's Get <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>In Touch</span>
           </h1>
           <p className="mt-3 text-[var(--muted-foreground)]">Pick a time on my calendar to book a call, or send a quick message.</p>
         </div>
@@ -164,13 +164,14 @@ export default function ContactPageClient() {
                     })()}
 
                     <div className="mt-4 flex items-center gap-3">
-                            <button
-                              onClick={confirmBooking}
-                              disabled={confirmed}
-                              className={`px-4 py-2 rounded-full ${!confirmed ? 'bg-[var(--foreground)] text-[var(--background)]' : 'bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed'}`}
-                            >
-                              {confirmed ? 'Confirmed' : `Confirm${selectedSlot ? ` — ${formatSlot(selectedSlot)}` : ''}`}
-                            </button>
+                      <button
+                        onClick={confirmBooking}
+                        disabled={confirmed}
+                        className={`px-6 py-2 rounded-full font-medium shadow-lg transition-all ${!confirmed ? 'text-white hover:shadow-purple-500/20 active:scale-95' : 'bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed'}`}
+                        style={!confirmed ? { backgroundImage: 'var(--gradient-accent)' } : undefined}
+                      >
+                        {confirmed ? 'Confirmed' : `Confirm${selectedSlot ? ` — ${formatSlot(selectedSlot)}` : ''}`}
+                      </button>
 
                       <button
                         onClick={() => { setSelectedSlot(null); setSelectedDate(tomorrow); }}
@@ -200,7 +201,7 @@ export default function ContactPageClient() {
               <p className="text-lg text-[var(--muted-foreground)] mb-4">No booking URL configured.</p>
               <p className="mb-6">Set <strong>NEXT_PUBLIC_BOOKING_URL</strong> in your frontend environment to embed your scheduler (Calendly, YouCanBook.me, etc.).</p>
               <div className="flex items-center justify-center gap-4">
-                <a href="mailto:hello@omchoksi.dev" className="px-6 py-3 rounded-full bg-[var(--foreground)] text-[var(--background)]">Email me</a>
+                <a href="mailto:hello@omchoksi.dev" className="px-6 py-3 rounded-full text-white font-medium shadow-lg hover:shadow-purple-500/20 transition-all active:scale-95" style={{ backgroundImage: 'var(--gradient-accent)' }}>Email me</a>
                 <Link href="/" className="px-6 py-3 rounded-full border border-[var(--border)]">Go back</Link>
               </div>
             </div>
@@ -209,7 +210,7 @@ export default function ContactPageClient() {
           <div className="rounded-xl p-8 border border-[var(--border)] bg-[var(--card)] text-center">
             <p className="text-lg text-[var(--muted-foreground)] mb-4">Choose an action</p>
             <div className="flex items-center justify-center gap-4">
-              <Link href="/contact?book-call" className="px-6 py-3 rounded-full bg-[var(--foreground)] text-[var(--background)]">Book a Call</Link>
+              <Link href="/contact?book-call" className="px-6 py-3 rounded-full text-white font-medium shadow-lg hover:shadow-purple-500/20 transition-all active:scale-95" style={{ backgroundImage: 'var(--gradient-accent)' }}>Book a Call</Link>
               <a href="mailto:hello@omchoksi.dev" className="px-6 py-3 rounded-full border border-[var(--border)]">Send Message</a>
             </div>
           </div>

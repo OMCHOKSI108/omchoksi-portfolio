@@ -21,7 +21,7 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-4xl font-bold mb-16"
         >
-          The <span className="font-serif-italic font-bold text-[var(--primary)]">Secret Sauce</span>
+          The <span className="font-serif-italic font-bold text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>Secret Sauce</span>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">

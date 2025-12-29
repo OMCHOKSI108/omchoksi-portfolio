@@ -16,62 +16,74 @@ export default function Hero() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.1 }}
-          className="mb-8"
+          transition={{ duration: 0.5 }}
+          className="mb-8 flex justify-center"
         >
-          <span className="inline-block bg-[var(--primary)]/10 text-[var(--primary)] px-4 py-2 rounded-full text-sm font-medium mb-6">
-            Upcoming: NextNode is launching soon!
+          <span className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer">
+            <span className="bg-white text-blue-600 text-[10px] font-bold px-1.5 py-0.5 rounded-sm">Upcoming</span>
+            <span>NextNode is launching soon!</span>
+            <ArrowRight size={12} />
           </span>
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-[var(--foreground)]">
-            I help founders turn ideas into seamless <span className="font-serif-italic text-[var(--primary)]">digital experiences</span>
-          </h1>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.1, delay: 0.05 }}
-          className="text-center mb-12"
-        >
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <h2 className="text-2xl font-semibold text-[var(--foreground)]">Hello, I'm Om Choksi</h2>
-          <span className="inline-block bg-[var(--primary)]/10 text-[var(--primary)] px-4 py-2 rounded-full text-sm font-medium mb-6">
-            Available
-          </span>
-          </div>
-          <p className="text-lg text-[var(--muted-foreground)]">A Full Stack Developer</p>
-          <div className="flex items-center justify-center gap-2 mt-2 text-sm text-[var(--muted-foreground)]">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Surat, India
-          </div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-12"
+        >
+          <h1 className="text-4xl md:text-6xl font-serif text-[var(--foreground)] leading-[1.1] md:leading-[1.2] mb-6 tracking-tight">
+            I help founders turn ideas into <br className="hidden md:block" />
+            seamless <span className="italic font-light text-[var(--foreground)]">digital experiences</span>
+          </h1>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-center mb-16"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 text-base md:text-lg text-[var(--muted-foreground)]">
+            <span>Hello, I'm Om Choksi</span>
+            <div className="relative w-12 h-8 mx-2">
+              {/* Stacked Avatars Mockup */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-[var(--background)] bg-gray-200 z-10 overflow-hidden">
+                <img src="https://ui-avatars.com/api/?name=Om+Choksi&background=random" alt="Om" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute left-6 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-[var(--background)] bg-blue-100 z-0 flex items-center justify-center text-[10px]">
+                💻
+              </div>
+            </div>
+            <span>a Full Stack Developer</span>
+          </div>
+
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-quick-connect'))}
-            aria-label="Open contact modal"
-            className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary)] text-[var(--primary-foreground)] px-8 py-4 rounded-full font-medium hover:from-[var(--primary)]/80 hover:to-[var(--primary)]/80 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 hover:shadow-lg"
+            className="group relative inline-flex items-center gap-4 pl-8 pr-2 py-2 rounded-full bg-[var(--foreground)]/5 border border-[var(--foreground)]/10 hover:bg-[var(--foreground)]/10 text-[var(--foreground)] font-medium transition-all duration-300"
           >
-            Let's Connect
-            <ArrowRight size={20} />
+            <span className="text-lg">Let's Connect</span>
+            <span className="w-10 h-10 bg-[var(--foreground)] text-[var(--background)] rounded-full flex items-center justify-center transition-transform group-hover:rotate-[-45deg]">
+              <ArrowRight size={18} />
+            </span>
           </button>
+
           <button
             onClick={copyEmail}
-            className="border border-[var(--border)] px-8 py-4 rounded-full font-medium hover:bg-[var(--muted)] transition-colors flex items-center justify-center gap-2 text-[var(--foreground)]"
+            className="flex items-center gap-3 text-[var(--foreground)] font-medium hover:opacity-70 transition-opacity"
           >
             <Mail size={20} />
             omchoksi108@gmail.com
-            <Copy size={16} />
           </button>
         </motion.div>
       </div>

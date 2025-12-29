@@ -146,6 +146,35 @@ async function main() {
     process.exit(1);
   }
 
+  // --- CLEANUP: remove duplicate titles already present in DB ---
+  try {
+    const dupGroups = await Project.aggregate([
+      { $group: { _id: { $toLower: '$title' }, ids: { $push: '$_id' }, count: { $sum: 1 } } },
+      { $match: { count: { $gt: 1 } } }
+    ]);
+    for (const g of dupGroups) {
+      // keep the first id, remove the rest
+      const ids = g.ids || [];
+      if (ids.length <= 1) continue;
+      const keep = ids[0];
+      const remove = ids.slice(1);
+      const res = await Project.deleteMany({ _id: { $in: remove } });
+      console.log(`Removed ${res.deletedCount || 0} duplicate(s) for title group: ${g._id}`);
+    }
+  } catch (err) {
+    console.error('Error cleaning duplicate titles in DB:', err.message || err);
+  }
+
+  // Deduplicate parsed projects (by title) to avoid seeding duplicates from the source file
+  const seen = new Set();
+  projects = projects.filter((p) => {
+    const t = (p.title || '').toString().trim().toLowerCase();
+    if (!t) return false;
+    if (seen.has(t)) return false;
+    seen.add(t);
+    return true;
+  });
+
   for (const p of projects) {
     const slug = (p.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || `project-${Date.now()}`;
     const images = p.images && Array.isArray(p.images) && p.images.length ? p.images : [{ url: p.imageUrl || DEFAULT_IMAGE, caption: 'Default', showOnProject: true }];
