@@ -24,12 +24,23 @@ interface Certification {
   featured: boolean;
 }
 
-// Helper to try and get a JPG thumbnail from a PDF URL (Cloudinary specific)
+// Helper to get a high-quality JPG thumbnail from a PDF URL (Cloudinary specific)
 const getPdfThumbnail = (url: string) => {
   if (!url) return null;
-  // If it's a Cloudinary URL and ends with .pdf, replace with .jpg to get a thumbnail
+  // If it's a Cloudinary URL and ends with .pdf, convert to high-quality JPG thumbnail
   if (url.includes('cloudinary.com') && url.toLowerCase().endsWith('.pdf')) {
-    return url.replace(/\.pdf$/i, '.jpg');
+    // Replace .pdf with .jpg and add quality/transformation parameters
+    // Format: /upload/q_auto:best,f_jpg,pg_1,w_800,dpr_2.0/...
+    const baseUrl = url.replace(/\.pdf$/i, '.jpg');
+
+    // Insert transformation parameters before the version or filename
+    // Cloudinary URL structure: .../upload/v123456/folder/file.pdf
+    const parts = baseUrl.split('/upload/');
+    if (parts.length === 2) {
+      return `${parts[0]}/upload/q_auto:best,f_jpg,pg_1,w_800,dpr_2.0,e_sharpen:100,e_vibrance:30,e_contrast:20/${parts[1]}`;
+    }
+
+    return baseUrl;
   }
   return null;
 };

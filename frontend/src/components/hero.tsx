@@ -29,8 +29,8 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
-      {/* Theme-Aware Background */}
-      <div className={`absolute inset-0 ${isDark ? 'bg-[#0a0a0f]' : 'bg-white'}`}>
+      {/* Theme-Aware Background with Gradient */}
+      <div className={`absolute inset-0 ${isDark ? 'bg-[#0a0a0f]' : 'bg-gradient-to-br from-white via-purple-50/30 to-blue-50/40'}`}>
         {/* Subtle Stars (only in dark mode) */}
         {isDark && stars.map((star, i) => (
           <div
@@ -45,6 +45,14 @@ export default function Hero() {
             }}
           />
         ))}
+
+        {/* Soft Gradient Orbs for Light Mode */}
+        {!isDark && (
+          <>
+            <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-purple-200/40 to-blue-200/40 rounded-full blur-3xl opacity-60" />
+            <div className="absolute bottom-40 left-20 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-purple-200/30 rounded-full blur-3xl opacity-50" />
+          </>
+        )}
 
         {/* Perfect Glowing Horizon - Planet Edge Effect */}
         <div className="absolute bottom-0 left-0 right-0 h-[50%] z-0 pointer-events-none">

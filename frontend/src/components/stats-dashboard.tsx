@@ -517,11 +517,21 @@ export default function StatsDashboard() {
                         <div className="w-full space-y-4 text-left text-sm text-[var(--muted-foreground)]">
                             <div className="flex items-center gap-3">
                                 <GraduationCap className="w-4 h-4" />
-                                <span>Charotar University</span>
+                                <div className="flex flex-col">
+                                    <span className="font-semibold text-[var(--foreground)]">CSPIT, CHAROTAR University</span>
+                                    <span className="text-xs">B.Tech in AI & ML • 6th Semester</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <Award className="w-4 h-4" />
+                                <div className="flex flex-col">
+                                    <span className="font-semibold text-[var(--foreground)]">CGPA: 8.74/10</span>
+                                    <span className="text-xs">Current Academic Performance</span>
+                                </div>
                             </div>
                             <div className="flex items-center gap-3">
                                 <MapPin className="w-4 h-4" />
-                                <span>India</span>
+                                <span>Gujarat, India</span>
                             </div>
                         </div>
 

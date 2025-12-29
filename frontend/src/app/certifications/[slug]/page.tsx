@@ -119,15 +119,41 @@ export default function CertificationPage() {
               {/* PDF Embed */}
               {certification.pdf && (
                 <div className="mb-8 w-full bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="p-4 bg-[var(--muted)] border-b border-[var(--border)] flex items-center gap-2">
-                    <Award size={20} className="text-purple-500" />
-                    <span className="font-semibold text-sm">Certificate Preview</span>
+                  <div className="p-4 bg-[var(--muted)] border-b border-[var(--border)] flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Award size={20} className="text-purple-500" />
+                      <span className="font-semibold text-sm">Certificate Document</span>
+                    </div>
+                    <a
+                      href={certification.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors flex items-center gap-2"
+                    >
+                      <ExternalLink size={14} />
+                      Open in New Tab
+                    </a>
                   </div>
-                  <iframe
-                    src={`${certification.pdf}#view=FitH`}
+                  <object
+                    data={certification.pdf}
+                    type="application/pdf"
                     className="w-full h-[500px] md:h-[700px]"
-                    title="Certificate Preview"
-                  />
+                  >
+                    <div className="p-8 text-center">
+                      <p className="text-[var(--muted-foreground)] mb-4">
+                        Your browser doesn't support embedded PDFs.
+                      </p>
+                      <a
+                        href={certification.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        View Certificate PDF
+                      </a>
+                    </div>
+                  </object>
                 </div>
               )}
 

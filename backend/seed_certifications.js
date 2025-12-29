@@ -1,20 +1,33 @@
 /*
   Seed script for certifications.
   Reads `../docs/certifications.txt` and updates the database.
+  Uploads corresponding PDFs from `../docs/certificate/` to Cloudinary.
   
-  Usage: set MONGODB_URI in .env (or .env.local) then run:
+  Usage: set MONGODB_URI and CLOUDINARY_URL in .env then run:
     node seed_certifications.js
 */
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables from .env
+const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 
 async function main() {
     const uri = process.env.MONGODB_URI;
     if (!uri) {
         console.error('Please set MONGODB_URI in environment (.env file)');
         process.exit(1);
+    }
+
+    // Configure Cloudinary explicitly
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    });
+
+    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+        console.warn('Warning: Cloudinary credentials missing in .env. File uploads may fail.');
     }
 
     try {
@@ -33,6 +46,7 @@ async function main() {
         tags: [{ type: String, index: true }],
         link: { type: String },
         image: { type: String },
+        pdf: { type: String }, // specific field for PDF URL
         issuer: { type: String, required: true },
         issueDate: { type: Date, required: true },
         expiryDate: { type: Date },
@@ -46,21 +60,12 @@ async function main() {
 
     const Certification = mongoose.models.Certification || mongoose.model('Certification', CertificationSchema);
 
-    // Path to the certifications text file
-    // Assuming this script is in backend/ and the txt is in docs/ (sibling to backend root)
-    // workspace/backend/seed_certifications.js -> workspace/docs/certifications.txt 
-    // so path is ../docs/certifications.txt relative to backend/
-    // But wait, the user said `docs\certifications.txt` is in workspace root.
-    // And `backend` is in workspace root.
-    // So from `backend/seed_certifications.js`, it is `../docs/certifications.txt`.
-
-    // However, I should be careful about where the script is run from. 
-    // If run from backend dir, `../docs` is correct.
+    // Paths
     const docsPath = path.join(__dirname, '..', 'docs', 'certifications.txt');
+    const pdfDir = path.join(__dirname, '..', 'docs', 'certificate');
 
     if (!fs.existsSync(docsPath)) {
         console.error(`File not found: ${docsPath}`);
-        // Try absolute path if needed, but let's stick to relative
         process.exit(1);
     }
 
@@ -70,6 +75,36 @@ async function main() {
     console.log(`Parsed ${certs.length} certifications.`);
 
     for (const cert of certs) {
+        // Handle PDF Upload
+        if (cert.localFileName) {
+            const pdfPath = path.join(pdfDir, cert.localFileName);
+            if (fs.existsSync(pdfPath)) {
+                try {
+                    console.log(`Uploading ${cert.localFileName}...`);
+                    // Upload to Cloudinary
+                    const result = await cloudinary.uploader.upload(pdfPath, {
+                        folder: 'certifications',
+                        resource_type: 'auto', // Important for PDFs
+                        use_filename: true,
+                        unique_filename: false,
+                        overwrite: true
+                    });
+
+                    if (result && result.secure_url) {
+                        cert.pdf = result.secure_url;
+                        cert.image = result.secure_url; // Use PDF as image (frontend handles thumbnailing)
+                        console.log(`  -> Uploaded: ${result.secure_url}`);
+                    }
+                } catch (uploadErr) {
+                    console.error(`  -> Failed to upload PDF for ${cert.title}:`, uploadErr.message);
+                }
+            } else {
+                console.warn(`  -> PDF file not found locally: ${pdfPath}`);
+            }
+            // Cleanup temp field
+            delete cert.localFileName;
+        }
+
         try {
             await Certification.findOneAndUpdate(
                 { slug: cert.slug },
@@ -91,29 +126,20 @@ function parseCertifications(text) {
     const certs = [];
     let current = null;
 
-    // Helper to save current cert
     const pushCurrent = () => {
         if (current && current.title) {
-            // Post-process dates
-            if (current._issueDateString) {
-                current.issueDate = parseDate(current._issueDateString);
-            }
-            // Default issue date if missing? Or error? Schema says required.
-            if (!current.issueDate) current.issueDate = new Date(); // Fallback
+            if (current._issueDateString) current.issueDate = parseDate(current._issueDateString);
+            if (!current.issueDate) current.issueDate = new Date();
 
             if (current._expiryDateString && current._expiryDateString.toLowerCase() !== 'n/a') {
                 current.expiryDate = parseDate(current._expiryDateString);
             }
 
-            // Clean link
             if (current.link === 'N/A') current.link = undefined;
-            // Clean Credential ID
             if (current.credentialId === 'N/A') current.credentialId = undefined;
 
-            // Default status
             current.status = (current.active) ? 'published' : 'draft';
 
-            // Remove temp fields
             delete current._issueDateString;
             delete current._expiryDateString;
 
@@ -125,7 +151,6 @@ function parseCertifications(text) {
         line = line.trim();
         if (!line) continue;
 
-        // Start of new certificate
         if (/^CERTIFICATE \d+/i.test(line)) {
             pushCurrent();
             current = {
@@ -137,7 +162,9 @@ function parseCertifications(text) {
                 issuer: '',
                 active: true,
                 featured: false,
-                image: '', // Can be populated from File if needed, or left empty
+                image: '',
+                pdf: '',
+                localFileName: '',
                 _issueDateString: '',
                 _expiryDateString: ''
             };
@@ -146,28 +173,22 @@ function parseCertifications(text) {
 
         if (!current) continue;
 
-        // Parse fields
         const titleMatch = line.match(/^Title:\s*(.*)$/i);
         if (titleMatch) { current.title = titleMatch[1].trim(); continue; }
 
         const slugMatch = line.match(/^Slug:\s*(.*)$/i);
         if (slugMatch) { current.slug = slugMatch[1].trim(); continue; }
 
-        const descMatch = line.match(/^Description:\s*(.*)$/i); // Sometimes description is on next lines
+        const descMatch = line.match(/^Description:\s*(.*)$/i);
         if (descMatch) {
-            // If there is text immediately after Description:, use it
-            // If empty, subsequent lines might be description
             if (descMatch[1].trim()) {
                 current.description = descMatch[1].trim();
             }
             continue;
         }
 
-        // Check if line is part of description (heuristics: no key prefix)
-        // Keys usually end with :
         const isKey = /^[a-zA-Z\s]+:/.test(line);
         if (!isKey && current.description !== undefined) {
-            // Must be continuation of description
             current.description = (current.description ? current.description + ' ' : '') + line;
             continue;
         }
@@ -199,7 +220,8 @@ function parseCertifications(text) {
         const featuredMatch = line.match(/^Featured:\s*(.*)$/i);
         if (featuredMatch) { current.featured = featuredMatch[1].trim().toLowerCase() === 'yes'; continue; }
 
-        // Ignoring "File" for now as it maps to PDF filename, unless we want to use it as image placeholder
+        const fileMatch = line.match(/^File:\s*(.*)$/i);
+        if (fileMatch) { current.localFileName = fileMatch[1].trim(); continue; }
     }
 
     pushCurrent();
@@ -207,10 +229,8 @@ function parseCertifications(text) {
 }
 
 function parseDate(dateStr) {
-    // DD-MM-YYYY
     const parts = dateStr.split('-');
     if (parts.length === 3) {
-        // new Date(year, monthIndex, day)
         return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
     }
     return null;

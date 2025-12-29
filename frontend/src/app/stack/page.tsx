@@ -167,6 +167,42 @@ export default function Stack() {
             className="pointer-events-none absolute -left-40 -top-16 w-96 h-96 rounded-full bg-gradient-to-tr from-purple-400 to-pink-400 blur-3xl opacity-30 mix-blend-screen"
           />
 
+          {/* Calligraphic Decorative Elements */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03] dark:opacity-[0.05]" aria-hidden>
+            {/* Top Right Flourish */}
+            <svg className="absolute -top-20 -right-20 w-96 h-96 text-[var(--foreground)]" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 100 Q 50 20, 100 50 T 180 100 Q 150 150, 100 120 T 20 100" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.6" />
+              <path d="M40 80 Q 70 40, 120 70 Q 150 90, 160 120" stroke="currentColor" strokeWidth="0.3" fill="none" opacity="0.4" />
+              <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.2" fill="none" opacity="0.3" />
+            </svg>
+
+            {/* Bottom Left Calligraphy */}
+            <svg className="absolute -bottom-32 -left-32 w-[500px] h-[500px] text-[var(--foreground)] rotate-12" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 150 Q 100 50, 150 100 Q 200 150, 250 100 Q 200 200, 150 150 Q 100 100, 50 150" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.5" />
+              <path d="M80 120 Q 120 80, 160 120 Q 200 160, 220 140" stroke="currentColor" strokeWidth="0.4" fill="none" opacity="0.4" />
+              <path d="M100 180 C 120 160, 140 200, 160 180 S 200 160, 220 180" stroke="currentColor" strokeWidth="0.3" fill="none" opacity="0.3" />
+            </svg>
+
+            {/* Center Ornamental Pattern */}
+            <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] text-[var(--foreground)]" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M200 50 Q 250 100, 200 150 Q 150 100, 200 50 M200 150 Q 250 200, 200 250 Q 150 200, 200 150 M200 250 Q 250 300, 200 350 Q 150 300, 200 250" stroke="currentColor" strokeWidth="0.4" fill="none" opacity="0.25" />
+              <circle cx="200" cy="200" r="120" stroke="currentColor" strokeWidth="0.3" fill="none" opacity="0.2" />
+              <circle cx="200" cy="200" r="80" stroke="currentColor" strokeWidth="0.2" fill="none" opacity="0.15" />
+            </svg>
+
+            {/* Top Left Script */}
+            <svg className="absolute top-10 left-10 w-64 h-64 text-[var(--foreground)] -rotate-12" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 75 Q 40 20, 75 40 Q 110 60, 130 40 Q 110 80, 75 60 Q 40 40, 20 75" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.4" />
+              <path d="M30 90 C 50 70, 70 110, 90 90 S 110 70, 120 90" stroke="currentColor" strokeWidth="0.3" fill="none" opacity="0.3" />
+            </svg>
+
+            {/* Bottom Right Accent */}
+            <svg className="absolute bottom-20 right-20 w-80 h-80 text-[var(--foreground)] rotate-45" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 20 Q 150 50, 180 100 Q 150 150, 100 180 Q 50 150, 20 100 Q 50 50, 100 20" stroke="currentColor" strokeWidth="0.4" fill="none" opacity="0.35" />
+              <path d="M100 60 Q 130 80, 140 100 Q 130 120, 100 140 Q 70 120, 60 100 Q 70 80, 100 60" stroke="currentColor" strokeWidth="0.3" fill="none" opacity="0.25" />
+            </svg>
+          </div>
+
           {/* Tech Stack Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(TECH_STACK).map(([category, technologies], categoryIndex) => (
