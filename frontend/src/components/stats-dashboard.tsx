@@ -503,7 +503,7 @@ export default function StatsDashboard() {
 
                         {/* Name */}
                         <h2 className="text-xl font-bold text-[var(--foreground)] uppercase tracking-wide">OM CHOKSI</h2>
-                        <p className="text-sm text-[var(--muted-foreground)] mb-6">Full Stack Developer</p>
+                        <p className="text-sm text-[var(--muted-foreground)] mb-6">AI Practitioner and Data Science Enthusiastic</p>
 
                         <button
                             onClick={() => window.open('https://linkedin.com/in/omchoksi', '_blank')}

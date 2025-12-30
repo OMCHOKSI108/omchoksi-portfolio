@@ -10,6 +10,8 @@ import { useTheme } from '@/components/theme-provider';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiPython, SiMongodb, SiOpenai, SiNodedotjs, SiPostgresql } from 'react-icons/si';
 
 interface Project {
   _id: string;
@@ -25,6 +27,31 @@ interface Project {
   featured: boolean;
   createdAt: string;
 }
+
+type TechTagConfig = {
+  icon?: React.ComponentType<{ size?: number }>;
+  label: string;
+  color?: string;
+};
+
+const getTechTagConfig = (tag: string): TechTagConfig => {
+  const lower = tag.toLowerCase();
+
+  if (lower.includes('next')) return { icon: SiNextdotjs, label: 'Next.js', color: '#ffffff' };
+  if (lower.includes('react')) return { icon: SiReact, label: 'React', color: '#61DAFB' };
+  if (lower.includes('typescript') || lower === 'ts') return { icon: SiTypescript, label: 'TypeScript', color: '#3178C6' };
+  if (lower.includes('tailwind')) return { icon: SiTailwindcss, label: 'Tailwind CSS', color: '#38BDF8' };
+  if (lower.includes('python')) return { icon: SiPython, label: 'Python', color: '#FFD43B' };
+  if (lower.includes('mongo')) return { icon: SiMongodb, label: 'MongoDB', color: '#10A64A' };
+  if (lower.includes('openai') || lower.includes('gpt') || lower.includes('llm') || lower.includes('ai')) return { icon: SiOpenai, label: 'AI', color: '#10A37F' };
+  if (lower.includes('node')) return { icon: SiNodedotjs, label: 'Node.js', color: '#3C873A' };
+  if (lower.includes('postgres') || lower.includes('postgresql')) return { icon: SiPostgresql, label: 'Postgres', color: '#4169E1' };
+
+  return {
+    label: tag,
+    color: '#A1A1AA',
+  };
+};
 
 async function getProject(slug: string): Promise<Project | null> {
   try {
@@ -152,11 +179,22 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   <h3 className="font-serif italic text-xl text-[var(--foreground)] mb-4">Technologies</h3>
                   <div className="flex flex-wrap gap-2">
                     {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
-                      (project.technologies ?? project.tags ?? []).map((t, i) => (
-                        <span key={i} className="text-xs font-mono text-[var(--muted-foreground)] block border-l-2 border-[var(--border)] pl-2">
-                          {t}
-                        </span>
-                      ))
+                      (project.technologies ?? project.tags ?? []).map((t, i) => {
+                        const { icon: Icon, label, color } = getTechTagConfig(t);
+                        return (
+                          <span
+                            key={i}
+                            className="inline-flex items-center gap-2 rounded-full border border-zinc-200/90 bg-zinc-50 px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-900 shadow-[0_1px_0_rgba(15,23,42,0.05)] dark:border-zinc-700/80 dark:bg-zinc-900 dark:text-zinc-50"
+                          >
+                            {Icon && (
+                              <span className="flex h-5 w-5 items-center justify-center rounded-[0.45rem] border border-zinc-300 bg-zinc-900 text-[10px] dark:border-zinc-600 dark:bg-zinc-950">
+                                <Icon size={11} style={{ color: color || '#A1A1AA' }} />
+                              </span>
+                            )}
+                            <span>{label}</span>
+                          </span>
+                        );
+                      })
                     ) : (
                       <span className="text-sm text-[var(--muted-foreground)]">No tags</span>
                     )}
@@ -204,9 +242,22 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           {/* Mobile Actions (Visible only on small screens) */}
           <div className="lg:hidden order-2 space-y-4 mb-8">
             <div className="flex flex-wrap gap-2 mb-4">
-              {((project.technologies ?? project.tags ?? []).map((t, i) => (
-                <span key={i} className="px-2 py-1 bg-[var(--muted)] rounded text-xs text-[var(--muted-foreground)]">{t}</span>
-              )))}
+              {(project.technologies ?? project.tags ?? []).map((t, i) => {
+                const { icon: Icon, label, color } = getTechTagConfig(t);
+                return (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-200/90 bg-zinc-50 px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-900 shadow-[0_1px_0_rgba(15,23,42,0.05)] dark:border-zinc-700/80 dark:bg-zinc-900 dark:text-zinc-50"
+                  >
+                    {Icon && (
+                      <span className="flex h-5 w-5 items-center justify-center rounded-[0.45rem] border border-zinc-300 bg-zinc-900 text-[10px] dark:border-zinc-600 dark:bg-zinc-950">
+                        <Icon size={11} style={{ color: color || '#A1A1AA' }} />
+                      </span>
+                    )}
+                    <span>{label}</span>
+                  </span>
+                );
+              })}
             </div>
             <div className="flex gap-3">
               {project.liveUrl && (
@@ -227,11 +278,17 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           {/* RIGHT CONTENT: Title, Carousel, Article */}
           <div className="order-1 lg:order-2 space-y-12">
 
-            {/* Title */}
+            {/* Title & high-level description */}
             <div className="space-y-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-[var(--foreground)] leading-[1.1]">
                 {project.title}
               </h1>
+
+              {project.description && (
+                <p className="max-w-3xl text-base md:text-lg leading-7 md:leading-8 text-[var(--muted-foreground)]">
+                  {project.description}
+                </p>
+              )}
             </div>
 
             {/* Image Carousel */}
@@ -284,16 +341,65 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             ) : null}
 
             {/* Markdown Content */}
-            <article className="prose prose-lg dark:prose-invert max-w-none 
-              prose-headings:font-serif prose-headings:font-medium prose-headings:text-[var(--foreground)] 
-              prose-p:text-[var(--muted-foreground)] prose-p:leading-8 prose-p:font-light
-              prose-li:text-[var(--muted-foreground)] 
-              prose-strong:text-[var(--foreground)] prose-strong:font-semibold
-              first-letter:text-5xl first-letter:font-serif first-letter:text-[var(--foreground)] first-letter:mr-3 first-letter:float-left">
-              <ReactMarkdown>
-                {((project.projectMarkdown && project.projectMarkdown.length > (project.description?.length || 0)) ? project.projectMarkdown : project.description).replace(/\\n/g, '\n')}
-              </ReactMarkdown>
-            </article>
+            <section className="relative mt-12">
+              {/* Calligraphy-style background */}
+              <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-[0.05] dark:opacity-[0.12]">
+                <div className="absolute -top-10 -left-4 text-[9rem] md:text-[12rem] font-serif italic tracking-tight text-[var(--foreground)] select-none">
+                  A
+                </div>
+                <div className="absolute bottom-[-4rem] right-0 text-[7rem] md:text-[10rem] font-serif italic tracking-tight text-[var(--foreground)] select-none rotate-6">
+                  B
+                </div>
+              </div>
+
+              <article className="relative rounded-3xl border border-[var(--border)] bg-[var(--card)]/95 shadow-2xl px-6 py-8 md:px-10 md:py-10 text-[var(--foreground)]">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h1: ({ node, ...props }) => (
+                      <h1 className="mb-6 text-3xl md:text-4xl font-serif font-semibold tracking-tight" {...props} />
+                    ),
+                    h2: ({ node, ...props }) => (
+                      <h2 className="mt-8 mb-4 text-2xl md:text-3xl font-serif font-semibold tracking-tight" {...props} />
+                    ),
+                    h3: ({ node, ...props }) => (
+                      <h3 className="mt-6 mb-3 text-xl md:text-2xl font-serif font-semibold" {...props} />
+                    ),
+                    p: ({ node, ...props }) => (
+                      <p className="mb-4 text-[0.97rem] md:text-base leading-7 md:leading-8 text-[var(--muted-foreground)]" {...props} />
+                    ),
+                    ul: ({ node, ...props }) => (
+                      <ul className="mb-4 list-disc space-y-2 pl-6 text-[var(--muted-foreground)]" {...props} />
+                    ),
+                    ol: ({ node, ...props }) => (
+                      <ol className="mb-4 list-decimal space-y-2 pl-6 text-[var(--muted-foreground)]" {...props} />
+                    ),
+                    li: ({ node, ...props }) => (
+                      <li className="text-[0.97rem] md:text-base leading-7" {...props} />
+                    ),
+                    strong: ({ node, ...props }) => (
+                      <strong className="font-semibold text-[var(--foreground)]" {...props} />
+                    ),
+                    em: ({ node, ...props }) => (
+                      <em className="italic text-[var(--foreground)]" {...props} />
+                    ),
+                    code: ({ node, inline, ...props }) =>
+                      inline ? (
+                        <code className="rounded-md bg-[var(--muted)] px-1.5 py-0.5 text-[0.8rem]" {...props} />
+                      ) : (
+                        <code className="block rounded-2xl bg-black/90 text-white p-4 text-[0.8rem] overflow-x-auto" {...props} />
+                      ),
+                    blockquote: ({ node, ...props }) => (
+                      <blockquote className="mb-4 border-l-4 border-[var(--foreground)]/30 pl-4 italic text-[var(--muted-foreground)]" {...props} />
+                    ),
+                  }}
+                >
+                  {project.projectMarkdown && project.projectMarkdown.trim().length > 0
+                    ? project.projectMarkdown
+                    : project.description || ''}
+                </ReactMarkdown>
+              </article>
+            </section>
 
           </div>
         </div>

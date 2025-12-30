@@ -81,31 +81,30 @@ export default function SecretSauce() {
       </h2>
 
       {/* Centered Skills Grid - 4 Rows */}
-      <div className="flex justify-center -mt-4">
-        <div
-          className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 md:gap-3 max-w-6xl"
-          style={{
-            gap: `${4 + Math.abs(sectionProgress) * 16}px`,
-          }}
-        >
-          {techIcons.map((item, i) => (
-            <div
-              key={i}
-              className={`flex items-center justify-center p-3 rounded-2xl border transition-all duration-300 w-16 h-16 md:w-20 md:h-20 ${isDarkMode
-                  ? 'bg-[#111111] border-gray-800 hover:border-gray-500 hover:bg-[#1a1a1a] shadow-sm'
-                  : 'bg-white border-gray-200 hover:border-gray-400 shadow-sm hover:shadow-md'
-                }`}
-            >
-              <item.icon
-                size={32}
-                style={{
-                  color: isDarkMode ? item.darkColor || '#ffffff' : item.color,
-                }}
-                className={`transition-all duration-300 transform group-hover:scale-110 ${!isDarkMode ? 'opacity-90' : ''}`}
-              />
-            </div>
-          ))}
-        </div>
+      <div
+        className="grid grid-cols-6 md:grid-cols-9 lg:grid-cols-10 justify-items-center w-fit mx-auto px-4"
+        style={{
+          columnGap: `${Math.abs(Math.min(0, sectionProgress)) * 200}px`,
+          rowGap: "0px",
+        }}
+      >
+        {techIcons.map((item, i) => (
+          <div
+            key={i}
+            className={`flex items-center justify-center rounded-2xl border transition-all duration-300 w-16 h-16 md:w-[72px] md:h-[72px] ${isDarkMode
+              ? 'bg-[#111111] border-[#222] hover:border-[#333] hover:bg-[#161616]'
+              : 'bg-white border-zinc-200 hover:border-zinc-300 hover:shadow-sm'
+              }`}
+          >
+            <item.icon
+              size={32}
+              style={{
+                color: isDarkMode ? item.darkColor || '#ffffff' : item.color,
+              }}
+              className={`transition-all duration-300 transform group-hover:scale-110 ${!isDarkMode ? 'opacity-90' : ''}`}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );

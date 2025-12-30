@@ -90,9 +90,12 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
               </button>
 
-              {/* Book Call Card */}
+              {/* Book Call Card - Redirects to /contact */}
               <button
-                onClick={onBookCall}
+                onClick={() => {
+                  onClose();
+                  window.location.href = '/contact';
+                }}
                 className="group flex flex-col items-start p-4 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm hover:shadow-md transition-all text-left relative overflow-hidden"
               >
                 <div className="p-2 bg-[var(--primary)]/10 rounded-lg text-[var(--primary)] mb-3 group-hover:scale-110 transition-transform">
@@ -100,7 +103,7 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
                 </div>
                 <h4 className="font-bold text-[var(--foreground)] mb-1">Book a Call</h4>
                 <p className="text-xs font-semibold text-[var(--foreground)]/80 mb-1">Schedule a time slot</p>
-                <p className="text-[10px] text-[var(--muted-foreground)]">Book a call on my calendar</p>
+                <p className="text-[10px] text-[var(--muted-foreground)]">Opens calendar page</p>
 
                 {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />

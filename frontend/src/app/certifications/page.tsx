@@ -90,7 +90,62 @@ export default function CertificationsPage() {
     <main className="min-h-screen relative bg-[var(--background)]">
       <Navbar />
 
-      <div className="pt-24 px-6 max-w-7xl mx-auto pb-12">
+      {/* TECHNICAL BLUEPRINT BACKGROUND */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none flex items-center justify-center">
+        {/* 1. Large "certifications" Text layer - FITTED */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.05] dark:opacity-[0.08]">
+          <span
+            className="font-serif font-black tracking-tighter text-transparent lowercase leading-none"
+            style={{
+              fontSize: '12vw', // Adjusted for longer word
+              WebkitTextStroke: '1px var(--foreground)',
+              backgroundImage: 'repeating-linear-gradient(45deg, var(--foreground) 0, var(--foreground) 1px, transparent 0, transparent 50%)',
+              backgroundSize: '8px 8px',
+              WebkitBackgroundClip: 'text',
+              width: '100%',
+              textAlign: 'center',
+            }}
+          >
+            certifications
+          </span>
+        </div>
+
+        {/* 2. Engineering/Technical Lines Overlay */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.1] dark:opacity-[0.15]" aria-hidden="true">
+          <defs>
+            <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="var(--foreground)" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+
+          {/* Grid Pattern */}
+          <rect width="100%" height="100%" fill="url(#grid)" opacity="0.5" />
+
+          {/* Central Crosshair */}
+          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="var(--foreground)" strokeWidth="1" strokeDasharray="10 10" />
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="var(--foreground)" strokeWidth="1" strokeDasharray="10 10" />
+
+          {/* Concentric Circles (Technical Measures) */}
+          <circle cx="50%" cy="50%" r="15%" fill="none" stroke="var(--foreground)" strokeWidth="1" strokeDasharray="4 4" />
+          <circle cx="50%" cy="50%" r="30%" fill="none" stroke="var(--foreground)" strokeWidth="0.5" />
+          <circle cx="50%" cy="50%" r="45%" fill="none" stroke="var(--foreground)" strokeWidth="0.5" strokeDasharray="20 10" />
+
+          {/* Degree Markers */}
+          <text x="50%" y="20%" textAnchor="middle" fill="var(--foreground)" fontSize="12" fontFamily="monospace">90°</text>
+          <text x="80%" y="50%" textAnchor="middle" fill="var(--foreground)" fontSize="12" fontFamily="monospace">0°</text>
+          <text x="50%" y="80%" textAnchor="middle" fill="var(--foreground)" fontSize="12" fontFamily="monospace">270°</text>
+          <text x="20%" y="50%" textAnchor="middle" fill="var(--foreground)" fontSize="12" fontFamily="monospace">180°</text>
+
+          {/* Decorative Lines */}
+          <line x1="10%" y1="10%" x2="20%" y2="10%" stroke="var(--foreground)" strokeWidth="2" />
+          <text x="10%" y="9%" fill="var(--foreground)" fontSize="10" fontFamily="monospace">REF-01</text>
+
+          <line x1="80%" y1="90%" x2="90%" y2="90%" stroke="var(--foreground)" strokeWidth="2" />
+          <text x="80%" y="89%" fill="var(--foreground)" fontSize="10" fontFamily="monospace">SCALE 1:1</text>
+        </svg>
+      </div>
+
+      <div className="pt-24 px-6 max-w-7xl mx-auto pb-12 relative z-10">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-4">
             My <span className="font-serif-italic text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>Certifications</span>

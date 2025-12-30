@@ -80,8 +80,21 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-transparent transition-colors duration-300">
-      {/* Background Texture */}
+      {/* Background Texture with BLOG Text */}
       <div className="fixed inset-0 z-0">
+        {/* Large BLOG Text Background */}
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+          <div className="font-serif-display font-bold text-[var(--foreground)] opacity-[0.15] dark:opacity-[0.20] select-none"
+               style={{
+                 fontSize: '18vw',
+                 WebkitTextStroke: '3px var(--foreground)',
+                 WebkitTextFillColor: 'transparent',
+                 letterSpacing: '0.10em'
+               }}>
+            BLOG
+          </div>
+        </div>
+        
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none">
           <img
             src="/assets/cta.avif"
@@ -98,6 +111,20 @@ export default function Blog() {
 
         {/* MAIN CONTAINER */}
         <section className="relative w-full min-h-screen py-32 bg-[var(--background)] font-sans text-[var(--foreground)]">
+          {/* LEFT DECORATIVE PILLAR - TEXTURED WALL (SCROLLS WITH CONTENT) */}
+          <div className="absolute left-50 top-32 bottom-32 w-12 pointer-events-none select-none z-[5] hidden lg:block">
+            <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)' }}>
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 64 1000" preserveAspectRatio="none">
+                <defs>
+                  <pattern id="diagonalStripes" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+                    <line x1="0" y1="0" x2="0" y2="4" stroke="var(--foreground)" strokeWidth="1.5" className="opacity-25 dark:opacity-35" />
+                  </pattern>
+                </defs>
+                <rect x="0" y="0" width="64" height="1000" fill="url(#diagonalStripes)" className="opacity-50 dark:opacity-60" />
+              </svg>
+            </div>
+          </div>
+
           {/* Seamless blend gradient overlay */}
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[var(--background)]/10 to-[var(--muted)]/20 pointer-events-none z-10" />
 

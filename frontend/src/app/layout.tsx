@@ -20,7 +20,7 @@ const playfairDisplay = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Om Choksi - Portfolio",
-  description: "Full Stack Developer Portfolio",
+  description: "AI Practitioner and Data Science Enthusiastic Portfolio",
 };
 
 export default function RootLayout({

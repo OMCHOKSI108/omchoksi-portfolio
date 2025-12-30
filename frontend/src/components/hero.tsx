@@ -166,7 +166,7 @@ export default function Hero() {
                 💻
               </div>
             </div>
-            <span>a Full Stack Developer</span>
+            <span>a AI Practitioner and Data Science Enthusiastic</span>
           </div>
 
         </motion.div>

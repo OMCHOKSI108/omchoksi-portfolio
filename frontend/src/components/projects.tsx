@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiPython, SiMongodb, SiOpenai, SiNodedotjs, SiPostgresql } from "react-icons/si";
 
 // ... (interfaces ApiProject and Project remain same)
 interface ApiProject {
@@ -33,6 +34,32 @@ interface Project {
   githubUrl?: string;
   markdown?: string;
 }
+
+type TechTagConfig = {
+  icon?: React.ComponentType<{ size?: number }>;
+  label: string;
+  color?: string;
+};
+
+const getTechTagConfig = (tag: string): TechTagConfig => {
+  const lower = tag.toLowerCase();
+
+  if (lower.includes("next")) return { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" };
+  if (lower.includes("react")) return { icon: SiReact, label: "React", color: "#61DAFB" };
+  if (lower.includes("typescript") || lower === "ts") return { icon: SiTypescript, label: "TypeScript", color: "#3178C6" };
+  if (lower.includes("tailwind")) return { icon: SiTailwindcss, label: "Tailwind CSS", color: "#38BDF8" };
+  if (lower.includes("python")) return { icon: SiPython, label: "Python", color: "#FFD43B" };
+  if (lower.includes("mongo")) return { icon: SiMongodb, label: "MongoDB", color: "#10A64A" };
+  if (lower.includes("openai") || lower.includes("gpt") || lower.includes("llm") || lower.includes("ai")) return { icon: SiOpenai, label: "AI", color: "#10A37F" };
+  if (lower.includes("node")) return { icon: SiNodedotjs, label: "Node.js", color: "#3C873A" };
+  if (lower.includes("postgres") || lower.includes("postgresql")) return { icon: SiPostgresql, label: "Postgres", color: "#4169E1" };
+
+  // Generic tech/keyword with no specific brand icon – use a neutral label only
+  return {
+    label: tag,
+    color: "#A1A1AA",
+  };
+};
 
 const ProjectShowcase = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -134,27 +161,36 @@ const ProjectShowcase = () => {
         <div className="flex flex-col-reverse lg:flex-row gap-12 xl:gap-20 relative items-start">
 
           {/* LEFT COLUMN: SCROLLING IMAGES - Snap Scrolling Enabled */}
-          <div className="w-full lg:w-[48%] flex flex-col gap-[15vh] pb-[20vh] snap-y snap-mandatory">
+          <div className="w-full lg:w-[58%] flex flex-col gap-[15vh] pb-[20vh] snap-y snap-mandatory">
             {projects.map((project, index) => (
               <div
                 key={project.id}
                 ref={(el) => { if (el) imageRefs.current[index] = el; }} // Assign Ref
-                className={`snap-center group w-full aspect-[16/11] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-2xl transition-all duration-700 ease-out ${activeProjectIndex === index
+                className={`relative snap-center group w-full aspect-[16/11] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-2xl transition-all duration-700 ease-out ${activeProjectIndex === index
                   ? 'opacity-100 scale-100 ring-4 ring-[var(--foreground)]/10 shadow-[var(--foreground)]/20'
                   : 'opacity-50 scale-95'
                   }`}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
+                {/* Top-right arrow to navigate to project page */}
+                <a
+                  href={`/projects/${project.slug}`}
+                  className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]/90 text-[var(--foreground)] shadow-sm backdrop-blur-md hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors"
+                >
+                  <ArrowRight size={18} />
+                </a>
+                <div className="w-full h-full p-3 bg-[var(--background)]/70">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full rounded-[1.5rem] border border-[var(--border)]/80 bg-black object-contain"
+                  />
+                </div>
               </div>
             ))}
           </div>
 
           {/* RIGHT COLUMN: STICKY TEXT CONTENT - Scrollable if content is long */}
-          <div className="w-full lg:w-[50%] lg:sticky lg:top-32 h-auto min-h-[50vh] flex flex-col justify-center">
+          <div className="w-full lg:w-[40%] lg:sticky lg:top-32 h-auto min-h-[50vh] flex flex-col justify-center">
 
             <AnimatePresence mode="wait">
               <motion.div
@@ -173,15 +209,6 @@ const ProjectShowcase = () => {
                     </div>
 
                     <div className="mt-4 space-y-8">
-                      {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-3 pl-2">
-                        {activeProject.tech.slice(0, 4).map(t => (
-                          <span key={t.name} className="px-4 py-2 text-xs font-bold uppercase tracking-wider bg-[var(--card)] border border-[var(--border)] rounded-lg text-[var(--foreground)] shadow-sm flex items-center gap-2 hover:bg-[var(--muted)] transition-colors">
-                            {t.name}
-                          </span>
-                        ))}
-                      </div>
-
                       {/* Title */}
                       <h3 className="text-4xl md:text-5xl font-serif font-black text-[var(--foreground)] leading-[0.95] tracking-tight mb-4">
                         {activeProject.title}
@@ -194,6 +221,26 @@ const ProjectShowcase = () => {
                         }}>
                           {activeProject.description}
                         </ReactMarkdown>
+                      </div>
+
+                      {/* Tech Stack - now below description, slightly larger */}
+                      <div className="flex flex-wrap gap-2.5 pt-1 pl-1">
+                        {activeProject.tech.slice(0, 8).map((t) => {
+                          const { icon: Icon, label, color } = getTechTagConfig(t.name);
+                          return (
+                            <span
+                              key={t.name}
+                              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-[10.5px] font-medium uppercase tracking-[0.12em] text-zinc-800 shadow-sm dark:border-zinc-800 dark:bg-black dark:text-zinc-100"
+                            >
+                              {Icon && (
+                                <span className="flex h-[18px] w-[18px] items-center justify-center rounded-[5px] bg-zinc-900 dark:bg-zinc-950">
+                                  <Icon size={11} style={{ color: color || "#A1A1AA" }} />
+                                </span>
+                              )}
+                              <span>{label}</span>
+                            </span>
+                          );
+                        })}
                       </div>
 
                       {/* CTA Actions */}
@@ -220,9 +267,9 @@ const ProjectShowcase = () => {
                             href={activeProject.githubUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="flex items-center gap-2 text-base font-bold text-[var(--foreground)] hover:text-[var(--muted-foreground)] transition-colors border-b-2 border-transparent hover:border-[var(--muted-foreground)] py-1"
+                            className="flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border)] text-base font-bold text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
                           >
-                            <Github size={18} /> Source Code
+                            <Github size={18} /> View GitHub
                           </a>
                         )}
                       </div>

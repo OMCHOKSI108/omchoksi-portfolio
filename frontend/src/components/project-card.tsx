@@ -3,19 +3,51 @@
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Github, ExternalLink, Sparkles, ArrowRight, Brain, Atom, Code, Database, Bot, Cpu, Eye } from "lucide-react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { Github, ArrowRight, Eye } from "lucide-react";
+import { SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiPython, SiMongodb, SiOpenai, SiNodedotjs, SiPostgresql } from "react-icons/si";
+import { SiExpo, SiFirebase, SiCloudinary, SiZod, SiDocker, SiFastapi, SiPytorch, SiTerraform, SiGraphql, SiMysql, SiRedis } from "react-icons/si";
 
-// Helper to get icon and color for a tag
-const getTagConfig = (tag: string) => {
+type TagConfig = {
+    icon?: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
+    label: string;
+    color?: string; // brand color for icon (optional for generic tags)
+};
+
+// Helper to get icon, label and brand color for a tag
+const getTagConfig = (tag: string): TagConfig => {
     const lower = tag.toLowerCase();
-    if (lower.includes('react') || lower.includes('next') || lower.includes('typescript')) return { icon: Atom, color: 'text-blue-500' };
-    if (lower.includes('ai') || lower.includes('brain') || lower.includes('learning') || lower.includes('neural')) return { icon: Brain, color: 'text-purple-500' };
-    if (lower.includes('python') || lower.includes('django') || lower.includes('code')) return { icon: Code, color: 'text-yellow-500' };
-    if (lower.includes('data') || lower.includes('sql') || lower.includes('firebase') || lower.includes('mongo')) return { icon: Database, color: 'text-orange-500' };
-    if (lower.includes('bot') || lower.includes('agent')) return { icon: Bot, color: 'text-pink-500' };
-    if (lower.includes('cloud') || lower.includes('aws')) return { icon: Cpu, color: 'text-indigo-500' };
-    return { icon: Sparkles, color: 'text-zinc-500 dark:text-zinc-400' };
+
+    if (lower.includes("expo")) return { icon: SiExpo, label: "Expo", color: "#000000" };
+    if (lower.includes("firebase")) return { icon: SiFirebase, label: "Firebase", color: "#FFCA28" };
+    if (lower.includes("zustand")) return { label: "Zustand", color: "#000000" };
+    if (lower.includes("cloudinary")) return { icon: SiCloudinary, label: "Cloudinary", color: "#3448C5" };
+    if (lower.includes("reanimated")) return { label: "Reanimated", color: "#FFD600" };
+    if (lower.includes("zod")) return { icon: SiZod, label: "Zod", color: "#0B1622" };
+    if (lower.includes("next")) return { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" };
+    if (lower.includes("react")) return { icon: SiReact, label: "React", color: "#61DAFB" };
+    if (lower.includes("typescript") || lower === "ts") return { icon: SiTypescript, label: "TypeScript", color: "#3178C6" };
+    if (lower.includes("tailwind")) return { icon: SiTailwindcss, label: "Tailwind CSS", color: "#38BDF8" };
+    if (lower.includes("python")) return { icon: SiPython, label: "Python", color: "#FFD43B" };
+    if (lower.includes("mongo")) return { icon: SiMongodb, label: "MongoDB", color: "#10A64A" };
+    if (lower.includes("openai") || lower.includes("gpt") || lower.includes("llm") || lower.includes("ai")) return { icon: SiOpenai, label: "AI", color: "#10A37F" };
+    if (lower.includes("node")) return { icon: SiNodedotjs, label: "Node.js", color: "#3C873A" };
+    if (lower.includes("postgres") || lower.includes("postgresql")) return { icon: SiPostgresql, label: "Postgres", color: "#4169E1" };
+
+    // New additions
+    if (lower.includes("docker")) return { icon: SiDocker, label: "Docker", color: "#2496ED" };
+    if (lower.includes("fastapi")) return { icon: SiFastapi, label: "FastAPI", color: "#009688" };
+    if (lower.includes("pytorch")) return { icon: SiPytorch, label: "PyTorch", color: "#EE4C2C" };
+    if (lower.includes("terraform")) return { icon: SiTerraform, label: "Terraform", color: "#7B42BC" };
+    if (lower.includes("graphql")) return { icon: SiGraphql, label: "GraphQL", color: "#E10098" };
+    if (lower.includes("mysql")) return { icon: SiMysql, label: "MySQL", color: "#4479A1" };
+    if (lower.includes("redis")) return { icon: SiRedis, label: "Redis", color: "#DC382D" };
+
+    // Generic tech/keyword with no specific brand icon – use a neutral label only
+    return {
+        label: tag,
+        color: "#A1A1AA",
+    };
 };
 
 interface Project {
@@ -97,12 +129,12 @@ export default function ProjectCard({ project, index, accentColor }: ProjectCard
 
                         {/* Image */}
                         <div className="relative w-full h-full flex items-center justify-center p-8 lg:p-10">
-                            <div className="relative w-full h-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] rounded-lg overflow-hidden transform transition-transform duration-700 group-hover/image:scale-[1.02]">
+                            <div className="relative w-full h-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] rounded-[1.25rem] overflow-hidden transform transition-transform duration-700 group-hover/image:scale-[1.02] bg-black">
                                 <Image
                                     src={project.imageUrl}
                                     alt={project.title}
                                     fill
-                                    className="object-cover object-top"
+                                    className="object-contain border border-white/10 rounded-[1.25rem]"
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     priority={index < 2}
                                 />
@@ -163,20 +195,20 @@ export default function ProjectCard({ project, index, accentColor }: ProjectCard
             <div className="flex flex-col gap-4 px-2">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                     {/* Tags */}
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-3">
                         {project.tags.map((tag) => {
-                            const { icon: TagIcon, color: iconColor } = getTagConfig(tag);
+                            const { icon: TagIcon, label, color } = getTagConfig(tag);
                             return (
                                 <div
                                     key={tag}
-                                    className="flex items-center gap-2 px-3 py-1.5 bg-[var(--card)] border border-[var(--border)] rounded-lg shadow-sm hover:border-[var(--primary)] transition-all group/tag"
+                                    className="inline-flex items-center gap-2 rounded-md border border-[var(--foreground)] bg-transparent px-3 py-1.5 text-[12px] font-semibold uppercase tracking-[0.13em] transition-colors text-[var(--foreground)] min-h-[36px]"
                                 >
-                                    <div className={`${iconColor}`}>
-                                        <TagIcon size={14} strokeWidth={2} />
-                                    </div>
-                                    <span className="text-[11px] font-semibold uppercase tracking-wide text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] transition-colors">
-                                        {tag}
-                                    </span>
+                                    {TagIcon && (
+                                        <span className="flex h-5 w-5 items-center justify-center rounded-[0.2rem] border border-[var(--foreground)] bg-transparent min-w-[20px]">
+                                            <TagIcon size={13} style={{ color: color }} />
+                                        </span>
+                                    )}
+                                    <span className="pt-[1px]">{label}</span>
                                 </div>
                             );
                         })}

@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Choksi - Full Stack Developer</title>
-    
+    <title>Om Choksi - AI Practitioner and Data Science Enthusiastic</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+        rel="stylesheet">
+
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -79,7 +82,8 @@
     <style>
         /* --- CORE STYLES --- */
         body {
-            cursor: none; /* We use a custom cursor */
+            cursor: none;
+            /* We use a custom cursor */
             overflow-x: hidden;
         }
 
@@ -95,15 +99,15 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
-                        height 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
-                        background-color 0.3s;
+            transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+                height 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+                background-color 0.3s;
             mix-blend-mode: exclusion;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .dark .custom-cursor {
             background-color: #fff;
         }
@@ -114,7 +118,7 @@
             background-color: rgba(255, 255, 255, 1);
             mix-blend-mode: normal;
         }
-        
+
         .custom-cursor.project-hover {
             width: 80px;
             height: 80px;
@@ -125,13 +129,13 @@
             font-weight: 800;
             text-transform: uppercase;
         }
-        
+
         .custom-cursor::after {
             content: attr(data-text);
             opacity: 0;
             transition: opacity 0.2s;
         }
-        
+
         .custom-cursor.project-hover::after {
             opacity: 1;
         }
@@ -143,6 +147,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.05);
         }
+
         .dark .glass-nav {
             background: rgba(14, 17, 23, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -155,24 +160,46 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
         }
+
         .dark .glass-card {
             background: rgba(22, 27, 34, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .nav-link-active { background-color: #1f2937; color: white; }
-        .dark .nav-link-active { background-color: #f3f4f6; color: black; }
-        
-        .nav-link-inactive:hover { background-color: rgba(0,0,0,0.05); }
-        .dark .nav-link-inactive:hover { background-color: rgba(255,255,255,0.05); }
+        .nav-link-active {
+            background-color: #1f2937;
+            color: white;
+        }
 
-        .circular-text { animation: spin 20s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .dark .nav-link-active {
+            background-color: #f3f4f6;
+            color: black;
+        }
+
+        .nav-link-inactive:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .nav-link-inactive:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .circular-text {
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
         /* Smooth scroll hiding */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
         /* Grid Mask for Tech Stack */
         .mask-image-linear {
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -180,45 +207,75 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-[#0E1117] text-[#0A0A0A] dark:text-gray-100 transition-colors duration-300 selection:bg-pink-500 selection:text-white">
+
+<body
+    class="bg-gray-50 dark:bg-[#0E1117] text-[#0A0A0A] dark:text-gray-100 transition-colors duration-300 selection:bg-pink-500 selection:text-white">
 
     <!-- Custom Cursor -->
     <div id="cursor" class="custom-cursor hidden md:flex"></div>
 
     <!-- Background Grid Pattern -->
     <div class="fixed inset-0 z-0 pointer-events-none bg-grid-pattern dark:bg-grid-pattern-dark opacity-40"></div>
-    
+
     <!-- Noise Texture Overlay -->
-    <div class="fixed inset-0 z-[1] pointer-events-none opacity-[0.03] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');"></div>
+    <div class="fixed inset-0 z-[1] pointer-events-none opacity-[0.03] mix-blend-overlay"
+        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');">
+    </div>
 
     <!-- COMMAND PALETTE (Search) -->
     <div id="command-palette" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/40 dark:bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleSearch()"></div>
-        <div class="relative w-full max-w-2xl bg-white dark:bg-[#161b22] rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 transform scale-95 opacity-0 transition-all duration-200" id="palette-content">
+        <div class="absolute inset-0 bg-black/40 dark:bg-black/80 backdrop-blur-sm transition-opacity"
+            onclick="toggleSearch()"></div>
+        <div class="relative w-full max-w-2xl bg-white dark:bg-[#161b22] rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 transform scale-95 opacity-0 transition-all duration-200"
+            id="palette-content">
             <div class="flex items-center px-4 py-4 border-b border-gray-100 dark:border-gray-800">
                 <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
-                <input type="text" placeholder="Search pages, projects..." class="w-full bg-transparent border-none focus:ring-0 text-lg px-4 text-gray-800 dark:text-gray-100 placeholder-gray-400 outline-none" autoFocus>
-                <span class="text-[10px] font-bold text-gray-400 border border-gray-200 dark:border-gray-700 px-2 py-1 rounded-md">ESC</span>
+                <input type="text" placeholder="Search pages, projects..."
+                    class="w-full bg-transparent border-none focus:ring-0 text-lg px-4 text-gray-800 dark:text-gray-100 placeholder-gray-400 outline-none"
+                    autoFocus>
+                <span
+                    class="text-[10px] font-bold text-gray-400 border border-gray-200 dark:border-gray-700 px-2 py-1 rounded-md">ESC</span>
             </div>
             <div class="p-2 max-h-[60vh] overflow-y-auto">
                 <div class="px-2 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Navigation</div>
-                <a href="#home" onclick="toggleSearch()" class="flex items-center gap-4 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer group transition-colors">
-                    <div class="p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-500 group-hover:text-black dark:group-hover:text-white transition-colors"><i data-lucide="home" class="w-5 h-5"></i></div>
-                    <div><div class="text-sm font-medium">Home</div><div class="text-xs text-gray-500">Back to start</div></div>
+                <a href="#home" onclick="toggleSearch()"
+                    class="flex items-center gap-4 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer group transition-colors">
+                    <div
+                        class="p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-500 group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <i data-lucide="home" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-sm font-medium">Home</div>
+                        <div class="text-xs text-gray-500">Back to start</div>
+                    </div>
                 </a>
-                <a href="#projects" onclick="toggleSearch()" class="flex items-center gap-4 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer group transition-colors">
-                    <div class="p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-500 group-hover:text-black dark:group-hover:text-white transition-colors"><i data-lucide="folder" class="w-5 h-5"></i></div>
-                    <div><div class="text-sm font-medium">Projects</div><div class="text-xs text-gray-500">My curated work</div></div>
+                <a href="#projects" onclick="toggleSearch()"
+                    class="flex items-center gap-4 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer group transition-colors">
+                    <div
+                        class="p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-500 group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <i data-lucide="folder" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-sm font-medium">Projects</div>
+                        <div class="text-xs text-gray-500">My curated work</div>
+                    </div>
                 </a>
-                <a href="#about" onclick="toggleSearch()" class="flex items-center gap-4 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer group transition-colors">
-                    <div class="p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-500 group-hover:text-black dark:group-hover:text-white transition-colors"><i data-lucide="user" class="w-5 h-5"></i></div>
-                    <div><div class="text-sm font-medium">About</div><div class="text-xs text-gray-500">My story & experience</div></div>
+                <a href="#about" onclick="toggleSearch()"
+                    class="flex items-center gap-4 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer group transition-colors">
+                    <div
+                        class="p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-500 group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <i data-lucide="user" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-sm font-medium">About</div>
+                        <div class="text-xs text-gray-500">My story & experience</div>
+                    </div>
                 </a>
             </div>
-            <div class="px-4 py-3 bg-gray-50 dark:bg-black/30 border-t border-gray-100 dark:border-gray-800 flex justify-between text-xs text-gray-400">
+            <div
+                class="px-4 py-3 bg-gray-50 dark:bg-black/30 border-t border-gray-100 dark:border-gray-800 flex justify-between text-xs text-gray-400">
                 <div class="flex gap-4">
-                    <a href="#" class="hover:text-blue-500 transition-colors"><i data-lucide="twitter" class="w-4 h-4 inline mr-1"></i> Twitter</a>
-                    <a href="#" class="hover:text-black dark:hover:text-white transition-colors"><i data-lucide="github" class="w-4 h-4 inline mr-1"></i> GitHub</a>
+                    <a href="#" class="hover:text-blue-500 transition-colors"><i data-lucide="twitter"
+                            class="w-4 h-4 inline mr-1"></i> Twitter</a>
+                    <a href="#" class="hover:text-black dark:hover:text-white transition-colors"><i data-lucide="github"
+                            class="w-4 h-4 inline mr-1"></i> GitHub</a>
                 </div>
                 <div><span class="font-mono">cmd + k</span> to open</div>
             </div>
@@ -226,147 +283,219 @@
     </div>
 
     <!-- NAVIGATION -->
-    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex justify-between items-center w-full max-w-[1400px] mx-auto opacity-0 animate-fade-in">
-        <a href="#" class="text-2xl font-bold tracking-tighter hover:scale-105 transition-transform relative z-50 mix-blend-difference text-black dark:text-white">AB</a>
-        
-        <div class="hidden md:flex items-center glass-nav rounded-full p-1.5 gap-1 shadow-lg shadow-black/5 dark:shadow-black/20">
-            <a href="#home" class="px-6 py-2.5 rounded-full nav-link-active text-sm font-medium transition-all hover-trigger" data-hover-text="Home">Home</a>
-            <a href="#projects" class="px-6 py-2.5 rounded-full nav-link-inactive text-sm font-medium transition-all text-gray-600 dark:text-gray-300 hover-trigger">Work</a>
-            <a href="#about" class="px-6 py-2.5 rounded-full nav-link-inactive text-sm font-medium transition-all text-gray-600 dark:text-gray-300 hover-trigger">About</a>
-            <a href="#blog" class="px-6 py-2.5 rounded-full nav-link-inactive text-sm font-medium transition-all text-gray-600 dark:text-gray-300 hover-trigger">Blog</a>
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex justify-between items-center w-full max-w-[1400px] mx-auto opacity-0 animate-fade-in">
+        <a href="#"
+            class="text-2xl font-bold tracking-tighter hover:scale-105 transition-transform relative z-50 mix-blend-difference text-black dark:text-white">AB</a>
+
+        <div
+            class="hidden md:flex items-center glass-nav rounded-full p-1.5 gap-1 shadow-lg shadow-black/5 dark:shadow-black/20">
+            <a href="#home"
+                class="px-6 py-2.5 rounded-full nav-link-active text-sm font-medium transition-all hover-trigger"
+                data-hover-text="Home">Home</a>
+            <a href="#projects"
+                class="px-6 py-2.5 rounded-full nav-link-inactive text-sm font-medium transition-all text-gray-600 dark:text-gray-300 hover-trigger">Work</a>
+            <a href="#about"
+                class="px-6 py-2.5 rounded-full nav-link-inactive text-sm font-medium transition-all text-gray-600 dark:text-gray-300 hover-trigger">About</a>
+            <a href="#blog"
+                class="px-6 py-2.5 rounded-full nav-link-inactive text-sm font-medium transition-all text-gray-600 dark:text-gray-300 hover-trigger">Blog</a>
             <div class="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1"></div>
-            <a href="mailto:hello@aOmChoksi.in" class="px-6 py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black hover:opacity-80 text-sm font-medium transition-all hover-trigger" data-hover-text="Email Me">Book a Call</a>
+            <a href="mailto:hello@aOmChoksi.in"
+                class="px-6 py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black hover:opacity-80 text-sm font-medium transition-all hover-trigger"
+                data-hover-text="Email Me">Book a Call</a>
         </div>
 
         <div class="flex items-center justify-end gap-2 w-[80px]">
-            <button onclick="toggleTheme()" class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors hover-trigger">
+            <button onclick="toggleTheme()"
+                class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors hover-trigger">
                 <i data-lucide="moon" class="w-5 h-5 hidden dark:block text-gray-200"></i>
                 <i data-lucide="sun" class="w-5 h-5 block dark:hidden text-gray-600"></i>
             </button>
-            <button onclick="toggleSearch()" class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors hover-trigger">
+            <button onclick="toggleSearch()"
+                class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors hover-trigger">
                 <i data-lucide="search" class="w-5 h-5 text-gray-600 dark:text-gray-200"></i>
             </button>
         </div>
     </nav>
 
     <!-- 1. HERO SECTION -->
-    <section id="home" class="relative flex flex-col items-center justify-center min-h-screen px-4 pt-20 pb-20 text-center z-10 overflow-hidden">
-        
+    <section id="home"
+        class="relative flex flex-col items-center justify-center min-h-screen px-4 pt-20 pb-20 text-center z-10 overflow-hidden">
+
         <!-- Ambient Glow -->
         <div class="absolute inset-0 z-0 pointer-events-none">
-             <div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-float"></div>
-             <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-float" style="animation-delay: 2s;"></div>
+            <div
+                class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-float">
+            </div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-float"
+                style="animation-delay: 2s;"></div>
         </div>
 
         <!-- Pill -->
         <div class="relative z-10 opacity-0 animate-fade-up" style="animation-delay: 0.1s;">
-            <a href="#projects" class="group inline-flex items-center gap-3 bg-white/80 dark:bg-white/5 border border-white/60 dark:border-white/10 backdrop-blur-md rounded-full pl-1.5 pr-4 py-1.5 mb-12 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/10 hover-trigger" data-hover-text="Launch">
-                <span class="bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full animate-pulse">New</span>
+            <a href="#projects"
+                class="group inline-flex items-center gap-3 bg-white/80 dark:bg-white/5 border border-white/60 dark:border-white/10 backdrop-blur-md rounded-full pl-1.5 pr-4 py-1.5 mb-12 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/10 hover-trigger"
+                data-hover-text="Launch">
+                <span
+                    class="bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full animate-pulse">New</span>
                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
-                    Nextnode is launching soon! 
-                    <i data-lucide="chevron-right" class="w-3 h-3 text-gray-400 group-hover:translate-x-0.5 transition-transform"></i>
+                    Nextnode is launching soon!
+                    <i data-lucide="chevron-right"
+                        class="w-3 h-3 text-gray-400 group-hover:translate-x-0.5 transition-transform"></i>
                 </span>
             </a>
         </div>
 
         <!-- Headline -->
-        <h1 class="relative z-10 font-serif font-medium text-5xl md:text-7xl lg:text-8xl text-gray-900 dark:text-white leading-[1.1] tracking-tight max-w-5xl mx-auto mb-10 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
+        <h1 class="relative z-10 font-serif font-medium text-5xl md:text-7xl lg:text-8xl text-gray-900 dark:text-white leading-[1.1] tracking-tight max-w-5xl mx-auto mb-10 opacity-0 animate-fade-up"
+            style="animation-delay: 0.2s;">
             I help founders turn <br />
-            <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-gray-500 dark:from-gray-200 dark:to-gray-500">ideas</span> <br />
+            <span
+                class="italic text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-gray-500 dark:from-gray-200 dark:to-gray-500">ideas</span>
+            <br />
             into digital reality
         </h1>
 
         <!-- Profile Badge -->
         <div class="relative z-10 opacity-0 animate-fade-up" style="animation-delay: 0.3s;">
-            <div class="inline-flex items-center gap-3 bg-white/60 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10 rounded-full px-2 py-2 pr-6 mb-12 shadow-sm hover:scale-[1.02] transition-transform cursor-default">
-                <div class="relative h-10 w-10 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-sm shrink-0">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" class="w-full h-full object-cover">
+            <div
+                class="inline-flex items-center gap-3 bg-white/60 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10 rounded-full px-2 py-2 pr-6 mb-12 shadow-sm hover:scale-[1.02] transition-transform cursor-default">
+                <div
+                    class="relative h-10 w-10 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-sm shrink-0">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop"
+                        class="w-full h-full object-cover">
                 </div>
                 <span class="text-[15px] text-gray-600 dark:text-gray-300 font-sans tracking-tight">
-                    Hi, I'm <span class="font-bold text-gray-900 dark:text-white">AOm</span> — Full Stack Developer
+                    Hi, I'm <span class="font-bold text-gray-900 dark:text-white">AOm</span> — AI Practitioner and Data
+                    Science Enthusiastic
                 </span>
             </div>
         </div>
 
         <!-- Buttons -->
-        <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
-            <a href="#projects" class="hover-trigger group relative inline-flex items-center justify-between gap-4 bg-[#1f2937] dark:bg-white text-white dark:text-black px-2 py-2 pl-8 rounded-full hover:scale-105 transition-all duration-300 font-medium shadow-xl shadow-black/10 dark:shadow-white/10" data-hover-text="Let's Go">
+        <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 opacity-0 animate-fade-up"
+            style="animation-delay: 0.4s;">
+            <a href="#projects"
+                class="hover-trigger group relative inline-flex items-center justify-between gap-4 bg-[#1f2937] dark:bg-white text-white dark:text-black px-2 py-2 pl-8 rounded-full hover:scale-105 transition-all duration-300 font-medium shadow-xl shadow-black/10 dark:shadow-white/10"
+                data-hover-text="Let's Go">
                 <span class="tracking-wide font-semibold">View Work</span>
-                <span class="w-10 h-10 bg-white/10 dark:bg-black/10 rounded-full flex items-center justify-center transition-colors">
-                    <i data-lucide="arrow-down" class="text-white dark:text-black w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
+                <span
+                    class="w-10 h-10 bg-white/10 dark:bg-black/10 rounded-full flex items-center justify-center transition-colors">
+                    <i data-lucide="arrow-down"
+                        class="text-white dark:text-black w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
                 </span>
             </a>
-            <button onclick="copyEmail()" class="hover-trigger group flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors font-medium px-6 py-3.5 rounded-full hover:bg-white/40 dark:hover:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-white/10" data-hover-text="Copy Email">
-                <i data-lucide="copy" class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors"></i>
+            <button onclick="copyEmail()"
+                class="hover-trigger group flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors font-medium px-6 py-3.5 rounded-full hover:bg-white/40 dark:hover:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-white/10"
+                data-hover-text="Copy Email">
+                <i data-lucide="copy"
+                    class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors"></i>
                 <span id="email-text">hello@aOmChoksi.in</span>
-                <span id="copy-feedback" class="opacity-0 text-xs text-green-600 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded transition-opacity">Copied!</span>
+                <span id="copy-feedback"
+                    class="opacity-0 text-xs text-green-600 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded transition-opacity">Copied!</span>
             </button>
         </div>
 
         <!-- Curved Separator -->
-        <div class="absolute bottom-[-1px] left-[-20%] right-[-20%] h-[120px] md:h-[200px] bg-[#f9fafb] dark:bg-[#0E1117] rounded-[100%] translate-y-[50%] z-20 pointer-events-none transition-colors duration-300"></div>
+        <div
+            class="absolute bottom-[-1px] left-[-20%] right-[-20%] h-[120px] md:h-[200px] bg-[#f9fafb] dark:bg-[#0E1117] rounded-[100%] translate-y-[50%] z-20 pointer-events-none transition-colors duration-300">
+        </div>
     </section>
 
     <!-- 2. BENTO GRID -->
     <section class="bg-[#f9fafb] dark:bg-[#0E1117] w-full pt-20 pb-32 relative z-10 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
+
                 <!-- Card 1: Collaboration -->
-                <div class="glass-card rounded-[2rem] p-0 md:col-span-2 relative overflow-hidden group h-[360px] hover-trigger transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-900/20 border-white/60 dark:border-white/5" data-hover-text="Network">
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/10 dark:to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    
-                    <div class="absolute inset-0 flex items-center justify-center">
-                         <!-- Glowing center -->
-                         <div class="absolute w-64 h-64 bg-blue-400/10 dark:bg-blue-500/10 rounded-full blur-3xl group-hover:bg-purple-400/20 transition-colors duration-700"></div>
-                         
-                         <!-- SVG Paths -->
-                         <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20 dark:opacity-20" stroke="currentColor">
-                            <path d="M50% 50% Q 20% 30% 25% 60%" fill="none" stroke-width="1.5" class="text-gray-400 dark:text-gray-600" />
-                            <path d="M50% 50% Q 80% 30% 75% 60%" fill="none" stroke-width="1.5" class="text-gray-400 dark:text-gray-600" />
-                            <path d="M50% 50% Q 50% 20% 50% 30%" fill="none" stroke-width="1.5" class="text-gray-400 dark:text-gray-600" />
-                         </svg>
-
-                         <!-- Central Avatar -->
-                         <div class="z-20 w-24 h-24 rounded-full p-1.5 bg-gradient-to-tr from-purple-500 to-blue-500 shadow-xl group-hover:scale-110 transition-transform duration-500">
-                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" class="w-full h-full rounded-full object-cover border-2 border-white dark:border-gray-900">
-                         </div>
-
-                         <!-- Orbiting Avatars -->
-                         <div class="absolute top-[65%] left-[20%] w-14 h-14 rounded-full p-1 bg-white dark:bg-gray-800 shadow-lg group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-700">
-                             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100" class="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                         </div>
-                         <div class="absolute top-[65%] right-[20%] w-14 h-14 rounded-full p-1 bg-white dark:bg-gray-800 shadow-lg group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-700">
-                             <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100" class="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all">
-                         </div>
-                         <div class="absolute top-[20%] left-[50%] -translate-x-1/2 w-10 h-10 rounded-full p-1 bg-white dark:bg-gray-800 shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-700 delay-100">
-                             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100" class="w-full h-full rounded-full object-cover">
-                         </div>
+                <div class="glass-card rounded-[2rem] p-0 md:col-span-2 relative overflow-hidden group h-[360px] hover-trigger transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-900/20 border-white/60 dark:border-white/5"
+                    data-hover-text="Network">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/10 dark:to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                     </div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <div class="flex items-center gap-2 mb-2 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-widest uppercase">
+
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <!-- Glowing center -->
+                        <div
+                            class="absolute w-64 h-64 bg-blue-400/10 dark:bg-blue-500/10 rounded-full blur-3xl group-hover:bg-purple-400/20 transition-colors duration-700">
+                        </div>
+
+                        <!-- SVG Paths -->
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20 dark:opacity-20"
+                            stroke="currentColor">
+                            <path d="M50% 50% Q 20% 30% 25% 60%" fill="none" stroke-width="1.5"
+                                class="text-gray-400 dark:text-gray-600" />
+                            <path d="M50% 50% Q 80% 30% 75% 60%" fill="none" stroke-width="1.5"
+                                class="text-gray-400 dark:text-gray-600" />
+                            <path d="M50% 50% Q 50% 20% 50% 30%" fill="none" stroke-width="1.5"
+                                class="text-gray-400 dark:text-gray-600" />
+                        </svg>
+
+                        <!-- Central Avatar -->
+                        <div
+                            class="z-20 w-24 h-24 rounded-full p-1.5 bg-gradient-to-tr from-purple-500 to-blue-500 shadow-xl group-hover:scale-110 transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop"
+                                class="w-full h-full rounded-full object-cover border-2 border-white dark:border-gray-900">
+                        </div>
+
+                        <!-- Orbiting Avatars -->
+                        <div
+                            class="absolute top-[65%] left-[20%] w-14 h-14 rounded-full p-1 bg-white dark:bg-gray-800 shadow-lg group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-700">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100"
+                                class="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                        </div>
+                        <div
+                            class="absolute top-[65%] right-[20%] w-14 h-14 rounded-full p-1 bg-white dark:bg-gray-800 shadow-lg group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-700">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100"
+                                class="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                        </div>
+                        <div
+                            class="absolute top-[20%] left-[50%] -translate-x-1/2 w-10 h-10 rounded-full p-1 bg-white dark:bg-gray-800 shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-700 delay-100">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100"
+                                class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <div
+                            class="flex items-center gap-2 mb-2 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-widest uppercase">
                             <i data-lucide="heart-handshake" class="w-4 h-4"></i><span>Collaboration</span>
                         </div>
-                        <h3 class="text-3xl font-semibold text-gray-900 dark:text-white leading-tight max-w-md">I prioritize open & effective communication.</h3>
+                        <h3 class="text-3xl font-semibold text-gray-900 dark:text-white leading-tight max-w-md">I
+                            prioritize open & effective communication.</h3>
                     </div>
                 </div>
 
                 <!-- Card 2: Tech Stack -->
-                <div class="glass-card rounded-[2rem] p-8 md:col-span-1 md:row-span-2 flex flex-col relative overflow-hidden bg-white/50 dark:bg-white/5 hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-500 hover-trigger" data-hover-text="Stack">
-                    <h3 class="text-2xl font-serif text-gray-900 dark:text-white mb-2">My Tech <span class="italic text-purple-500">Arsenal</span></h3>
-                    
+                <div class="glass-card rounded-[2rem] p-8 md:col-span-1 md:row-span-2 flex flex-col relative overflow-hidden bg-white/50 dark:bg-white/5 hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-500 hover-trigger"
+                    data-hover-text="Stack">
+                    <h3 class="text-2xl font-serif text-gray-900 dark:text-white mb-2">My Tech <span
+                            class="italic text-purple-500">Arsenal</span></h3>
+
                     <div class="flex flex-wrap gap-2 mb-8 mt-4">
-                        <span class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i data-lucide="atom" class="w-3 h-3 text-blue-500"></i> React</span>
-                        <span class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i data-lucide="triangle" class="w-3 h-3 text-black dark:text-white"></i> Next.js</span>
-                        <span class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i data-lucide="file-code" class="w-3 h-3 text-blue-600"></i> TS</span>
-                        <span class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i data-lucide="wind" class="w-3 h-3 text-cyan-500"></i> Tailwind</span>
-                        <span class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i data-lucide="database" class="w-3 h-3 text-green-500"></i> Supabase</span>
+                        <span
+                            class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i
+                                data-lucide="atom" class="w-3 h-3 text-blue-500"></i> React</span>
+                        <span
+                            class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i
+                                data-lucide="triangle" class="w-3 h-3 text-black dark:text-white"></i> Next.js</span>
+                        <span
+                            class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i
+                                data-lucide="file-code" class="w-3 h-3 text-blue-600"></i> TS</span>
+                        <span
+                            class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i
+                                data-lucide="wind" class="w-3 h-3 text-cyan-500"></i> Tailwind</span>
+                        <span
+                            class="px-3 py-1.5 bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-1 shadow-sm"><i
+                                data-lucide="database" class="w-3 h-3 text-green-500"></i> Supabase</span>
                     </div>
 
                     <!-- Browser Mockup -->
-                    <div class="mt-auto relative w-full aspect-[4/3] bg-white dark:bg-[#0d1117] rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden group">
-                        <div class="bg-gray-50 dark:bg-[#161b22] border-b border-gray-100 dark:border-gray-800 px-3 py-2 flex items-center gap-1.5">
+                    <div
+                        class="mt-auto relative w-full aspect-[4/3] bg-white dark:bg-[#0d1117] rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden group">
+                        <div
+                            class="bg-gray-50 dark:bg-[#161b22] border-b border-gray-100 dark:border-gray-800 px-3 py-2 flex items-center gap-1.5">
                             <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                             <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
                             <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
@@ -375,31 +504,42 @@
                         <div class="p-6 flex flex-col items-center justify-center h-full relative">
                             <!-- Animated Background Grid -->
                             <div class="absolute inset-0 bg-grid-pattern opacity-10 animate-pulse"></div>
-                            <span class="text-3xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent transform group-hover:scale-110 transition-transform duration-500">Impact.</span>
-                            <div class="mt-4 px-4 py-1.5 bg-black text-white text-[10px] rounded-full font-bold">Start Building</div>
+                            <span
+                                class="text-3xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent transform group-hover:scale-110 transition-transform duration-500">Impact.</span>
+                            <div class="mt-4 px-4 py-1.5 bg-black text-white text-[10px] rounded-full font-bold">Start
+                                Building</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3: Timezone -->
-                <div class="glass-card rounded-[2rem] p-0 md:col-span-1 md:row-span-2 flex flex-col relative overflow-hidden min-h-[400px] hover-trigger group" data-hover-text="Remote">
+                <div class="glass-card rounded-[2rem] p-0 md:col-span-1 md:row-span-2 flex flex-col relative overflow-hidden min-h-[400px] hover-trigger group"
+                    data-hover-text="Remote">
                     <div class="p-8 relative z-20 text-center">
                         <h3 class="text-2xl font-serif text-gray-900 dark:text-white mb-4">Timezone Flexible</h3>
                         <div class="flex justify-center gap-2">
-                             <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-lg text-xs font-bold border border-blue-200 dark:border-blue-800">IN India</span>
-                             <span class="px-3 py-1 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 rounded-lg text-xs font-bold border border-gray-200 dark:border-white/10">US USA</span>
+                            <span
+                                class="px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-lg text-xs font-bold border border-blue-200 dark:border-blue-800">IN
+                                India</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 rounded-lg text-xs font-bold border border-gray-200 dark:border-white/10">US
+                                USA</span>
                         </div>
                     </div>
-                    
+
                     <div class="absolute inset-0 top-20 w-full h-full">
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-1000">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80 mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-1000">
                         <!-- Gradient Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#f9fafb] via-transparent to-transparent dark:from-[#0E1117] dark:via-transparent dark:to-transparent"></div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#f9fafb] via-transparent to-transparent dark:from-[#0E1117] dark:via-transparent dark:to-transparent">
+                        </div>
                     </div>
 
-                    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-white/80 dark:bg-black/60 backdrop-blur px-4 py-2 rounded-full border border-white/20 shadow-lg">
-                         <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                         <span class="text-xs font-bold text-gray-800 dark:text-white">Available for Hire</span>
+                    <div
+                        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-white/80 dark:bg-black/60 backdrop-blur px-4 py-2 rounded-full border border-white/20 shadow-lg">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-xs font-bold text-gray-800 dark:text-white">Available for Hire</span>
                     </div>
                 </div>
             </div>
@@ -411,8 +551,10 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16">
                 <div>
-                    <span class="px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Portfolio</span>
-                    <h2 class="text-5xl md:text-6xl font-serif mt-4 text-gray-900 dark:text-white leading-tight">Curated <span class="italic text-pink-500">Masterpieces</span></h2>
+                    <span
+                        class="px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Portfolio</span>
+                    <h2 class="text-5xl md:text-6xl font-serif mt-4 text-gray-900 dark:text-white leading-tight">Curated
+                        <span class="italic text-pink-500">Masterpieces</span></h2>
                 </div>
                 <div class="hidden md:block mb-2">
                     <span class="text-sm text-gray-400">Selected works 2023-2025</span>
@@ -420,25 +562,34 @@
             </div>
 
             <!-- Project 1 -->
-            <div class="group relative w-full rounded-[2.5rem] overflow-hidden mb-12 hover-trigger" data-hover-text="View">
+            <div class="group relative w-full rounded-[2.5rem] overflow-hidden mb-12 hover-trigger"
+                data-hover-text="View">
                 <!-- Background Image with Zoom Effect -->
                 <div class="aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden relative">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 z-10 transition-colors duration-500"></div>
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <div
+                        class="absolute inset-0 bg-black/20 group-hover:bg-black/40 z-10 transition-colors duration-500">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
                 </div>
-                
+
                 <!-- Content Overlay -->
                 <div class="absolute inset-0 z-20 p-8 md:p-12 flex flex-col justify-between text-white">
                     <div class="flex justify-between items-start">
-                        <div class="bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-xs font-medium">Fintech</div>
-                        <div class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        <div
+                            class="bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-xs font-medium">
+                            Fintech</div>
+                        <div
+                            class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
                         </div>
                     </div>
                     <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <h3 class="text-3xl md:text-5xl font-bold mb-2">Next Ventures</h3>
-                        <p class="text-white/80 max-w-lg text-lg line-clamp-2">A platform designed for early-stage entrepreneurs to pitch, browse, and engage with startup ideas using AI-driven analytics.</p>
-                        <div class="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <p class="text-white/80 max-w-lg text-lg line-clamp-2">A platform designed for early-stage
+                            entrepreneurs to pitch, browse, and engage with startup ideas using AI-driven analytics.</p>
+                        <div
+                            class="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                             <span class="text-xs font-bold border border-white/30 px-2 py-1 rounded">Next.js</span>
                             <span class="text-xs font-bold border border-white/30 px-2 py-1 rounded">AI</span>
                         </div>
@@ -449,20 +600,29 @@
             <!-- Project 2 -->
             <div class="group relative w-full rounded-[2.5rem] overflow-hidden hover-trigger" data-hover-text="View">
                 <div class="aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden relative">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 z-10 transition-colors duration-500"></div>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <div
+                        class="absolute inset-0 bg-black/20 group-hover:bg-black/40 z-10 transition-colors duration-500">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
                 </div>
                 <div class="absolute inset-0 z-20 p-8 md:p-12 flex flex-col justify-between text-white">
                     <div class="flex justify-between items-start">
-                        <div class="bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-xs font-medium">SaaS</div>
-                        <div class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        <div
+                            class="bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-xs font-medium">
+                            SaaS</div>
+                        <div
+                            class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
                         </div>
                     </div>
                     <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <h3 class="text-3xl md:text-5xl font-bold mb-2">Finote App</h3>
-                        <p class="text-white/80 max-w-lg text-lg line-clamp-2">An intuitive mobile companion for organizing your digital wallets, featuring real-time crypto tracking and secure authentication.</p>
-                        <div class="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <p class="text-white/80 max-w-lg text-lg line-clamp-2">An intuitive mobile companion for
+                            organizing your digital wallets, featuring real-time crypto tracking and secure
+                            authentication.</p>
+                        <div
+                            class="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                             <span class="text-xs font-bold border border-white/30 px-2 py-1 rounded">React Native</span>
                             <span class="text-xs font-bold border border-white/30 px-2 py-1 rounded">Firebase</span>
                         </div>
@@ -478,35 +638,68 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-serif text-gray-900 dark:text-white">Word on the street</h2>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Testimonial 1 -->
-                <div class="bg-white dark:bg-[#161b22] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-blue-400 transition-colors duration-300 shadow-sm hover:shadow-xl">
-                    <div class="flex gap-1 text-yellow-400 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">"We went from something high-tech and fast to a fully high-ranking website in just over a week. The headless CMS implementation adhering to standards for speed and efficiency was impressive."</p>
+                <div
+                    class="bg-white dark:bg-[#161b22] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-blue-400 transition-colors duration-300 shadow-sm hover:shadow-xl">
+                    <div class="flex gap-1 text-yellow-400 mb-4"><i data-lucide="star"
+                            class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i
+                            data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                            class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">"We went from something
+                        high-tech and fast to a fully high-ranking website in just over a week. The headless CMS
+                        implementation adhering to standards for speed and efficiency was impressive."</p>
                     <div class="flex items-center gap-3">
-                         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100" class="w-10 h-10 rounded-full object-cover">
-                         <div><div class="font-bold text-sm text-gray-900 dark:text-white">Michael Davis</div><div class="text-xs text-gray-500">Founder, Apex</div></div>
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100"
+                            class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-sm text-gray-900 dark:text-white">Michael Davis</div>
+                            <div class="text-xs text-gray-500">Founder, Apex</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="bg-white dark:bg-[#161b22] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-purple-400 transition-colors duration-300 shadow-sm hover:shadow-xl transform md:-translate-y-4">
-                    <div class="flex gap-1 text-yellow-400 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">"AOm is the man! He took our design requirements and quite literally ran with them. We are super happy with the final product. Can't recommend him enough."</p>
+                <div
+                    class="bg-white dark:bg-[#161b22] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-purple-400 transition-colors duration-300 shadow-sm hover:shadow-xl transform md:-translate-y-4">
+                    <div class="flex gap-1 text-yellow-400 mb-4"><i data-lucide="star"
+                            class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i
+                            data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                            class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">"AOm is the man! He took
+                        our design requirements and quite literally ran with them. We are super happy with the final
+                        product. Can't recommend him enough."</p>
                     <div class="flex items-center gap-3">
-                         <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100" class="w-10 h-10 rounded-full object-cover">
-                         <div><div class="font-bold text-sm text-gray-900 dark:text-white">Jennifer Wilson</div><div class="text-xs text-gray-500">CEO, Blue Harbor</div></div>
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100"
+                            class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-sm text-gray-900 dark:text-white">Jennifer Wilson</div>
+                            <div class="text-xs text-gray-500">CEO, Blue Harbor</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="bg-white dark:bg-[#161b22] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-pink-400 transition-colors duration-300 shadow-sm hover:shadow-xl">
-                    <div class="flex gap-1 text-yellow-400 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">"Professional, Quick, Seamless. The integration with our headless CMS was flawless and the animation work adds such a premium feel."</p>
+                <div
+                    class="bg-white dark:bg-[#161b22] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-pink-400 transition-colors duration-300 shadow-sm hover:shadow-xl">
+                    <div class="flex gap-1 text-yellow-400 mb-4"><i data-lucide="star"
+                            class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i
+                            data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                            class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">"Professional, Quick,
+                        Seamless. The integration with our headless CMS was flawless and the animation work adds such a
+                        premium feel."</p>
                     <div class="flex items-center gap-3">
-                         <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100" class="w-10 h-10 rounded-full object-cover">
-                         <div><div class="font-bold text-sm text-gray-900 dark:text-white">Robert Johnson</div><div class="text-xs text-gray-500">Startup Founder</div></div>
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100"
+                            class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <div class="font-bold text-sm text-gray-900 dark:text-white">Robert Johnson</div>
+                            <div class="text-xs text-gray-500">Startup Founder</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -518,34 +711,50 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <span class="text-xs font-bold tracking-widest uppercase text-blue-600 dark:text-blue-400 mb-4 block">About Me</span>
-                    <h2 class="text-5xl font-serif text-gray-900 dark:text-white mb-8">Building digital <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">experiences</span> that matter.</h2>
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">I'm AOm, a Full Stack Developer based in India. I combine technical expertise with a keen eye for design to build scalable and engaging web applications.</p>
+                    <span
+                        class="text-xs font-bold tracking-widest uppercase text-blue-600 dark:text-blue-400 mb-4 block">About
+                        Me</span>
+                    <h2 class="text-5xl font-serif text-gray-900 dark:text-white mb-8">Building digital <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">experiences</span>
+                        that matter.</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">I'm AOm, a AI Practitioner
+                        and Data Science Enthusiastic based in India. I combine technical expertise with a keen eye for
+                        design to build scalable and engaging web applications.</p>
                     <div class="flex gap-4 mt-8">
-                        <a href="#" class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover-trigger" data-hover-text="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover-trigger" data-hover-text="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover-trigger" data-hover-text="Twitter"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover-trigger"
+                            data-hover-text="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover-trigger"
+                            data-hover-text="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover-trigger"
+                            data-hover-text="Twitter"><i data-lucide="twitter" class="w-5 h-5"></i></a>
                     </div>
                 </div>
-                
+
                 <!-- "Uses" Grid -->
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
+                    <div
+                        class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
                         <i data-lucide="zap" class="w-8 h-8 text-yellow-500 mb-4"></i>
                         <h4 class="font-bold dark:text-white">Fast</h4>
                         <p class="text-xs text-gray-500">Optimized for speed</p>
                     </div>
-                    <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300 mt-8">
+                    <div
+                        class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300 mt-8">
                         <i data-lucide="shield" class="w-8 h-8 text-green-500 mb-4"></i>
                         <h4 class="font-bold dark:text-white">Secure</h4>
                         <p class="text-xs text-gray-500">Best practices</p>
                     </div>
-                    <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
+                    <div
+                        class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
                         <i data-lucide="smartphone" class="w-8 h-8 text-blue-500 mb-4"></i>
                         <h4 class="font-bold dark:text-white">Responsive</h4>
                         <p class="text-xs text-gray-500">Mobile first</p>
                     </div>
-                    <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300 mt-8">
+                    <div
+                        class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-2xl hover:scale-105 transition-transform duration-300 mt-8">
                         <i data-lucide="heart" class="w-8 h-8 text-pink-500 mb-4"></i>
                         <h4 class="font-bold dark:text-white">Accessible</h4>
                         <p class="text-xs text-gray-500">For everyone</p>
@@ -556,18 +765,25 @@
     </section>
 
     <!-- 6. FOOTER -->
-    <footer class="py-24 bg-white dark:bg-[#0b0d12] border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 relative overflow-hidden">
+    <footer
+        class="py-24 bg-white dark:bg-[#0b0d12] border-t border-gray-100 dark:border-gray-800 transition-colors duration-300 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-7xl font-sans font-bold text-gray-900 dark:text-white mb-6 tracking-tight">LET'S MAKE IT <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">HAPPEN.</span></h2>
+                <h2 class="text-5xl md:text-7xl font-sans font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                    LET'S MAKE IT <br><span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">HAPPEN.</span>
+                </h2>
                 <div class="mt-8 flex justify-center">
-                    <a href="mailto:hello@aOmChoksi.in" class="hover-trigger bg-black dark:bg-white text-white dark:text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-xl" data-hover-text="Say Hi">
+                    <a href="mailto:hello@aOmChoksi.in"
+                        class="hover-trigger bg-black dark:bg-white text-white dark:text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-xl"
+                        data-hover-text="Say Hi">
                         Start a Project <i data-lucide="arrow-right" class="w-5 h-5"></i>
                     </a>
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-100 dark:border-gray-800 pt-8 text-sm text-gray-500">
+            <div
+                class="flex flex-col md:flex-row justify-between items-center border-t border-gray-100 dark:border-gray-800 pt-8 text-sm text-gray-500">
                 <div class="mb-4 md:mb-0">© 2025 AOm Choksi. All rights reserved.</div>
                 <div class="flex gap-8">
                     <a href="#" class="hover:text-black dark:hover:text-white transition-colors">Twitter</a>
@@ -584,7 +800,7 @@
 
         // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
-        
+
         document.addEventListener('mousemove', (e) => {
             requestAnimationFrame(() => {
                 cursor.style.left = e.clientX + 'px';
@@ -594,11 +810,11 @@
 
         // Advanced Hover Effects
         const hoverElements = document.querySelectorAll('.hover-trigger');
-        
+
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.classList.add('hovered');
-                
+
                 // Check if element has project/custom text
                 const hoverText = el.getAttribute('data-hover-text');
                 if (hoverText) {
@@ -606,7 +822,7 @@
                     cursor.setAttribute('data-text', hoverText);
                 }
             });
-            
+
             el.addEventListener('mouseleave', () => {
                 cursor.classList.remove('hovered');
                 cursor.classList.remove('project-hover');
@@ -633,7 +849,7 @@
         // Search Modal
         const modal = document.getElementById('command-palette');
         const content = document.getElementById('palette-content');
-        
+
         function toggleSearch() {
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
@@ -669,4 +885,5 @@
         }
     </script>
 </body>
+
 </html>

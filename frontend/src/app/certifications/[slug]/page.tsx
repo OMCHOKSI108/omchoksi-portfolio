@@ -85,7 +85,7 @@ export default function CertificationPage() {
     <main className="min-h-screen relative bg-[var(--background)]">
       <Navbar />
 
-      <div className="pt-24 px-6 max-w-7xl mx-auto">
+      <div className="pt-24 px-6 max-w-7xl mx-auto pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content - Left Side */}
           <div className="lg:col-span-2">
@@ -93,7 +93,7 @@ export default function CertificationPage() {
             <div className="mb-8">
               <Link
                 href="/certifications"
-                className="inline-flex items-center gap-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                className="inline-flex items-center gap-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors text-sm"
               >
                 <ArrowLeft size={16} />
                 Back to Certifications
@@ -118,36 +118,38 @@ export default function CertificationPage() {
 
               {/* PDF Embed */}
               {certification.pdf && (
-                <div className="mb-8 w-full bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="p-4 bg-[var(--muted)] border-b border-[var(--border)] flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Award size={20} className="text-purple-500" />
-                      <span className="font-semibold text-sm">Certificate Document</span>
+                <div className="mb-8 w-full bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-lg">
+                  <div className="p-4 bg-[var(--muted)]/50 border-b border-[var(--border)] flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 bg-purple-500/10 rounded-lg">
+                        <Award size={18} className="text-purple-500" />
+                      </div>
+                      <span className="font-semibold text-sm text-[var(--foreground)]">Certificate Document</span>
                     </div>
                     <a
                       href={certification.pdf}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors flex items-center gap-2"
+                      className="text-xs px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-all hover:scale-105 active:scale-95 flex items-center gap-1.5 font-medium shadow-sm"
                     >
-                      <ExternalLink size={14} />
+                      <ExternalLink size={12} />
                       Open in New Tab
                     </a>
                   </div>
                   <object
                     data={certification.pdf}
                     type="application/pdf"
-                    className="w-full h-[500px] md:h-[700px]"
+                    className="w-full h-[600px] md:h-[800px]"
                   >
-                    <div className="p-8 text-center">
-                      <p className="text-[var(--muted-foreground)] mb-4">
+                    <div className="p-12 text-center bg-gradient-to-br from-[var(--muted)]/30 to-[var(--muted)]/10 min-h-[400px] flex flex-col items-center justify-center">
+                      <p className="text-[var(--muted-foreground)] mb-6 text-sm">
                         Your browser doesn't support embedded PDFs.
                       </p>
                       <a
                         href={certification.pdf}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-all hover:scale-105 active:scale-95 font-medium shadow-lg"
                       >
                         <ExternalLink size={16} />
                         View Certificate PDF
@@ -257,16 +259,18 @@ export default function CertificationPage() {
             <div className="sticky top-32 space-y-8">
               {/* Tags */}
               {certification.tags && certification.tags.length > 0 && (
-                <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
-                  <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
-                    <Award size={18} className="text-purple-400" />
+                <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 shadow-sm">
+                  <h3 className="text-base font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
+                    <div className="p-1.5 bg-purple-500/10 rounded-lg">
+                      <Award size={16} className="text-purple-500" />
+                    </div>
                     Skills & Topics
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {certification.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)] rounded-full text-sm font-medium"
+                        className="px-3 py-1.5 bg-[var(--muted)] text-[var(--foreground)] border border-[var(--border)] rounded-full text-xs font-medium hover:bg-[var(--muted)]/70 transition-colors"
                       >
                         {tag}
                       </span>
@@ -276,35 +280,36 @@ export default function CertificationPage() {
               )}
 
               {/* Quick Stats */}
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
-                <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4">
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 shadow-sm">
+                <h3 className="text-base font-semibold text-[var(--foreground)] mb-4">
                   Certificate Details
                 </h3>
-                <div className="space-y-3 text-[var(--foreground)]">
-                  <div className="flex justify-between">
+                <div className="space-y-3.5 text-sm">
+                  <div className="flex justify-between items-center">
                     <span className="text-[var(--muted-foreground)]">Type:</span>
-                    <span className="font-medium">Professional Certification</span>
+                    <span className="font-medium text-[var(--foreground)]">Professional Certification</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center">
                     <span className="text-[var(--muted-foreground)]">Status:</span>
-                    <span className={`font-medium ${certification.active ? 'text-green-500' : 'text-red-500'}`}>
+                    <span className={`font-semibold ${certification.active ? 'text-green-500' : 'text-red-500'}`}>
                       {certification.active ? 'Active' : 'Expired'}
                     </span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center">
                     <span className="text-[var(--muted-foreground)]">Featured:</span>
-                    <span className="font-medium">
+                    <span className="font-medium text-[var(--foreground)]">
                       {certification.featured ? 'Yes' : 'No'}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Verification Link */}
               {/* Resources / Verification */}
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6">
-                <h3 className="text-lg font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
-                  <ExternalLink size={18} className="text-purple-400" />
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 shadow-sm">
+                <h3 className="text-base font-semibold text-[var(--foreground)] mb-4 flex items-center gap-2">
+                  <div className="p-1.5 bg-purple-500/10 rounded-lg">
+                    <ExternalLink size={16} className="text-purple-500" />
+                  </div>
                   Resources
                 </h3>
 
@@ -312,16 +317,16 @@ export default function CertificationPage() {
                   {/* PDF Download/View */}
                   {certification.pdf && (
                     <div>
-                      <p className="text-[var(--muted-foreground)] text-sm mb-3">
+                      <p className="text-[var(--muted-foreground)] text-xs mb-3">
                         View the official certificate document.
                       </p>
                       <a
                         href={certification.pdf}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[var(--foreground)] text-[var(--background)] rounded-full font-medium shadow-lg hover:opacity-90 active:scale-95 transition-all text-center"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--foreground)] text-[var(--background)] rounded-full font-medium text-sm shadow-md hover:opacity-90 hover:scale-105 active:scale-95 transition-all"
                       >
-                        <ExternalLink size={16} />
+                        <ExternalLink size={14} />
                         View Certificate PDF
                       </a>
                     </div>
@@ -330,22 +335,22 @@ export default function CertificationPage() {
                   {/* External Verification Link */}
                   {certification.link && (
                     <div className={certification.pdf ? "pt-4 border-t border-[var(--border)]" : ""}>
-                      <p className="text-[var(--muted-foreground)] text-sm mb-3">
+                      <p className="text-[var(--muted-foreground)] text-xs mb-3">
                         Verify directly on the issuer's website.
                       </p>
                       <a
                         href={certification.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[var(--border)] text-[var(--foreground)] rounded-full font-medium hover:bg-[var(--muted)] active:scale-95 transition-all"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-[var(--border)] text-[var(--foreground)] rounded-full font-medium text-sm hover:bg-[var(--muted)] hover:scale-105 active:scale-95 transition-all"
                       >
-                        Verify on {certification.issuer}
+                        Verify on {certification.issuer.includes('(') ? certification.issuer.split('(')[0].trim() : certification.issuer}
                       </a>
                     </div>
                   )}
 
                   {!certification.pdf && !certification.link && (
-                    <p className="text-[var(--muted-foreground)] text-sm italic">
+                    <p className="text-[var(--muted-foreground)] text-xs italic">
                       No external resources available.
                     </p>
                   )}
