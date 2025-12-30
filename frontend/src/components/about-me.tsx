@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { Github, Linkedin, Twitter, ArrowRight, Code, Layout, Server, Database, Cloud } from "lucide-react";
 import { motion } from "framer-motion";
 
 const AboutMe = () => {
@@ -99,19 +99,55 @@ const AboutMe = () => {
                 </div>
 
                 {/* Image - Placeholder URL as requested, but set up for local file */}
-                <div className="absolute inset-0 flex items-end justify-center">
-                  {/* 
-                            REPLACE THIS SRC with your local file path like: "/assets/my-photo.png" 
-                            For now using a generic placeholder that looks professional
-                         */}
-                  <Image
-                    src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop"
-                    alt="Om Choksi"
-                    fill
-                    className="object-cover object-top"
-                  />
-                  {/* Gradient Fade at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center p-12">
+                  <div className="relative w-full h-full max-w-[300px] max-h-[300px]">
+                    {/* Ring 1 - Outer */}
+                    <div className="absolute inset-0 rounded-full border border-[var(--foreground)]/5 animate-[spin_20s_linear_infinite]" />
+
+                    {/* Ring 2 - Middle */}
+                    <div className="absolute inset-8 rounded-full border border-[var(--foreground)]/10 animate-[spin_15s_linear_infinite_reverse]" />
+
+                    {/* Central Core */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-purple-500/20 blur-2xl rounded-full" />
+                        <div className="w-32 h-32 rounded-[2rem] bg-[var(--card)] border border-[var(--border)] shadow-2xl flex items-center justify-center relative z-10">
+                          <Code className="w-12 h-12 text-[var(--foreground)]" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Orbiting Elements */}
+                    {/* We simulate orbits by rotating a container and counter-rotating the icon so it stays upright if we wanted, but simple rotation is fine here */}
+
+                    {/* Tech 1: Frontend */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4">
+                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg animate-bounce">
+                        <Layout className="w-6 h-6 text-purple-500" />
+                      </div>
+                    </div>
+
+                    {/* Tech 2: Backend */}
+                    <div className="absolute bottom-0 right-0 translate-x-2 translate-y-2">
+                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg animate-pulse">
+                        <Server className="w-6 h-6 text-blue-500" />
+                      </div>
+                    </div>
+
+                    {/* Tech 3: Database */}
+                    <div className="absolute bottom-0 left-0 -translate-x-2 translate-y-2">
+                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg">
+                        <Database className="w-6 h-6 text-pink-500" />
+                      </div>
+                    </div>
+
+                    {/* Tech 4: Cloud */}
+                    <div className="absolute top-1/2 right-[-20px] -translate-y-1/2">
+                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg">
+                        <Cloud className="w-6 h-6 text-cyan-500" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

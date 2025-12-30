@@ -12,14 +12,16 @@ import {
   Copy
 } from 'lucide-react';
 
-const QuickConnect = ({ isOpen, onClose, onBookCall }: { 
-  isOpen: boolean; 
+const QuickConnect = ({ isOpen, onClose, onBookCall }: {
+  isOpen: boolean;
   onClose: () => void;
   onBookCall: () => void;
 }) => {
   const [activeTab, setActiveTab] = useState('quick'); // 'quick' or 'form'
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('omchoksi108@gmail.com');
@@ -54,17 +56,15 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
         <div className="flex p-1 bg-[var(--muted)]/50 rounded-xl mb-6 relative">
           <button
             onClick={() => setActiveTab('quick')}
-            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
-              activeTab === 'quick' ? 'bg-[var(--card)] shadow-sm text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
-            }`}
+            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${activeTab === 'quick' ? 'bg-[var(--card)] shadow-sm text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
+              }`}
           >
             Quick connect
           </button>
           <button
             onClick={() => setActiveTab('form')}
-            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
-              activeTab === 'form' ? 'bg-[var(--card)] shadow-sm text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
-            }`}
+            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${activeTab === 'form' ? 'bg-[var(--card)] shadow-sm text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
+              }`}
           >
             Fill a form
           </button>
@@ -107,12 +107,36 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
               </button>
             </div>
           ) : (
-            <form className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              setIsSubmitting(true);
+              setSubmitStatus('idle');
+              try {
+                const res = await fetch('/api/send-email', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ ...formState, type: 'basic' }),
+                });
+                if (res.ok) {
+                  setSubmitStatus('success');
+                  setFormState({ name: '', email: '', message: '' });
+                } else {
+                  setSubmitStatus('error');
+                }
+              } catch (err) {
+                setSubmitStatus('error');
+              } finally {
+                setIsSubmitting(false);
+              }
+            }} className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-[var(--foreground)]">Name</label>
                   <input
                     type="text"
+                    required
+                    value={formState.name}
+                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                     placeholder="Your name"
                     className="w-full bg-[var(--card)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/20 focus:border-[var(--primary)] transition-all placeholder:text-[var(--muted-foreground)]"
                   />
@@ -121,6 +145,9 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
                   <label className="text-xs font-bold text-[var(--foreground)]">Email</label>
                   <input
                     type="email"
+                    required
+                    value={formState.email}
+                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                     placeholder="your.email@example.com"
                     className="w-full bg-[var(--card)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/20 focus:border-[var(--primary)] transition-all placeholder:text-[var(--muted-foreground)]"
                   />
@@ -134,19 +161,36 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
                 </div>
                 <textarea
                   rows={4}
+                  required
+                  value={formState.message}
+                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   placeholder="What would you like to discuss?"
                   className="w-full bg-[var(--card)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/20 focus:border-[var(--primary)] transition-all placeholder:text-[var(--muted-foreground)] resize-none"
-                  onChange={(e) => setFormState({...formState, message: e.target.value})}
                 />
               </div>
 
-              <button className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/80 text-[var(--primary-foreground)] font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
-                <Send className="w-4 h-4" />
-                Send message
+              <button
+                disabled={isSubmitting}
+                className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/80 disabled:opacity-50 text-[var(--primary-foreground)] font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+              >
+                {isSubmitting ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
+                {isSubmitting ? 'Sending...' : 'Send message'}
               </button>
+
+              {submitStatus === 'success' && (
+                <p className="text-xs text-green-500 font-bold text-center mt-2">Message sent successfully!</p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-xs text-red-500 font-bold text-center mt-2">Failed to send message. Please try again.</p>
+              )}
             </form>
           )}
         </div>
+
 
         {/* --- Footer Status --- */}
         <div className="mt-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl py-3 px-4 flex items-center justify-center gap-2">
