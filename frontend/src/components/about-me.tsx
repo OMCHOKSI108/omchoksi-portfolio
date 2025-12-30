@@ -82,20 +82,17 @@ const AboutMe = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="relative w-full max-w-md aspect-[4/5]"
             >
-              {/* Abstract Blob Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-[3rem] transform rotate-3 scale-105 opacity-20 blur-2xl" />
-
               {/* Main Card */}
-              <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-[var(--border)] shadow-2xl bg-[#0a0a0a]">
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-50">
-                  <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-purple-900/20 to-transparent" />
-                  <svg className="w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-[var(--border)] shadow-2xl bg-[var(--card)]">
+                {/* Background Pattern - Clean */}
+                <div className="absolute inset-0 opacity-10">
+                  {/* Removed foggy gradient overlay */}
+                  <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                     <path d="M0 0 C 50 100 80 100 100 0 Z" fill="url(#grad1)" />
                     <defs>
                       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style={{ stopColor: 'rgb(59, 130, 246)', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: 'rgb(147, 51, 234)', stopOpacity: 1 }} />
+                        <stop offset="0%" style={{ stopColor: 'var(--primary)', stopOpacity: 0.2 }} />
+                        <stop offset="100%" style={{ stopColor: 'var(--accent)', stopOpacity: 0.2 }} />
                       </linearGradient>
                     </defs>
                   </svg>

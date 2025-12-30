@@ -11,6 +11,7 @@ import {
     BookOpen,
     Music,
 } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 
 // --- Experience Data (Design Template) ---
 const EXPERIENCE = [
@@ -47,6 +48,13 @@ const EXPERIENCE = [
 
 export default function Experience() {
     const containerRef = useRef(null);
+    const { theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    // Prevent hydration mismatch
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // State for Real GitHub Stats
     const [stats, setStats] = useState({
@@ -106,13 +114,6 @@ export default function Experience() {
     return (
         <section className="relative w-full py-20 overflow-hidden font-sans text-[var(--foreground)] bg-[var(--background)]">
 
-            {/* Inject Fonts */}
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
-        .font-serif-display { font-family: 'Playfair Display', serif; }
-      `}} />
-
             <div id="experience" className="max-w-6xl mx-auto px-6 space-y-32">
 
                 {/* ==================== EXPERIENCE SECTION ==================== */}
@@ -120,7 +121,7 @@ export default function Experience() {
                     {/* Header */}
                     <div className="text-center mb-20 space-y-4">
                         <span className="text-sm font-bold tracking-[0.2em] text-[var(--foreground)] uppercase">The Experience</span>
-                        <h2 className="text-5xl md:text-7xl font-serif-display leading-tight text-[var(--foreground)]">
+                        <h2 className="text-5xl md:text-7xl font-serif leading-tight text-[var(--foreground)]">
                             Experience That <br />
                             Brings <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Ideas to Life</span>
                         </h2>
@@ -156,7 +157,7 @@ export default function Experience() {
                                         <span className="text-sm font-bold text-[var(--foreground)] tracking-wider uppercase block mb-1">
                                             {exp.date}
                                         </span>
-                                        <h3 className="text-3xl font-serif-display font-medium text-[var(--foreground)]">
+                                        <h3 className="text-3xl font-serif font-medium text-[var(--foreground)]">
                                             {exp.company}
                                         </h3>
                                         <div className={`flex flex-col text-sm text-[var(--text-secondary)] gap-1 ${index % 2 !== 0 ? "md:items-start" : "md:items-end"}`}>
@@ -184,7 +185,7 @@ export default function Experience() {
 
                                     {/* Right Side (Content) */}
                                     <div className={`${index % 2 !== 0 ? "md:order-1 md:text-right" : ""} pl-10 md:pl-0`}>
-                                        <h4 className="text-xl font-bold text-[var(--foreground)] mb-6 font-serif-display">
+                                        <h4 className="text-xl font-bold text-[var(--foreground)] mb-6 font-serif">
                                             {exp.role}
                                         </h4>
                                         <div className="space-y-4 text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
@@ -212,7 +213,7 @@ export default function Experience() {
                     {/* Header */}
                     <div className="text-center mb-12 space-y-4">
                         <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">Developer Insights</span>
-                        <h2 className="text-4xl md:text-5xl font-serif-display leading-tight text-[var(--foreground)]">
+                        <h2 className="text-4xl md:text-5xl font-serif leading-tight text-[var(--foreground)]">
                             <span className="block">GitHub</span>
                             <span className="block mt-2 italic font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Activity</span>
                         </h2>
@@ -226,7 +227,7 @@ export default function Experience() {
                         {/* Note: A real contribution graph SVG requires a proxy or server-side scraping due to CORS.
                    We simulate the visual style here to match the design perfectly. 
                 */}
-                        <div className="grid grid-cols-[repeat(53,1fr)] gap-[3px] opacity-90">
+                        <div className="grid grid-cols-[repeat(53,1fr)] gap-[3px] opacity-100">
                             {Array.from({ length: 7 }).map((_, row) => (
                                 Array.from({ length: 53 }).map((_, col) => {
                                     // Deterministic level calculation (avoids SSR/Client hydration mismatch)
@@ -234,12 +235,31 @@ export default function Experience() {
                                     const combined = row * 53 + col;
                                     // Spread out non-zero levels roughly ~30% of the time
                                     const level = (combined % 10) > 6 ? (combined % 4) + 1 : 0;
-                                    const githubColors = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
+
+                                    // Styles for Light/Dark mode (Inline for reliability)
+                                    const getLevelColor = (lvl: number) => {
+                                        const isDark = mounted && theme === 'dark';
+
+                                        if (isDark) {
+                                            if (lvl === 0) return "#161b22";
+                                            if (lvl === 1) return "#0e4429";
+                                            if (lvl === 2) return "#006d32";
+                                            if (lvl === 3) return "#26a641";
+                                            return "#39d353";
+                                        } else {
+                                            if (lvl === 0) return "#ebedf0";
+                                            if (lvl === 1) return "#9be9a8";
+                                            if (lvl === 2) return "#40c463";
+                                            if (lvl === 3) return "#30a14e";
+                                            return "#216e39";
+                                        }
+                                    };
+
                                     return (
                                         <div
                                             key={`${row}-${col}`}
-                                            className="w-full aspect-square rounded-sm border border-gray-400"
-                                            style={{ backgroundColor: githubColors[level] }}
+                                            className="w-full aspect-square rounded-sm border-[0.5px] border-black/5 dark:border-white/5"
+                                            style={{ backgroundColor: getLevelColor(level) }}
                                         />
                                     )
                                 })
@@ -249,10 +269,10 @@ export default function Experience() {
                             <span>{new Date().getFullYear()} Contributions</span>
                             <div className="flex items-center gap-1">
                                 <span>Less</span>
-                                <div className="w-3 h-3 rounded-sm border border-gray-400" style={{ backgroundColor: "#ebedf0" }} />
-                                <div className="w-3 h-3 rounded-sm border border-gray-400" style={{ backgroundColor: "#9be9a8" }} />
-                                <div className="w-3 h-3 rounded-sm border border-gray-400" style={{ backgroundColor: "#40c463" }} />
-                                <div className="w-3 h-3 rounded-sm border border-gray-400" style={{ backgroundColor: "#216e39" }} />
+                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#161b22" : "#ebedf0" }} />
+                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#0e4429" : "#9be9a8" }} />
+                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#006d32" : "#40c463" }} />
+                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#26a641" : "#30a14e" }} />
                                 <span>More</span>
                             </div>
                         </div>

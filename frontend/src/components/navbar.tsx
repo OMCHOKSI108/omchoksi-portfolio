@@ -30,8 +30,8 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
   const getLinkStyles = (path: string) => {
     const isActive = pathname === path;
     return isActive
-      ? "relative px-4 py-2 rounded-full text-sm font-medium transition-all text-[var(--foreground)] bg-[var(--card)] shadow-sm"
-      : "relative px-4 py-2 rounded-full text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-all";
+      ? "relative px-5 py-2.5 rounded-full text-sm font-medium transition-all text-white bg-black dark:bg-white/10 shadow-sm ring-1 ring-black/5 dark:ring-white/5"
+      : "relative px-5 py-2.5 rounded-full text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all";
   };
 
   return (
@@ -40,7 +40,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "circOut" }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center w-full max-w-[1400px] mx-auto pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex justify-between items-center w-full max-w-[1400px] mx-auto pointer-events-none"
       >
         {/* Logo */}
         <Link
@@ -55,7 +55,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
         </Link>
 
         {/* Center Dock - Desktop */}
-        <div className="pointer-events-auto hidden md:flex items-center px-2 py-2 gap-1 rounded-full bg-[var(--card)]/95 backdrop-blur-xl border border-[var(--border)] shadow-lg">
+        <div className="pointer-events-auto hidden md:flex items-center p-1.5 gap-1 rounded-full bg-white/40 dark:bg-black/20 backdrop-blur-3xl border border-black/5 dark:border-white/5 shadow-xl dark:shadow-2xl ring-1 ring-black/5 dark:ring-white/5">
           <Link href="/" className={getLinkStyles("/")}>
             Home
           </Link>
@@ -69,41 +69,39 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
             Blog
           </Link>
 
-          {/* "More" Dropdown */}
-          <div className="relative group px-3 py-2 cursor-pointer text-[var(--muted-foreground)] hover:text-[var(--foreground)] text-sm font-medium flex items-center gap-1 transition-all rounded-full hover:bg-[var(--muted)]">
-            More <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform duration-300" />
-
-            {/* Dropdown Content */}
-            <div className="absolute top-full right-0 pt-3 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right translate-y-2 group-hover:translate-y-0">
-              <div className="bg-[var(--card)]/95 backdrop-blur-xl rounded-2xl shadow-xl border border-[var(--border)] p-2 overflow-hidden">
-                <Link href="/stack" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
-                  Tech Stack
-                </Link>
-                <Link href="/certifications" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
-                  Certifications
-                </Link>
-                <Link href="/stats" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
-                  Stats
-                </Link>
-                <a href="https://drive.google.com/file/d/1TJjCk-HImfvgH-v8vygzeWan1mB8RGB-/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center w-full px-4 py-2.5 rounded-xl hover:bg-[var(--muted)] text-sm transition-colors text-left text-[var(--foreground)] font-medium">
-                  Resume
-                </a>
-              </div>
+          {/* More Dropdown */}
+          <div className="relative group">
+            <button className="relative px-5 py-2.5 rounded-full text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center gap-1">
+              More <ChevronDown size={14} />
+            </button>
+            {/* Dropdown Menu */}
+            <div className="absolute top-full right-0 mt-2 w-48 rounded-2xl bg-white/80 dark:bg-[#0a0a0f]/80 backdrop-blur-3xl border border-black/5 dark:border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right overflow-hidden z-50">
+              <Link href="/stack" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                Tech Stack
+              </Link>
+              <Link href="/certifications" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                Certifications
+              </Link>
+              <Link href="/links" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                Links
+              </Link>
+              <Link href="/resume" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                Resume
+              </Link>
             </div>
           </div>
 
-          <div className="w-px h-4 bg-[var(--border)] mx-1"></div>
+          <div className="w-[1px] h-6 bg-black/10 dark:bg-white/10 mx-1" />
 
           <button
             onClick={() => {
               if (onContactClick) {
                 onContactClick();
               } else {
-                // Fallback: open the global QuickConnect modal for inline booking
                 window.dispatchEvent(new CustomEvent('open-quick-connect'));
               }
             }}
-            className="px-5 py-2 rounded-full bg-[var(--foreground)]/5 border border-[var(--foreground)]/10 text-[var(--foreground)] font-medium transition-all hover:bg-[var(--foreground)]/10 hover:scale-105 active:scale-95"
+            className="px-6 py-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-zinc-900 dark:text-white font-medium transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:scale-105 active:scale-95"
           >
             Book a Call
           </button>
@@ -113,7 +111,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
         <div className="pointer-events-auto flex items-center justify-end">
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--card)]/80 backdrop-blur-xl border border-[var(--border)] hover:bg-[var(--muted)] transition-all shadow-sm text-[var(--foreground)]"
+            className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/80 dark:bg-[var(--card)]/80 backdrop-blur-xl border border-black/5 dark:border-[var(--border)] hover:bg-black/5 dark:hover:bg-[var(--muted)] transition-all shadow-sm text-zinc-900 dark:text-[var(--foreground)]"
             aria-label="Search"
             title="Search (⌘K)"
           >
@@ -175,11 +173,9 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
 
               {/* Search Content */}
               <div className="p-2 max-h-[60vh] overflow-y-auto">
-                {/* Pages Section */}
                 <div className="px-2 py-2 text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">
                   Pages
                 </div>
-
                 {[
                   { title: "Home", href: "/", desc: "Back to landing page" },
                   { title: "About", href: "/about", desc: "My background & story" },
@@ -210,15 +206,13 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                   </Link>
                 ))}
 
-                {/* Resources Section */}
                 <div className="px-2 py-2 mt-4 text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">
                   Resources
                 </div>
-
                 {[
                   { title: "Resume", href: "https://drive.google.com/file/d/1TJjCk-HImfvgH-v8vygzeWan1mB8RGB-/view?usp=sharing", desc: "Download my resume", external: true },
                   { title: "GitHub", href: "https://github.com/OMCHOKSI108", desc: "View my code repositories", external: true },
-                  { title: "LinkedIn", href: "https://www.linkedin.com/in/om-choksi/", desc: "Connect with me", external: true },
+                  { title: "LinkedIn", href: "https://www.linkedin.com/in/omchoksi/", desc: "Connect with me", external: true },
                 ].map((item) => (
                   <a
                     key={item.href}

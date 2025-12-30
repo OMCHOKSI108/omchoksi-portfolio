@@ -30,119 +30,107 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
       {/* Theme-Aware Background with Gradient */}
-      <div className={`absolute inset-0 ${isDark ? 'bg-[#0a0a0f]' : 'bg-gradient-to-br from-white via-purple-50/30 to-blue-50/40'}`}>
-        {/* Subtle Stars (only in dark mode) */}
-        {isDark && stars.map((star, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              opacity: star.opacity,
-            }}
-          />
-        ))}
+      {/* Theme-Aware Background with Gradient */}
+      {/* Theme-Aware Background with Gradient */}
+      {/* Theme-Aware Background with Gradient */}
+      <div className={`absolute inset-0 ${isDark ? 'bg-[#030014]' : 'bg-gradient-to-b from-[#f8f9ff] via-[#eef2ff] to-[#e0e7ff]'}`}>
 
-        {/* Soft Gradient Orbs for Light Mode */}
-        {!isDark && (
-          <>
-            <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-purple-200/40 to-blue-200/40 rounded-full blur-3xl opacity-60" />
-            <div className="absolute bottom-40 left-20 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-purple-200/30 rounded-full blur-3xl opacity-50" />
-          </>
-        )}
+        {/* ATMOSPHERIC GLOW (The "Reference" Look) */}
+        {/* This is the massive nebula glow behind the text */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {isDark ? (
+            <>
+              {/* 1. Central Purple/Blue Atmospheric Glow */}
+              <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-[#0f0c29]/0 to-transparent blur-[80px] opacity-100 mix-blend-screen pointer-events-none" />
 
-        {/* Perfect Glowing Horizon - Planet Edge Effect */}
-        <div className="absolute bottom-0 left-0 right-0 h-[50%] z-0 pointer-events-none">
+              {/* 2. Secondary "Sunrise" Glow at Horizon */}
+              <div className="absolute bottom-[0%] left-1/2 -translate-x-1/2 w-[60vw] h-[40vh] bg-blue-600/10 blur-[100px] rounded-full mix-blend-screen" />
 
-          {/* Ambient Glows - BEHIND the planet */}
-          <div className="absolute bottom-0 left-0 right-0 h-full flex flex-col justify-end overflow-hidden z-0">
-            {isDark ? (
-              <>
-                {/* Deep neutral/blue core glow */}
-                <div className="absolute bottom-[-30%] left-1/2 -translate-x-1/2 w-[140%] h-[500px] bg-blue-900/10 blur-[120px] rounded-[100%]" />
-                {/* Blueish rim glow - very subtle */}
-                <div className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[120%] h-[300px] bg-sky-900/10 blur-[90px] rounded-[100%]" />
-              </>
-            ) : (
-              <>
-                <div className="absolute bottom-[-40%] left-1/2 -translate-x-1/2 w-[140%] h-[500px] bg-gray-100/40 blur-[120px] rounded-[100%]" />
-                <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[120%] h-[300px] bg-blue-50/20 blur-[90px] rounded-[100%]" />
-              </>
-            )}
-          </div>
+              {/* Stars */}
+              {stars.map((star, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute rounded-full bg-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: star.opacity }}
+                  transition={{ duration: 1, delay: i * 0.05 }}
+                  style={{
+                    left: `${star.x}%`,
+                    top: `${star.y}%`,
+                    width: `${star.size}px`,
+                    height: `${star.size}px`,
+                  }}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {/* Light Mode Glows */}
+              <div className="absolute top-0 left-0 w-full h-[60%] bg-gradient-to-b from-white via-transparent to-transparent z-10" />
+              <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-purple-200/30 blur-[100px] rounded-full mix-blend-multiply" />
+              <div className="absolute bottom-[0%] left-[-10%] w-[50%] h-[50%] bg-blue-200/30 blur-[120px] rounded-full mix-blend-multiply" />
+            </>
+          )}
+        </div>
 
-          {/* SVG Shape - The Planet Surface (Body + Rim) */}
-          <div className="absolute bottom-0 left-0 right-0 h-[100%] z-10 w-full translate-y-[20%]"> {/* Pushed down by 20% to lower horizon */}
+        {/* The Planet Horizon Effect */}
+        <div className="absolute bottom-0 left-0 right-0 h-[50vh] z-0 pointer-events-none flex items-end justify-center overflow-visible">
+
+          {/* The SVG Curve Surface */}
+          <div className="relative w-full h-full translate-y-[20%] scale-[1.02]">
             <svg
               viewBox="0 0 1440 320"
               className="w-full h-full block"
               preserveAspectRatio="none"
+              style={{ filter: isDark ? 'drop-shadow(0 -4px 20px rgba(255, 255, 255, 0.1))' : 'drop-shadow(0 -10px 20px rgba(147, 197, 253, 0.4))' }}
             >
               <defs>
-                {/* Body Gradient - The solid mass of the planet */}
-                <linearGradient id={isDark ? "planetBodyDark" : "planetBodyLight"} x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id={isDark ? "planetFillDark" : "planetFillLight"} x1="0.5" y1="0" x2="0.5" y2="1">
                   {isDark ? (
                     <>
-                      <stop offset="0%" stopColor="#0a0a0f" />
-                      <stop offset="100%" stopColor="#0a0a0f" />
+                      <stop offset="0%" stopColor="#000000" />
+                      <stop offset="100%" stopColor="#000000" />
                     </>
                   ) : (
                     <>
                       <stop offset="0%" stopColor="#ffffff" />
-                      <stop offset="100%" stopColor="#ffffff" />
+                      <stop offset="100%" stopColor="#f0f4ff" />
                     </>
                   )}
                 </linearGradient>
 
-                {/* Rim Light Gradient - The glowing edge */}
-                {/* Using a gradient that fades to transparent at the ends would be tricky with stroke, 
-                    so we simulate it by using a linear gradient from top to bottom but we want left-right fade too.
-                    Better to use a mask or just a clean top-down gradient that is sharp. 
-                    Actually, let's keep it simple: Bright top, transparent bottom. */}
-                <linearGradient id={isDark ? "rimLightDark" : "rimLightLight"} x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id={isDark ? "rimStrokeDark" : "rimStrokeLight"} x1="0.5" y1="0" x2="0.5" y2="1">
                   {isDark ? (
                     <>
-                      <stop offset="0%" stopColor="rgba(255, 255, 255, 0.9)" />
-                      <stop offset="5%" stopColor="rgba(200, 220, 255, 0.4)" />
+                      <stop offset="0%" stopColor="rgba(255, 255, 255, 1)" />
+                      <stop offset="15%" stopColor="rgba(255, 255, 255, 0.5)" />
+                      <stop offset="40%" stopColor="rgba(255, 255, 255, 0)" />
                       <stop offset="100%" stopColor="transparent" />
                     </>
                   ) : (
                     <>
-                      <stop offset="0%" stopColor="rgba(255, 255, 255, 1)" />
-                      <stop offset="100%" stopColor="rgba(255, 255, 255, 0)" />
+                      <stop offset="0%" stopColor="rgba(59, 130, 246, 0.8)" />
+                      <stop offset="30%" stopColor="rgba(147, 197, 253, 0.1)" />
+                      <stop offset="100%" stopColor="transparent" />
                     </>
                   )}
                 </linearGradient>
               </defs>
 
-              {/* The Planet Body - Solid fill to block background */}
-              {/* Lowered the top point from 160 to 200 to be flatter */}
+              {/* Main Planet Body - Pitch Black to block the glow behind */}
               <path
-                d="M0,320 L0,220 Q720,120 1440,220 L1440,320 Z"
-                fill={`url(#${isDark ? "planetBodyDark" : "planetBodyLight"})`}
+                d="M0,320 L0,120 Q720,20 1440,120 L1440,320 Z"
+                fill={`url(#${isDark ? "planetFillDark" : "planetFillLight"})`}
               />
 
-              {/* The Rim Light - Overlay stroke/fill at the top edge */}
+              {/* Glowing Rim Stroke - Crisp White */}
               <path
-                d="M0,320 L0,220 Q720,120 1440,220 L1440,320 Z"
+                d="M0,320 L0,120 Q720,20 1440,120 L1440,320 Z"
                 fill="none"
-                stroke={`url(#${isDark ? "rimLightDark" : "rimLightLight"})`}
-                strokeWidth={isDark ? "1.5" : "1"}
+                stroke={`url(#${isDark ? "rimStrokeDark" : "rimStrokeLight"})`}
+                strokeWidth="1.5"
+                className="opacity-100 mix-blend-screen"
               />
-
-              {/* Optional: Add a second fainter rim for the 'halo' effect */}
-              {isDark && (
-                <path
-                  d="M0,320 L0,220 Q720,120 1440,220 L1440,320 Z"
-                  fill="none"
-                  stroke="rgba(100, 150, 255, 0.3)"
-                  strokeWidth="8" // Wider, fainter outer glow
-                  style={{ filter: 'blur(4px)' }}
-                />
-              )}
             </svg>
           </div>
         </div>

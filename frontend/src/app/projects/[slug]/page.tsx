@@ -3,7 +3,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Info, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Info, CheckCircle2, ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@/components/theme-provider';
@@ -130,158 +130,144 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       <Navbar />
 
       {/* Project Content (hero, grid, article) */}
+      {/* Project Content (2-Column Layout) */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Watermark large background title for emphasis */}
-        <div className="relative mb-12 pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-20 items-start">
 
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-primary)' }}>{project.title}</h1>
-            <p className="text-lg md:text-xl text-[var(--muted-foreground)] leading-relaxed max-w-2xl mx-auto mb-6 font-light">A focused case study exploring the architecture, design and technical choices behind {project.title}.</p>
+          {/* LEFT SIDEBAR: Tags, Actions, Meta */}
+          <aside className="order-2 lg:order-1 relative">
+            <div className="sticky top-24 space-y-8 p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-sm">
 
-            <div className="flex flex-wrap justify-center gap-3 mb-6">
-              {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
-                (project.technologies ?? project.tags ?? []).slice(0, 6).map((t, i) => (
-                  <span key={i} className="px-3 py-1 bg-[var(--muted)] border border-[var(--border)] rounded-md text-xs font-medium text-[var(--foreground)] uppercase">{t}</span>
-                ))
-              ) : null}
-              <span className="px-3 py-1 text-[var(--muted-foreground)] text-xs">{new Date(project.createdAt).toLocaleDateString()}</span>
-            </div>
+              {/* Back Link */}
+              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Works
+              </Link>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-stretch rounded-full overflow-hidden group shadow-sm">
-                  <span className="flex items-center justify-center w-10 h-10 bg-[var(--card)] border border-[var(--border)]">
-                    <ExternalLink className="w-4 h-4 text-[var(--foreground)]" />
-                  </span>
-                  <span
-                    className={`px-5 py-3 font-medium text-sm flex items-center gap-2 transition-all group-hover:brightness-95 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'
-                      }`}
-                  >
-                    Check it out
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
-                </a>
-              )}
-              {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-stretch rounded-full overflow-hidden group shadow-sm">
-                  <span className="flex items-center justify-center w-10 h-10 bg-[var(--background)] border border-[var(--border)]">
-                    <Github className="w-4 h-4 text-[var(--foreground)]" />
-                  </span>
-                  <span className="px-5 py-3 bg-[var(--card)] text-[var(--foreground)] font-medium text-sm flex items-center gap-2 transition-all group-hover:brightness-95">
-                    Source Code
-                  </span>
-                </a>
-              )}
-            </div>
-          </motion.div>
-        </div>
+              <div className="h-[1px] bg-[var(--border)] w-full" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12 lg:gap-20 items-start max-w-6xl mx-auto">
-          {/* Left content column */}
-          <div className="space-y-10">
-            <motion.div initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-[var(--accent)]/8 border border-[var(--accent)]/20 rounded-xl p-6 flex gap-4 items-start">
-              <div className="bg-[var(--accent)]/20 p-2 rounded-full shrink-0 text-[var(--accent)] mt-1">
-                <Info className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-[var(--foreground)] mb-1">Project Overview</h3>
-                <p className="text-[var(--muted-foreground)] text-sm leading-relaxed font-light">{project.title} is built with performance and clarity in mind — using modern tooling and clean architecture to deliver a delightful experience.</p>
-              </div>
-            </motion.div>
-
-            {/* Primary feature image */}
-            {project.images && project.images.length > 0 && (
-              <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="rounded-2xl overflow-hidden border border-[var(--border)] shadow-xl bg-[var(--card)]">
-                <div className="relative aspect-video w-full">
-                  <Image src={project.images[selectedImageIndex].url} alt={project.images[selectedImageIndex].alt || project.title} fill className="object-cover" />
+              {/* Tags */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
+                    (project.technologies ?? project.tags ?? []).map((t, i) => (
+                      <span key={i} className="px-3 py-1.5 bg-[var(--background)] border border-[var(--border)] rounded-lg text-xs font-semibold text-[var(--foreground)] hover:border-[var(--accent)] transition-colors cursor-default">
+                        {t}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-sm text-[var(--muted-foreground)]">No tags</span>
+                  )}
                 </div>
-              </motion.div>
-            )}
-
-            {/* Thumbnails */}
-            {project.images && project.images.length > 1 && (
-              <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
-                {project.images.map((img, idx) => (
-                  <button key={idx} onClick={() => setSelectedImageIndex(idx)} className={`relative aspect-video rounded-lg overflow-hidden border transition-all ${selectedImageIndex === idx ? 'ring-2 ring-[var(--accent)] ring-offset-2' : 'border-[var(--border)] opacity-70 hover:opacity-100'}`}>
-                    <img src={img.url} alt={`thumb-${idx}`} className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Rich markdown article (prefer rich `projectMarkdown` when available) */}
-            <article className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:font-light prose-p:leading-7 prose-a:text-[var(--accent)] prose-strong:font-semibold prose-img:rounded-xl prose-img:shadow-lg">
-              <ReactMarkdown>{project.projectMarkdown && project.projectMarkdown.trim() ? project.projectMarkdown : project.description}</ReactMarkdown>
-            </article>
-
-            {/* Tags + Action Row (below article) */}
-            <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex flex-wrap gap-2">
-                {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
-                  (project.technologies ?? project.tags ?? []).map((t, i) => (
-                    <span key={i} className="px-3 py-1 text-xs rounded-full bg-[var(--muted)] text-[var(--foreground)] border border-[var(--border)]">
-                      {t}
-                    </span>
-                  ))
-                ) : (
-                  <div className="text-sm text-[var(--muted-foreground)]">No tags provided by the API</div>
-                )}
               </div>
 
-              <div className="flex items-center gap-3">
-                {project.liveUrl ? (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-stretch rounded-full overflow-hidden group shadow-sm">
-                    <span className="flex items-center justify-center w-9 h-9 bg-[var(--card)] border border-[var(--border)]">
-                      <ExternalLink className="w-4 h-4 text-[var(--foreground)]" />
-                    </span>
-                    <span className="px-4 py-2 bg-[var(--foreground)] text-[var(--background)] font-medium text-sm flex items-center gap-2 transition-all group-hover:brightness-95">
-                      Live
-                    </span>
+              {/* Date */}
+              <div className="space-y-1">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Date</h3>
+                <p className="font-medium text-[var(--foreground)]">{new Date(project.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long' })}</p>
+              </div>
+
+              {/* Actions */}
+              <div className="space-y-3 pt-4">
+                {project.liveUrl && (
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-lg font-bold shadow-md hover:brightness-110 transition-all">
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
                   </a>
-                ) : (
-                  <div className="text-sm text-[var(--muted-foreground)]">No live URL provided</div>
                 )}
-
-                {project.githubUrl ? (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-stretch rounded-full overflow-hidden group shadow-sm">
-                    <span className="flex items-center justify-center w-9 h-9 bg-[var(--background)] border border-[var(--border)]">
-                      <Github className="w-4 h-4 text-[var(--foreground)]" />
-                    </span>
-                    <span className="px-4 py-2 bg-[var(--card)] text-[var(--foreground)] font-medium text-sm flex items-center gap-2 transition-all group-hover:brightness-95">
-                      View on GitHub
-                    </span>
+                {project.githubUrl && (
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-lg font-bold shadow-sm hover:bg-[var(--accent)]/10 transition-all">
+                    <Github className="w-4 h-4" />
+                    View Source
                   </a>
-                ) : (
-                  <div className="text-sm text-[var(--muted-foreground)]">No GitHub link provided</div>
                 )}
-              </div>
-            </div>
-
-            {/* Outcome box */}
-            <div className="mt-8 bg-green-50/60 border border-green-100 rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600" />
-                <h3 className="font-serif font-bold text-lg text-[var(--foreground)]">Result & Impact</h3>
-              </div>
-              <p className="text-[var(--muted-foreground)] text-sm leading-relaxed mb-4">{project.title} demonstrates high-performance patterns and continuous delivery best practices — making it production-ready and easy to iterate on.</p>
-              {project.liveUrl && (
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-[var(--muted-foreground)]">Explore it live:</span>
-                  <a href={project.liveUrl} className="font-medium text-[var(--foreground)] underline underline-offset-4 hover:text-[var(--accent)] transition-colors">Visit the live app</a>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Right column: TOC / sticky - placeholder
-              TODO: Populate this TOC/index from API when available. Kept a simple back link for now. */}
-          <aside className="hidden lg:block relative h-full">
-            <div className="sticky top-24 space-y-8">
-              <div className="pt-8 border-t border-[var(--border)]">
-                <Link href="/work" className="text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] flex items-center gap-2 transition-colors"><ArrowLeft className="w-3 h-3" />Back to all projects</Link>
               </div>
             </div>
           </aside>
+
+
+          {/* RIGHT CONTENT: Title, Carousel, Article */}
+          <div className="order-1 lg:order-2 space-y-10">
+
+            {/* Title & Desc */}
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[var(--foreground)] leading-tight">
+                {project.title}
+              </h1>
+              <p className="text-xl text-[var(--muted-foreground)] font-light leading-relaxed max-w-3xl">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Image Carousel */}
+            {project.images && project.images.length > 0 ? (
+              <div className="space-y-4">
+                <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-[var(--border)] shadow-xl bg-[var(--muted)] group">
+
+                  <Image
+                    src={project.images[selectedImageIndex].url}
+                    alt={project.images[selectedImageIndex].alt || project.title}
+                    fill
+                    className="object-cover transition-transform duration-500"
+                    priority
+                  />
+
+                  {/* Carousel Controls */}
+                  {project.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => setSelectedImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length)}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                      <button
+                        onClick={() => setSelectedImageIndex((prev) => (prev + 1) % project.images!.length)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Thumbnails */}
+                {project.images.length > 1 && (
+                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
+                    {project.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImageIndex(idx)}
+                        className={`relative aspect-video rounded-lg overflow-hidden border transition-all ${selectedImageIndex === idx ? 'ring-2 ring-[var(--accent)] ring-offset-2' : 'border-[var(--border)] opacity-60 hover:opacity-100'}`}
+                      >
+                        <img src={img.url} alt={`thumb-${idx}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : null}
+
+            {/* Overview Box */}
+            <div className="bg-[var(--accent)]/5 border border-[var(--accent)]/20 rounded-xl p-8 flex gap-6 items-start">
+              <div className="bg-[var(--accent)]/20 p-3 rounded-full shrink-0 text-[var(--accent)]">
+                <Info className="w-6 h-6" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold text-[var(--foreground)]">Project Overview</h3>
+                <p className="text-[var(--muted-foreground)] leading-relaxed">
+                  A deep dive into the technical implementation and design challenges solved during the development of {project.title}. This project highlights modern best practices and scalable architecture.
+                </p>
+              </div>
+            </div>
+
+            {/* Markdown Content */}
+            <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:text-[var(--muted-foreground)] prose-p:font-light prose-p:leading-8 prose-li:text-[var(--muted-foreground)] prose-strong:text-[var(--foreground)] prose-strong:font-semibold">
+              <ReactMarkdown>{project.projectMarkdown && project.projectMarkdown.trim() ? project.projectMarkdown : project.description}</ReactMarkdown>
+            </article>
+
+          </div>
         </div>
       </main>
 

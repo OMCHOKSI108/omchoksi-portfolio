@@ -539,7 +539,7 @@ export default function StatsDashboard() {
 
                         <div className="flex gap-4 text-[var(--muted-foreground)]">
                             <Mail className="w-5 h-5 hover:text-[var(--foreground)] cursor-pointer transition-colors" />
-                            <Linkedin className="w-5 h-5 hover:text-[var(--foreground)] cursor-pointer transition-colors" onClick={() => window.open('https://www.linkedin.com/in/om-choksi/', '_blank')} />
+                            <Linkedin className="w-5 h-5 hover:text-[var(--foreground)] cursor-pointer transition-colors" onClick={() => window.open('https://www.linkedin.com/in/omchoksi/', '_blank')} />
                             <Github className="w-5 h-5 hover:text-[var(--foreground)] cursor-pointer transition-colors" onClick={() => window.open('https://github.com/omchoksi108', '_blank')} />
                             <Twitter className="w-5 h-5 hover:text-[var(--foreground)] cursor-pointer transition-colors" onClick={() => window.open('https://x.com/ChoksiOm', '_blank')} />
                         </div>
