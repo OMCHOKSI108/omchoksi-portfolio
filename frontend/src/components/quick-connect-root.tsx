@@ -35,8 +35,9 @@ export default function QuickConnectRoot() {
     };
   }, []);
 
-  const todayIso = useMemo(() => {
+  const tomorrowIso = useMemo(() => {
     const d = new Date();
+    d.setDate(d.getDate() + 1);
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, "0");
     const dd = String(d.getDate()).padStart(2, "0");
@@ -163,7 +164,7 @@ export default function QuickConnectRoot() {
             <label className="block text-xs font-medium mb-2">Date</label>
             <input
               type="date"
-              min={todayIso}
+              min={tomorrowIso}
               value={selectedDate ?? ""}
               onChange={(e) => {
                 setSelectedDate(e.target.value);
@@ -180,15 +181,15 @@ export default function QuickConnectRoot() {
             ) : (
               <div className="grid grid-cols-3 gap-2">
                 {slots.map((s) => {
-                  const disabled = selectedDate === todayIso && isPastSlot(selectedDate, s);
+                  const disabled = false;
                   return (
                     <button
                       key={s}
                       disabled={disabled}
                       onClick={() => setSelectedSlot(s)}
                       className={`px-2 py-2 text-sm rounded-lg border ${selectedSlot === s
-                          ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
-                          : "bg-[var(--card)] text-[var(--foreground)]"
+                        ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
+                        : "bg-[var(--card)] text-[var(--foreground)]"
                         } ${disabled ? "opacity-40 cursor-not-allowed" : "hover:scale-105"}`}
                     >
                       {s}

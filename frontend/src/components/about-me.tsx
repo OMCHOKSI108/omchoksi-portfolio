@@ -98,55 +98,67 @@ const AboutMe = () => {
                   </svg>
                 </div>
 
-                {/* Image - Placeholder URL as requested, but set up for local file */}
-                <div className="absolute inset-0 flex items-center justify-center p-12">
-                  <div className="relative w-full h-full max-w-[300px] max-h-[300px]">
-                    {/* Ring 1 - Outer */}
-                    <div className="absolute inset-0 rounded-full border border-[var(--foreground)]/5 animate-[spin_20s_linear_infinite]" />
+                <div className="absolute inset-0 flex items-center justify-center p-6">
+                  <div className="relative w-full h-full">
+                    {/* Neural Network Visualization */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+                      <defs>
+                        <linearGradient id="netGradient" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="currentColor" className="text-purple-500/20" />
+                          <stop offset="100%" stopColor="currentColor" className="text-purple-500/50" />
+                        </linearGradient>
+                      </defs>
 
-                    {/* Ring 2 - Middle */}
-                    <div className="absolute inset-8 rounded-full border border-[var(--foreground)]/10 animate-[spin_15s_linear_infinite_reverse]" />
+                      {/* Connections: Input -> Center */}
+                      <path d="M70 80 L200 150" stroke="url(#netGradient)" strokeWidth="2" />
+                      <path d="M70 220 L200 150" stroke="url(#netGradient)" strokeWidth="2" />
 
-                    {/* Central Core */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-purple-500/20 blur-2xl rounded-full" />
-                        <div className="w-32 h-32 rounded-[2rem] bg-[var(--card)] border border-[var(--border)] shadow-2xl flex items-center justify-center relative z-10">
-                          <Code className="w-12 h-12 text-[var(--foreground)]" />
-                        </div>
-                      </div>
+                      {/* Connections: Center -> Output */}
+                      <path d="M200 150 L330 80" stroke="url(#netGradient)" strokeWidth="2" />
+                      <path d="M200 150 L330 220" stroke="url(#netGradient)" strokeWidth="2" />
+
+                      {/* Data Packets Animation */}
+                      <circle r="3" fill="var(--primary)">
+                        <animateMotion dur="2s" repeatCount="indefinite" path="M70 80 L200 150 L330 80" />
+                      </circle>
+                      <circle r="3" fill="var(--primary)">
+                        <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.5s" path="M70 220 L200 150 L330 220" />
+                      </circle>
+                    </svg>
+
+                    {/* Nodes (HTML Overlay for crisp icons) */}
+
+                    {/* Inputs (Left) */}
+                    <div className="absolute top-[60px] left-[30px] p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg flex items-center gap-2 animate-[float_4s_ease-in-out_infinite]">
+                      <Database className="w-5 h-5 text-purple-500" />
+                      <span className="text-xs font-bold hidden sm:block">Data</span>
+                    </div>
+                    <div className="absolute bottom-[60px] left-[30px] p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg flex items-center gap-2 animate-[float_5s_ease-in-out_infinite]">
+                      <Cloud className="w-5 h-5 text-blue-500" />
+                      <span className="text-xs font-bold hidden sm:block">Source</span>
                     </div>
 
-                    {/* Orbiting Elements */}
-                    {/* We simulate orbits by rotating a container and counter-rotating the icon so it stays upright if we wanted, but simple rotation is fine here */}
-
-                    {/* Tech 1: Frontend */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4">
-                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg animate-bounce">
-                        <Layout className="w-6 h-6 text-purple-500" />
+                    {/* Central Processing Unit */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <div className="relative w-20 h-20 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-2xl flex items-center justify-center z-10">
+                        <Code className="w-8 h-8 text-[var(--foreground)]" />
+                        <div className="absolute inset-0 bg-purple-500/10 rounded-2xl animate-pulse" />
                       </div>
+                      {/* Spinning Rings */}
+                      <div className="absolute inset-[-10px] rounded-full border border-purple-500/20 border-l-transparent animate-[spin_3s_linear_infinite]" />
+                      <div className="absolute inset-[-20px] rounded-full border border-cyan-500/20 border-r-transparent animate-[spin_5s_linear_infinite_reverse]" />
                     </div>
 
-                    {/* Tech 2: Backend */}
-                    <div className="absolute bottom-0 right-0 translate-x-2 translate-y-2">
-                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg animate-pulse">
-                        <Server className="w-6 h-6 text-blue-500" />
-                      </div>
+                    {/* Outputs (Right) */}
+                    <div className="absolute top-[60px] right-[30px] p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg flex items-center gap-2 animate-[float_4.5s_ease-in-out_infinite]">
+                      <Layout className="w-5 h-5 text-pink-500" />
+                      <span className="text-xs font-bold hidden sm:block">UI</span>
+                    </div>
+                    <div className="absolute bottom-[60px] right-[30px] p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg flex items-center gap-2 animate-[float_3.5s_ease-in-out_infinite]">
+                      <Server className="w-5 h-5 text-green-500" />
+                      <span className="text-xs font-bold hidden sm:block">API</span>
                     </div>
 
-                    {/* Tech 3: Database */}
-                    <div className="absolute bottom-0 left-0 -translate-x-2 translate-y-2">
-                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg">
-                        <Database className="w-6 h-6 text-pink-500" />
-                      </div>
-                    </div>
-
-                    {/* Tech 4: Cloud */}
-                    <div className="absolute top-1/2 right-[-20px] -translate-y-1/2">
-                      <div className="p-3 bg-[var(--card)] rounded-xl border border-[var(--border)] shadow-lg">
-                        <Cloud className="w-6 h-6 text-cyan-500" />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
