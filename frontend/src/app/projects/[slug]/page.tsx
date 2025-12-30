@@ -105,105 +105,139 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)] relative overflow-hidden">
-      {/* Foggy Background Effects + subtle grid texture */}
+    <div className="min-h-screen bg-[var(--background)] relative overflow-hidden transition-colors duration-300">
+      {/* Dynamic Background Texture - Dot Pattern */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[color:var(--accent)/0.08] rounded-full blur-3xl"></div>
-        <div className="absolute top-1/4 right-0 w-80 h-80 bg-[color:var(--accent)/0.06] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-[color:var(--muted)/0.04] rounded-full blur-3xl"></div>
-
-        {/* Subtle repeating grid texture (CSS gradients) - visually similar to the supplied attachment */}
         <div
-          aria-hidden
-          className="absolute inset-0 z-0 pointer-events-none"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]"
           style={{
-            backgroundImage:
-              'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
-            /* make this page-local grid very subtle so it doesn't double up with the global .site-grid */
-            backgroundSize: '24px 24px',
-            opacity: 0.02,
-            mixBlendMode: 'overlay'
+            backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
           }}
         />
+        {/* Fading Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-transparent to-[var(--background)]" />
       </div>
+
       {/* Use shared Navbar (contains search) */}
       <Navbar />
 
-      {/* Project Content (hero, grid, article) */}
-      {/* Project Content (2-Column Layout) */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-20 items-start">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 items-start">
 
-          {/* LEFT SIDEBAR: Tags, Actions, Meta */}
-          <aside className="order-2 lg:order-1 relative">
-            <div className="sticky top-24 space-y-8 p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-sm">
+          {/* LEFT SIDEBAR: "Pillar" Style Navigation */}
+          <aside className="order-2 lg:order-1 relative hidden lg:block">
+            <div className="sticky top-32">
 
-              {/* Back Link */}
-              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Works
-              </Link>
+              {/* Back Link (Top of Pillar) */}
+              <div className="mb-12 relative pl-6">
+                <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors -ml-1">
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Works
+                </Link>
+              </div>
 
-              <div className="h-[1px] bg-[var(--border)] w-full" />
+              {/* The Vertical Pillar Line */}
+              <div className="absolute left-0 top-2 bottom-0 w-[1px] bg-gradient-to-b from-[var(--foreground)]/50 via-[var(--foreground)]/20 to-transparent" />
 
-              {/* Tags */}
-              <div className="space-y-3">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Technologies</h3>
-                <div className="flex flex-wrap gap-2">
-                  {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
-                    (project.technologies ?? project.tags ?? []).map((t, i) => (
-                      <span key={i} className="px-3 py-1.5 bg-[var(--background)] border border-[var(--border)] rounded-lg text-xs font-semibold text-[var(--foreground)] hover:border-[var(--accent)] transition-colors cursor-default">
-                        {t}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="text-sm text-[var(--muted-foreground)]">No tags</span>
-                  )}
+              {/* NAV SECTIONS */}
+              <div className="space-y-12">
+
+                {/* Section: Technologies */}
+                <div className="relative pl-8 group">
+                  {/* Branch Connector */}
+                  <div className="absolute left-0 top-3 w-6 h-[1px] bg-[var(--foreground)]/20 group-hover:bg-[var(--foreground)]/50 transition-colors" />
+                  <div className="absolute -left-[3px] top-[10px] w-[7px] h-[7px] rounded-full border border-[var(--foreground)] bg-[var(--background)] z-10" />
+
+                  <h3 className="font-serif italic text-xl text-[var(--foreground)] mb-4">Technologies</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {((project.technologies && project.technologies.length > 0) || (project.tags && project.tags.length > 0)) ? (
+                      (project.technologies ?? project.tags ?? []).map((t, i) => (
+                        <span key={i} className="text-xs font-mono text-[var(--muted-foreground)] block border-l-2 border-[var(--border)] pl-2">
+                          {t}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-sm text-[var(--muted-foreground)]">No tags</span>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Date */}
-              <div className="space-y-1">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Date</h3>
-                <p className="font-medium text-[var(--foreground)]">{new Date(project.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long' })}</p>
-              </div>
+                {/* Section: Date */}
+                <div className="relative pl-8 group">
+                  {/* Branch Connector */}
+                  <div className="absolute left-0 top-3 w-6 h-[1px] bg-[var(--foreground)]/20 group-hover:bg-[var(--foreground)]/50 transition-colors" />
+                  <div className="absolute -left-[3px] top-[10px] w-[7px] h-[7px] rounded-full border border-[var(--foreground)] bg-[var(--background)] z-10" />
 
-              {/* Actions */}
-              <div className="space-y-3 pt-4">
-                {project.liveUrl && (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-lg font-bold shadow-md hover:brightness-110 transition-all">
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                )}
-                {project.githubUrl && (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-lg font-bold shadow-sm hover:bg-[var(--accent)]/10 transition-all">
-                    <Github className="w-4 h-4" />
-                    View Source
-                  </a>
-                )}
+                  <h3 className="font-serif italic text-xl text-[var(--foreground)] mb-2">Date</h3>
+                  <p className="font-mono text-sm text-[var(--muted-foreground)]">{new Date(project.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long' })}</p>
+                </div>
+
+                {/* Section: Links */}
+                <div className="relative pl-8 group">
+                  {/* Branch Connector */}
+                  <div className="absolute left-0 top-3 w-6 h-[1px] bg-[var(--foreground)]/20 group-hover:bg-[var(--foreground)]/50 transition-colors" />
+                  <div className="absolute -left-[3px] top-[10px] w-[7px] h-[7px] rounded-full border border-[var(--foreground)] bg-[var(--background)] z-10" />
+
+                  <h3 className="font-serif italic text-xl text-[var(--foreground)] mb-4">Links</h3>
+                  <div className="space-y-3">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-[var(--foreground)] hover:underline decoration-1 underline-offset-4 group/link">
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Live Demo
+                        <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-y-0 group-hover/link:translate-x-0 transition-all" />
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+                        <Github className="w-3.5 h-3.5" />
+                        Source Code
+                      </a>
+                    )}
+                  </div>
+                </div>
+
               </div>
             </div>
           </aside>
 
+          {/* Mobile Actions (Visible only on small screens) */}
+          <div className="lg:hidden order-2 space-y-4 mb-8">
+            <div className="flex flex-wrap gap-2 mb-4">
+              {((project.technologies ?? project.tags ?? []).map((t, i) => (
+                <span key={i} className="px-2 py-1 bg-[var(--muted)] rounded text-xs text-[var(--muted-foreground)]">{t}</span>
+              )))}
+            </div>
+            <div className="flex gap-3">
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center gap-2 py-2.5 bg-[var(--foreground)] text-[var(--background)] rounded-lg font-medium text-sm">
+                  <ExternalLink className="w-4 h-4" /> Live Demo
+                </a>
+              )}
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center gap-2 py-2.5 border border-[var(--border)] text-[var(--foreground)] rounded-lg font-medium text-sm">
+                  <Github className="w-4 h-4" /> Code
+                </a>
+              )}
+            </div>
+            <div className="h-[1px] bg-[var(--border)] w-full my-6" />
+          </div>
+
 
           {/* RIGHT CONTENT: Title, Carousel, Article */}
-          <div className="order-1 lg:order-2 space-y-10">
+          <div className="order-1 lg:order-2 space-y-12">
 
-            {/* Title & Desc */}
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[var(--foreground)] leading-tight">
+            {/* Title */}
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-[var(--foreground)] leading-[1.1]">
                 {project.title}
               </h1>
-              <p className="text-xl text-[var(--muted-foreground)] font-light leading-relaxed max-w-3xl">
-                {project.description}
-              </p>
             </div>
 
             {/* Image Carousel */}
             {project.images && project.images.length > 0 ? (
               <div className="space-y-4">
-                <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-[var(--border)] shadow-xl bg-[var(--muted)] group">
+                <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-[var(--border)] shadow-2xl bg-[var(--muted)] group">
 
                   <Image
                     src={project.images[selectedImageIndex].url}
@@ -218,13 +252,13 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <>
                       <button
                         onClick={() => setSelectedImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length)}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:bg-black/40 hover:scale-110"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex((prev) => (prev + 1) % project.images!.length)}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:bg-black/40 hover:scale-110"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
@@ -234,12 +268,12 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                 {/* Thumbnails */}
                 {project.images.length > 1 && (
-                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
+                  <div className="grid grid-cols-5 sm:grid-cols-8 gap-2">
                     {project.images.map((img, idx) => (
                       <button
                         key={idx}
                         onClick={() => setSelectedImageIndex(idx)}
-                        className={`relative aspect-video rounded-lg overflow-hidden border transition-all ${selectedImageIndex === idx ? 'ring-2 ring-[var(--accent)] ring-offset-2' : 'border-[var(--border)] opacity-60 hover:opacity-100'}`}
+                        className={`relative aspect-video rounded-md overflow-hidden border transition-all ${selectedImageIndex === idx ? 'ring-2 ring-[var(--foreground)] ring-offset-2' : 'border-[var(--border)] opacity-50 hover:opacity-100'}`}
                       >
                         <img src={img.url} alt={`thumb-${idx}`} className="w-full h-full object-cover" />
                       </button>
@@ -249,22 +283,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               </div>
             ) : null}
 
-            {/* Overview Box */}
-            <div className="bg-[var(--accent)]/5 border border-[var(--accent)]/20 rounded-xl p-8 flex gap-6 items-start">
-              <div className="bg-[var(--accent)]/20 p-3 rounded-full shrink-0 text-[var(--accent)]">
-                <Info className="w-6 h-6" />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold text-[var(--foreground)]">Project Overview</h3>
-                <p className="text-[var(--muted-foreground)] leading-relaxed">
-                  A deep dive into the technical implementation and design challenges solved during the development of {project.title}. This project highlights modern best practices and scalable architecture.
-                </p>
-              </div>
-            </div>
-
             {/* Markdown Content */}
-            <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:text-[var(--muted-foreground)] prose-p:font-light prose-p:leading-8 prose-li:text-[var(--muted-foreground)] prose-strong:text-[var(--foreground)] prose-strong:font-semibold">
-              <ReactMarkdown>{project.projectMarkdown && project.projectMarkdown.trim() ? project.projectMarkdown : project.description}</ReactMarkdown>
+            <article className="prose prose-lg dark:prose-invert max-w-none 
+              prose-headings:font-serif prose-headings:font-medium prose-headings:text-[var(--foreground)] 
+              prose-p:text-[var(--muted-foreground)] prose-p:leading-8 prose-p:font-light
+              prose-li:text-[var(--muted-foreground)] 
+              prose-strong:text-[var(--foreground)] prose-strong:font-semibold
+              first-letter:text-5xl first-letter:font-serif first-letter:text-[var(--foreground)] first-letter:mr-3 first-letter:float-left">
+              <ReactMarkdown>
+                {((project.projectMarkdown && project.projectMarkdown.length > (project.description?.length || 0)) ? project.projectMarkdown : project.description).replace(/\\n/g, '\n')}
+              </ReactMarkdown>
             </article>
 
           </div>
