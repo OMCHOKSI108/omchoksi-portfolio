@@ -27,6 +27,7 @@ interface ThemeProviderProps {
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
+  const [transitionStage, setTransitionStage] = useState<'idle' | 'covering' | 'revealing'>('idle');
 
   // Initialize theme on mount
   useEffect(() => {
@@ -40,9 +41,25 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, []);
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    localStorage.setItem('theme', newTheme);
+    if (transitionStage !== 'idle') return;
+
+    // Start transition: Wipe down to cover
+    setTransitionStage('covering');
+
+    setTimeout(() => {
+      // Mid-transition: Change theme
+      setThemeState(newTheme);
+      document.documentElement.classList.toggle('dark', newTheme === 'dark');
+      localStorage.setItem('theme', newTheme);
+
+      // Continue transition: Wipe down to reveal
+      setTransitionStage('revealing');
+
+      setTimeout(() => {
+        // End transition: Reset
+        setTransitionStage('idle');
+      }, 500);
+    }, 500);
   };
 
   const toggleTheme = () => {
@@ -51,6 +68,17 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+      {/* Theme Transition Curtain */}
+      <div
+        className="fixed inset-0 z-[9999] pointer-events-none bg-neutral-950 transition-transform duration-500 ease-in-out"
+        style={{
+          transform:
+            transitionStage === 'idle' ? 'translateY(-100%)' :
+              transitionStage === 'covering' ? 'translateY(0%)' :
+                'translateY(100%)'
+        }}
+      />
+
       {children}
     </ThemeContext.Provider>
   );

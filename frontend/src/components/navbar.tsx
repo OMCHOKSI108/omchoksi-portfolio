@@ -30,7 +30,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
   const getLinkStyles = (path: string) => {
     const isActive = pathname === path;
     return isActive
-      ? "relative px-5 py-2.5 rounded-full text-sm font-medium transition-all text-white bg-black dark:bg-white/10 shadow-sm ring-1 ring-black/5 dark:ring-white/5"
+      ? "relative px-5 py-2.5 rounded-full text-sm font-medium transition-all text-white bg-black dark:bg-white dark:text-black shadow-sm"
       : "relative px-5 py-2.5 rounded-full text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all";
   };
 
@@ -55,7 +55,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
         </Link>
 
         {/* Center Dock - Desktop */}
-        <div className="pointer-events-auto hidden md:flex items-center p-1.5 gap-1 rounded-full bg-white/40 dark:bg-black/20 backdrop-blur-3xl border border-black/5 dark:border-white/5 shadow-xl dark:shadow-2xl ring-1 ring-black/5 dark:ring-white/5">
+        <div className="pointer-events-auto hidden md:flex items-center p-1.5 gap-1 rounded-full bg-white/80 dark:bg-neutral-950/80 backdrop-blur-3xl border border-black/5 dark:border-white/10 shadow-xl dark:shadow-2xl ring-1 ring-black/5 dark:ring-white/5">
           <Link href="/" className={getLinkStyles("/")}>
             Home
           </Link>
@@ -75,17 +75,17 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
               More <ChevronDown size={14} />
             </button>
             {/* Dropdown Menu */}
-            <div className="absolute top-full right-0 mt-2 w-48 rounded-2xl bg-white/80 dark:bg-[#0a0a0f]/80 backdrop-blur-3xl border border-black/5 dark:border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right overflow-hidden z-50">
-              <Link href="/stack" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <div className="absolute top-full right-0 mt-2 w-48 rounded-2xl bg-white/90 dark:bg-neutral-900/90 backdrop-blur-3xl border border-black/5 dark:border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right overflow-hidden z-50">
+              <Link href="/stack" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                 Tech Stack
               </Link>
-              <Link href="/certifications" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+              <Link href="/certifications" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                 Certifications
               </Link>
-              <Link href="/links" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+              <Link href="/links" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                 Links
               </Link>
-              <Link href="/resume" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+              <Link href="/resume" className="block px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                 Resume
               </Link>
             </div>
@@ -101,7 +101,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 window.dispatchEvent(new CustomEvent('open-quick-connect'));
               }
             }}
-            className="px-6 py-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-zinc-900 dark:text-white font-medium transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:scale-105 active:scale-95"
+            className="px-6 py-2.5 rounded-full bg-black dark:bg-white border border-transparent text-white dark:text-black font-bold shadow-md hover:opacity-80 transition-all hover:scale-105 active:scale-95"
           >
             Book a Call
           </button>
