@@ -1,0 +1,185 @@
+📄 ALL CERTIFICATIONS (MASTER FILE)
+CERTIFICATE 1
+
+Title: Foundations of Cybersecurity
+Slug: foundations-of-cybersecurity
+Description:
+Completed Google’s Foundations of Cybersecurity course covering security principles, threat analysis, risk management, and security operations.
+Tags: cybersecurity, information security, google, risk management
+Link: https://coursera.org/verify/299W6ERHWYC2
+
+Issuer: Google (via Coursera)
+Issue Date: 28-03-2024
+Expiry Date: N/A
+Credential ID: 299W6ERHWYC2
+File: Foundations of Cybersecurity.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 2
+
+Title: Data Structure and Algorithms using Java
+Slug: data-structures-algorithms-java
+Description:
+Completed a 12-week NPTEL-certified course on data structures and algorithms using Java, including graded assignments and a proctored examination.
+Tags: dsa, java, algorithms, nptel
+Link: N/A
+Issuer: NPTEL (IIT Kharagpur – SWAYAM)
+Issue Date: 01-10-2024
+Expiry Date: N/A
+Credential ID: NPTEL24CS96S352700022
+File: DSAWITHJAVA.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 3
+
+Title: Getting Started with AI on Jetson Nano
+Slug: getting-started-ai-jetson-nano
+Description:
+Demonstrated competency in AI development and deployment on NVIDIA Jetson Nano, focusing on edge AI concepts and practical implementation.
+Tags: ai, edge ai, nvidia, jetson nano
+Link: https://learn.nvidia.com/certificates?id=1u-VZlgoQR6X_HEeSXC6SQ
+
+Issuer: NVIDIA
+Issue Date: 25-01-2025
+Expiry Date: N/A
+Credential ID: 1u-VZlgoQR6X_HEeSXC6SQ
+File: GettingStartedWithNvidiaJetsonNano.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 4
+
+Title: Machine Learning with Python
+Slug: machine-learning-with-python
+Description:
+Comprehensive course covering supervised and unsupervised machine learning algorithms, model evaluation, and practical implementation using Python.
+Tags: machine learning, python, data science, ibm
+Link: https://coursera.org/verify/AYR43LF8AVDD
+
+Issuer: IBM (via Coursera)
+Issue Date: 06-08-2025
+Expiry Date: N/A
+Credential ID: AYR43LF8AVDD
+File: OM CHOKSI Machine_learning_IBM.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 5
+
+Title: Machine Learning Capstone
+Slug: machine-learning-capstone
+Description:
+Capstone project course applying end-to-end machine learning workflows including data preprocessing, modeling, and evaluation.
+Tags: machine learning, capstone, data science, ibm
+Link: https://coursera.org/verify/3YBF87EHIIY5
+
+Issuer: IBM (via Coursera)
+Issue Date: 29-07-2025
+Expiry Date: N/A
+Credential ID: 3YBF87EHIIY5
+File: Machine Learning Capstone.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 6
+
+Title: Frontend Development with React
+Slug: frontend-development-with-react
+Description:
+Hands-on course on building modern frontend applications using React, component-based architecture, hooks, and state management.
+Tags: react, frontend, web development, javascript
+Link: https://coursera.org/verify/959T5AM9HG2A
+
+Issuer: Packt (via Coursera)
+Issue Date: 27-08-2025
+Expiry Date: N/A
+Credential ID: 959T5AM9HG2A
+File: Frontend Development with React.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 7
+
+Title: Backend Development and API Creation
+Slug: backend-development-api-creation
+Description:
+Backend development course focused on API design, server-side logic, and building scalable backend services.
+Tags: backend, api, web development, server-side
+Link: https://coursera.org/verify/PKYPLM7D2YX6
+
+Issuer: Packt (via Coursera)
+Issue Date: 24-08-2025
+Expiry Date: N/A
+Credential ID: PKYPLM7D2YX6
+File: OM_CHOKSI_Backend_Development_API.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 8
+
+Title: Advanced Frontend Development and Deployment
+Slug: advanced-frontend-development-deployment
+Description:
+Advanced frontend course covering performance optimization, modern UI architecture, and production-level deployment strategies.
+Tags: frontend, deployment, web development, packt
+Link: https://coursera.org/verify/AKT8KN30VCH7
+
+Issuer: Packt (via Coursera)
+Issue Date: 27-08-2025
+Expiry Date: N/A
+Credential ID: AKT8KN30VCH7
+File: Advance Frontend Development and Deployement.pdf
+Active: Yes
+Featured: Yes
+
+CERTIFICATE 9
+
+Title: Flutter and Dart: Developing iOS, Android, and Mobile Apps
+Slug: flutter-dart-mobile-app-development
+Description:
+Learned cross-platform mobile app development using Flutter and Dart for building iOS and Android applications.
+Tags: flutter, dart, mobile development, cross-platform
+Link: https://coursera.org/verify/CRFYBHHOAKZW
+
+Issuer: IBM (via Coursera)
+Issue Date: 22-09-2025
+Expiry Date: N/A
+Credential ID: CRFYBHHOAKZW
+File: Mad.pdf
+Active: Yes
+Featured: No
+
+CERTIFICATE 10
+
+Title: Finding Your Professional Voice: Confidence & Impact
+Slug: finding-your-professional-voice-confidence-impact
+Description:
+Professional communication course focused on vocal confidence, clarity, and impactful speaking in academic and professional settings.
+Tags: communication, confidence, public speaking, soft skills
+Link: https://coursera.org/verify/I3M86MWVW16D
+
+Issuer: University of London (via Coursera)
+Issue Date: 11-08-2025
+Expiry Date: N/A
+Credential ID: I3M86MWVW16D
+File: Confidence and Voice improvement.pdf
+Active: Yes
+Featured: No
+
+CERTIFICATE 11
+
+Title: Mind Sprint – 48-Hour International Hackathon
+Slug: mind-sprint-international-hackathon
+Description:
+Participated in a 48-hour international hackathon focused on innovation, rapid prototyping, and collaborative problem-solving.
+Tags: hackathon, innovation, teamwork, problem solving
+Link: N/A
+Issuer: IronXman (Unstop)
+Issue Date: N/A
+Expiry Date: N/A
+Credential ID: N/A
+File: Mindsprint.pdf
+Active: Yes
+Featured: No

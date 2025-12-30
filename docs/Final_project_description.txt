@@ -1,0 +1,540 @@
+-------------------------------------------------- 
+No 1. Project Name: MCP-SERVER
+Link: https://github.com/OMCHOKSI108/MCP-SERVER
+Tags: AI Integration, LLM Tools, Backend Development, Python, Data Orchestration
+Description: This project provides server implementations for the Model Context Protocol (MCP), an open-source standard enabling AI applications like Claude or ChatGPT to connect to external systems, data sources, and tools. It demonstrates how to integrate custom tools for math operations, weather data, web scraping, and NLP, allowing AI models to access and interact with diverse real-world data and services. This enables developers to build more capable AI assistants that can automate complex tasks and workflows through a standardized protocol.
+
+Visual Snapshots (Text Descriptions):
+1. A conceptual architecture diagram visually illustrating the Model Context Protocol. It shows AI applications (e.g., Claude, ChatGPT) on the left connecting via MCP to MCP Servers in the middle, which then interface with various external systems, data, and tools (e.g., APIs, databases) on the right. The diagram uses clear iconography and connection arrows, likely in a dark mode or neutral color palette.
+2. A terminal window displaying the `client.py` script in execution, demonstrating interactions with the connected MCP servers. The output features prompts for math calculations (e.g., "What is 5 + 3?") and weather queries (e.g., "What's the weather in London?"), followed by the AI's responses, showcasing successful integration and execution of custom tools. The terminal would likely have a dark background with light-colored text.
+--------------------------------------------------
+
+-------------------------------------------------- 
+No 2. Project Name: AGENTIC-SITE-
+Link: https://github.com/OMCHOKSI108/AGENTIC-SITE-
+Tags: AI Agents, Web Development, LLM Integration, Frontend, Backend
+Description: This project is a web application designed to provide a user-friendly interface for interacting with and managing AI agents. It aims to simplify the deployment and monitoring of complex agentic workflows, making advanced AI capabilities accessible through a responsive web interface. The system likely handles orchestrating various agent tasks and presenting their outputs.
+Visual Snapshots (Text Descriptions):
+1. A clean, dark-themed dashboard displaying a list of active AI agents, each with a status indicator (e.g., "Running," "Idle," "Error"), a brief description, and quick action buttons like "Monitor" or "Stop." The layout includes a left-hand navigation bar for different sections like "Agents," "Workflows," and "Settings."
+2. A detailed agent configuration page with a light theme, allowing users to define an agent's specific role, access permissions, and integrate external tools or APIs. It features input fields for prompt engineering, dropdowns for model selection, and a section to visualize the agent's current workflow or task dependencies.
+--------------------------------------------------
+
+No 3. Project Name: machine-learning-playground
+Link: https
+Tags: Machine Learning, Classification, Data Analysis, Python, Data Visualization
+Description: This repository serves as a comprehensive playground for various machine learning projects, showcasing practical implementations of regression and classification algorithms on diverse real-world datasets. Each project provides detailed data analysis, insightful visualizations, and rigorous model evaluations to demonstrate proficiency in ML model development and analysis.
+Visual Snapshots (Text Descriptions):
+1. A Jupyter Notebook interface in dark mode, displaying the main README table that lists all machine learning projects (e.g., Bank Marketing, Obesity Classification) with their types and links. A vibrant, professional-looking data visualization, such as a scatter plot or a bar chart comparing model performance metrics, is partially visible at the bottom of the screen.
+2. A focused Jupyter Notebook cell output within one of the classification projects, specifically showing a confusion matrix and an ROC curve. Below these plots, key performance metrics like accuracy, precision, and recall are clearly presented in a formatted text output, demonstrating thorough model evaluation.
+
+No 4. Project Name: self-driving-car-agent-using-deep-reinforcement-learning
+Link: https://github.com/OMCHOKSI108/self-driving-car-agent-using-deep-reinforcement-learning
+Tags: Deep Reinforcement Learning, Autonomous Driving, CARLA Simulator, PyTorch, Variational Autoencoder
+Description: This project implements an end-to-end autonomous driving agent within the CARLA simulator, utilizing Deep Reinforcement Learning (PPO) to control vehicle navigation and minimize accidents. It employs a Variational Autoencoder (VAE) to preprocess high-dimensional sensory input, enabling efficient and stable training of the agent. The system demonstrates robust self-driving capabilities in simulated urban environments by integrating perception, decision-making, and action execution.
+Visual Snapshots (Text Descriptions):
+1. The primary view shows the CARLA simulator interface, displaying a self-driving car navigating a multi-lane urban road in 'Town02' or 'Town07'. The car is centered on the road, with surrounding virtual buildings, traffic lights, and dynamic environmental elements visible. An optional overlay might present real-time telemetry like speed, throttle, brake, and steering angle, possibly with a small mini-map in a corner.
+2. A side-by-side comparison illustrating "Original vs Reconstructed Images from VAE." The left panel displays an original semantic segmentation image from the CARLA simulator, showing distinct color-coded regions for objects like roads, sidewalks, and buildings. The right panel presents the VAE's reconstructed version of that same image, demonstrating its capability to compress and accurately reconstruct the visual input, highlighting the effectiveness of the dimensionality reduction technique.
+
+--------------------------------------------------
+No 5. Project Name: SansiFy-tech
+Link: https
+Tags: FastAPI, React, Flutter, PostgreSQL, E-commerce
+Description: Sanset is a full-stack e-commerce application designed for organic and sustainable agricultural products, providing a seamless shopping experience across web and mobile platforms. It serves customers, administrators, and system analysts with features like intelligent product recommendations, real-time inventory, and secure payment processing. Built with FastAPI, React, and Flutter, the project demonstrates enterprise-grade architecture and scalable design patterns for multi-platform deployment.
+Visual Snapshots (Text Descriptions):
+1. A vibrant e-commerce home page in a clean light theme, displaying a prominent hero section with rotating banners for agricultural products. Below, a grid of 'Featured Products' is visible, each with an image, product name, price, and an 'Add to Cart' button. A consistent top navigation bar includes categories like 'Fruits', 'Vegetables', 'Grains', and user icons for 'Cart' and 'Profile'.
+2. The interactive OpenAPI (Swagger UI) documentation page for the backend API. It shows a list of collapsible API endpoints, grouped by functionality (e.g., Authentication, Products, Orders, Users). The 'Authentication' section is expanded, revealing the 'POST /api/v1/auth/login' endpoint, complete with its request body schema (email, password) and example JSON response showing access and refresh tokens, illustrating comprehensive API definitions.
+--------------------------------------------------
+
+No 6. Project Name: FULLSTACK-WEB-DEVELOPMENT-LEARN
+Link: https
+Tags: MERN Stack, Full Stack Development, React.js, Node.js, MongoDB
+Description: This repository compiles a series of practical exercises designed to teach full-stack web development using the MERN stack. It covers fundamental concepts from front-end UI development with React to backend API creation with Node.js and Express, and data persistence with MongoDB, demonstrating various web application patterns and CRUD operations. The projects collectively showcase proficiency in building comprehensive web applications.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-themed web page titled "Full Stack Development Practicals" prominently displayed. Below the title, a responsive grid of cards is visible, with each card representing a distinct practical exercise (e.g., "React Navigation Project," "Todo Application," "Full-Stack Product Management"). Each card features a descriptive title, a concise summary of its functionality, and a 'View Project' button or link.
+2. A dark-mode screenshot of the "Full-Stack Product Management" application, focusing on a product listing or management page. The main content area displays a table of products with columns such as "Product Name," "Category," "Price," and "Actions" (featuring 'Edit' and 'Delete' buttons). Above the table, an 'Add New Product' button and a search bar are visible, illustrating the application's CRUD capabilities.
+
+No 7. Project Name: Workzen-crm-odoo
+Link: https://github.com/Workzen-crm-odoo
+Tags: Odoo, CRM, HRM, Python, Enterprise Software
+Description: This project implements Workzen CRM, a modern Human Resources Management system with deep integration into Odoo. It provides businesses with a unified platform to manage customer relations alongside employee data, payroll, and benefits. The solution leverages Odoo's robust framework to streamline HR workflows and improve operational efficiency.
+Visual Snapshots (Text Descriptions):
+1. A main dashboard in a clean, light mode, showing a modular layout. The left sidebar displays navigation options for "CRM", "HR", "Sales", "Payroll", and "Settings". The main content area features cards summarizing key metrics, such as "Active Leads", "Sales Pipeline Value", "Active Employees", "Pending Leave Requests", and "Open Positions". Each card includes a numerical value and a small trend indicator or icon.
+2. A detailed "Employee Profile" page within the HR module. The page is in light mode with a professional layout, featuring the employee's profile picture, name, and job title prominently at the top. Below, sections for "Personal Information", "Contact Details", "Job History", and "Salary Information" are clearly laid out. A tabbed interface allows navigation to "Leave Requests", "Performance Reviews", and "Documents", with the "Leave Requests" tab currently active, displaying a list of past and pending requests with their statuses.
+
+No 8. Project Name: online-food-order
+Link: https
+Tags: React.js, Node.js, MongoDB, Full-Stack, E-commerce
+Description: This project implements a comprehensive online food ordering system tailored for the Indian market, supporting distinct user roles for Admin, Restaurant Owners, and Customers. It facilitates browsing menus, placing orders with simulated INR payments, managing food items, and tracking order statuses, all built on a robust MERN stack. The system includes features like order management, customer feedback, and refund processing, providing a complete end-to-end solution for food delivery services.
+Visual Snapshots (Text Descriptions):
+1. A modern, light-themed customer-facing homepage displaying a grid of restaurant cards. Each card includes a restaurant's logo or hero image, name, average rating, cuisine type, and a brief description, with prominent "Order Now" buttons. A top navigation bar features a search input, shopping cart icon, user profile, and application logo.
+2. The restaurant owner's "Menu Management" dashboard in a dark theme. A sidebar on the left shows navigation links for "My Menu," "Orders," and "Earnings." The main content area displays a table listing food items with columns for name, price (in ₹ INR), description, an 'Available' toggle switch, and "Edit" and "Delete" action buttons. A clear "Add New Food Item" button is visible at the top.
+
+--------------------------------------------------
+No 9. Project Name: text-classifier-model-api
+Link: https://github.com/OMCHOKSI108/text-classifier-api.git
+Tags: Python, FastAPI, Machine Learning, Docker, NLP
+Description: This project delivers a high-performance, production-ready API for text classification and sentiment analysis using an ensemble of advanced machine learning models. It provides accurate predictions with features like asynchronous batch processing, comprehensive health monitoring, and containerization. Designed for scalability and ease of deployment, it serves as a robust backend solution for integrating AI-driven text analysis into applications.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed web page displaying the FastAPI OpenAPI (Swagger UI) interface. The left panel lists available endpoints, and the main content area focuses on the expanded POST /predict endpoint. It shows the request body schema for 'text', an example input, a "Try it out" button, and an example successful JSON response featuring predicted sentiment (e.g., "positive") and confidence score (e.g., 0.92).
+2. A light-themed terminal window demonstrating API usage. It displays three sequential `curl` commands: one for a single text prediction `/predict` with its JSON output showing sentiment and confidence, a second for batch prediction `/batch_predict` with multiple texts and their results, and a third for the `/health` endpoint showing the API's status and model loading information.
+--------------------------------------------------
+
+-------------------------------------------------- 
+No 10. Project Name: FastAPI Stock Data API
+Link: https
+Tags: FastAPI, Stock Market Data, Options Analytics, REST API, Asynchronous Processing
+Description: This FastAPI-based microservice provides real-time and historical Indian stock market data, including comprehensive options analytics, via a robust set of RESTful endpoints. It's designed for developers building financial applications, trading platforms, or analytical tools requiring high-performance access to NSE data. The service leverages asynchronous processing, in-memory caching, and integrates with multiple data providers to deliver stock quotes, indices, and advanced options chain insights.
+Visual Snapshots (Text Descriptions):
+1. A web browser displaying the interactive API documentation (Swagger UI). The page is in a dark theme, showing a list of expandable API endpoints such as `/api/v1/market/price/stock`, `/api/v1/options/latest`, and `/api/v1/analytics/pcr`. The "FastAPI" logo is visible at the top, and an expanded `GET /api/v1/market/price/stock` endpoint reveals parameters like `symbol` and an example JSON response.
+2. A console window or browser tab showing the JSON output from a `GET /api/v1/options/latest` or `GET /api/v1/analytics/summary` API call. The output, in a dark theme, details a structured options chain with fields like `expiryDate`, `strikePrice`, `callOI`, `putOI`, `pcr`, and `maxPain` values, showcasing the depth of financial data provided by the service.
+--------------------------------------------------
+
+No 11. Project Name: Devoverflow-Backend
+Link: https://devoverflow-backend.onrender.com
+Tags: Node.js, Express.js, MongoDB, AI, RESTful API
+Description: This project is a robust Node.js and Express.js backend for a mobile question-and-answer application, designed to facilitate knowledge sharing among developers. It integrates Google Gemini AI for features like answer suggestions and question improvements, alongside comprehensive functionalities such as user authentication, CRUD operations for questions and answers, a reputation system, and content moderation tools. The API is built to be consumed by mobile clients, emphasizing efficiency and secure, token-based authentication.
+Visual Snapshots (Text Descriptions):
+1. A dark-mode Postman interface displaying a successful GET request to `/api/questions`. The left sidebar shows a collection of API endpoints (Auth, Questions, Answers, AI, Admin), while the main panel presents a paginated JSON response containing an array of question objects with titles, content, author, and vote counts.
+2. A light-mode Postman interface showcasing an interaction with the AI features. A POST request to `/api/ai/answer-suggestion` includes a question's content in the request body, and the response pane displays a JSON object containing several AI-generated answer suggestions for the given question.
+
+No 12. Project Name: hr-assist-llm
+Link: https://github.com/OMCHOKSI108/hr-assist-llm
+Tags: LLM, AI, HR Tech, FastAPI, Docker
+Description: TalentScout AI is an enterprise-grade HR assistant leveraging Large Language Models (LLMs) to automate and enhance talent acquisition processes. It streamlines candidate screening, interview preparation, and skills gap analysis through intelligent resume parsing, question generation, and automated candidate ranking. The system features a user-friendly Streamlit web interface and a robust RESTful API, with Docker for easy deployment and integration into existing HR workflows.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern web interface in a dark mode, featuring a central chat window for AI interaction, a sidebar with navigation (Home, Analyze, Questions, Skills, Settings), and a theme toggle for light/dark mode. The main content area displays interview progress tracking or general AI assistant output.
+2. The 'Resume Analysis' section of the web interface, showing a clear drag-and-drop area for uploading PDF, DOCX, or TXT resumes. Below, parsed resume data and an AI-generated candidate score, key skills, and a summary are displayed in a structured format, alongside an input field for the job description.
+
+No 13. Project Name: BACKTESTING-OF-TRADING-STRATEGY
+Link: https://github.com/OMCHOKSI108/BACKTESTING-OF-TRADING-STRATEGY
+Tags: Financial Analytics, Algorithmic Trading, Python, Streamlit, AI Agents
+Description: A robust web application for backtesting quantitative trading strategies across diverse markets, including stocks and Forex. It features a modern Streamlit UI for interactive visualization of performance metrics, equity curves, and generates professional PDF reports. A modular Flask API handles multi-source data acquisition, strategy execution, and integrates an AI agent chatbot for automated financial market research.
+Visual Snapshots (Text Descriptions):
+1. A clean, dark-themed Streamlit dashboard. A left sidebar contains input forms for selecting market (e.g., Stocks, Forex), instrument symbol, timeframe, date range, and a dropdown for choosing from predefined trading strategies. The main content area prominently displays an interactive equity curve chart, showing cumulative profit/loss over time, with options for zooming and tooltips on hover.
+2. A detailed performance analytics page. The upper section presents key financial metrics in a tabular or card layout, such as Sharpe Ratio, Sortino Ratio, Maximum Drawdown, Profit Factor, and total trades. Below this, an interactive bar chart visualizes trade history, distinguishing between winning and losing trades, alongside a detailed table of individual trade entries, exits, and P&L for in-depth analysis.
+
+No 14. Project Name: Samatrix-AI-Product-Development-Internship
+Link: https
+Tags: Python, Machine Learning, Data Analysis, Data Visualization, Statistical Modeling
+Description: This repository showcases a 4-week AI Product Development Internship, demonstrating expertise in applying data science and machine learning techniques to solve real-world business problems. It features seven distinct projects covering data preprocessing, exploratory data analysis, predictive modeling (regression, classification), customer segmentation, A/B testing, and KPI dashboarding using Python and its core data science libraries. The portfolio highlights practical skills in designing, testing, and evaluating ML pipelines for various domain-specific challenges.
+Visual Snapshots (Text Descriptions):
+1. A professional dark-mode dashboard displaying a multi-panel layout. The top section features key performance indicators (KPIs) like "Conversion Rate," "Average Customer Lifetime Value," and "Model Accuracy." Below, two main charts visualize aggregated results: a bar chart showing A/B test outcomes (e.g., original vs. new design conversion rates) and a scatter plot of a regression model's predictions versus actual values, illustrating model fit.
+2. A Jupyter notebook interface in light mode, open to a project focused on customer segmentation. The main visible cell displays a scatter plot of customer clusters (e.g., using K-Means, with different colors for each cluster) plotted against two key features like "Purchase Frequency" and "Average Order Value." Below the plot, a code cell shows the Python code for applying K-Means clustering with `scikit-learn`, followed by an output cell detailing the cluster centroids or key statistics for each segment.
+
+No 15. Project Name: Quantitative-Trading-Indicators
+Link: https://github.com/OMCHOKSI108/Quantitative-Trading-Indicators
+Tags: Quantitative Trading, Algorithmic Trading, Pine Script, Python, Financial Analysis
+Description: This project provides a comprehensive suite of proprietary technical indicators and trading strategies. It is implemented in Pine Script for real-time analysis on TradingView and Python for quantitative analysis, backtesting, and automated signal generation. The repository supports systematic trading approaches through tools for candlestick patterns, momentum, and trend analysis.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed TradingView chart displaying candlestick price action for a stock, with multiple custom technical indicators overlaid below, such as MACD-V (Volume Weighted MACD) with a histogram, Bollinger Bands Force arrows, and potentially an ADX-Histogram, showing various signal lines and bars in contrasting colors.
+2. A Jupyter Notebook interface in light mode, showing Python code importing financial data (yfinance) and custom indicators (e.g., CandlestickEngulfing, BBForce). Below the code, a matplotlib plot visualizes historical stock prices with generated indicator signals marked directly on the chart, or a pandas DataFrame displaying calculated indicator values and buy/sell signals.
+
+-------------------------------------------------- 
+No 16. Project Name: university-notice-board
+Link: https
+Tags: Flutter, Mobile Development, Education Technology, Content Management, UI/UX
+Description: This Flutter-based mobile application provides a comprehensive platform for university notice management. It enables students and faculty to efficiently discover important announcements through advanced search, filtering, and favoriting capabilities. The app focuses on delivering an intuitive user experience with features like dark theme support, solving the problem of disorganized university communications.
+Visual Snapshots (Text Descriptions):
+1. Light mode. The main screen displays a clean app bar with "University Notices" title, a search bar/icon, and a filter icon. Below, a scrollable list of distinct notice cards, each showing a title, publication date, and a small category tag (e.g., "Academic," "Events"). A subtle FAB is visible in the bottom corner.
+2. Dark mode. A detailed notice view showing a specific announcement. The screen features a prominent notice title, the full content of the notice, author/department, and relevant attachments or links. A 'favorite' icon (e.g., a filled heart) is prominently displayed near the title or in the app bar, demonstrating user interaction features.
+--------------------------------------------------
+
+No 17. Project Name: DevOverflow-MOBILE-APPLICATION
+Link: https://github.com/OMCHOKSI108/DevOverflow-MOBILE-APPLICATION
+Tags: Flutter, Node.js, MongoDB, AI, Mobile Development
+Description: DevOverflow is a comprehensive mobile Q&A platform tailored for developers, combining Stack Overflow-style functionality with social features, gamification, and AI-powered assistance via Google Gemini. This full-stack application leverages Flutter for cross-platform mobile development and a robust Node.js, Express.js, and MongoDB backend. It focuses on fostering community engagement and providing intelligent coding support in a gamified learning environment.
+Visual Snapshots (Text Descriptions):
+1. A mobile screenshot in a modern dark theme, displaying the main 'Questions Feed'. The top bar features a search icon and a filter/sort option. Below, a scrollable list shows multiple question cards, each with a title, a brief description, relevant tags (e.g., 'flutter', 'nodejs', 'mongodb'), the number of answers, views, and upvotes, and the user who posted it. A bottom navigation bar includes icons for Home, Ask Question, AI Chat, and Profile.
+2. A mobile screenshot, also in dark theme, showcasing the AI-powered coding assistance chat interface. The screen displays a chat history with user questions (e.g., 'How to optimize a Flutter ListView?') and AI-generated answers, which include code snippets with syntax highlighting and explanations. An input field at the bottom with a 'Send' button allows users to type new queries to the Google Gemini AI chatbot.
+
+No 18. Project Name: Devoverflow-app
+Link: https
+Tags: Flutter, Mobile Development, Q&A Platform, AI Chatbot, Gamification
+Description: Devoverflow-app is a Flutter-based mobile application designed as a community platform for developers to ask and answer technical questions, fostering knowledge sharing and peer engagement. It incorporates robust features like user authentication, rich-text Q&A, a voting system, bookmarking, and gamified leaderboards with reputation points. The platform also integrates an AI chatbot and chat history to provide enhanced user interaction and support.
+Visual Snapshots (Text Descriptions):
+1. A mobile phone screen in light mode, displaying the main feed of questions. The top navigation bar shows the "DevOverflow" title, a search icon, and a user profile avatar. The screen is filled with scrollable cards, each representing a question with its title, a snippet of the question body, user information, tags, and metrics like upvotes and answer count. A bottom navigation bar provides access to Home, Ask Question, Notifications, and Leaderboard sections.
+2. A mobile phone screen in dark mode, showing a detailed view of a specific question. The top half displays the question title and its full body, potentially including code snippets or formatted text. Below the question, a list of answers is visible, each showing the responder's profile, their answer content, and upvote/downvote buttons. At the bottom of the screen, a text input field with a "Add your answer" prompt is present, allowing users to contribute.
+
+--------------------------------------------------
+No 19. Project Name: FLUTTER-MINI-PROJECTS
+Link: https
+Tags: Flutter, Dart, Mobile Development, SQLite, REST API
+Description: This repository showcases a comprehensive collection of practical Flutter applications, designed to demonstrate fundamental mobile development concepts. It covers essential topics such as multi-screen navigation, state management, local data persistence using SQLite and SharedPreferences, user input handling, and integration with RESTful APIs. The projects serve as a hands-on guide for building cross-platform mobile applications.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern ToDo application interface in light mode. The top bar features a clear "My ToDo List" title. Below it, an input field allows users to "Add a new task," with a prominent "Add" button to its right. The main body of the screen displays a scrollable list of tasks, each with a checkbox on the left, the task description, and a delete icon (e.g., a trash can) on the right.
+2. A student record entry form with a title like "Add New Student." The form features distinct input fields for "Student Name," "Roll Number," "Grade," and "Contact Email," each with clear labels and placeholder text. Below the input fields, a "Save Student" button is centrally located, designed for submitting the new student's data to the local SQLite database.
+--------------------------------------------------
+
+No 20. Project Name: SQL-ZOMATO-DATA-ANALYSIS
+Link: https
+Tags: SQL, Data Analysis, Business Intelligence, ETL, SQL Server
+Description: This project conducts a comprehensive analysis of the Zomato restaurant dataset using SQL Server to derive key business insights into the food delivery and restaurant aggregation industry. It covers data exploration, cleaning, and advanced SQL techniques like window functions and table joins to uncover operational patterns and customer preferences. The analysis provides actionable insights, such as regional market dominance, delivery options availability, and correlations between booking options and restaurant ratings.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed SQL Server Management Studio (SSMS) window displaying a complex SQL query, potentially using window functions or multiple joins, focused on aggregating restaurant data. The results pane at the bottom shows neatly formatted output with columns like 'Restaurant Name', 'City', 'Cuisine', 'Rating', and 'Online Delivery', highlighting top-performing restaurants or popular cuisines.
+2. A light-themed tabular view of aggregated Zomato data, possibly within SSMS or an Excel export, showing key analytical insights. This includes a summary table illustrating the distribution of restaurants by country (e.g., India vs. USA), a breakdown of online delivery options by region, and a comparison of average ratings for restaurants with and without table booking, specifically highlighting findings for a city like Connaught Place.
+
+No 21. Project Name: Probabilistic-Modelling-and-Reasoning-with-Python-PMRP
+Link: https://github.com/Probabilistic-Modelling-and-Reasoning-with-Python-PMRP
+Tags: Python, Probabilistic Programming, Statistical Modeling, Data Analysis, Jupyter Notebooks
+Description: This project explores probabilistic modeling and reasoning methodologies, implemented entirely in Python. It provides practical demonstrations through Jupyter notebooks, leveraging various statistical libraries and datasets to illustrate concepts like Bayesian inference, Markov Chain Monte Carlo methods, and predictive analytics. This resource is designed for data scientists and researchers keen on applying advanced statistical techniques to real-world problems.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed Jupyter Notebook interface showcasing the core of a probabilistic model. The screen displays Python code defining a model (e.g., using PyMC3 or Stan), followed by a markdown cell explaining its parameters, and a prominent output graph visualizing a posterior distribution or a simulated outcome, such as a histogram or a kernel density estimate.
+2. Another Jupyter Notebook view, potentially in light mode, focusing on data ingestion and preliminary analysis. This snapshot features Python code using Pandas to load and inspect a CSV dataset, followed by code generating an exploratory data visualization like a scatter plot matrix or a heatmap of correlations, along with a table displaying summary statistics of the dataset.
+
+No 22. Project Name: IPL-MEGA-AUCTION-DATA-ANALYSIS
+Link: https
+Tags: Python, Data Analysis, Pandas, Data Visualization, EDA
+Description: This project conducts an exploratory data analysis on the IPL 2025 Mega Auction dataset to reveal key insights into player valuations and team spending behaviors. Leveraging Python with Pandas, NumPy, Matplotlib, and Seaborn, it identifies trends like top-spending teams, most valuable players, and role-wise demand. The analysis provides a data-driven perspective for sports analysts, fantasy league enthusiasts, and anyone interested in cricket auction dynamics.
+Visual Snapshots (Text Descriptions):
+1. A Jupyter Notebook interface in a dark theme, displaying a dashboard of key data visualizations. Prominently featured is a bar chart showing "Top 5 Players by Sold Price" with player names and values, alongside a pie chart illustrating "Role-wise Demand" (BAT, BOWL, AR, WK) with percentages. Below, a stacked bar chart visualizes "Team-wise Spending Strategies," breaking down total expenditure for several teams.
+2. A focused screenshot from the Jupyter Notebook, showing a detailed bar chart comparing "Base Price vs. Sold Price" for top players, highlighting the profit or jump in value. Adjacent to this, a clean tabular output similar to the README's "Insight Snapshots" lists the top 5 players by final price, their team, role, and sold price, demonstrating the project's ability to extract specific actionable data.
+
+No 23. Project Name: SPOTIFY-TRENDING-DATA-ANALYSIS
+Link: https
+Tags: Python, Data Analysis, Data Visualization, Pandas, Spotify
+Description: This project provides a comprehensive analysis of personal Spotify streaming history, leveraging Python and data science libraries to uncover unique listening patterns and preferences. It identifies top artists, tracks, and detailed activity trends, enabling users to visualize their musical journey and discover insights like listening behavior across different times. The analysis is performed using Jupyter Notebook, Pandas, Matplotlib, and Seaborn.
+Visual Snapshots (Text Descriptions):
+1. A Jupyter Notebook output screen displaying a summary dashboard. The top section features key metrics such as "Total Listening Time," "Unique Artists," and "Total Tracks Played" prominently. Below, the main area is divided into two charts: a horizontal bar chart on the left showing "Top 10 Artists by Play Count," and a pie chart on the right illustrating "Top Genres." The layout is clean with a dark background and clear, readable labels.
+2. A detailed data visualization focusing on temporal listening patterns. An "Hourly Heatmap of Listening Activity" is displayed, presenting a grid with days of the week on the Y-axis and hours of the day (0-23) on the X-axis. Cells are color-coded to indicate listening intensity, with a gradient from light to dark blue representing low to high activity. Below the heatmap, a line graph tracks "Daily Listening Trends" over a specified period.
+
+No 24. Project Name: STRONG
+Link: https
+Tags: Flask, AI, Hugging Face, Stable Diffusion, Image Processing
+Description: This Flask web application provides a versatile platform for AI-powered image manipulation, offering both text-to-image generation and image-to-text captioning. It leverages Hugging Face's advanced AI models, specifically Stable Diffusion for creative image synthesis and powerful vision-language models for descriptive image analysis. The project serves as a robust example of integrating modern AI capabilities into a user-friendly web interface for diverse applications.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern web application interface featuring a light theme. The top includes the project title "AI Web App" and a brief navigation. Below, the main content is split horizontally into two distinct sections: "Text-to-Image Generation" on the left and "Image-to-Text Captioning" on the right. Each section has a clear input area, a call-to-action button, and a dedicated space for displaying the AI's output.
+2. Focus on the "Text-to-Image Generation" section of the application. A prominent text input field contains a detailed prompt like "A majestic space station orbiting a vibrant purple planet, highly detailed, futuristic art." Below this, a large, high-resolution image generated by Stable Diffusion is displayed, showcasing the prompt's interpretation, with a "Download Image" button beneath it.
+
+No 25. Project Name: EMPLOYEE-PERFORMANCE-PREDICTION-
+Link: https://employee-yp79.onrender.com
+Tags: Machine Learning, Flask, Data Science, HR Analytics, Data Visualization
+Description: This project predicts employee performance ratings using advanced machine learning models, specifically Random Forest and XGBoost. It features a Flask-based web application that allows users to input various employee attributes and visualize the predicted performance score with detailed charts and actionable insights. The system aids HR professionals in identifying key performance drivers and areas for improvement.
+Visual Snapshots (Text Descriptions):
+1. A clean web application interface presented in a light theme, with a detailed form occupying the main screen area. The form includes numerous input fields and dropdowns for employee attributes such as Age, Department, Job Role, Job Satisfaction, and Experience. A prominent "Predict" button is visible at the bottom of the form, allowing users to initiate the performance prediction.
+2. A results dashboard showcasing the predicted employee performance score and an "Insights" section. The performance score is prominently displayed, potentially with a gauge chart indicating the level (Low, Moderate, High). Below this, the insights section outlines strengths, weaknesses, and recommendations. Several accompanying charts, like bar charts for key metrics or line graphs for trends, provide visual context to the prediction and analysis.
+
+No 26. Project Name: Smart Agriculture System
+Link: https://smart-agriculture-system-delta.vercel.app/
+Tags: Machine Learning, Deep Learning, Agriculture Tech, React, Flask
+Description: This project is an intelligent agricultural solution, "FarmFriend," that empowers farmers with AI-driven insights. It provides real-time plant disease detection using deep learning models and optimizes water usage through machine learning-based irrigation scheduling. The system features a user-friendly React frontend and a scalable Flask backend serving specialized ML models to enhance crop health and resource efficiency.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-themed web interface displays a main section titled "Plant Disease Detection." Prominently featured are an input field to "Choose File" and an "Upload Image" button, allowing users to submit plant images for analysis. A top navigation bar or sidebar likely contains links for "Home," "Disease Detection," and "Irrigation Scheduling."
+2. A results screen, still in a light theme, shows the outcome of a disease detection. The uploaded plant image is clearly displayed, accompanied by the identified disease (e.g., "Tomato___Leaf_Mold") and potentially a confidence score. Below this, there might be actionable advice or a button to return and upload another image.
+
+No 27. Project Name: EMAIL-REWRITER-AI
+Link: https://github.com/OMCHOKSI108/EMAIL-REWRITER.git
+Tags: Python, Streamlit, Cohere, NLP, AI
+Description: This web application leverages Cohere's natural language processing to rewrite emails in various tones like Professional, Friendly, Persuasive, and Apologetic. Built with Streamlit, it offers an intuitive and interactive interface for users to effortlessly enhance their email communication. The tool focuses on improving clarity and tone adjustment with AI-powered suggestions and a diff view for comparing original and rewritten text.
+Visual Snapshots (Text Descriptions):
+1. A clean, responsive web interface (likely light mode) centered around two main text areas: one for the original email input and another displaying the AI-rewritten email. A sidebar on the left provides options for selecting the desired tone (e.g., "Professional", "Friendly") and potentially the Cohere model. Below the input fields, a prominent "Rewrite Email" button is visible, with a toggle for "Show changes" revealing highlighted differences between the original and rewritten text.
+2. A close-up of the application's interactive controls, focusing on the left sidebar and a section of the rewritten email. The sidebar explicitly shows input fields for a Cohere API key and a dropdown for selecting the AI model (e.g., "command", "command-light"), along with a list of tone options. The rewritten email text area would highlight specific phrases or sentences that were altered from the original, emphasizing the "diff view" feature with green for additions and red for deletions/changes.
+
+No 28. Project Name: Spot-Futures-Arbitrage-Signal-Generator
+Link: https://github.com/[your-github-username]/spot-futures-arbitrage.git
+Tags: FastAPI, Streamlit, Algorithmic Trading, Financial Data, Python
+Description: This project develops an algorithmic system to identify real-time arbitrage opportunities between the spot and futures prices of stocks and indices. It calculates fair values using the cost-of-carry model to generate specific "Buy Spot / Sell Futures" or "Sell Spot / Buy Futures" trade signals. The system features a FastAPI backend for computation logic and a Streamlit frontend for displaying live signals and fetching financial market data from sources like Yahoo Finance and RBI.
+Visual Snapshots (Text Descriptions):
+1. A Streamlit application dashboard in dark mode, featuring a prominent title "Spot-Futures Arbitrage Signals". The main area displays a table of active trade signals, showing columns like "Symbol", "Spot Price", "Futures Price", "Fair Value", "Spread (%)", "Threshold", and "Signal (Buy/Sell Spot)". Above the table, there are input fields or sliders for adjusting parameters like risk-free rate, spread threshold, and selecting assets, with a small real-time clock indicator.
+2. A detailed view within the Streamlit application, focusing on a single selected stock or index. This panel shows the full cost-of-carry model breakdown, including input fields or readouts for "Risk-Free Rate (RBI)", "Days to Expiry", and "Expected Dividend". Below this, a line graph displays the historical spread between futures and fair value over a chosen period, with the current signal clearly marked on the chart.
+
+No 29. Project Name: Internship-Oasis-infobyte
+Link: https://github.com/internship-projects/Internship-Oasis-infobyte
+Tags: Data Analysis, Machine Learning, Predictive Modeling, Sentiment Analysis, Python
+Description: This project showcases a comprehensive collection of data science and machine learning tasks completed as part of an internship at Oasis Infobyte. It demonstrates proficiency in various analytical techniques, including retail sales analysis, customer sentiment analysis, and robust data cleaning. Key applications involve developing predictive models for house prices and wine quality, along with implementing fraud detection, highlighting practical skills in data-driven problem-solving across diverse datasets.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed Jupyter Notebook interface displaying a scatter plot of predicted versus actual house prices, complete with a clear regression line and key model metrics like R-squared and Mean Squared Error. The layout includes visible code cells demonstrating model training and evaluation above the visualization.
+2. A light-themed Jupyter Notebook showcasing a Pandas DataFrame with processed customer review data, featuring newly engineered columns for sentiment scores (e.g., 'positive', 'negative', 'neutral'). Below the DataFrame, a bar chart visually represents the distribution of sentiments, accompanied by markdown cells explaining data preprocessing steps.
+
+--------------------------------------------------
+No 30. Project Name: Oasis-infobyte
+Link: https://github.com/OmChoksi/Oasis-infobyte
+Tags: Data Science, Machine Learning, Data Analysis, NLP, Predictive Modeling
+Description: This repository showcases a comprehensive collection of data science projects completed during an internship, demonstrating practical application of various analytical and machine learning techniques. It covers diverse tasks such as retail sales analysis, customer sentiment detection, house price prediction, and fraud detection. The projects highlight proficiency in data processing, model development, and insight generation using Python.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed portfolio dashboard displaying a grid of key visualizations from multiple projects. The top left features a line chart of retail sales trends, while the top right shows a sentiment distribution pie chart. Below, a scatter plot illustrates predicted vs. actual house prices, and a bar chart ranks feature importance for a machine learning model, all with clear titles and legends.
+2. A Jupyter Notebook interface in light mode, focused on the "House Price Prediction" project. The screen displays Python code cells for data loading (Pandas), feature engineering, and a Scikit-learn model training snippet. A prominent output cell below shows a scatter plot of actual vs. predicted house prices with a regression line, alongside a displayed R-squared score and mean squared error.
+--------------------------------------------------
+
+--------------------------------------------------
+No 31. Project Name: CPI-PROJECT-CHATBOT-EDUCATIONAL
+Link: https://github.com/OMCHOKSI108/CPI-PROJECT-CHATBOT-EDUCATIONAL
+Tags: AI, Chatbot, NLP, Python, Streamlit
+Description: This project is an AI-powered educational chatbot designed to provide students and institutions with seamless access to information about courses, admissions, and curriculum updates. It leverages Python and NLTK for natural language processing to deliver intelligent responses. The chatbot features a modern, interactive web interface built with Streamlit, focusing on user-friendly functionality and an intuitive design.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern web interface in a cinematic blue and white color scheme. The central area features a prominent chat window displaying distinct color-coded messages for user queries and AI responses. A left-hand sidebar shows a list of past chat sessions or popular topics, while an input field with send/new query buttons is at the bottom.
+2. An active chat conversation focused on an admissions query. The main chat pane shows a user asking "What are the admission requirements for the Computer Science program?" followed by a detailed AI response, potentially including bullet points on GPA, test scores, and application deadlines, all with clear timestamps. The left sidebar is visible, showing a history of previous interactions labeled 'Course Details', 'Faculty Info', and 'Admissions FAQ'.
+--------------------------------------------------
+
+-------------------------------------------------- 
+No 32. Project Name: SENSE-AI-TEXT-IMAGE-GEN-APPLICATION
+Link: https
+Tags: Flutter, AI/ML, Mobile Development, Text-to-Image, API Integration
+Description: SENSE is an AI-powered mobile application that transforms user-provided text prompts into visual artwork using state-of-the-art AI models. Developed with Flutter, it provides a modern, futuristic user interface featuring glassmorphism effects and dynamic animated backgrounds. The app integrates primary and fallback AI services, including Together AI, for robust and high-quality image generation.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed mobile application screen featuring a prominent, centrally located text input field labeled "Enter your prompt here..." for AI image generation. Below the input, a scrollable gallery displays a grid of recently generated AI images, each encased in a semi-transparent glassmorphism card, against a subtle, animated purple wave background.
+2. A full-screen view of the application's "Futuristic Loading" state. The dark background is dominated by a multi-layered, animated spinner (concentric rings of varying opacities), centered on the screen. Below the spinner, a gradient-colored text animation displays "Generating your masterpiece..." or "SENSE is working...", emphasizing the AI processing.
+--------------------------------------------------
+
+No 33. Project Name: Odoo-2025-Higher-Highs
+Link: https
+Tags: Odoo, Node.js, Express.js, Web Development, Skill Exchange
+Description: This project is an Odoo hackathon entry for a Skill Swap Platform, enabling users to list their skills, browse others, and request exchanges. It facilitates peer-to-peer skill learning and sharing, including features for user profiles, swap management, ratings, and administrative oversight. The platform is built with a Node.js/Express backend and an HTML/CSS frontend, emphasizing rapid deployment.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-themed user profile dashboard. The left sidebar shows navigation for "My Skills," "Find Skills," "Requests," and "Profile." The main content area displays the user's "Skills Offered" and "Skills Wanted" in distinct card-like sections, with options to edit or add new skills. A profile picture and basic user info are at the top.
+2. A search and browse interface for skills. The screen features a prominent search bar at the top, allowing users to find specific skills or other users. Below, a grid of user cards displays profile photos, names, locations, and a summary of skills offered, with a "View Profile" or "Request Swap" button on each card.
+
+No 34. Project Name: SIMPLE-GST-CALCULATOR
+Link: https://inspiring-cascaron-9c2992.netlify.app/
+Tags: React, Vite, Frontend Development, Tax Calculation, Single-Page Application
+Description: This single-page web application, built with React and Vite, offers a streamlined solution for Goods and Services Tax (GST) calculations. It provides an intuitive user interface to quickly compute tax amounts, helping users easily determine net, GST, and gross values. The project showcases fundamental frontend development skills in creating a practical utility.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern web interface with a light theme. The main area features two prominent input fields: one for 'Amount' and another for 'GST Rate (%)', typically with slider or dropdown options. Below these inputs, buttons such as 'Add GST' and 'Remove GST' are visible, alongside a clear results section displaying 'Net Amount', 'GST Amount', and 'Gross Amount' with their respective calculated numerical values.
+2. A focused view showing an active calculation. The 'Amount' input displays a numerical value (e.g., '1000'), and the 'GST Rate' input shows a percentage (e.g., '18%'). The results section is clearly populated with the breakdown: 'Net Amount: ₹1000', 'GST Amount: ₹180', and 'Gross Amount: ₹1180', demonstrating the application's immediate response to user input.
+
+No 35. Project Name: ai-scraper-github-userdata-fastapi
+Link: https://github.com/OMCHOKSI108/ai-scraper-github-userdata-fastapi
+Tags: FastAPI, AI, Web Scraping, Docker, Data Engineering
+Description: This project is an AI-powered FastAPI application designed to scrape public user data from social media platforms like GitHub and LinkedIn. It utilizes Google Gemini for intelligent analysis, returning structured JSON insights for developers and data engineers. The system incorporates Playwright for robust browser automation and Redis for efficient caching, deployed via Docker.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed Swagger UI (OpenAPI documentation) showing the API's single `/scrape` POST endpoint. The endpoint is expanded, displaying its description, a "Try it out" button, required request parameters (platform and target strings), and example JSON outputs for successful responses and errors.
+2. A terminal window or API client interface (e.g., Postman) in a dark theme, showing a successful `curl` POST request to the `/scrape` endpoint for a GitHub user. Below the request, a neatly formatted JSON response is visible, containing AI-analyzed data such as the user's name, a summary of their profile, key skills, and perhaps a list of prominent repositories.
+
+No 36. Project Name: AI-RESUME-ANALZER-FASTAPI
+Link: https://github.com/OMCHOKSI108/ai_resume_parser.git
+Tags: AI, FastAPI, Streamlit, PostgreSQL, Resume Parsing
+Description: This project provides an end-to-end AI-powered system for parsing resumes and analyzing job fit. It utilizes Google Gemini Pro for advanced language model capabilities, FastAPI for a robust backend API, and Streamlit for an interactive user interface, with all resume data persistently stored in PostgreSQL. The application helps users upload resumes and job descriptions to receive structured analysis, skill ratings, and smart suggestions for improvement.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern Streamlit UI in a light theme, displaying the "Live Analysis" tab. On the left sidebar, there's navigation for "Live Analysis" and "Resume History." The main content area features a file upload widget for the resume, a large text area for pasting the job description, and a prominent "Analyze" button. Below, the parsed output is shown as a well-formatted JSON structure, highlighting candidate name, email, core skills, soft skills, and a match percentage/rating, along with actionable suggestions.
+2. A Streamlit UI in a light theme showing the "Resume History" tab. The main content area presents a searchable and sortable table of previously uploaded resumes, with columns like "Candidate Name," "Upload Date," and "Match Score." Above the table, a search bar allows filtering through past entries. Clicking on a row reveals the detailed parsed data for that specific historical resume, similar to the output on the "Live Analysis" tab, demonstrating the persistent storage and retrieval capabilities.
+
+No 37. Project Name: Data Visualization with Power BI
+Link: https://github.com/user/Data-Visualization-with-POWER-BI
+Tags: Power BI, Data Visualization, Data Analysis, Business Intelligence, Microsoft Excel
+Description: This repository showcases a collection of data visualization projects developed using Microsoft Power BI and Excel, demonstrating diverse analytical techniques. It focuses on transforming raw datasets, such as advertising campaign metrics and academic results, into interactive dashboards and insightful reports. The project highlights proficiency in data modeling, KPI tracking, and creating compelling visual narratives for business intelligence applications.
+Visual Snapshots (Text Descriptions):
+1. A professional Power BI dashboard, predominantly in a dark theme, presenting an "Advertising Campaign Analysis." The layout features a prominent line chart tracking campaign performance metrics like impressions and clicks over time, complemented by bar charts comparing ROI across different advertising channels. Key performance indicators such as total budget, conversion rate, and average cost-per-acquisition are displayed as large, clear card visuals at the top, with interactive slicers on the left for filtering data by campaign, date range, or demographic.
+2. A detailed Power BI report focused on "Graduation Results Analysis." The screen displays a stacked bar chart illustrating graduation rates segmented by academic cohort and faculty, alongside a treemap visualizing student performance distribution across various subjects or departments. A table visual on the right provides granular data for specific student groups or courses, with dynamic filters allowing users to drill down into particular academic years or demographic segments to uncover trends and patterns.
+
+--------------------------------------------------
+No 38. Project Name: C-Language-
+Link: https
+Tags: C, Algorithms, Data Structures, Programming Fundamentals, System Programming
+Description: This project is a comprehensive collection of C language programs, exercises, and mini-projects designed to strengthen foundational programming skills. It covers a wide range of C concepts, from basic syntax and control structures to file handling, pointers, and custom algorithms. The repository serves as a valuable resource for students, self-learners, and those preparing for technical interviews, focusing on practical problem-solving and code examples.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed GitHub repository file browser showing the `OM-4222` root folder open, revealing several subdirectories like `day10`, `day11`, and `day12`. The file list within one `dayXX` folder displays multiple `.c` files, e.g., `task1.c`, `pattern_print.c`, alongside a `README.md` file at the root.
+2. A code editor view (e.g., VS Code or similar IDE) displaying the content of a `pattern_print.c` file. The screen shows well-formatted C code for generating a pyramid or star pattern using nested loops, with comments explaining the logic. The output console below the code would show the generated pattern.
+--------------------------------------------------
+
+No 39. Project Name: Adobe Hackathon 2025: Connecting the Dots
+Link: https://example.com/adobe-hackathon-2025
+Tags: PDF Processing, Document Intelligence, Python, Web Development, Adobe PDF API
+Description: This project, developed for the Adobe Hackathon 2025, reimagines PDF documents as intelligent, interactive experiences. It focuses on extracting structured outlines from PDFs, using on-device intelligence to identify and connect related ideas across documents, and presenting these insights within a futuristic web application built with the Adobe PDF Embed API. The goal is to enhance knowledge discovery and revolutionize how users interact with digital content.
+Visual Snapshots (Text Descriptions):
+1. A modern web application dashboard in dark mode, showcasing an interactive PDF reader. On the left, a dynamic, expandable outline or table of contents pane displays structured sections extracted from the PDF. The main content area on the right presents the PDF document, with current section headings subtly highlighted to correspond with the outline.
+2. A detailed view of the "Connecting the Dots" feature within the web application. A PDF document is open, and specific text segments are highlighted. A dynamic sidebar or overlay reveals "Related Insights" or "Connected Ideas," displaying snippets from other parts of the document or library linked by the intelligent processing, with an option to navigate to them.
+
+No 40. Project Name: PROJECTS_BASIC
+Link: https
+Tags: Java, Object-Oriented Programming, Multithreading, Backend Development, CRUD Applications
+Description: This project consolidates several foundational Java applications, including systems for library management, multithreaded order processing, online banking, and vehicle rental services. It demonstrates core Java programming principles, object-oriented design patterns, and fundamental backend service implementation. The collection is ideal for showcasing proficiency in developing robust, standalone business logic applications.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed terminal displaying the main menu of the "Online Banking System". The screen shows a title "Secure Online Banking System" with options like "1. Create Account", "2. Deposit Funds", "3. Withdraw Funds", "4. View Balance", "5. Transaction History", "6. Exit", followed by a prompt for user input.
+2. A console screenshot demonstrating the "Multithreaded Order Processor" in action. It shows a rapid sequence of log messages indicating orders being submitted and processed by different threads (e.g., "Order #101 submitted", "Processor A handling Order #101", "Order #102 submitted", "Processor B handling Order #102", "Order #101 complete"), highlighting concurrent execution.
+
+No 41. Project Name: Keylogger-detection-in-windows-subsystems
+Link: https://github.com/OMCHOKSI108/Keylogger-detection-in-windows-subsystems
+Tags: Python, AI, Cybersecurity, Windows, System Monitoring
+Description: This project provides Python scripts that leverage Google Gemini AI to detect potential keyloggers on Windows systems. It analyzes system data such as running processes, network connections, and startup items, then uses AI to identify suspicious patterns. The tool delivers a probability score, detailed reasoning, and actionable security suggestions to help users maintain system integrity.
+Visual Snapshots (Text Descriptions):
+1. A dark mode terminal window displaying the output of the detection script. It clearly shows "Keylogger Detection Results:", followed by a "Probability of Keylogger" percentage, a multi-line "Reasoning" explaining the analysis, and bullet-point "Suggestions" for security actions.
+2. A simple desktop application window (GUI format) with a prominent "Scan for Keyloggers" button. Below the button, there are distinct sections or text areas labeled "Keylogger Probability", "Reasoning", and "Security Suggestions", which populate with results after a scan is initiated.
+
+No 42. Project Name: Full-Stack-Web-Development
+Link: https://my-first-single-page-website-fswd.netlify.app/
+Tags: Web Development, Full-Stack, HTML/CSS, JavaScript, Single Page Application
+Description: This repository compiles a series of full-stack web development projects and coding exercises, intended to demonstrate foundational proficiency in web technologies. It showcases practical application of both front-end (HTML, CSS, JavaScript) and back-end concepts, reflecting a hands-on learning approach. The collection serves as a portfolio piece highlighting core web development skills.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern single-page website, likely from one of the included projects, displayed in a light mode. The top features a minimalist navigation bar with links like "Home", "About", "Skills", and "Contact". Below is a prominent hero section with a large, inviting title and a short descriptive paragraph, designed for immediate user engagement.
+2. A dedicated "Skills" or "Technologies Used" section within the single-page website, presenting various web development proficiencies through animated progress bars or a grid of technology icons. Each item is accompanied by a brief label (e.g., "JavaScript", "React", "Node.js"), visually demonstrating the developer's technical stack.
+
+--------------------------------------------------
+No 43. Project Name: Local-LLM-NPC-Multi-Agent-Agricultural-University-Platform
+Link: https://github.com/user/Local-LLM-NPC-Multi-Agent-Agricultural-University-Platform
+Tags: On-Device AI, LLM, Gamified Learning, Agricultural Tech, Godot
+Description: This platform leverages Google Gemma 3n, served locally via Ollama, to create an on-device, privacy-first AI solution for agricultural education. It provides personalized training through interactive, conversational NPCs within a gamified environment, designed to improve farming practices and crop yields in regions with limited connectivity. The project targets rural farmers and agricultural students, aiming to democratize access to critical farming knowledge and foster sustainable practices.
+Visual Snapshots (Text Descriptions):
+1. A vibrant, gamified UI displaying a virtual farm simulation. In the foreground, an AI-powered NPC (e.g., a wise farmer avatar) is engaged in a conversational dialogue box with the user, offering advice on crop management. On the side, a clear educational panel shows specific learning modules or interactive questions related to sustainable agriculture.
+2. A 'Knowledge Assessment' screen displaying a practical scenario, such as a simulated crop field with a visual problem (e.g., yellowing leaves), prompting the user for an action or diagnosis. An overlay chat box features the AI NPC providing Socratic questioning or hints, and a sidebar shows the user's progress through specific agricultural topics like 'Integrated Pest Management' or 'Fertilizer Application'.
+--------------------------------------------------
+
+No 44. Project Name: Spring-Boot-ConnectHub-JAVA
+Link: https
+Tags: Java, PostgreSQL, Real-time Communication, TCP/IP, Multi-threading
+Description: This enterprise-grade platform facilitates secure real-time communication for teams and organizations, offering features like multi-user messaging, file sharing with progress tracking, and robust user authentication. Built with Java and PostgreSQL, it leverages a multi-threaded TCP server architecture for efficient and concurrent client connections.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed terminal window displaying the ConnectHub client application. The screen shows a user successfully logged in, a history of public messages exchanged between several users, and output from the `/users` command listing online participants.
+2. A clear diagram illustrating the database schema, specifically the Entity-Relationship Diagram (ERD). It shows tables like Users, Messages, Files, and Sessions, with their respective columns and relationships, highlighting the underlying data model.
+
+No 45. Project Name: gcp-sentiment-analysis-api
+Link: https://github.com/OMCHOKSI108/gcp-sentiment-analysis-api
+Tags: Python, Flask API, Sentiment Analysis, Docker, GCP
+Description: This Flask-based API provides instant sentiment analysis for text inputs, leveraging TextBlob for natural language processing. It classifies text as positive, negative, or neutral and provides a polarity score, designed for developers needing quick sentiment insights. Containerized with Docker and ready for cloud deployment on platforms like GCP, it offers production-grade scalability via Gunicorn.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed terminal window displaying a `curl` POST request to the `/predict` API endpoint. The request includes a JSON payload with sample text. Below, the API's JSON response is clearly visible, showing the input text, sentiment classification (e.g., "positive"), and the associated polarity score.
+2. A clean, professional diagram illustrating the API's architecture. It depicts text input flowing into the Flask application, utilizing TextBlob for sentiment processing, and being served by Gunicorn within a Docker container, with an arrow pointing towards cloud deployment on GCP.
+
+No 46. Project Name: Red-Teaming-Challenge-OpenAI-gpt-oss-20b
+Link: https
+Tags: AI Safety, Red Teaming, Large Language Models, Vulnerability Research, Kaggle
+Description: This project documents participation in a Kaggle red-teaming competition, focused on identifying and reporting previously undiscovered vulnerabilities and harmful behaviors in OpenAI's gpt-oss-20b large language model. It contributes to AI safety and alignment by documenting exploits and sharing insights from probing the model for security and ethical flaws. The repository outlines methodology and findings aimed at improving open-source AI model robustness.
+Visual Snapshots (Text Descriptions):
+1. A Google Colab notebook in dark mode, showing the main workspace. Visible cells include Python code importing necessary libraries (e.g., `openai`), model setup, and markdown sections explaining the red-teaming strategy. Output cells display model responses to specific prompts, potentially highlighting initial attempts at probing for vulnerabilities, with a Kaggle competition badge visible at the top.
+2. A focused view on a specific red-teaming experiment within the Colab notebook. This screenshot shows a prompt engineered to test for a specific vulnerability (e.g., reward hacking or data exfiltration) and the `gpt-oss-20b` model's problematic response. Adjacent markdown cells explain the finding, its implications, and potentially a snippet of the JSON structure used for reporting the vulnerability to the competition.
+
+--------------------------------------------------
+No 47. Project Name: TEXT-TO-IMAGE-GEN-AI
+Link: https
+Tags: AI, Deep Learning, Image Generation, Stable Diffusion, Google Colab
+Description: This project implements a text-to-image generation system using advanced AI models. Leveraging the Stable Diffusion XL model via Hugging Face's `diffusers` library, it allows users to input text prompts and generate corresponding high-quality images. The system is designed for execution on GPU-accelerated environments like Google Colab, making powerful deep learning accessible for creative applications and research.
+Visual Snapshots (Text Descriptions):
+1. The main "hero" screenshot would display a Google Colab notebook interface in dark mode. The focus is on an executed cell showing Python code for image generation, with a visible input text prompt (e.g., "A futuristic city at sunset") and the generated image prominently displayed below the code output.
+2. A second screenshot could highlight the generated image. It would feature a large, high-resolution image (e.g., "a vibrant hyper-realistic portrait of an astronaut on Mars") prominently, with the exact text prompt that generated it clearly visible, perhaps in a title or small overlay, emphasizing the direct correspondence and quality of the AI-generated output.
+--------------------------------------------------
+
+No 48. Project Name: EcoFinds
+Link: https
+Tags: Marketplace, E-commerce, Sustainability, Full-Stack Development, Data Management
+Description: EcoFinds is a sustainable second-hand marketplace dedicated to revolutionizing the way people buy and sell pre-owned goods. It aims to foster a circular economy by extending product lifecycles, reducing waste, and providing an accessible platform for conscious consumption. The platform offers core functionalities including user authentication, product listing creation and management, and a robust browsing experience with filtering and search capabilities.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-themed product listing feed displaying a grid of product cards. The header features the "EcoFinds" logo, a prominent search bar, and several category filter buttons (e.g., "Electronics", "Books", "Clothing"). Each product card shows a placeholder image, a concise product title (e.g., "Vintage Coffee Table"), and its price (e.g., "$75"), with a floating "+" button at the bottom right for adding new listings.
+2. A focused "Add New Product" screen, likely in a slightly darker theme to emphasize input fields. The layout includes a title "Add New Product" at the top with a back arrow, followed by clear input fields for "Product Title," a dropdown for "Category," a multi-line text area for "Description," and a numerical input for "Price." Below these, there's a button labeled "+ Add Image (Placeholder)" and a prominent "Submit Listing" button at the bottom.
+
+No 49. Project Name: LegalGPT Pro
+Link: https://github.com/your-username/LegalGPT
+Tags: AI, Legal Tech, RAG System, Streamlit, LangChain
+Description: LegalGPT Pro is an AI-powered legal assistant tailored for Indian legal professionals, law firms, and researchers. Leveraging Retrieval-Augmented Generation (RAG), it enables users to upload and analyze legal documents, providing precise, context-aware legal analysis and interactive question-answering. The platform streamlines legal research and document review processes within the Indian legal system.
+Visual Snapshots (Text Descriptions):
+1. A professional web application interface displayed in a clean, modern light theme. The layout features a left-hand sidebar containing "Document Management" options, including an "Upload Document" button and a list of uploaded PDF files with their filenames. The main content area showcases a prominent chat window with a text input field at the bottom, ready for legal queries, and a placeholder welcome message above.
+2. The chat interface during an active interaction, showing a user's query like "Summarize the key provisions of the Companies Act, 2013, based on the uploaded document 'Corporate_Law_Digest.pdf'". Below the query, a detailed, multi-paragraph AI-generated response is displayed, offering a precise summary with contextual information, potentially highlighting sections or keywords relevant to Indian corporate law.
+
+No 50. Project Name: invest-club-platform
+Link: https
+Tags: Node.js, React, Express.js, MongoDB, Investment Management
+Description: This full-stack platform facilitates the creation and management of investment clubs, enabling small groups to collectively pool funds and invest. It provides robust tools for member management, investment proposal creation and voting, and comprehensive portfolio tracking. The application is developed with Node.js and Express for the backend API, complemented by a responsive React frontend built with Vite.
+Visual Snapshots (Text Descriptions):
+1. A dark mode dashboard view of an active investment club. The left-hand sidebar contains navigation links like "Dashboard", "Members", "Proposals", and "Portfolio". The main content area prominently displays key metrics such as "Total Assets Under Management", "Number of Members", and a clean line graph visualizing the club's portfolio performance over the last month, alongside a feed of recent club activities.
+2. A detailed "Proposals" page in a light theme, showcasing a list of current and past investment proposals. Each proposal entry includes its title, creation date, current status (e.g., "Open for Voting", "Approved"), and a summary of votes. A prominent call-to-action button, "Create New Proposal," is visible, and individual proposal entries feature clickable options to view details or cast a vote.
+
+No 51. Project Name: DSA-Learnings
+Link: https://github.com/your-username/DSA-Learnings
+Tags: C++, Data Structures, Algorithms, Competitive Programming, Problem Solving
+Description: This repository serves as a comprehensive collection of Data Structures and Algorithms solutions implemented primarily in C++. It demonstrates strong foundational computer science knowledge and problem-solving skills through exercises from platforms like LeetCode. The project is an essential resource for showcasing proficiency in core algorithmic concepts and efficient coding practices.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed IDE (e.g., VS Code) screenshot showing the project structure in the left sidebar with folders like "C++", "leetcode", "Pattern", and "greeksforgreeks". The main editor pane displays a C++ file (e.g., `tree/binary_tree.cpp`) with clean, syntax-highlighted code for a common data structure operation, along with a small terminal panel at the bottom showing compilation or simple test output.
+2. A dark-themed Jupyter Notebook screenshot focusing on a specific LeetCode problem. It features a Markdown cell detailing the problem description (e.g., "Two Sum" or "Merge Two Sorted Lists"), followed by a code cell containing a Python or C++ solution. Below the code, an executed output cell displays the results of running test cases, confirming the solution's correctness.
+
+No 52. Project Name: express-js-learn
+Link: https
+Tags: Node.js, Express.js, Backend Development, REST API, NoSQL
+Description: This project serves as a foundational learning environment for backend development using Node.js and the Express.js framework. It demonstrates the creation of RESTful APIs and an administrative panel, applying MVC architecture principles and middleware. The work emphasizes practical NoSQL database integration for data management and service exposure.
+Visual Snapshots (Text Descriptions):
+1. A clean, professional admin dashboard displayed in a light theme. The left sidebar features navigation links such as 'Dashboard', 'Users', 'Products', and 'Settings'. The main content area shows a summary of key metrics like 'Total Users', 'Pending Orders', and 'Revenue', presented in card-like widgets with a central table displaying recent activity or a paginated list of items.
+2. An API client interface (e.g., Postman) displaying a successful HTTP GET request to a `/api/products` endpoint. The request pane shows the URL and any headers, while the response pane below displays a well-formatted JSON array of product objects, confirming data retrieval from the NoSQL database.
+
+No 53. Project Name: docker-ml-demo
+Link: https://github.com/username/docker-ml-demo
+Tags: Docker, Machine Learning, MLOps, Containerization, Python
+Description: This project demonstrates the containerization and deployment of a Machine Learning model using Docker. It establishes a reproducible environment for ML model inference or training, showcasing efficient operationalization practices. The focus is on streamlining the deployment pipeline for data scientists and MLOps engineers.
+Visual Snapshots (Text Descriptions):
+1. A split-screen view in dark mode. The left panel shows a terminal with `docker build` and `docker run` commands successfully executing, displaying logs indicating an ML model service starting. The right panel presents a minimalist web UI with an input field for data and a "Predict" button, showing the model's prediction output (e.g., "Prediction: 0.85").
+2. A dark-themed code editor (e.g., VS Code) displaying the `Dockerfile` for the project. Key lines such as `FROM python:3.9-slim-buster`, `COPY requirements.txt .`, `RUN pip install -r requirements.txt`, and `CMD ["python", "app.py"]` are clearly visible, illustrating the steps to package the ML application and its dependencies into a Docker image.
+
+No 54. Project Name: surat-resturant-sentiment-analysis-using-api
+Link: https
+Tags: Sentiment Analysis, NLP, Data Visualization, Web Scraping, Streamlit
+Description: This project is an advanced sentiment analysis platform tailored for comprehensive restaurant review analysis in Surat. It utilizes AI-powered web scraping to collect reviews, an API-based NLP engine for sentiment scoring, and presents insights via an interactive Streamlit dashboard. The system enables restaurant owners to understand customer sentiment patterns, identify trends, and improve service quality through data-driven decisions.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-themed Streamlit dashboard prominently displaying a header and a left-hand navigation sidebar with options like 'Review Generation System' and 'Sentiment Analysis Engine'. The main content area features a large pie chart showing the distribution of positive, negative, and neutral sentiments, alongside key performance indicators like 'Total Reviews Processed' and 'Overall Sentiment Score'.
+2. A detailed analysis results page within the Streamlit dashboard, showcasing interactive visualizations. This includes a bar chart comparing sentiment trends over time or across different restaurant categories, a histogram illustrating the polarity score distribution, and a data table presenting individual review texts with their calculated sentiment scores and classifications, allowing for granular exploration.
+
+No 55. Project Name: OMCHOKSI108
+Link: https://github.com/omchoksi108
+Tags: Backend Engineering, Machine Learning, Cloud Computing, Full-Stack Development, Data Engineering
+Description: This project serves as a comprehensive personal GitHub profile README, showcasing the developer's diverse technical skills, project interests, and learning initiatives. It acts as a central hub for recruiters and collaborators to quickly understand the developer's expertise in AI, backend systems, and full-stack development, alongside their active engagement in competitive programming and cloud technologies. The profile leverages various GitHub integrations to visualize coding activity, top languages, and community contributions.
+Visual Snapshots (Text Descriptions):
+1. A dark mode screenshot of the upper section of the GitHub profile README. The "Hello! I'm OM CHOKSI" typing animation is prominent at the top, followed by social media badges (Twitter, LinkedIn, Kaggle, Medium, Website). Below this is the "About Me" section with a concise self-introduction and sections for "Currently Learning" and "Ask Me About", showing clear text and organized layout.
+2. A dark mode screenshot focusing on the "Languages and Tools" and "GitHub Stats" sections. Skill icons (e.g., Python, Java, React, Node.js, GCP, MySQL) are neatly arranged, followed by GitHub-generated stats cards displaying "Top Languages", "GitHub Stats" (stars, commits), and "Contribution Streak", all with a transparent background.
+
+No 56. Project Name: Car-Rental-System
+Link: https
+Tags: Node.js, Express.js, MongoDB, RESTful API, Web Application
+Description: This project implements a comprehensive Car Rental System designed to streamline vehicle management and customer bookings. It enables users to browse available cars, make reservations, and manage their rental details, while administrators can oversee inventory, user accounts, and transactions. The system focuses on delivering an efficient and user-friendly platform for both rental providers and customers.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-mode web page showing a responsive grid of available cars. The header includes a navigation bar with "Home," "Browse Cars," "My Bookings," and "Login/Register" links. A prominent search bar allows users to input pick-up/drop-off locations and dates. Each car card displays an image, make, model, daily rental price, and a "View Details" button.
+2. An administrator dashboard in a dark theme, featuring a left-hand navigation sidebar with options like "Vehicles," "Bookings," "Users," and "Reports." The main content area displays summary cards for key metrics (e.g., "Total Vehicles," "Active Rentals," "Pending Bookings") and a paginated table listing recent booking activities, including customer name, vehicle, rental dates, and current status.
+
+No 57. Project Name: omchoksi-portfolio
+Link: https://github.com/OMCHOKSI108/Portfolio
+Tags: React.js, Node.js, Express.js, Full-Stack Development, Responsive Design
+Description: This project is a personal portfolio website designed to professionally showcase the developer's projects, technical skills, and resume. Built with React.js, Node.js, and Express.js, it demonstrates proficiency in modern web development. The site features a responsive multi-page layout and is deployed on Vercel, serving as a comprehensive online resume for potential employers and collaborators.
+Visual Snapshots (Text Descriptions):
+1. A clean, modern dark-mode landing page featuring a prominent hero section with the developer's name, professional title, and a brief introductory statement. Navigation links for Home, About, Projects, Skills, and Contact are visible in the top header, along with a call-to-action button like "View My Work" or "Download Resume."
+2. The "Projects" section, displaying a grid of 3-4 project cards. Each card includes a project title, a small thumbnail image, a concise description, and direct links to the live demo and the GitHub repository, highlighting key technical contributions for each showcased project.
+
+No 58. Project Name: FACE-IDENTIFICATION-USING-OPENCV-AND-TENSOR
+Link: https://github.com/OMCHOKSI108/FACE-IDENTIFICATION-USING-OPENCV-AND-TENSOR
+Tags: Facial Recognition, Computer Vision, Deep Learning, Python, OpenCV
+Description: This project implements a comprehensive face identification system for real-time webcam feeds and uploaded videos. It leverages advanced computer vision libraries like OpenCV, TensorFlow, and dlib to perform accurate face detection and recognition using pre-trained embedding models. The system features a user-friendly web interface built with Gradio or Streamlit, enabling accessible deployment and interaction for identifying individuals.
+Visual Snapshots (Text Descriptions):
+1. The main web application interface, likely in a light theme, centrally displays a live webcam feed or an active video player showing a pre-recorded video. Identified faces are highlighted with green bounding boxes, and the recognized person's name is clearly displayed above each box. Below the video, control buttons like "Start Recognition" or "Upload Video" are visible.
+2. A screenshot focusing on the video processing capability, showing a paused frame from an uploaded video where multiple faces have been detected and identified. Each identified face has a distinct colored bounding box with the corresponding name label, and a smaller panel or sidebar lists all unique individuals recognized within that video.
+
+No 59. Project Name: WHATSAPP-CHAT-ANALYZER
+Link: https
+Tags: Python, Streamlit, Data Analysis, Data Visualization, WhatsApp
+Description: This Streamlit-based web application provides users with a comprehensive tool for analyzing and visualizing their WhatsApp chat data. It allows individuals to upload exported chat files, which are then processed to generate insightful statistics, such as message frequency, participant activity, and common keywords. The platform offers an interactive way to explore personal communication patterns and trends through an intuitive user interface.
+Visual Snapshots (Text Descriptions):
+1. A clean, dark-themed web interface with a prominent 'Upload WhatsApp Chat File' button centered on the initial page. A sidebar on the left offers options for analysis settings, such as date range filters and a dropdown to select specific participants. The main content area could show a brief 'How To Use' guide or a placeholder for analysis results.
+2. A dashboard view displaying various data visualizations. On the top, a line graph tracks 'Messages Sent Over Time' with an interactive tooltip. Below, a bar chart shows 'Top 5 Most Active Participants' by message count, adjacent to a word cloud visualizing 'Most Frequent Words' used in the chat. All elements are well-organized within a grid layout.
+
+No 60. Project Name: Web-Scarpping-Tool
+Link: https://github.com/yourusername/Web-Scarpping-Tool
+Tags: Python, Web Scraping, Selenium, Data Extraction, Automation
+Description: This project is a Python-based web scraping tool designed to automate the extraction of student result data from college portals. It leverages Selenium to navigate dynamic web pages, automatically selecting academic parameters like institute, degree, semester, and exam schedules. The tool iterates through a range of student IDs, extracts detailed results, and saves the structured data into an Excel file for further analysis.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed terminal window displaying the Python script in action. The top portion shows initial configuration output, confirming parameters like 'Target Portal URL', 'Institute: University XYZ', 'Degree: Bachelor of Science', 'Semester: Fall 2023'. Below, a scrolling log indicates real-time progress, such as 'Navigating to login page...', 'Processing student ID: 1001', 'Data extracted for Student 1001', with occasional status updates like 'Scraped 50/200 records (25%)'.
+2. A professional-looking Excel spreadsheet open in dark mode. The first few rows display header columns such as 'Student ID', 'Student Name', 'Course Name', 'Grade', 'Credits', 'Result Status', and 'Semester'. Below these headers, several rows of mock student result data are clearly visible, demonstrating the organized and structured output generated by the scraping tool.
+
+No 61. Project Name: NLP-DOCUMENT-CHATBOT
+Link: https://document-nlp-chatbot-omchoksi-project0030.streamlit.app/
+Tags: Python, Streamlit, Cohere API, NLP, AI Chatbot
+Description: This project is an AI-powered document-based chatbot built with Streamlit and the Cohere API. It enables users to upload various document types, including PDFs, Word, and Excel files, and receive accurate, concise answers to questions about their content. The application streamlines information extraction from diverse documents through a conversational interface.
+Visual Snapshots (Text Descriptions):
+1. The main application interface features a clean, professional Streamlit layout, likely in a light theme. A prominent file upload section occupies the top, allowing users to drag-and-drop or browse for multiple document types. Below this, a chat history pane displays past interactions, with a clear input box at the bottom for users to type their questions.
+2. A key interaction snapshot shows a document (e.g., a PDF research paper) successfully uploaded and listed. The chat history section is visible, showing a user's specific question about the document's content (e.g., "What are the main conclusions?"). Directly beneath, the chatbot's concise and well-formatted answer, generated by the Cohere API, provides an accurate summary or direct information extracted from the document.
+
+No 62. Project Name: SOCIAL-MEDIA-SENTIMENTAL-ANALYSIS
+Link: https
+Tags: Sentiment Analysis, Machine Learning, NLP, Python, Data Visualization
+Description: This project implements a comprehensive sentiment analysis pipeline to classify social media posts as positive, negative, or neutral, providing valuable insights into public opinion. It leverages machine learning models like Logistic Regression and Support Vector Machines on TF-IDF transformed text data. The solution is ideal for data scientists or researchers seeking to extract and visualize sentiment trends from textual datasets.
+Visual Snapshots (Text Descriptions):
+1. A Jupyter Notebook interface in dark mode, prominently featuring a bar chart that visualizes the distribution of "Positive," "Negative," and "Neutral" sentiments across a dataset of social media posts. Below the chart, a clear summary table displays key model evaluation metrics such as Accuracy, Precision, Recall, and F1-score for the trained sentiment classification models.
+2. A code-focused screenshot from the Jupyter Notebook, illustrating the data preprocessing steps, including text cleaning and tokenization. It would then show the implementation of TF-IDF vectorization, followed by the code snippet for training a specific machine learning model (e.g., Logistic Regression) and its output of a classification report or confusion matrix.
+
+No 63. Project Name: WEBSOCKET-ATTACK-AND-DETECTION
+Link: https
+Tags: Cybersecurity, WebSockets, Penetration Testing, Network Security, Security Research
+Description: This project provides a specialized toolkit designed for the analysis and identification of security vulnerabilities within WebSocket communication protocols. It enables cybersecurity professionals and researchers to simulate various attack scenarios and detect potential weaknesses in WebSocket implementations. The toolkit focuses on ethical hacking and educational purposes, helping to improve the resilience of real-time web applications.
+Visual Snapshots (Text Descriptions):
+1. A dark-themed terminal window displaying the command-line interface of the toolkit. The top section shows a clear project banner or logo, followed by a list of available commands or modules (e.g., 'attack', 'detect', 'config', 'help'). Below that, an example command `python websocket-tool.py detect --target ws://example.com/socket --module fuzz` is partially typed, indicating user interaction.
+2. A console output from a detection script run, presented in a dark terminal. The output shows color-coded log messages indicating different stages of a security scan, with specific lines highlighted in red or yellow indicating detected anomalies or potential vulnerabilities (e.g., "WARNING: Insecure WebSocket handshake detected," "VULNERABILITY: Cross-Site WebSocket Hijacking possible"). It displays metrics like requests sent, responses received, and elapsed time.
+
+-------------------------------------------------- 
+No 64. Project Name: Multithreaded-Order-Processor
+Link: https
+Tags: Java, Multithreading, Web Development, Order Processing, Backend Engineering
+Description: This project is a multithreaded order processing system engineered to concurrently handle multiple orders, accurately calculate total costs, and maintain comprehensive order summaries. It leverages a robust Java backend for efficient processing logic and a simple HTML/CSS/JavaScript frontend to provide an interactive user interface, showcasing dynamic UI updates and persistent order history tracking.
+Visual Snapshots (Text Descriptions):
+1. A clean, light-themed web interface displays an "Order Entry" form on the left, featuring input fields for 'Item Name', 'Quantity', and 'Price' with an 'Add Item' button. The main central area presents a dynamically updating "Current Order" table, listing added items, their details, and line totals, culminating in a 'Subtotal' and 'Total', with a prominent 'Process Order' button below.
+2. A split view showcasing both frontend and backend operations. The left side displays the web interface's "Order History" section, listing previously processed orders with their unique identifiers and final costs. The right side shows a dark-themed command-line interface (CLI) window, depicting the Java backend logs with real-time messages like "Thread-X processing Order-Y", "Calculating total for Order-Y", and "Order-Y saved successfully", illustrating the concurrent multithreaded execution.
+--------------------------------------------------
