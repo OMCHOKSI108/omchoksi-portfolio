@@ -29,7 +29,7 @@ interface Project {
 }
 
 type TechTagConfig = {
-  icon?: React.ComponentType<{ size?: number }>;
+  icon?: React.ComponentType<{ size?: number; style?: React.CSSProperties; color?: string }>;
   label: string;
   color?: string;
 };
@@ -383,7 +383,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     em: ({ node, ...props }) => (
                       <em className="italic text-[var(--foreground)]" {...props} />
                     ),
-                    code: ({ node, inline, ...props }) =>
+                    code: ({ node, inline, ...props }: any) =>
                       inline ? (
                         <code className="rounded-md bg-[var(--muted)] px-1.5 py-0.5 text-[0.8rem]" {...props} />
                       ) : (

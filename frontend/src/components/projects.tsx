@@ -36,7 +36,7 @@ interface Project {
 }
 
 type TechTagConfig = {
-  icon?: React.ComponentType<{ size?: number }>;
+  icon?: React.ComponentType<{ size?: number; style?: React.CSSProperties; color?: string }>;
   label: string;
   color?: string;
 };
