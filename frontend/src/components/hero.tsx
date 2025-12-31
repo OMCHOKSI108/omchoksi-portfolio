@@ -143,7 +143,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-8"
         >
-          <h1 className={`text-6xl sm:text-7xl md:text-8xl font-serif leading-[0.95] tracking-tight ${isDark ? 'text-white' : 'text-gray-950'}`}>
+          <h1 className={`text-4xl sm:text-6xl md:text-8xl font-serif leading-[0.95] tracking-tight ${isDark ? 'text-white' : 'text-gray-950'}`}>
             I help founders turn ideas into <br className="hidden md:block" />
             seamless <span className="italic font-light">digital experiences</span>
           </h1>

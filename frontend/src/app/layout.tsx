@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${playfairDisplay.variable} antialiased`}
+        suppressHydrationWarning
       >
         <ThemeProvider>
           <QuickConnectRoot />

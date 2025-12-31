@@ -153,12 +153,65 @@ const ProjectShowcase = () => {
           <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase mb-4 block">
             Featured Work
           </span>
-          <h2 className="text-5xl md:text-7xl font-serif text-[var(--foreground)] mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-serif text-[var(--foreground)] mb-6">
             My <span className="italic font-light text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>AI Projects</span>
           </h2>
         </div>
 
-        <div className="flex flex-col-reverse lg:flex-row gap-12 xl:gap-20 relative items-start">
+        {/* MOBILE VIEW: Stacked Cards (Visible on small screens) */}
+        <div className="flex lg:hidden flex-col gap-16 relative">
+          {projects.map((project, index) => (
+            <div key={project.id} className="flex flex-col gap-6">
+              {/* Image Card */}
+              <div className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-2xl relative group">
+                <div className="absolute top-4 left-4 z-20 w-12 h-12 rounded-full bg-[var(--foreground)] text-[var(--background)] flex items-center justify-center font-serif text-xl font-bold italic shadow-lg">
+                  0{index + 1}
+                </div>
+                <a href={`/projects/${project.slug}`} className="block w-full h-full relative">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-contain bg-black p-4"
+                  />
+                </a>
+              </div>
+
+              {/* Text Content */}
+              <div className="flex flex-col gap-4 px-2">
+                <h3 className="text-3xl font-serif font-black text-[var(--foreground)] leading-none tracking-tight">
+                  {project.title}
+                </h3>
+
+                <div className="text-sm text-[var(--foreground)]/80 leading-relaxed font-medium line-clamp-3">
+                  <ReactMarkdown>{project.description}</ReactMarkdown>
+                </div>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.tech.slice(0, 6).map((t) => {
+                    const { icon: Icon, label, color } = getTechTagConfig(t.name);
+                    return (
+                      <span key={t.name} className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--card)] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]">
+                        {Icon && <Icon size={10} style={{ color: color }} />}
+                        {label}
+                      </span>
+                    )
+                  })}
+                </div>
+
+                {/* Action Button */}
+                <div className="pt-2">
+                  <a href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest border-b border-[var(--foreground)] pb-0.5 hover:text-[var(--muted-foreground)] hover:border-[var(--muted-foreground)] transition-all">
+                    View Case Study <ArrowRight size={14} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* DESKTOP VIEW: Split Scroll (Hidden on mobile) */}
+        <div className="hidden lg:flex flex-col-reverse lg:flex-row gap-12 xl:gap-20 relative items-start">
 
           {/* LEFT COLUMN: SCROLLING IMAGES - Snap Scrolling Enabled */}
           <div className="w-full lg:w-[58%] flex flex-col gap-[15vh] pb-[20vh] snap-y snap-mandatory">
@@ -210,7 +263,7 @@ const ProjectShowcase = () => {
 
                     <div className="mt-4 space-y-8">
                       {/* Title */}
-                      <h3 className="text-4xl md:text-5xl font-serif font-black text-[var(--foreground)] leading-[0.95] tracking-tight mb-4">
+                      <h3 className="text-3xl md:text-5xl font-serif font-black text-[var(--foreground)] leading-[0.95] tracking-tight mb-4">
                         {activeProject.title}
                       </h3>
 
