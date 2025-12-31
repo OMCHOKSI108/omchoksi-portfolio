@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import FloatingThemeToggle from "@/components/floating-theme-toggle";
 import QuickConnectRoot from "@/components/quick-connect-root";
 import SiteGrid from "@/components/site-grid";
+import SmoothScrolling from "@/components/smooth-scrolling";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,14 +36,16 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <QuickConnectRoot />
-          <div className="noise-overlay" />
-          <div className="site-vignette" />
-          {/* Top-aligned subtle repeating square grid visible on every page */}
-          <SiteGrid />
-          <CustomCursor />
-          <FloatingThemeToggle />
-          {children}
+          <SmoothScrolling>
+            <QuickConnectRoot />
+            <div className="noise-overlay" />
+            <div className="site-vignette" />
+            {/* Top-aligned subtle repeating square grid visible on every page */}
+            <SiteGrid />
+            <CustomCursor />
+            <FloatingThemeToggle />
+            {children}
+          </SmoothScrolling>
         </ThemeProvider>
       </body>
     </html>

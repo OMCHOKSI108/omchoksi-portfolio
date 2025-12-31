@@ -5,12 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Github, Info, CheckCircle2, ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useTheme } from '@/components/theme-provider';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import { SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiPython, SiMongodb, SiOpenai, SiNodedotjs, SiPostgresql } from 'react-icons/si';
 
 interface Project {
@@ -97,12 +98,23 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     fetchProject();
   }, [params]);
 
-  // Debug: log project to console when loaded to help troubleshoot missing fields
-  useEffect(() => {
-    if (project) {
-      // eslint-disable-next-line no-console
-      console.log('Loaded project (slug page):', project);
-    }
+  // Pre-process markdown to fix escaped newlines and ensure proper formatting
+  const markdownContent = useMemo(() => {
+    let content = project?.description || project?.projectMarkdown || '';
+
+    // 1. Fix literal escaped newlines (common in JSON from some backends)
+    content = content.replace(/\\n/g, '\n');
+
+    // 2. Normalize line endings
+    content = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+    // 3. Ensure headers (## Title) and dividers have consistent spacing
+    // We use replaceAll to force newlines even if the text is "flattened"
+    content = content.replaceAll('## ', '\n\n## ');
+    content = content.replaceAll('### ', '\n\n### ');
+    content = content.replaceAll('---', '\n\n---\n\n');
+
+    return content;
   }, [project]);
 
   if (loading) {
@@ -280,27 +292,22 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
             {/* Title & high-level description */}
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-[var(--foreground)] leading-[1.1]">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-[var(--foreground)] leading-[1.05] tracking-tight">
                 {project.title}
               </h1>
 
-              {project.description && (
-                <p className="max-w-3xl text-base md:text-lg leading-7 md:leading-8 text-[var(--muted-foreground)]">
-                  {project.description}
-                </p>
-              )}
+
             </div>
 
-            {/* Image Carousel */}
+            {/* Image Carousel - Placed ABOVE content */}
             {project.images && project.images.length > 0 ? (
               <div className="space-y-4">
                 <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-[var(--border)] shadow-2xl bg-[var(--muted)] group">
-
                   <Image
                     src={project.images[selectedImageIndex].url}
                     alt={project.images[selectedImageIndex].alt || project.title}
                     fill
-                    className="object-cover transition-transform duration-500"
+                    className="object-contain bg-black/5 dark:bg-black/40 transition-transform duration-500"
                     priority
                   />
 
@@ -309,13 +316,13 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <>
                       <button
                         onClick={() => setSelectedImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length)}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:bg-black/40 hover:scale-110"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:bg-black/70 hover:scale-110"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex((prev) => (prev + 1) % project.images!.length)}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:bg-black/40 hover:scale-110"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 text-white rounded-full flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:bg-black/70 hover:scale-110"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
@@ -341,62 +348,62 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             ) : null}
 
             {/* Markdown Content */}
-            <section className="relative mt-12">
-              {/* Calligraphy-style background */}
-              <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-[0.05] dark:opacity-[0.12]">
-                <div className="absolute -top-10 -left-4 text-[9rem] md:text-[12rem] font-serif italic tracking-tight text-[var(--foreground)] select-none">
-                  A
-                </div>
-                <div className="absolute bottom-[-4rem] right-0 text-[7rem] md:text-[10rem] font-serif italic tracking-tight text-[var(--foreground)] select-none rotate-6">
-                  B
-                </div>
-              </div>
-
-              <article className="relative rounded-3xl border border-[var(--border)] bg-[var(--card)]/95 shadow-2xl px-6 py-8 md:px-10 md:py-10 text-[var(--foreground)]">
+            <section className="relative mt-12 pb-20">
+              <article className="prose prose-lg dark:prose-invert max-w-none text-[var(--foreground)]">
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm, remarkBreaks]}
                   components={{
-                    h1: ({ node, ...props }) => (
-                      <h1 className="mb-6 text-3xl md:text-4xl font-serif font-semibold tracking-tight" {...props} />
+                    h1: ({ className, ...props }) => (
+                      <h1 className="mt-12 mb-6 text-4xl md:text-5xl font-serif font-black text-[var(--foreground)]" {...props} />
                     ),
-                    h2: ({ node, ...props }) => (
-                      <h2 className="mt-8 mb-4 text-2xl md:text-3xl font-serif font-semibold tracking-tight" {...props} />
+                    h2: ({ className, ...props }) => (
+                      <h2 className="mt-10 mb-6 text-3xl md:text-4xl font-serif font-bold text-[var(--foreground)] border-b border-[var(--border)] pb-2" {...props} />
                     ),
-                    h3: ({ node, ...props }) => (
-                      <h3 className="mt-6 mb-3 text-xl md:text-2xl font-serif font-semibold" {...props} />
+                    h3: ({ className, ...props }) => (
+                      <h3 className="mt-8 mb-4 text-2xl md:text-3xl font-serif font-bold text-[var(--foreground)]" {...props} />
                     ),
-                    p: ({ node, ...props }) => (
-                      <p className="mb-4 text-[0.97rem] md:text-base leading-7 md:leading-8 text-[var(--muted-foreground)]" {...props} />
+                    p: ({ className, ...props }) => (
+                      <p className="mb-6 text-base md:text-lg leading-8 text-[var(--muted-foreground)]" {...props} />
                     ),
-                    ul: ({ node, ...props }) => (
-                      <ul className="mb-4 list-disc space-y-2 pl-6 text-[var(--muted-foreground)]" {...props} />
+                    ul: ({ className, ...props }) => (
+                      <ul className="my-6 list-disc space-y-2 pl-6 marker:text-[var(--accent)]" {...props} />
                     ),
-                    ol: ({ node, ...props }) => (
-                      <ol className="mb-4 list-decimal space-y-2 pl-6 text-[var(--muted-foreground)]" {...props} />
+                    ol: ({ className, ...props }) => (
+                      <ol className="my-6 list-decimal space-y-2 pl-6 marker:text-[var(--foreground)]" {...props} />
                     ),
-                    li: ({ node, ...props }) => (
-                      <li className="text-[0.97rem] md:text-base leading-7" {...props} />
+                    li: ({ className, ...props }) => (
+                      <li className="text-base md:text-lg leading-7 text-[var(--muted-foreground)] pl-2" {...props} />
                     ),
-                    strong: ({ node, ...props }) => (
-                      <strong className="font-semibold text-[var(--foreground)]" {...props} />
+                    strong: ({ className, ...props }) => (
+                      <strong className="font-bold text-[var(--foreground)]" {...props} />
                     ),
-                    em: ({ node, ...props }) => (
-                      <em className="italic text-[var(--foreground)]" {...props} />
+                    a: ({ className, ...props }) => (
+                      <a className="font-medium text-[var(--accent)] underline underline-offset-4 hover:text-[var(--foreground)] transition-colors" target="_blank" rel="noopener noreferrer" {...props} />
                     ),
-                    code: ({ node, inline, ...props }: any) =>
+                    code: ({ inline, className, ...props }: any) =>
                       inline ? (
-                        <code className="rounded-md bg-[var(--muted)] px-1.5 py-0.5 text-[0.8rem]" {...props} />
+                        <code className="rounded-md bg-[var(--muted)] px-1.5 py-0.5 text-[0.85em] font-mono text-[var(--accent-foreground)]" {...props} />
                       ) : (
-                        <code className="block rounded-2xl bg-black/90 text-white p-4 text-[0.8rem] overflow-x-auto" {...props} />
+                        <div className="relative my-6 rounded-2xl bg-[#0d1117] p-6 border border-white/10 shadow-lg overflow-hidden">
+                          <code className="block text-sm font-mono text-white/90 overflow-x-auto leading-relaxed" {...props} />
+                        </div>
                       ),
-                    blockquote: ({ node, ...props }) => (
-                      <blockquote className="mb-4 border-l-4 border-[var(--foreground)]/30 pl-4 italic text-[var(--muted-foreground)]" {...props} />
+                    blockquote: ({ className, ...props }) => (
+                      <blockquote className="my-8 border-l-4 border-[var(--accent)] bg-[var(--muted)]/30 py-4 px-6 italic text-lg text-[var(--foreground)] rounded-r-xl" {...props} />
+                    ),
+                    img: ({ className, alt, ...props }) => (
+                      <div className="relative my-10 aspect-video w-full rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--muted)] shadow-xl">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          alt={alt}
+                          className="w-full h-full object-contain"
+                          {...props}
+                        />
+                      </div>
                     ),
                   }}
                 >
-                  {project.projectMarkdown && project.projectMarkdown.trim().length > 0
-                    ? project.projectMarkdown
-                    : project.description || ''}
+                  {markdownContent}
                 </ReactMarkdown>
               </article>
             </section>
