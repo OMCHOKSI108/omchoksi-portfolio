@@ -5,10 +5,6 @@ import { useRef, useEffect, useState } from "react";
 import {
     Briefcase,
     MapPin,
-    Star,
-    GitFork,
-    Users,
-    BookOpen,
     Music,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
@@ -54,52 +50,6 @@ export default function Experience() {
     // Prevent hydration mismatch
     useEffect(() => {
         setMounted(true);
-    }, []);
-
-    // State for Real GitHub Stats
-    const [stats, setStats] = useState({
-        followers: "...",
-        stars: "...",
-        repos: "...",
-        forks: "..."
-    });
-
-    // Fetch Real GitHub Data
-    useEffect(() => {
-        async function fetchGitHubStats() {
-            try {
-                // 1. Fetch User Data
-                const userRes = await fetch("https://api.github.com/users/omchoksi108");
-                const userData = await userRes.json();
-
-                // 2. Fetch Repos to calculate Stars & Forks
-                // Note: Fetching 100 repos to get a good sum. If you have more, pagination is needed.
-                const reposRes = await fetch("https://api.github.com/users/omchoksi108/repos?per_page=100");
-                const reposData = await reposRes.json();
-
-                // Calculate totals
-                const totalStars = Array.isArray(reposData)
-                    ? reposData.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0)
-                    : 0;
-
-                const totalForks = Array.isArray(reposData)
-                    ? reposData.reduce((acc: number, repo: any) => acc + repo.forks_count, 0)
-                    : 0;
-
-                setStats({
-                    followers: userData.followers || 0,
-                    stars: totalStars || 0,
-                    repos: userData.public_repos || 0,
-                    forks: totalForks || 0
-                });
-
-            } catch (error) {
-                console.error("Failed to fetch GitHub stats", error);
-                // Fallback or keep loading state
-            }
-        }
-
-        fetchGitHubStats();
     }, []);
 
     // Track scroll progress relative to the timeline container
@@ -208,100 +158,7 @@ export default function Experience() {
                     </div>
                 </div>
 
-                {/* ==================== GITHUB SECTION ==================== */}
-                <div>
-                    {/* Header */}
-                    <div className="text-center mb-12 space-y-4">
-                        <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">Developer Insights</span>
-                        <h2 className="text-4xl md:text-5xl font-serif leading-tight text-[var(--foreground)]">
-                            <span className="block">GitHub</span>
-                            <span className="block mt-2 italic font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Activity</span>
-                        </h2>
-                    </div>
 
-                    {/* Contribution Graph Simulation (Visual Design) */}
-                    <div className="w-full overflow-hidden mb-8">
-                        <div className="flex justify-between text-xs text-[var(--muted-foreground)] mb-2 px-1">
-                            <span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span>
-                        </div>
-                        {/* Note: A real contribution graph SVG requires a proxy or server-side scraping due to CORS.
-                   We simulate the visual style here to match the design perfectly. 
-                */}
-                        <div className="grid grid-cols-[repeat(53,1fr)] gap-[3px] opacity-100">
-                            {Array.from({ length: 7 }).map((_, row) => (
-                                Array.from({ length: 53 }).map((_, col) => {
-                                    // Deterministic level calculation (avoids SSR/Client hydration mismatch)
-                                    // Uses row/col to compute a repeatable pattern instead of Math.random()
-                                    const combined = row * 53 + col;
-                                    // Spread out non-zero levels roughly ~30% of the time
-                                    const level = (combined % 10) > 6 ? (combined % 4) + 1 : 0;
-
-                                    // Styles for Light/Dark mode (Inline for reliability)
-                                    const getLevelColor = (lvl: number) => {
-                                        const isDark = mounted && theme === 'dark';
-
-                                        if (isDark) {
-                                            if (lvl === 0) return "#161b22";
-                                            if (lvl === 1) return "#0e4429";
-                                            if (lvl === 2) return "#006d32";
-                                            if (lvl === 3) return "#26a641";
-                                            return "#39d353";
-                                        } else {
-                                            if (lvl === 0) return "#ebedf0";
-                                            if (lvl === 1) return "#9be9a8";
-                                            if (lvl === 2) return "#40c463";
-                                            if (lvl === 3) return "#30a14e";
-                                            return "#216e39";
-                                        }
-                                    };
-
-                                    return (
-                                        <div
-                                            key={`${row}-${col}`}
-                                            className="w-full aspect-square rounded-sm border-[0.5px] border-black/5 dark:border-white/5"
-                                            style={{ backgroundColor: getLevelColor(level) }}
-                                        />
-                                    )
-                                })
-                            ))}
-                        </div>
-                        <div className="flex justify-between items-center mt-3 text-[10px] text-[var(--muted-foreground)]">
-                            <span>{new Date().getFullYear()} Contributions</span>
-                            <div className="flex items-center gap-1">
-                                <span>Less</span>
-                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#161b22" : "#ebedf0" }} />
-                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#0e4429" : "#9be9a8" }} />
-                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#006d32" : "#40c463" }} />
-                                <div className="w-3 h-3 rounded-sm border border-black/5 dark:border-white/5" style={{ backgroundColor: mounted && theme === 'dark' ? "#26a641" : "#30a14e" }} />
-                                <span>More</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Real Stats Cards */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {[
-                            { label: "Followers", value: stats.followers, icon: Users },
-                            { label: "Total Stars", value: stats.stars, icon: Star },
-                            { label: "Public Repos", value: stats.repos, icon: BookOpen },
-                            { label: "Total Forks", value: stats.forks, icon: GitFork },
-                        ].map((stat, idx) => (
-                            <motion.div
-                                key={idx}
-                                whileHover={{ y: -5 }}
-                                className="bg-[var(--card)] border-none p-4 rounded-xl flex items-center gap-4"
-                            >
-                                <div className="p-3 rounded-lg bg-[var(--muted)]">
-                                    <stat.icon className="w-5 h-5 text-[var(--primary)]" />
-                                </div>
-                                <div>
-                                    <div className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider">{stat.label}</div>
-                                    <div className="text-xl font-bold text-[var(--foreground)]">{stat.value}</div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
 
                 {/* ==================== EXPLORE SECTION ==================== */}
                 <div className="pt-20 border-t border-[var(--border)]">

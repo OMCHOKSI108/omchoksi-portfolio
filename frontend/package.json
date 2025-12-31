@@ -25,6 +25,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19",
     "baseline-browser-mapping": "^2.9.7",
     "eslint": "^9",

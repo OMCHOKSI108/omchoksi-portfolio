@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import Experience from "@/components/experience";
 import AboutMe from "@/components/about-me";
 import FloatingThemeToggle from "@/components/floating-theme-toggle";
+import GithubStats from "@/components/github-stats";
 
 export default function About() {
   return (
@@ -15,6 +16,7 @@ export default function About() {
       <main className="pt-24">
         <AboutMe />
         <Experience />
+        <GithubStats />
       </main>
 
       <Footer />
