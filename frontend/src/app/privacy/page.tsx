@@ -108,13 +108,13 @@ export default function PrivacyPage() {
                             className="flex flex-col items-center text-center mb-16 space-y-4"
                         >
                             <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">
-                                Data Protection
+                                Privacy & Data
                             </span>
                             <h1 className="text-5xl md:text-7xl font-serif-display text-[var(--foreground)] leading-tight">
                                 Privacy Policy
                             </h1>
                             <p className="text-[var(--muted-foreground)] max-w-2xl text-lg leading-relaxed">
-                                I believe in the web being open but private. I only collect data that is strictly necessary to provide the functional aspects of this site, such as authentication and spam prevention.
+                                This page explains what limited information is collected when you use this site, how it is used, and what choices you have. The goal is to keep things simple and respectful of your privacy.
                             </p>
                         </motion.div>
 
@@ -139,8 +139,8 @@ export default function PrivacyPage() {
                                                 </div>
                                                 <h3 className="font-bold text-sm uppercase tracking-wider">Authentication</h3>
                                             </div>
-                                            <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
-                                                When you sign in via GitHub or Google, I receive your <span className="font-semibold text-[var(--foreground)]">name, email, avatar</span>. This establishes your public profile for the Guestbook.
+                                                <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+                                                If this site offers sign-in in the future, basic profile details such as your <span className="font-semibold text-[var(--foreground)]">name, email, and avatar</span> may be used to show your identity on interactive features.
                                             </p>
                                         </div>
                                         <div className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-6">
@@ -151,7 +151,7 @@ export default function PrivacyPage() {
                                                 <h3 className="font-bold text-sm uppercase tracking-wider">Security Logs</h3>
                                             </div>
                                             <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
-                                                To prevent abuse, Cloudflare logs your <span className="font-semibold text-[var(--foreground)]">IP address & User Agent</span>. This data is used for tracking and is not used for tracking.
+                                                For security and reliability, infrastructure providers may temporarily log technical details like your <span className="font-semibold text-[var(--foreground)]">IP address and browser type</span>. This information is used to keep the site running smoothly and to prevent abuse.
                                             </p>
                                         </div>
                                     </div>
@@ -170,28 +170,28 @@ export default function PrivacyPage() {
                                 </div>
                                 <div className="ml-12 space-y-4">
                                     <p className="text-[var(--muted-foreground)] leading-relaxed">
-                                        Understanding how you use this site helps me improve it. I use privacy-focused tools that aggregate data rather than tracking individual fingerprints.
+                                        Basic, aggregated analytics may be used to understand which pages are popular and to detect issues. This does not aim to build an individual profile of you.
                                     </p>
                                     <div className="space-y-3">
                                         <div className="border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
                                             <BarChart3 className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
                                             <div>
                                                 <h3 className="font-semibold text-sm mb-1">Vercel Analytics</h3>
-                                                <p className="text-sm text-[var(--muted-foreground)]">Measures server performance, latency, and load times. Strictly technical data.</p>
+                                                <p className="text-sm text-[var(--muted-foreground)]">Measures general performance and reliability metrics so that the site stays fast and available.</p>
                                             </div>
                                         </div>
                                         <div className="border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
                                             <BarChart3 className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
                                             <div>
                                                 <h3 className="font-semibold text-sm mb-1">Google Analytics</h3>
-                                                <p className="text-sm text-[var(--muted-foreground)]">Tracks general page views and geographic IP anonymization is enabled to protect your identity.</p>
+                                                <p className="text-sm text-[var(--muted-foreground)]">May record things like page views and approximate location. Where possible, IP anonymization or similar safeguards are used.</p>
                                             </div>
                                         </div>
                                         <div className="border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
                                             <BarChart3 className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
                                             <div>
                                                 <h3 className="font-semibold text-sm mb-1">PostHog</h3>
-                                                <p className="text-sm text-[var(--muted-foreground)]">Used for feature flagging and product usage insights (e.g., "Did people use the dark mode toggle?").</p>
+                                                <p className="text-sm text-[var(--muted-foreground)]">Helps understand which features are used so I can decide what to keep improving.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@ export default function PrivacyPage() {
                                             <div>
                                                 <h3 className="font-bold mb-2">Ownership & Deletion</h3>
                                                 <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
-                                                    You own your data. You retain the right to be forgotten at any time. If you wish to have your account, guestbook entries, and all associated metadata permanently deleted, you may do so without hurdles.
+                                                    If you ever share personal information with me through this site and later want it removed, you can reach out and request deletion. I will make reasonable efforts to erase that data from active systems.
                                                 </p>
                                             </div>
                                         </div>

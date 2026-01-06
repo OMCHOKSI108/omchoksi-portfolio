@@ -70,10 +70,10 @@ export default function Experience() {
                 <div>
                     {/* Header */}
                     <div className="text-center mb-20 space-y-4">
-                        <span className="text-sm font-bold tracking-[0.2em] text-[var(--foreground)] uppercase">The Experience</span>
+                        <span className="text-sm font-bold tracking-[0.2em] text-[var(--foreground)] uppercase">Experience</span>
                         <h2 className="text-5xl md:text-7xl font-serif leading-tight text-[var(--foreground)]">
-                            Experience That <br />
-                            Brings <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Ideas to Life</span>
+                            My Career Journey <br />
+                            and <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">Work History</span>
                         </h2>
                     </div>
 

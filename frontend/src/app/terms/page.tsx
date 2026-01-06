@@ -124,13 +124,13 @@ export default function TermsPage() {
                                 </div>
                                 <div className="ml-12 space-y-4">
                                     <p className="text-[var(--muted-foreground)] leading-relaxed">
-                                        These Terms of Use ("Terms") constitute a legally binding agreement between you and Om Choksi ("Owner", "we", "us"). By accessing or using this website, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree, you are prohibited from accessing this site.
+                                        These Terms of Use explain how you may access and use this personal website, its content, and any related services. By browsing or using the site, you agree to follow these Terms. If you do not agree, you should stop using the site immediately.
                                     </p>
                                     <div className="bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
                                         <Calendar className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
                                         <div>
                                             <h3 className="font-semibold text-sm mb-1">Effective Date</h3>
-                                            <p className="text-sm text-[var(--muted-foreground)]">These terms are effective as of JAN 01, 2025 and may be amended at any time without prior notice.</p>
+                                            <p className="text-sm text-[var(--muted-foreground)]">These Terms were last updated on JAN 01, 2025 and may be revised from time to time.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@ export default function TermsPage() {
                                 </div>
                                 <div className="ml-12 space-y-4">
                                     <p className="text-[var(--muted-foreground)] leading-relaxed">
-                                        All content available on this website, including but not limited to text, graphics, user interfaces, visual interfaces, source code, and architecture (collectively, "Content"), is the intellectual property of Om Choksi unless otherwise stated.
+                                        Unless otherwise noted, the content on this website (including text, visuals, and code shown on the frontend) is created by Om Choksi. You may not claim authorship of this work or present it as your own.
                                     </p>
                                     <div className="grid md:grid-cols-2 gap-4">
                                         <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-6">
@@ -159,7 +159,7 @@ export default function TermsPage() {
                                                 <h3 className="font-bold text-sm uppercase tracking-wider">Restrictions on Use</h3>
                                             </div>
                                             <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
-                                                Unauthorized copying, reproduction, cloning, or redistribution of the website's source code or visual design for commercial purposes is strictly prohibited. This codebase is <span className="font-semibold text-[var(--foreground)]">proprietary</span> and not open source.
+                                                You may not reuse the design or code of this site for commercial projects without prior written permission. Small snippets for learning or inspiration are fine, but direct copying of entire pages or flows is not allowed.
                                             </p>
                                         </div>
                                         <div className="bg-green-500/5 border border-green-500/20 rounded-xl p-6">
@@ -170,7 +170,7 @@ export default function TermsPage() {
                                                 <h3 className="font-bold text-sm uppercase tracking-wider">Limited Use</h3>
                                             </div>
                                             <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
-                                                You are granted a limited, revocable license to study specific UI components for educational purposes or personal inspiration. You may not replicate the Site in its entirety. Any substantial usage requires a visible <span className="font-semibold text-[var(--foreground)]">dofollow backlink</span> to <span className="text-blue-500">https://omchoksi-portfolio.vercel.app</span>
+                                                You are welcome to look at how this site is structured and learn from it for your own projects. If you build something heavily inspired by this work, a credit link to this portfolio is appreciated but not required.
                                             </p>
                                         </div>
                                     </div>

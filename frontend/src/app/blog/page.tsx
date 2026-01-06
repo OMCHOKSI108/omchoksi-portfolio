@@ -141,13 +141,12 @@ export default function Blog() {
 
             {/* --- Header Section --- */}
             <div className="flex flex-col items-center text-center mb-20 space-y-6">
-                <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">
-                    The Blog
-                </span>
-                <h2 className="text-5xl md:text-7xl font-serif-display text-[var(--foreground)] leading-tight">
-                    Handpicked insights <br />
-                    from <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">the pensieve</span>
-                </h2>
+              <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">
+                The Blog
+              </span>
+              <h2 className="text-5xl md:text-7xl font-serif-display text-[var(--foreground)] leading-tight">
+                Thoughts on AI &amp; Data
+              </h2>
 
                 {/* Search Bar */}
                 <div className="relative w-full max-w-xl mt-8">
