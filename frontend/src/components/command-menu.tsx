@@ -31,7 +31,7 @@ const ITEMS: CommandItem[] = [
     { icon: FileText, title: "Blog", href: "/blog", group: "PAGES" },
     { icon: Laptop, title: "Tech Stack", href: "/stack", group: "PAGES" },
     { icon: Award, title: "Certifications", href: "/certifications", group: "PAGES" },
-    { icon: Calendar, title: "Book a call", href: "/contact", group: "PAGES" },
+    { icon: Calendar, title: "Contact me", href: "/contact", group: "PAGES" },
     { icon: Server, title: "Stats", href: "/stats", group: "PAGES" },
     { icon: Award, title: "Attribution", href: "/attribution", group: "PAGES" },
     { icon: LinkIcon, title: "Links", href: "/links", group: "PAGES" },

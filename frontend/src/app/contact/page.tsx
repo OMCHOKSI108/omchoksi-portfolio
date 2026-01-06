@@ -547,7 +547,7 @@ export default function Contact() {
                         `}
               >
                 <Calendar className="w-4 h-4" />
-                Book a Call
+                Contact me
               </button>
               <button
                 onClick={() => setActiveTab("message")}

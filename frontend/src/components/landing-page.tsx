@@ -132,7 +132,7 @@ export default function LandingPage() {
             <div className="md:col-span-3">
               <h3 className={`text-xs font-semibold tracking-wider uppercase mb-6 ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-500'}`}>More</h3>
               <ul className="space-y-4 text-sm">
-                <li><a href="/contact?book-call" className="hover:underline">Book a call</a></li>
+                <li><a href="/contact?book-call" className="hover:underline">Contact me</a></li>
                 <li><a href="#" className="hover:underline">Links</a></li>
                 <li><a href="#" className="hover:underline">RSS</a></li>
               </ul>

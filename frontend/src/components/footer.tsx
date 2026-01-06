@@ -137,7 +137,7 @@ export default function Footer() {
             <div className="space-y-4">
               <h4 className="text-sm font-bold uppercase tracking-wider text-[var(--muted-foreground)]">More</h4>
               <ul className="space-y-3 text-sm">
-                <li><button onClick={() => window.dispatchEvent(new CustomEvent("open-quick-connect"))} className="hover:text-blue-500 transition-colors text-left">Book a call</button></li>
+                <li><button onClick={() => window.dispatchEvent(new CustomEvent("open-quick-connect"))} className="hover:text-blue-500 transition-colors text-left">Contact me</button></li>
                 <li><Link href="/links" className="hover:text-blue-500 transition-colors">Links</Link></li>
                 <li><Link href="/rss" className="hover:text-blue-500 transition-colors">RSS</Link></li>
               </ul>

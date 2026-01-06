@@ -178,7 +178,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 : 'bg-black text-white'
                 }`}
             >
-              Book a Call
+              Contact me
             </button>
           </div>
 
@@ -235,7 +235,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 className={`w-full py-3 rounded-xl font-bold text-center ${theme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'
                   }`}
               >
-                Book a Call
+                Contact me
               </button>
             </motion.div>
           )}

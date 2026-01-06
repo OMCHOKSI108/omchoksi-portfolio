@@ -144,12 +144,12 @@ export default function Hero() {
           className="mb-8"
         >
           <h1
-            className={`text-4xl sm:text-6xl md:text-8xl font-sans font-semibold leading-tight tracking-[-0.04em] ${
+            className={`text-4xl sm:text-6xl md:text-8xl font-serif leading-[1.05] tracking-tight ${
               isDark ? "text-white" : "text-gray-950"
             }`}
           >
             I enjoy building projects that <br className="hidden md:block" />
-            blend data, AI and design
+            <span className="italic font-light">blend data, AI and design</span>
           </h1>
         </motion.div>
 

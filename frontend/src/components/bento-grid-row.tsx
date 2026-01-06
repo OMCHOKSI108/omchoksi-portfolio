@@ -192,7 +192,7 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
                 <Calendar className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-[var(--foreground)]">Book a Call</h3>
+                <h3 className="font-bold text-[var(--foreground)]">Contact me</h3>
                 <p className="text-xs text-[var(--muted-foreground)]">Select a time that works for you</p>
               </div>
             </div>

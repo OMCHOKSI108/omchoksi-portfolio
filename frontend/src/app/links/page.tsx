@@ -329,7 +329,7 @@ export default function LinksPage() {
                     className="mt-6 w-full py-3 rounded-xl bg-[var(--foreground)] text-[var(--background)]"
                   >
                     <Calendar className="inline w-4 h-4 mr-2" />
-                    Book a Call
+                    Contact me
                   </button>
                 </div>
               </motion.div>

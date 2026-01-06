@@ -68,7 +68,7 @@ export default function ContactPageClient() {
     } else {
       // Fallback: open mailto with prefilled subject/body
       const subject = encodeURIComponent(`Booking request: ${selectedDate}${selectedSlot ? ' ' + selectedSlot : ''}`);
-      const body = encodeURIComponent(`Hi Om,%0D%0AI'd like to book a call on ${selectedDate}${selectedSlot ? ' at ' + selectedSlot : ''}. Please confirm availability.%0D%0AThanks.`);
+      const body = encodeURIComponent(`Hi Om,%0D%0AI'd like to connect on ${selectedDate}${selectedSlot ? ' at ' + selectedSlot : ''}. Please confirm your availability.%0D%0AThanks.`);
       window.location.href = `mailto:hello@omchoksi.dev?subject=${subject}&body=${body}`;
     }
 
@@ -87,7 +87,7 @@ export default function ContactPageClient() {
           <h1 className="text-4xl sm:text-6xl font-extrabold mt-3">
             Let's Get <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-accent)' }}>In Touch</span>
           </h1>
-          <p className="mt-3 text-[var(--muted-foreground)]">Pick a time on my calendar to book a call, or send a quick message.</p>
+          <p className="mt-3 text-[var(--muted-foreground)]">Pick a time on my calendar to connect, or send a quick message.</p>
         </div>
 
         {isBook ? (
@@ -210,7 +210,7 @@ export default function ContactPageClient() {
           <div className="rounded-xl p-8 border border-[var(--border)] bg-[var(--card)] text-center">
             <p className="text-lg text-[var(--muted-foreground)] mb-4">Choose an action</p>
             <div className="flex items-center justify-center gap-4">
-              <Link href="/contact?book-call" className="px-6 py-3 rounded-full text-white font-medium shadow-lg hover:shadow-purple-500/20 transition-all active:scale-95" style={{ backgroundImage: 'var(--gradient-accent)' }}>Book a Call</Link>
+              <Link href="/contact?book-call" className="px-6 py-3 rounded-full text-white font-medium shadow-lg hover:shadow-purple-500/20 transition-all active:scale-95" style={{ backgroundImage: 'var(--gradient-accent)' }}>Contact me</Link>
               <a href="mailto:hello@omchoksi.dev" className="px-6 py-3 rounded-full border border-[var(--border)]">Send Message</a>
             </div>
           </div>
