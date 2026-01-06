@@ -22,6 +22,20 @@ interface Certification {
   featured: boolean;
 }
 
+// Helper to get a high-quality JPG thumbnail from a PDF URL (Cloudinary specific)
+const getPdfThumbnail = (url: string) => {
+  if (!url) return null;
+  if (url.includes("cloudinary.com") && url.toLowerCase().endsWith(".pdf")) {
+    const baseUrl = url.replace(/\.pdf$/i, ".jpg");
+    const parts = baseUrl.split("/upload/");
+    if (parts.length === 2) {
+      return `${parts[0]}/upload/q_auto:best,f_jpg,pg_1,w_800,dpr_2.0,e_sharpen:100,e_vibrance:30,e_contrast:20/${parts[1]}`;
+    }
+    return baseUrl;
+  }
+  return null;
+};
+
 export default function Certifications() {
   const router = useRouter();
   const [certifications, setCertifications] = useState<Certification[]>([]);
@@ -74,34 +88,39 @@ export default function Certifications() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
-            <motion.div
-              key={cert._id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 cursor-pointer"
-              onClick={() => router.push(`/certifications/${cert.slug}`)}
-            >
-              {cert.image && (
-                <div 
-                  className="relative w-full h-40 mb-4 rounded-xl overflow-hidden group"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setPreviewCert(cert);
-                  }}
-                >
-                  <Image
-                    src={cert.image}
-                    alt={cert.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Click to Preview</span>
+          {certifications.map((cert, index) => {
+            const isPdfImage = cert.image?.toLowerCase().endsWith(".pdf");
+            const pdfThumbnail = isPdfImage ? getPdfThumbnail(cert.image!) : (cert.pdf ? getPdfThumbnail(cert.pdf) : null);
+            const displayImage = (cert.image && !isPdfImage) ? cert.image : pdfThumbnail;
+
+            return (
+              <motion.div
+                key={cert._id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 cursor-pointer"
+                onClick={() => router.push(`/certifications/${cert.slug}`)}
+              >
+                {displayImage && (
+                  <div 
+                    className="relative w-full h-40 mb-4 rounded-xl overflow-hidden group"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setPreviewCert(cert);
+                    }}
+                  >
+                    <Image
+                      src={displayImage}
+                      alt={cert.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Click to Preview</span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-[var(--primary)]/10 rounded-full">
                   <Award className="w-6 h-6 text-[var(--primary)]" />
@@ -140,8 +159,9 @@ export default function Certifications() {
                 View Details
                 <ExternalLink size={16} />
               </button>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div
@@ -182,17 +202,26 @@ export default function Certifications() {
               >
                 <X size={24} />
               </button>
-              {previewCert.image && (
-                <div className="relative w-full h-[70vh]">
-                  <Image
-                    src={previewCert.image}
-                    alt={previewCert.title}
-                    fill
-                    className="object-contain"
-                    quality={100}
-                  />
-                </div>
-              )}
+              {(() => {
+                if (!previewCert) return null;
+                const isPdfImage = previewCert.image?.toLowerCase().endsWith(".pdf");
+                const pdfThumbnail = isPdfImage ? getPdfThumbnail(previewCert.image!) : (previewCert.pdf ? getPdfThumbnail(previewCert.pdf) : null);
+                const displayImage = (previewCert.image && !isPdfImage) ? previewCert.image : pdfThumbnail;
+
+                if (!displayImage) return null;
+
+                return (
+                  <div className="relative w-full h-[70vh]">
+                    <Image
+                      src={displayImage}
+                      alt={previewCert.title}
+                      fill
+                      className="object-contain"
+                      quality={100}
+                    />
+                  </div>
+                );
+              })()}
               <div className="p-6 bg-[var(--card)]">
                 <h3 className="text-2xl font-bold mb-2">{previewCert.title}</h3>
                 <p className="text-[var(--muted-foreground)] mb-4">{previewCert.issuer}</p>

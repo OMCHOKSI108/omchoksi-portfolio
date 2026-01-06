@@ -248,11 +248,11 @@ const ProjectShowcase = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject ? activeProject.id : 'empty'}
-                initial={{ opacity: 0, x: 20, filter: 'blur(5px)' }}
+                initial={{ opacity: 0, x: 10, filter: 'blur(3px)' }}
                 animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -10, filter: 'blur(5px)' }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="relative p-8 md:p-10 rounded-3xl bg-[var(--card)]/80 backdrop-blur-2xl border border-[var(--border)] shadow-2xl overflow-y-auto scrollbar-hide max-h-[75vh]"
+                exit={{ opacity: 0, y: -6, filter: 'blur(3px)' }}
+                transition={{ duration: 0.08, ease: "easeOut" }}
+                className="relative p-8 md:p-10 rounded-3xl bg-[var(--card)]/80 backdrop-blur-2xl border border-[var(--border)] shadow-2xl"
               >
                 {activeProject && (
                   <>

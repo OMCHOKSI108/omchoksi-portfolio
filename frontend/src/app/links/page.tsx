@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import GithubActivity from "@/components/github-activity";
@@ -19,6 +19,23 @@ import {
 } from "lucide-react";
 
 export default function LinksPage() {
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    setShowNavbar(true);
+
+    // Fetch GitHub profile avatar for this page only
+    fetch("https://api.github.com/users/omchoksi108")
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => {
+        if (data?.avatar_url) setAvatarUrl(data.avatar_url as string);
+      })
+      .catch(() => {
+        // Silent fail – keep fallback if needed
+      });
+  }, []);
+
   const socialLinks = [
     {
       title: "GitHub",
@@ -233,7 +250,7 @@ export default function LinksPage() {
       </div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Navbar />
+        {showNavbar && <Navbar />}
 
         <div className="flex-1 flex justify-center max-w-[1400px] mx-auto relative">
           {/* Left Pillar - Texture */}
@@ -277,7 +294,7 @@ export default function LinksPage() {
               </motion.h1>
             </div>
 
-            <GithubActivity username="OMCHOKSI108" />
+            <GithubActivity username="omchoksi108" />
             <div className="flex flex-col lg:flex-row gap-16">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -285,22 +302,32 @@ export default function LinksPage() {
                 className="lg:w-1/3"
               >
                 <div className="bg-[var(--card)] border rounded-3xl p-8 text-center">
-                  <img
-                    src="/images/omchoksi.jpg"
-                    className="w-32 h-32 mx-auto rounded-full border-4 mb-6"
-                  />
+                  {avatarUrl ? (
+                    <img
+                      src={avatarUrl}
+                      alt="Om Choksi GitHub avatar"
+                      className="w-32 h-32 mx-auto rounded-full border-4 mb-6 object-cover object-center"
+                    />
+                  ) : (
+                    <div className="w-32 h-32 mx-auto rounded-full border-4 mb-6 flex items-center justify-center bg-[var(--muted)] text-3xl font-semibold">
+                      OC
+                    </div>
+                  )}
                   <h2 className="text-2xl font-serif mb-4">Om Choksi</h2>
 
                   <div className="space-y-3 text-sm text-left">
                     <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" /> Ahmedabad, India
+                      <MapPin className="w-4 h-4" /> Surat, India
                     </div>
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4" /> omchoksi108@gmail.com
                     </div>
                   </div>
 
-                  <button className="mt-6 w-full py-3 rounded-xl bg-[var(--foreground)] text-[var(--background)]">
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-quick-connect'))}
+                    className="mt-6 w-full py-3 rounded-xl bg-[var(--foreground)] text-[var(--background)]"
+                  >
                     <Calendar className="inline w-4 h-4 mr-2" />
                     Book a Call
                   </button>

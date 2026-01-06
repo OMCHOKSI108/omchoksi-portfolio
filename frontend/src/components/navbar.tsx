@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Moon, Sun, ChevronDown, Command, ArrowRight, Github, Twitter, Menu, X } from "lucide-react";
+import { Search, Moon, Sun, ChevronDown, Command, ArrowRight, Github, Twitter, Menu, X, ListTodo, Link2, Info, Award } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -80,27 +80,86 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 }`}>
                 More <ChevronDown size={14} />
               </button>
-              {/* Dropdown Menu */}
-              <div className={`absolute top-full right-0 mt-2 w-48 rounded-2xl backdrop-blur-3xl border shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right overflow-hidden z-50 ${theme === 'dark'
-                ? 'bg-neutral-900/90 border-white/10'
-                : 'bg-white/90 border-black/5'
+
+              {/* Dropdown Mega Panel */}
+              <div className={`absolute top-full right-0 mt-3 w-[640px] rounded-3xl backdrop-blur-3xl border shadow-2xl opacity-0 translate-y-1 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible transition-all origin-top-right overflow-hidden z-50 ${theme === 'dark'
+                ? 'bg-neutral-950/90 border-white/10'
+                : 'bg-white/95 border-black/5'
                 }`}>
-                <Link href="/stack" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
-                  }`}>
-                  Tech Stack
-                </Link>
-                <Link href="/certifications" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
-                  }`}>
-                  Certifications
-                </Link>
-                <Link href="/links" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
-                  }`}>
-                  Links
-                </Link>
-                <a href="https://drive.google.com/file/d/16XEvVxQWSsXOKd1oTf-sjU0I7d5_PIId/view?usp=sharing" target="_blank" rel="noopener noreferrer" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
-                  }`}>
-                  Resume
-                </a>
+                <div className="grid grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)] gap-4 p-4">
+                  {/* Left column - Certifications highlight */}
+                  <Link
+                    href="/certifications"
+                    className={`relative overflow-hidden rounded-3xl border shadow-lg flex flex-col p-5 gap-4 transition-all hover:-translate-y-1 hover:shadow-2xl ${theme === 'dark'
+                      ? 'bg-zinc-900/90 border-zinc-700'
+                      : 'bg-zinc-50/90 border-zinc-200'
+                      }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900">
+                        <Award size={20} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Certifications</span>
+                        <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50">Proof of skills & achievements</span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                      Browse the certifications and credentials that validate my experience across AI, frontend, and full‑stack work.
+                    </p>
+                  </Link>
+
+                  {/* Right column - stacked quick links */}
+                  <div className="flex flex-col gap-3">
+                    <Link
+                      href="/links"
+                      className={`flex items-center gap-3 rounded-2xl border px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-md ${theme === 'dark'
+                        ? 'bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800'
+                        : 'bg-zinc-50/80 border-zinc-200 hover:bg-white'
+                        }`}
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900">
+                        <Link2 size={18} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold">Links</span>
+                        <span className="text-xs text-zinc-500">All my important links in one place.</span>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/uses"
+                      className={`flex items-center gap-3 rounded-2xl border px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-md ${theme === 'dark'
+                        ? 'bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800'
+                        : 'bg-zinc-50/80 border-zinc-200 hover:bg-white'
+                        }`}
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900">
+                        <ListTodo size={18} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold">Uses</span>
+                        <span className="text-xs text-zinc-500">The tools, apps, and gear I rely on.</span>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/attribution"
+                      className={`flex items-center gap-3 rounded-2xl border px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-md ${theme === 'dark'
+                        ? 'bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800'
+                        : 'bg-zinc-50/80 border-zinc-200 hover:bg-white'
+                        }`}
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900">
+                        <Info size={18} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold">Attribution</span>
+                        <span className="text-xs text-zinc-500">Journey and credits behind this website.</span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
 
