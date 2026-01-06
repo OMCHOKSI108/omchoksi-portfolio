@@ -170,7 +170,7 @@ export default function TermsPage() {
                                                 <h3 className="font-bold text-sm uppercase tracking-wider">Limited Use</h3>
                                             </div>
                                             <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
-                                                You are granted a limited, revocable license to study specific UI components for educational purposes or personal inspiration. You may not replicate the Site in its entirety. Any substantial usage requires a visible <span className="font-semibold text-[var(--foreground)]">dofollow backlink</span> to <span className="text-blue-500">https://omchoksi.com</span>
+                                                You are granted a limited, revocable license to study specific UI components for educational purposes or personal inspiration. You may not replicate the Site in its entirety. Any substantial usage requires a visible <span className="font-semibold text-[var(--foreground)]">dofollow backlink</span> to <span className="text-blue-500">https://omchoksi-portfolio.vercel.app</span>
                                             </p>
                                         </div>
                                     </div>
