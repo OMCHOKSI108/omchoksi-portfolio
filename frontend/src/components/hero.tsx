@@ -148,10 +148,8 @@ export default function Hero() {
               isDark ? "text-white" : "text-gray-950"
             }`}
           >
-            I craft intelligent products that <br className="hidden md:block" />
-            <span className="inline-block bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
-              blend data, AI & design
-            </span>
+            I enjoy building projects that <br className="hidden md:block" />
+            blend data, AI and design
           </h1>
         </motion.div>
 
