@@ -23,9 +23,9 @@ const AboutMe = () => {
                 Know About Me
               </span>
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif text-[var(--foreground)] leading-[1.1] mb-8">
-                Full-Stack Developer and <br className="hidden lg:block" /> a little bit of{" "}
+                Data Scientist & <br className="hidden lg:block" /> AI Engineer in{" "}
                 <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-                  everything
+                  Machine Learning
                 </span>
               </h2>
             </motion.div>
@@ -38,7 +38,7 @@ const AboutMe = () => {
               className="space-y-6 text-xl text-[var(--foreground)] leading-relaxed font-medium"
             >
               <p>
-                I&apos;m Om Choksi, a proactive full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I thrive on solving complex problems with clean, efficient code. My expertise spans React, Next.js, and Node.js, and I&apos;m always eager to learn more.
+                I&apos;m Om Choksi, a passionate Data Scientist and AI Engineer dedicated to transforming data into actionable insights. From machine learning models to deep learning architectures, I thrive on solving complex problems with innovative solutions. My expertise spans Python, TensorFlow, PyTorch, and advanced ML algorithms, and I&apos;m always eager to explore cutting-edge AI technologies.
               </p>
               <p>
                 When I&apos;m not immersed in work, I&apos;m exploring new ideas and staying curious. Life&apos;s about balance, and I love embracing every part of it.

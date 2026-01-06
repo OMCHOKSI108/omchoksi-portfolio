@@ -2,34 +2,256 @@
 
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Shield } from "lucide-react";
+import { Shield, User, BarChart3, Lock, Calendar, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function PrivacyPage() {
     return (
-        <div className="min-h-screen bg-[var(--background)] flex flex-col">
-            <Navbar />
-            <main className="flex-grow flex flex-col items-center justify-center pt-24 pb-12 px-6">
-                <div className="text-center space-y-6 max-w-2xl">
-                    <div className="w-20 h-20 bg-[var(--muted)] rounded-full flex items-center justify-center mx-auto mb-6">
-                        <Shield className="w-10 h-10 text-[var(--foreground)] opacity-50" />
-                    </div>
-                    <h1 className="text-4xl md:text-5xl font-bold font-serif text-[var(--foreground)]">
-                        Privacy Policy
-                    </h1>
-                    <div className="text-[var(--muted-foreground)] text-left space-y-4 max-w-xl mx-auto mt-8">
-                        <p className="text-lg">
-                            Your privacy is important to us. This page will outline how we handle any personal information you share with us.
-                        </p>
-                        <p>
-                            Currently, this website does not collect personal data beyond what is voluntarily provided through contact forms. We use standard analytics tools to understand site usage.
-                        </p>
-                        <p className="text-sm italic opacity-70">
-                            Last updated: January 2025
-                        </p>
+        <div className="min-h-screen bg-[var(--background)] transition-colors duration-300">
+            {/* Background Texture with PRIVACY Text */}
+            <div className="fixed inset-0 z-0">
+                {/* Large PRIVACY Text Background */}
+                <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+                    <div className="font-serif-display font-bold text-[var(--foreground)] opacity-[0.06] dark:opacity-[0.10] select-none"
+                         style={{
+                             fontSize: '12vw',
+                             WebkitTextStroke: '2px var(--foreground)',
+                             WebkitTextFillColor: 'transparent',
+                             letterSpacing: '0.15em'
+                         }}>
+                        PRIVACY
                     </div>
                 </div>
-            </main>
-            <Footer />
+                
+                <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none">
+                    <img
+                        src="/assets/cta.avif"
+                        alt="Background Texture"
+                        className="w-full h-full object-cover dark:brightness-25 dark:contrast-150"
+                    />
+                    <div className="absolute inset-0 bg-transparent dark:bg-black/30" />
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10">
+                <Navbar />
+
+                {/* MAIN CONTAINER */}
+                <section className="relative w-full min-h-screen py-32 bg-[var(--background)] font-sans text-[var(--foreground)]">
+                    {/* LEFT DECORATIVE PILLAR - Unique patterns for privacy page */}
+                    <div className="absolute left-[15%] top-32 bottom-32 w-16 pointer-events-none select-none z-[5] hidden lg:block">
+                        <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)' }}>
+                            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 64 1000" preserveAspectRatio="none">
+                                <defs>
+                                    <pattern id="privacyHexPattern" patternUnits="userSpaceOnUse" width="12" height="10.4">
+                                        <path d="M6 0 L12 3 L12 7.4 L6 10.4 L0 7.4 L0 3 Z" fill="none" stroke="var(--foreground)" strokeWidth="0.5" className="opacity-20 dark:opacity-30" />
+                                    </pattern>
+                                    <pattern id="privacyWavePattern" patternUnits="userSpaceOnUse" width="20" height="10">
+                                        <path d="M0 5 Q 5 0, 10 5 T 20 5" stroke="var(--foreground)" strokeWidth="1" fill="none" className="opacity-15 dark:opacity-25" />
+                                    </pattern>
+                                </defs>
+                                <rect x="0" y="0" width="32" height="1000" fill="url(#privacyHexPattern)" />
+                                <rect x="32" y="0" width="32" height="1000" fill="url(#privacyWavePattern)" />
+                                <circle cx="32" cy="200" r="3" fill="var(--foreground)" className="opacity-10 dark:opacity-15" />
+                                <circle cx="32" cy="400" r="3" fill="var(--foreground)" className="opacity-10 dark:opacity-15" />
+                                <circle cx="32" cy="600" r="3" fill="var(--foreground)" className="opacity-10 dark:opacity-15" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* RIGHT DECORATIVE PILLAR - Mirror with variations */}
+                    <div className="absolute right-[15%] top-32 bottom-32 w-16 pointer-events-none select-none z-[5] hidden lg:block">
+                        <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)' }}>
+                            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 64 1000" preserveAspectRatio="none">
+                                <defs>
+                                    <pattern id="privacySquarePattern" patternUnits="userSpaceOnUse" width="8" height="8">
+                                        <rect x="0" y="0" width="7" height="7" fill="none" stroke="var(--foreground)" strokeWidth="0.5" className="opacity-20 dark:opacity-30" />
+                                    </pattern>
+                                    <pattern id="privacyZigzag" patternUnits="userSpaceOnUse" width="10" height="20">
+                                        <path d="M0 0 L5 10 L0 20" stroke="var(--foreground)" strokeWidth="1" fill="none" className="opacity-15 dark:opacity-25" />
+                                    </pattern>
+                                </defs>
+                                <rect x="0" y="0" width="32" height="1000" fill="url(#privacySquarePattern)" />
+                                <rect x="32" y="0" width="32" height="1000" fill="url(#privacyZigzag)" />
+                                <rect x="30" y="250" width="4" height="30" fill="var(--foreground)" className="opacity-10 dark:opacity-15" />
+                                <rect x="30" y="450" width="4" height="30" fill="var(--foreground)" className="opacity-10 dark:opacity-15" />
+                                <rect x="30" y="650" width="4" height="30" fill="var(--foreground)" className="opacity-10 dark:opacity-15" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* Decorative corner shields - unique to privacy page */}
+                    <div className="absolute top-32 left-[12%] hidden lg:block">
+                        <Shield className="w-4 h-4 text-[var(--foreground)] opacity-20" />
+                    </div>
+                    <div className="absolute top-32 right-[12%] hidden lg:block">
+                        <Shield className="w-4 h-4 text-[var(--foreground)] opacity-20" />
+                    </div>
+
+                    {/* Inject Fonts */}
+                    <style dangerouslySetInnerHTML={{ __html: `
+                        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+                        .font-serif-display { font-family: 'Playfair Display', serif; }
+                    `}} />
+
+                    {/* Background Noise */}
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+                    <div className="max-w-4xl mx-auto px-6 relative z-10">
+
+                        {/* Header Section */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="flex flex-col items-center text-center mb-16 space-y-4"
+                        >
+                            <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted-foreground)] uppercase">
+                                Data Protection
+                            </span>
+                            <h1 className="text-5xl md:text-7xl font-serif-display text-[var(--foreground)] leading-tight">
+                                Privacy Policy
+                            </h1>
+                            <p className="text-[var(--muted-foreground)] max-w-2xl text-lg leading-relaxed">
+                                I believe in the web being open but private. I only collect data that is strictly necessary to provide the functional aspects of this site, such as authentication and spam prevention.
+                            </p>
+                        </motion.div>
+
+                        {/* Content Sections */}
+                        <div className="space-y-16">
+                            {/* Section 1: Data Collection */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                            >
+                                <div className="flex items-start gap-4 mb-6">
+                                    <span className="text-sm font-bold text-[var(--muted-foreground)] mt-1">01</span>
+                                    <h2 className="text-2xl font-bold text-[var(--foreground)]">Data Collection</h2>
+                                </div>
+                                <div className="ml-12 space-y-4">
+                                    <div className="grid md:grid-cols-2 gap-4">
+                                        <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-6">
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                                    <User className="w-5 h-5 text-blue-500" />
+                                                </div>
+                                                <h3 className="font-bold text-sm uppercase tracking-wider">Authentication</h3>
+                                            </div>
+                                            <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+                                                When you sign in via GitHub or Google, I receive your <span className="font-semibold text-[var(--foreground)]">name, email, avatar</span>. This establishes your public profile for the Guestbook.
+                                            </p>
+                                        </div>
+                                        <div className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-6">
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center">
+                                                    <Lock className="w-5 h-5 text-purple-500" />
+                                                </div>
+                                                <h3 className="font-bold text-sm uppercase tracking-wider">Security Logs</h3>
+                                            </div>
+                                            <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+                                                To prevent abuse, Cloudflare logs your <span className="font-semibold text-[var(--foreground)]">IP address & User Agent</span>. This data is used for tracking and is not used for tracking.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Section 2: Analytics */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.3 }}
+                            >
+                                <div className="flex items-start gap-4 mb-6">
+                                    <span className="text-sm font-bold text-[var(--muted-foreground)] mt-1">02</span>
+                                    <h2 className="text-2xl font-bold text-[var(--foreground)]">Analytics</h2>
+                                </div>
+                                <div className="ml-12 space-y-4">
+                                    <p className="text-[var(--muted-foreground)] leading-relaxed">
+                                        Understanding how you use this site helps me improve it. I use privacy-focused tools that aggregate data rather than tracking individual fingerprints.
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
+                                            <BarChart3 className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
+                                            <div>
+                                                <h3 className="font-semibold text-sm mb-1">Vercel Analytics</h3>
+                                                <p className="text-sm text-[var(--muted-foreground)]">Measures server performance, latency, and load times. Strictly technical data.</p>
+                                            </div>
+                                        </div>
+                                        <div className="border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
+                                            <BarChart3 className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
+                                            <div>
+                                                <h3 className="font-semibold text-sm mb-1">Google Analytics</h3>
+                                                <p className="text-sm text-[var(--muted-foreground)]">Tracks general page views and geographic IP anonymization is enabled to protect your identity.</p>
+                                            </div>
+                                        </div>
+                                        <div className="border border-[var(--border)] rounded-xl p-4 flex items-start gap-3">
+                                            <BarChart3 className="w-5 h-5 text-[var(--primary)] flex-shrink-0 mt-0.5" />
+                                            <div>
+                                                <h3 className="font-semibold text-sm mb-1">PostHog</h3>
+                                                <p className="text-sm text-[var(--muted-foreground)]">Used for feature flagging and product usage insights (e.g., "Did people use the dark mode toggle?").</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Section 3: Your Rights */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                            >
+                                <div className="flex items-start gap-4 mb-6">
+                                    <span className="text-sm font-bold text-[var(--muted-foreground)] mt-1">03</span>
+                                    <h2 className="text-2xl font-bold text-[var(--foreground)]">Your Rights</h2>
+                                </div>
+                                <div className="ml-12 space-y-4">
+                                    <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-xl p-6">
+                                        <div className="flex items-start gap-3 mb-4">
+                                            <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                                <Shield className="w-6 h-6 text-green-600 dark:text-green-400" />
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold mb-2">Ownership & Deletion</h3>
+                                                <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+                                                    You own your data. You retain the right to be forgotten at any time. If you wish to have your account, guestbook entries, and all associated metadata permanently deleted, you may do so without hurdles.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Effective Date */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.5 }}
+                                className="border-t border-[var(--border)] pt-8 mt-16"
+                            >
+                                <div className="bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl p-4 flex items-center justify-between flex-wrap gap-4">
+                                    <div className="flex items-center gap-3">
+                                        <Calendar className="w-5 h-5 text-[var(--primary)]" />
+                                        <span className="text-sm font-medium">Last updated NOV 30, 2025</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
+                                        <span className="uppercase tracking-wider font-bold text-xs">General Inquiries</span>
+                                        <Mail className="w-4 h-4" />
+                                        <a href="mailto:omchoksi108@gmail.com" className="text-blue-500 hover:text-blue-600 font-medium">
+                                            omchoksi108@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                <Footer />
+            </div>
         </div>
     );
 }

@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Award, Calendar, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Award, Calendar, ExternalLink, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface Certification {
   _id: string;
@@ -25,6 +26,7 @@ export default function Certifications() {
   const router = useRouter();
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
+  const [previewCert, setPreviewCert] = useState<Certification | null>(null);
 
   useEffect(() => {
     const fetchCertifications = async () => {
@@ -81,6 +83,25 @@ export default function Certifications() {
               className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 cursor-pointer"
               onClick={() => router.push(`/certifications/${cert.slug}`)}
             >
+              {cert.image && (
+                <div 
+                  className="relative w-full h-40 mb-4 rounded-xl overflow-hidden group"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPreviewCert(cert);
+                  }}
+                >
+                  <Image
+                    src={cert.image}
+                    alt={cert.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Click to Preview</span>
+                  </div>
+                </div>
+              )}
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-[var(--primary)]/10 rounded-full">
                   <Award className="w-6 h-6 text-[var(--primary)]" />
@@ -137,6 +158,53 @@ export default function Certifications() {
           </button>
         </motion.div>
       </div>
+
+      {/* Preview Modal */}
+      <AnimatePresence>
+        {previewCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setPreviewCert(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-4xl w-full bg-[var(--card)] rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setPreviewCert(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+              {previewCert.image && (
+                <div className="relative w-full h-[70vh]">
+                  <Image
+                    src={previewCert.image}
+                    alt={previewCert.title}
+                    fill
+                    className="object-contain"
+                    quality={100}
+                  />
+                </div>
+              )}
+              <div className="p-6 bg-[var(--card)]">
+                <h3 className="text-2xl font-bold mb-2">{previewCert.title}</h3>
+                <p className="text-[var(--muted-foreground)] mb-4">{previewCert.issuer}</p>
+                <div className="flex gap-4 text-sm">
+                  <span>Issued: {new Date(previewCert.issueDate).toLocaleDateString()}</span>
+                  <span>ID: {previewCert.credentialId}</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

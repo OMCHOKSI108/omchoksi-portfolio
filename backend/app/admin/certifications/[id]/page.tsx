@@ -211,6 +211,24 @@ export default function EditcertificationPage() {
           />
         </div>
 
+        {/* PDF Preview Section */}
+        {(form.link && form.link.includes('drive.google.com')) && (
+          <div className="border rounded-lg overflow-hidden">
+            <div className="bg-gray-100 p-3 border-b">
+              <h3 className="text-sm font-semibold">Certificate Preview (from Google Drive)</h3>
+            </div>
+            <div className="relative w-full" style={{ height: '600px' }}>
+              <iframe
+                src={form.link.includes('/file/d/')
+                  ? form.link.replace('/view', '/preview').replace('?usp=sharing', '')
+                  : form.link}
+                className="w-full h-full"
+                allow="autoplay"
+              />
+            </div>
+          </div>
+        )}
+
         <div>
           <label className="block text-sm font-medium mb-1">Company/Issuer Logo or Cover Image</label>
           <input

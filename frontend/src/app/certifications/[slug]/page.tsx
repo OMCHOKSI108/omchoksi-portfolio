@@ -83,9 +83,69 @@ export default function CertificationPage() {
 
   return (
     <main className="min-h-screen relative bg-[var(--background)]">
+      {/* Background Calligraphy Text */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div 
+            className="font-serif-display font-bold text-[var(--foreground)] opacity-[0.14] dark:opacity-[0.16] select-none whitespace-nowrap"
+            style={{
+              fontSize: '10vw',
+              WebkitTextStroke: '1.5px var(--foreground)',
+              WebkitTextFillColor: 'transparent',
+              letterSpacing: '0.08em',
+              transform: 'rotate(-2deg)'
+            }}
+          >
+            CERTIFICATE
+          </div>
+        </div>
+      </div>
+
+      {/* LEFT DECORATIVE PILLAR */}
+      <div className="fixed left-[8%] top-32 bottom-32 w-16 pointer-events-none select-none z-[5] hidden lg:block">
+        <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)' }}>
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 64 1000" preserveAspectRatio="none">
+            <defs>
+              <pattern id="certLeftPattern" patternUnits="userSpaceOnUse" width="10" height="10">
+                <circle cx="5" cy="5" r="1.5" fill="var(--foreground)" className="opacity-15 dark:opacity-20" />
+              </pattern>
+              <pattern id="certLeftLines" patternUnits="userSpaceOnUse" width="8" height="16">
+                <line x1="4" y1="0" x2="4" y2="16" stroke="var(--foreground)" strokeWidth="1" className="opacity-10 dark:opacity-15" />
+              </pattern>
+            </defs>
+            <rect x="0" y="0" width="32" height="1000" fill="url(#certLeftPattern)" />
+            <rect x="32" y="0" width="32" height="1000" fill="url(#certLeftLines)" />
+          </svg>
+        </div>
+      </div>
+
+      {/* RIGHT DECORATIVE PILLAR */}
+      <div className="fixed right-[8%] top-32 bottom-32 w-16 pointer-events-none select-none z-[5] hidden lg:block">
+        <div className="absolute inset-0" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 60%, transparent 90%)' }}>
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 64 1000" preserveAspectRatio="none">
+            <defs>
+              <pattern id="certRightPattern" patternUnits="userSpaceOnUse" width="10" height="10">
+                <circle cx="5" cy="5" r="1.5" fill="var(--foreground)" className="opacity-15 dark:opacity-20" />
+              </pattern>
+              <pattern id="certRightDiagonal" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="10" stroke="var(--foreground)" strokeWidth="1" className="opacity-10 dark:opacity-15" />
+              </pattern>
+            </defs>
+            <rect x="0" y="0" width="32" height="1000" fill="url(#certRightPattern)" />
+            <rect x="32" y="0" width="32" height="1000" fill="url(#certRightDiagonal)" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Inject Fonts */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+      `}} />
+
       <Navbar />
 
-      <div className="pt-24 px-6 max-w-7xl mx-auto pb-20">
+      <div className="relative z-10 pt-24 px-6 max-w-7xl mx-auto pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content - Left Side */}
           <div className="lg:col-span-2">
@@ -117,7 +177,7 @@ export default function CertificationPage() {
               )}
 
               {/* PDF Embed */}
-              {certification.pdf && (
+              {(certification.pdf || certification.link) && (
                 <div className="mb-8 w-full bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-lg">
                   <div className="p-4 bg-[var(--muted)]/50 border-b border-[var(--border)] flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
@@ -127,7 +187,12 @@ export default function CertificationPage() {
                       <span className="font-semibold text-sm text-[var(--foreground)]">Certificate Document</span>
                     </div>
                     <a
-                      href={certification.pdf}
+                      href={(() => {
+                        const pdfUrl = certification.link || certification.pdf || '';
+                        return pdfUrl.includes('drive.google.com') 
+                          ? pdfUrl.replace('/view', '/view?usp=sharing')
+                          : pdfUrl;
+                      })()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-all hover:scale-105 active:scale-95 flex items-center gap-1.5 font-medium shadow-sm"
@@ -136,26 +201,41 @@ export default function CertificationPage() {
                       Open in New Tab
                     </a>
                   </div>
-                  <object
-                    data={certification.pdf}
-                    type="application/pdf"
-                    className="w-full h-[600px] md:h-[800px]"
-                  >
-                    <div className="p-12 text-center bg-gradient-to-br from-[var(--muted)]/30 to-[var(--muted)]/10 min-h-[400px] flex flex-col items-center justify-center">
-                      <p className="text-[var(--muted-foreground)] mb-6 text-sm">
-                        Your browser doesn't support embedded PDFs.
-                      </p>
-                      <a
-                        href={certification.pdf}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-all hover:scale-105 active:scale-95 font-medium shadow-lg"
+                  {(() => {
+                    const pdfUrl = certification.link || certification.pdf || '';
+                    return pdfUrl.includes('drive.google.com') ? (
+                      // Google Drive PDF Embed
+                      <iframe
+                        src={pdfUrl.includes('/file/d/')
+                          ? pdfUrl.replace('/view', '/preview').replace('?usp=sharing', '')
+                          : pdfUrl}
+                        className="w-full h-[600px] md:h-[800px]"
+                        allow="autoplay"
+                      />
+                    ) : (
+                      // Regular PDF Embed
+                      <object
+                        data={pdfUrl}
+                        type="application/pdf"
+                        className="w-full h-[600px] md:h-[800px]"
                       >
-                        <ExternalLink size={16} />
-                        View Certificate PDF
-                      </a>
-                    </div>
-                  </object>
+                        <div className="p-12 text-center bg-gradient-to-br from-[var(--muted)]/30 to-[var(--muted)]/10 min-h-[400px] flex flex-col items-center justify-center">
+                          <p className="text-[var(--muted-foreground)] mb-6 text-sm">
+                            Your browser doesn't support embedded PDFs.
+                          </p>
+                          <a
+                            href={pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-all hover:scale-105 active:scale-95 font-medium shadow-lg"
+                          >
+                            <ExternalLink size={16} />
+                            View Certificate PDF
+                          </a>
+                        </div>
+                      </object>
+                    );
+                  })()}
                 </div>
               )}
 
@@ -315,13 +395,18 @@ export default function CertificationPage() {
 
                 <div className="space-y-4">
                   {/* PDF Download/View */}
-                  {certification.pdf && (
+                  {(certification.pdf || certification.link) && (
                     <div>
                       <p className="text-[var(--muted-foreground)] text-xs mb-3">
                         View the official certificate document.
                       </p>
                       <a
-                        href={certification.pdf}
+                        href={(() => {
+                          const pdfUrl = certification.link || certification.pdf || '';
+                          return pdfUrl.includes('drive.google.com') 
+                            ? pdfUrl.replace('/view', '/view?usp=sharing')
+                            : pdfUrl;
+                        })()}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--foreground)] text-[var(--background)] rounded-full font-medium text-sm shadow-md hover:opacity-90 hover:scale-105 active:scale-95 transition-all"
@@ -333,7 +418,7 @@ export default function CertificationPage() {
                   )}
 
                   {/* External Verification Link */}
-                  {certification.link && (
+                  {certification.link && !certification.link.includes('drive.google.com') && (
                     <div className={certification.pdf ? "pt-4 border-t border-[var(--border)]" : ""}>
                       <p className="text-[var(--muted-foreground)] text-xs mb-3">
                         Verify directly on the issuer's website.

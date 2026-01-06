@@ -228,7 +228,7 @@ export default function ProjectsPage() {
             </button>
           </div>
 
-          <Link href="/admin/projects/priority" className="px-5 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition">
+          <Link href="/admin/projects/priority" className="btn-accent px-5 py-2 rounded-lg font-medium transition">
             Reorder Priority
           </Link>
 
