@@ -75,15 +75,15 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
             {/* More Dropdown */}
             <div className="relative group">
               <button className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${theme === 'dark'
-                  ? 'text-zinc-300 hover:text-white hover:bg-white/5'
-                  : 'text-zinc-600 hover:text-black hover:bg-black/5'
+                ? 'text-zinc-300 hover:text-white hover:bg-white/5'
+                : 'text-zinc-600 hover:text-black hover:bg-black/5'
                 }`}>
                 More <ChevronDown size={14} />
               </button>
               {/* Dropdown Menu */}
               <div className={`absolute top-full right-0 mt-2 w-48 rounded-2xl backdrop-blur-3xl border shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right overflow-hidden z-50 ${theme === 'dark'
-                  ? 'bg-neutral-900/90 border-white/10'
-                  : 'bg-white/90 border-black/5'
+                ? 'bg-neutral-900/90 border-white/10'
+                : 'bg-white/90 border-black/5'
                 }`}>
                 <Link href="/stack" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
                   }`}>
@@ -115,8 +115,8 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 }
               }}
               className={`px-5 py-2 rounded-full border border-transparent font-medium text-sm shadow-sm transition-all hover:scale-105 active:scale-95 ${theme === 'dark'
-                  ? 'bg-white text-black hover:bg-zinc-200'
-                  : 'bg-black text-white'
+                ? 'bg-white text-black hover:bg-zinc-200'
+                : 'bg-black text-white'
                 }`}
             >
               Book a Call
@@ -159,8 +159,8 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-xl text-lg font-medium transition-colors ${theme === 'dark'
-                      ? 'text-white hover:bg-white/5'
-                      : 'text-black hover:bg-black/5'
+                    ? 'text-white hover:bg-white/5'
+                    : 'text-black hover:bg-black/5'
                     }`}
                 >
                   {item.label}
@@ -187,8 +187,8 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
           <button
             onClick={() => setIsSearchOpen(true)}
             className={`flex items-center justify-center w-10 h-10 rounded-full backdrop-blur-md border transition-all ${theme === 'dark'
-                ? 'bg-black/20 border-white/5 hover:bg-white/10 text-white'
-                : 'bg-white/20 border-black/5 hover:bg-black/5 text-zinc-900'
+              ? 'bg-black/20 border-white/5 hover:bg-white/10 text-white'
+              : 'bg-white/20 border-black/5 hover:bg-black/5 text-zinc-900'
               }`}
             aria-label="Search"
             title="Search (⌘K)"

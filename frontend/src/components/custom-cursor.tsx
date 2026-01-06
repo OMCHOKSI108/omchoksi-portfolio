@@ -6,8 +6,22 @@ export default function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [hoverText, setHoverText] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const checkMobile = () => {
+      setIsMobile(
+        'ontouchstart' in window || 
+        navigator.maxTouchPoints > 0 || 
+        window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth < 768
+      );
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleMouseMove = (e: Event) => {
       const mouseEvent = e as MouseEvent;
       setPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
@@ -38,12 +52,16 @@ export default function CustomCursor() {
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('resize', checkMobile);
       hoverElements.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseEnter);
         el.removeEventListener("mouseleave", handleMouseLeave);
       });
     };
   }, []);
+
+  // Hide cursor on mobile devices
+  if (isMobile) return null;
 
   return (
     <div

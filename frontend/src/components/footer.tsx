@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Twitter, Moon, Sun, ArrowUpRight } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const { theme, toggleTheme } = useTheme();
@@ -13,6 +14,19 @@ export default function Footer() {
 
       {/* Background Gradients to match the premium feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.13] dark:opacity-[0.17]">
+          <Image
+            src="/assets/cta.avif"
+            alt="Footer Background"
+            fill
+            className="object-cover"
+            quality={100}
+            priority
+          />
+          {/* Gradient masks to blend edges seamlessly */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-transparent to-transparent" style={{ height: '30%' }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)] via-transparent to-[var(--background)]" />
+        </div>
         <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-500/5 blur-[100px]" />
         <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[100px]" />
       </div>
@@ -21,16 +35,32 @@ export default function Footer() {
 
         {/* Main CTA Section */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-7xl font-sans font-bold tracking-tight mb-6">
+          <motion.h2 
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-4xl md:text-7xl font-sans font-bold tracking-tight mb-6"
+          >
             FROM CONCEPT TO <span className="opacity-50">CREATION</span>
-          </h2>
+          </motion.h2>
           <div className="relative inline-block">
-            <h2 className="text-4xl md:text-7xl font-sans font-bold tracking-tight mb-8">
+            <motion.h2 
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="text-4xl md:text-7xl font-sans font-bold tracking-tight mb-8"
+            >
               LET'S MAKE IT <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">HAPPEN!</span>
-            </h2>
+            </motion.h2>
             {/* Rotating Badge */}
-            <div className="absolute -right-8 -top-8 md:-right-24 md:-top-16 w-24 h-24 md:w-32 md:h-32 hidden md:flex items-center justify-center animate-spin-slow">
-              <svg viewBox="0 0 100 100" className="w-full h-full rotate-[-20deg]">
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute -right-8 -top-8 md:-right-24 md:-top-16 w-24 h-24 md:w-32 md:h-32 hidden md:flex items-center justify-center"
+            >
+              <svg viewBox="0 0 100 100" className="w-full h-full">
                 <path id="curve" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
                 <text className="text-[10px] font-bold uppercase fill-[var(--foreground)] tracking-[0.15em]">
                   <textPath href="#curve">
@@ -41,18 +71,18 @@ export default function Footer() {
               <div className="absolute inset-0 m-auto w-10 h-10 md:w-14 md:h-14 bg-blue-600 rounded-full flex items-center justify-center text-white">
                 <ArrowRight className="w-4 h-4 md:w-6 md:h-6 -rotate-45" />
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <div className="flex justify-center mb-8">
             <button
               onClick={() => window.dispatchEvent(new CustomEvent("open-quick-connect"))}
-              className="group relative px-8 py-4 rounded-full bg-[var(--foreground)] text-[var(--background)] font-medium text-lg overflow-hidden transition-all hover:scale-105"
+              className="group relative inline-flex items-center gap-3 pl-8 pr-2 py-2 rounded-full bg-[var(--foreground)] text-[var(--background)] shadow-lg hover:scale-105 transition-transform duration-300"
             >
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative flex items-center gap-2">
-                Get In Touch <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
+              <span className="font-medium text-lg tracking-wide">Get In Touch</span>
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white group-hover:rotate-45 transition-transform duration-300">
+                <ArrowRight className="w-5 h-5" />
+              </div>
             </button>
           </div>
 
@@ -98,7 +128,7 @@ export default function Footer() {
               <h4 className="text-sm font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Specifics</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/resources" className="hover:text-blue-500 transition-colors">Resources</Link></li>
-                <li><Link href="/work" className="hover:text-blue-500 transition-colors">Bucket List</Link></li>
+                <li><Link href="/bucket-list" className="hover:text-blue-500 transition-colors">Bucket List</Link></li>
                 <li><Link href="/uses" className="hover:text-blue-500 transition-colors">Uses</Link></li>
                 <li><Link href="/attribution" className="hover:text-blue-500 transition-colors">Attribution</Link></li>
               </ul>
