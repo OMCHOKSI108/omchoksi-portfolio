@@ -97,7 +97,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                   }`}>
                   Links
                 </Link>
-                <a href="https://drive.google.com/file/d/1vZFyvsRzv17dm6z1uKDXI07Z_gfTHQgC/view?usp=sharing" target="_blank" rel="noopener noreferrer" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
+                <a href="https://drive.google.com/file/d/16XEvVxQWSsXOKd1oTf-sjU0I7d5_PIId/view?usp=sharing" target="_blank" rel="noopener noreferrer" className={`block px-4 py-3 text-sm transition-colors ${theme === 'dark' ? 'text-zinc-300 hover:text-white hover:bg-white/5' : 'text-zinc-600 hover:text-black hover:bg-black/5'
                   }`}>
                   Resume
                 </a>
