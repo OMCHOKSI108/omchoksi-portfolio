@@ -124,29 +124,29 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.15 }}
-                    className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4"
+                    className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 overflow-y-auto"
                     onClick={() => setIsOpen(false)}
                 >
                     {/* Backdrop */}
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+                    <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm" />
 
                     <motion.div
                         initial={{ scale: 0.95, opacity: 0, y: -20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.95, opacity: 0, y: -20 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="relative w-full max-w-[600px] bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[60vh]"
+                        className="relative w-full max-w-[600px] bg-[var(--card)] text-[var(--foreground)] backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Search Header */}
-                        <div className="flex items-center px-4 py-4 border-b border-white/10 shrink-0">
-                            <Search className="w-5 h-5 text-zinc-500 mr-3" />
+                        <div className="flex items-center px-4 py-4 border-b border-[var(--border)] shrink-0">
+                            <Search className="w-5 h-5 text-[var(--muted-foreground)] mr-3" />
                             <input
                                 type="text"
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 placeholder="Search"
-                                className="flex-1 bg-transparent border-none outline-none text-zinc-200 placeholder-zinc-500 text-[15px]"
+                                className="flex-1 bg-transparent border-none outline-none text-[var(--foreground)] placeholder-[var(--muted-foreground)] text-[15px]"
                                 autoFocus
                             />
                             <div className="flex items-center gap-2">
@@ -155,11 +155,11 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
                                         e.stopPropagation();
                                         toggleTheme();
                                     }}
-                                    className="p-1.5 rounded-md hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
+                                    className="p-1.5 rounded-md hover:bg-[var(--muted)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
                                 >
                                     {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
                                 </button>
-                                <div className="px-1.5 py-0.5 rounded border border-white/10 bg-white/5 text-[10px] font-medium text-zinc-500">
+                                <div className="px-1.5 py-0.5 rounded border border-[var(--border)] bg-[var(--muted)] text-[10px] font-medium text-[var(--muted-foreground)]">
                                     ESC
                                 </div>
                             </div>
@@ -171,14 +171,14 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
                             className="flex-1 overflow-y-auto p-2 custom-scrollbar py-2"
                         >
                             {filteredItems.length === 0 ? (
-                                <div className="p-8 text-center text-zinc-500 text-sm">
+                                <div className="p-8 text-center text-[var(--muted-foreground)] text-sm">
                                     No results found.
                                 </div>
                             ) : (
                                 <>
                                     {pages.length > 0 && (
                                         <div className="mb-2">
-                                            <div className="px-3 py-2 text-[10px] font-semibold text-zinc-500 tracking-wider uppercase">
+                                            <div className="px-3 py-2 text-[10px] font-semibold text-[var(--muted-foreground)] tracking-wider uppercase">
                                                 Pages
                                             </div>
                                             <div className="space-y-0.5">
@@ -193,17 +193,17 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
                                                             data-index={globalIndex}
                                                             onClick={() => handleSelect(item)}
                                                             onMouseEnter={() => setSelectedIndex(globalIndex)}
-                                                            className={`
-                                flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors
-                                ${isSelected ? 'bg-white/10 text-white' : 'text-zinc-400 hover:text-zinc-200'}
-                              `}
+                                                                                                                        className={`
+                                                                flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors
+                                                                ${isSelected ? 'bg-[var(--muted)] text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]/40'}
+                                                            `}
                                                         >
                                                             <div className="flex items-center gap-3">
-                                                                <Icon className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-zinc-500'}`} />
+                                                                                                                                <Icon className={`w-4 h-4 ${isSelected ? 'text-[var(--foreground)]' : 'text-[var(--muted-foreground)]'}`} />
                                                                 <span className="text-[14px] font-medium">{item.title}</span>
                                                             </div>
                                                             {isSelected && (
-                                                                <ArrowRight className="w-3.5 h-3.5 text-zinc-500" />
+                                                                <ArrowRight className="w-3.5 h-3.5 text-[var(--muted-foreground)]" />
                                                             )}
                                                         </div>
                                                     );
@@ -214,7 +214,7 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
 
                                     {connect.length > 0 && (
                                         <div className="mb-2">
-                                            <div className="px-3 py-2 text-[10px] font-semibold text-zinc-500 tracking-wider uppercase">
+                                            <div className="px-3 py-2 text-[10px] font-semibold text-[var(--muted-foreground)] tracking-wider uppercase">
                                                 Connect
                                             </div>
                                             <div className="space-y-0.5">
@@ -229,20 +229,20 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
                                                             data-index={globalIndex}
                                                             onClick={() => handleSelect(item)}
                                                             onMouseEnter={() => setSelectedIndex(globalIndex)}
-                                                            className={`
-                                flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors
-                                ${isSelected ? 'bg-white/10 text-white' : 'text-zinc-400 hover:text-zinc-200'}
-                              `}
+                                                                                                                        className={`
+                                                                flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors
+                                                                ${isSelected ? 'bg-[var(--muted)] text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]/40'}
+                                                            `}
                                                         >
                                                             <div className="flex items-center gap-3">
-                                                                <Icon className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-zinc-500'}`} />
+                                                                                                                                <Icon className={`w-4 h-4 ${isSelected ? 'text-[var(--foreground)]' : 'text-[var(--muted-foreground)]'}`} />
                                                                 <span className="text-[14px] font-medium">{item.title}</span>
                                                             </div>
                                                             {isSelected && (
-                                                                <ArrowRight className="w-3.5 h-3.5 text-zinc-500" />
+                                                                <ArrowRight className="w-3.5 h-3.5 text-[var(--muted-foreground)]" />
                                                             )}
                                                             {item.external && !isSelected && (
-                                                                <span className="text-[10px] text-zinc-600">↗</span>
+                                                                <span className="text-[10px] text-[var(--muted-foreground)]">↗</span>
                                                             )}
                                                         </div>
                                                     );
