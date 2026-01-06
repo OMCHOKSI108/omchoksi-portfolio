@@ -196,12 +196,14 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
 
 
         {/* --- Footer Status --- */}
-        <div className="mt-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl py-3 px-4 flex items-center justify-center gap-2">
+        <div className="mt-6 bg-green-50 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-xl py-3 px-4 flex items-center justify-center gap-2">
           <div className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
           </div>
-          <span className="text-xs font-bold text-green-800 dark:text-green-200">Currently available for new opportunities</span>
+          <span className="text-sm font-semibold text-[var(--foreground)] dark:text-green-50">
+            Currently available for new opportunities
+          </span>
         </div>
       </div>
     </div>

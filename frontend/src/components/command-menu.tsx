@@ -35,6 +35,13 @@ const ITEMS: CommandItem[] = [
     { icon: Server, title: "Stats", href: "/stats", group: "PAGES" },
     { icon: Award, title: "Attribution", href: "/attribution", group: "PAGES" },
     { icon: LinkIcon, title: "Links", href: "/links", group: "PAGES" },
+    // Extra site pages
+    { icon: FileText, title: "Resources", href: "/resources", group: "PAGES" },
+    { icon: ListTodo, title: "Bucket List", href: "/bucket-list", group: "PAGES" },
+    { icon: Laptop, title: "Uses", href: "/uses", group: "PAGES" },
+    { icon: FileText, title: "Privacy Policy", href: "/privacy", group: "PAGES" },
+    { icon: FileText, title: "Terms of Use", href: "/terms", group: "PAGES" },
+    { icon: FileText, title: "RSS Feed", href: "/rss", group: "PAGES" },
 
     // CONNECT
     { icon: Github, title: "GitHub", href: "https://github.com/OMCHOKSI108", group: "CONNECT", external: true },
