@@ -24,7 +24,12 @@ export default function CustomCursor() {
 
     const handleMouseMove = (e: Event) => {
       const mouseEvent = e as MouseEvent;
-      setPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
+      // Account for zoom level (0.8 = 80% zoom)
+      const zoom = 0.8;
+      setPosition({ 
+        x: mouseEvent.clientX / zoom, 
+        y: mouseEvent.clientY / zoom 
+      });
     };
 
     const handleMouseEnter = (e: Event) => {
