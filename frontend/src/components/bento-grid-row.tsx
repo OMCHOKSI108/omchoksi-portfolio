@@ -101,9 +101,9 @@ const BentoGridRow = ({ showQuickConnect, onCloseQuickConnect, onOpenQuickConnec
 
         {/* --- CARD 2: CTA (Middle) --- */}
         <div className="relative flex flex-col items-center justify-center rounded-[2rem] border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:shadow-md h-[420px]">
-          <h3 className="mb-8 font-serif text-3xl text-[var(--foreground)] leading-[1.1]">
-            Let's work together <br />
-            on your next project
+          <h3 className="mb-8 font-sans text-3xl text-[var(--foreground)] leading-[1.1]">
+            Ready to discuss your <br />
+            next AI or data project?
           </h3>
 
           <button

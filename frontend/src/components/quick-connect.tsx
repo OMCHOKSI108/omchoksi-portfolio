@@ -90,7 +90,7 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
               </button>
 
-              {/* Book Call Card - Redirects to /contact */}
+              {/* Contact Me Card - Redirects to /contact */}
               <button
                 onClick={() => {
                   onClose();
@@ -101,9 +101,9 @@ const QuickConnect = ({ isOpen, onClose, onBookCall }: {
                 <div className="p-2 bg-[var(--primary)]/10 rounded-lg text-[var(--primary)] mb-3 group-hover:scale-110 transition-transform">
                   <Calendar className="w-5 h-5" />
                 </div>
-                <h4 className="font-bold text-[var(--foreground)] mb-1">Book a Call</h4>
-                <p className="text-xs font-semibold text-[var(--foreground)]/80 mb-1">Schedule a time slot</p>
-                <p className="text-[10px] text-[var(--muted-foreground)]">Opens calendar page</p>
+                <h4 className="font-bold text-[var(--foreground)] mb-1">Contact me</h4>
+                <p className="text-xs font-semibold text-[var(--foreground)]/80 mb-1">Reach out instantly</p>
+                <p className="text-[10px] text-[var(--muted-foreground)]">Opens contact page</p>
 
                 {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />

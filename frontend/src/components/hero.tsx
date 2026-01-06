@@ -143,9 +143,15 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-8"
         >
-          <h1 className={`text-4xl sm:text-6xl md:text-8xl font-sans leading-[1] tracking-tight ${isDark ? 'text-white' : 'text-gray-950'}`}>
+          <h1
+            className={`text-4xl sm:text-6xl md:text-8xl font-sans font-semibold leading-tight tracking-[-0.04em] ${
+              isDark ? "text-white" : "text-gray-950"
+            }`}
+          >
             I craft intelligent products that <br className="hidden md:block" />
-            blend <span className="font-semibold">data, AI</span> and <span className="font-semibold">design</span>
+            <span className="inline-block bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+              blend data, AI & design
+            </span>
           </h1>
         </motion.div>
 
