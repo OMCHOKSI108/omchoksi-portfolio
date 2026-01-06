@@ -93,7 +93,7 @@ export default function AttributionPage() {
                                 </div>
                                 <div className="md:col-span-9 space-y-8 text-lg text-[var(--muted-foreground)] leading-relaxed font-light">
                                     <p>
-                                        It started in 2023 as a <strong className="text-[var(--foreground)] font-medium">simple Next.js experiment</strong>. The code was messy, the design was derivative, but it was mine.
+                                        It started in Mid end 2024 as a <strong className="text-[var(--foreground)] font-medium">simple Next.js experiment</strong>. The code was messy, the design was derivative, but it was mine.
                                     </p>
                                     <p>
                                         Fast forward to 2025. The web had evolved, and so had I. I wanted a digital home that felt 'alive'. I tore it down to the studs and rebuilt it with a <strong className="text-[var(--foreground)] font-medium">focus on craftsmanship</strong>.
@@ -157,7 +157,7 @@ export default function AttributionPage() {
                                             <div>
                                                 <h4 className="text-xs font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-4">Backend</h4>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {['PostgreSQL', 'Prisma ORM'].map(tag => (
+                                                    {['moongose', 'MongoDB'].map(tag => (
                                                         <span key={tag} className="px-3 py-1.5 rounded-md bg-[var(--muted)]/50 border border-[var(--border)] text-xs font-mono text-[var(--foreground)]">
                                                             {tag}
                                                         </span>
@@ -167,7 +167,7 @@ export default function AttributionPage() {
                                             <div>
                                                 <h4 className="text-xs font-mono text-[var(--muted-foreground)] uppercase tracking-wider mb-4">Infrastructure</h4>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {['Vercel', 'Cloudflare'].map(tag => (
+                                                    {['Vercel'].map(tag => (
                                                         <span key={tag} className="px-3 py-1.5 rounded-md bg-[var(--muted)]/50 border border-[var(--border)] text-xs font-mono text-[var(--foreground)]">
                                                             {tag}
                                                         </span>
