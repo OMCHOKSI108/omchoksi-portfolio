@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import type { WheelEvent as ReactWheelEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Search, Moon, Sun, Home, User, Folder, FileText,
-    BookHeart, ListTodo, Calendar, Laptop, Award, Link as LinkIcon,
+    Calendar, Laptop, Award, Link as LinkIcon,
     Github, ArrowRight, Server
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -19,12 +20,11 @@ interface CommandItem {
     icon: any;
     title: string;
     href: string;
-    group: "PAGES" | "CONNECT";
+    group: "PAGES" | "CONNECT" | "LEGAL";
     external?: boolean;
 }
 
 const ITEMS: CommandItem[] = [
-    // PAGES
     { icon: Home, title: "Home", href: "/", group: "PAGES" },
     { icon: User, title: "About", href: "/about", group: "PAGES" },
     { icon: Folder, title: "Projects", href: "/work", group: "PAGES" },
@@ -33,18 +33,16 @@ const ITEMS: CommandItem[] = [
     { icon: Award, title: "Certifications", href: "/certifications", group: "PAGES" },
     { icon: Calendar, title: "Contact me", href: "/contact", group: "PAGES" },
     { icon: Server, title: "Stats", href: "/stats", group: "PAGES" },
-    { icon: Award, title: "Attribution", href: "/attribution", group: "PAGES" },
     { icon: LinkIcon, title: "Links", href: "/links", group: "PAGES" },
-    // Extra site pages
-    { icon: FileText, title: "Resources", href: "/resources", group: "PAGES" },
-    { icon: ListTodo, title: "Bucket List", href: "/bucket-list", group: "PAGES" },
-    { icon: Laptop, title: "Uses", href: "/uses", group: "PAGES" },
-    { icon: FileText, title: "Privacy Policy", href: "/privacy", group: "PAGES" },
-    { icon: FileText, title: "Terms of Use", href: "/terms", group: "PAGES" },
-    { icon: FileText, title: "RSS Feed", href: "/rss", group: "PAGES" },
+    { icon: Award, title: "Attribution", href: "/attribution", group: "PAGES" },
 
-    // CONNECT
     { icon: Github, title: "GitHub", href: "https://github.com/OMCHOKSI108", group: "CONNECT", external: true },
+    { icon: LinkIcon, title: "LinkedIn", href: "https://linkedin.com/in/omchoksi", group: "CONNECT", external: true },
+    { icon: LinkIcon, title: "X (Twitter)", href: "https://x.com/ChoksiOm", group: "CONNECT", external: true },
+    { icon: FileText, title: "Resume", href: "https://drive.google.com/file/d/1vZFyvsRzv17dm6z1uKDXI07Z_gfTHQgC/view?usp=drive_link", group: "CONNECT", external: true },
+
+    { icon: FileText, title: "Privacy Policy", href: "/privacy", group: "LEGAL" },
+    { icon: FileText, title: "Terms of Use", href: "/terms", group: "LEGAL" },
 ];
 
 export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
@@ -54,207 +52,173 @@ export default function CommandMenu({ isOpen, setIsOpen }: CommandMenuProps) {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const listRef = useRef<HTMLDivElement>(null);
 
-    // Filter items based on query
-    const filteredItems = ITEMS.filter((item) =>
+    const filteredItems = ITEMS.filter(item =>
         item.title.toLowerCase().includes(query.toLowerCase())
     );
 
-    // Reset selection when query changes or menu opens
     useEffect(() => {
         setSelectedIndex(0);
     }, [query, isOpen]);
 
-    // Keyboard Navigation
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+        if (!isOpen) return;
+
+        const html = document.documentElement;
+        const body = document.body;
+
+        const prevHtml = html.style.overflow;
+        const prevBody = body.style.overflow;
+
+        html.style.overflow = "hidden";
+        body.style.overflow = "hidden";
+
+        return () => {
+            html.style.overflow = prevHtml;
+            body.style.overflow = prevBody;
+        };
+    }, [isOpen]);
+
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
             if (!isOpen) return;
 
             if (e.key === "ArrowDown") {
                 e.preventDefault();
-                setSelectedIndex((prev) =>
-                    prev < filteredItems.length - 1 ? prev + 1 : prev
-                );
-            } else if (e.key === "ArrowUp") {
+                setSelectedIndex(i => Math.min(i + 1, filteredItems.length - 1));
+            }
+
+            if (e.key === "ArrowUp") {
                 e.preventDefault();
-                setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
-            } else if (e.key === "Enter") {
+                setSelectedIndex(i => Math.max(i - 1, 0));
+            }
+
+            if (e.key === "Enter") {
                 e.preventDefault();
                 const item = filteredItems[selectedIndex];
-                if (item) {
-                    handleSelect(item);
-                }
-            } else if (e.key === "Escape") {
+                if (item) select(item);
+            }
+
+            if (e.key === "Escape") {
                 e.preventDefault();
                 setIsOpen(false);
             }
         };
 
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [isOpen, selectedIndex, filteredItems, setIsOpen]);
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [isOpen, selectedIndex, filteredItems]);
 
-    // Scroll active item into view
     useEffect(() => {
-        if (listRef.current) {
-            const activeElement = listRef.current.querySelector(`[data-index="${selectedIndex}"]`);
-            if (activeElement) {
-                activeElement.scrollIntoView({ block: "nearest" });
-            }
-        }
+        if (!listRef.current) return;
+        const el = listRef.current.querySelector(
+            `[data-index="${selectedIndex}"]`
+        );
+        el?.scrollIntoView({ block: "nearest" });
     }, [selectedIndex]);
 
-    const handleSelect = (item: CommandItem) => {
+    const select = (item: CommandItem) => {
         setIsOpen(false);
-        if (item.external) {
-            window.open(item.href, "_blank");
-        } else {
-            router.push(item.href);
-        }
+        item.external
+            ? window.open(item.href, "_blank")
+            : router.push(item.href);
     };
 
-    // Group items
     const pages = filteredItems.filter(i => i.group === "PAGES");
     const connect = filteredItems.filter(i => i.group === "CONNECT");
+    const legal = filteredItems.filter(i => i.group === "LEGAL");
+
+    const onWheel = (e: ReactWheelEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!listRef.current) return;
+        listRef.current.scrollTop += e.deltaY;
+    };
 
     return (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
+                    className="fixed inset-0 z-[100] flex justify-center pt-[10vh] px-4"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                    className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 overflow-y-auto"
                     onClick={() => setIsOpen(false)}
+                    onWheel={(e) => e.preventDefault()}
                 >
-                    {/* Backdrop */}
-                    <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm" />
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
                     <motion.div
-                        initial={{ scale: 0.95, opacity: 0, y: -20 }}
-                        animate={{ scale: 1, opacity: 1, y: 0 }}
-                        exit={{ scale: 0.95, opacity: 0, y: -20 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="relative w-full max-w-[600px] bg-[var(--card)] text-[var(--foreground)] backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh]"
-                        onClick={(e) => e.stopPropagation()}
+                        className="relative w-full max-w-[600px] bg-[var(--card)]/80 backdrop-blur-xl rounded-xl border border-[var(--border)]/50 shadow-xl flex flex-col max-h-[70vh]"
+                        initial={{ scale: 0.95, y: -20, opacity: 0 }}
+                        animate={{ scale: 1, y: 0, opacity: 1 }}
+                        exit={{ scale: 0.95, y: -20, opacity: 0 }}
+                        onClick={e => e.stopPropagation()}
+                        onWheel={onWheel}
                     >
-                        {/* Search Header */}
-                        <div className="flex items-center px-4 py-4 border-b border-[var(--border)] shrink-0">
-                            <Search className="w-5 h-5 text-[var(--muted-foreground)] mr-3" />
+                        <div className="flex items-center px-4 py-4 border-b border-[var(--border)]/30">
+                            <Search className="w-5 h-5 mr-3 text-[var(--muted-foreground)]" />
                             <input
-                                type="text"
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                placeholder="Search"
-                                className="flex-1 bg-transparent border-none outline-none text-[var(--foreground)] placeholder-[var(--muted-foreground)] text-[15px]"
                                 autoFocus
+                                value={query}
+                                onChange={e => setQuery(e.target.value)}
+                                placeholder="Search"
+                                className="flex-1 bg-transparent outline-none text-[var(--foreground)] placeholder-[var(--muted-foreground)]"
                             />
-                            <div className="flex items-center gap-2">
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        toggleTheme();
-                                    }}
-                                    className="p-1.5 rounded-md hover:bg-[var(--muted)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
-                                >
-                                    {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-                                </button>
-                                <div className="px-1.5 py-0.5 rounded border border-[var(--border)] bg-[var(--muted)] text-[10px] font-medium text-[var(--muted-foreground)]">
-                                    ESC
-                                </div>
-                            </div>
+                            <button onClick={toggleTheme} className="p-2 rounded-md hover:bg-[var(--muted)]/50 transition-colors">
+                                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                            </button>
                         </div>
 
-                        {/* Results List */}
-                        <div
-                            ref={listRef}
-                            className="flex-1 overflow-y-auto p-2 custom-scrollbar py-2"
-                        >
+                        <div ref={listRef} className="flex-1 overflow-y-auto p-2 custom-scrollbar">
                             {filteredItems.length === 0 ? (
-                                <div className="p-8 text-center text-[var(--muted-foreground)] text-sm">
+                                <div className="p-8 text-center text-sm text-[var(--muted-foreground)]">
                                     No results found.
                                 </div>
                             ) : (
                                 <>
-                                    {pages.length > 0 && (
-                                        <div className="mb-2">
-                                            <div className="px-3 py-2 text-[10px] font-semibold text-[var(--muted-foreground)] tracking-wider uppercase">
-                                                Pages
-                                            </div>
-                                            <div className="space-y-0.5">
-                                                {pages.map((item) => {
-                                                    const globalIndex = filteredItems.indexOf(item);
-                                                    const isSelected = globalIndex === selectedIndex;
-                                                    const Icon = item.icon;
+                                    {[["Pages", pages], ["Connect", connect], ["Legal", legal]].map(
+                                        ([label, list]: any) =>
+                                            list.length > 0 && (
+                                                <div key={label} className="mb-2">
+                                                    <div className="px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
+                                                        {label}
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        {list.map((item: CommandItem) => {
+                                                            const i = filteredItems.indexOf(item);
+                                                            const Icon = item.icon;
+                                                            const active = i === selectedIndex;
 
-                                                    return (
-                                                        <div
-                                                            key={item.href}
-                                                            data-index={globalIndex}
-                                                            onClick={() => handleSelect(item)}
-                                                            onMouseEnter={() => setSelectedIndex(globalIndex)}
-                                                                                                                        className={`
-                                                                flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors
-                                                                ${isSelected ? 'bg-[var(--muted)] text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]/40'}
-                                                            `}
-                                                        >
-                                                            <div className="flex items-center gap-3">
-                                                                                                                                <Icon className={`w-4 h-4 ${isSelected ? 'text-[var(--foreground)]' : 'text-[var(--muted-foreground)]'}`} />
-                                                                <span className="text-[14px] font-medium">{item.title}</span>
-                                                            </div>
-                                                            {isSelected && (
-                                                                <ArrowRight className="w-3.5 h-3.5 text-[var(--muted-foreground)]" />
-                                                            )}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {connect.length > 0 && (
-                                        <div className="mb-2">
-                                            <div className="px-3 py-2 text-[10px] font-semibold text-[var(--muted-foreground)] tracking-wider uppercase">
-                                                Connect
-                                            </div>
-                                            <div className="space-y-0.5">
-                                                {connect.map((item) => {
-                                                    const globalIndex = filteredItems.indexOf(item);
-                                                    const isSelected = globalIndex === selectedIndex;
-                                                    const Icon = item.icon;
-
-                                                    return (
-                                                        <div
-                                                            key={item.href}
-                                                            data-index={globalIndex}
-                                                            onClick={() => handleSelect(item)}
-                                                            onMouseEnter={() => setSelectedIndex(globalIndex)}
-                                                                                                                        className={`
-                                                                flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors
-                                                                ${isSelected ? 'bg-[var(--muted)] text-[var(--foreground)]' : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]/40'}
-                                                            `}
-                                                        >
-                                                            <div className="flex items-center gap-3">
-                                                                                                                                <Icon className={`w-4 h-4 ${isSelected ? 'text-[var(--foreground)]' : 'text-[var(--muted-foreground)]'}`} />
-                                                                <span className="text-[14px] font-medium">{item.title}</span>
-                                                            </div>
-                                                            {isSelected && (
-                                                                <ArrowRight className="w-3.5 h-3.5 text-[var(--muted-foreground)]" />
-                                                            )}
-                                                            {item.external && !isSelected && (
-                                                                <span className="text-[10px] text-[var(--muted-foreground)]">↗</span>
-                                                            )}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
+                                                            return (
+                                                                <div
+                                                                    key={item.href}
+                                                                    data-index={i}
+                                                                    onClick={() => select(item)}
+                                                                    onMouseEnter={() => setSelectedIndex(i)}
+                                                                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors ${
+                                                                        active ? "bg-[var(--muted)]/60 text-[var(--foreground)]" : "text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]/30"
+                                                                    }`}
+                                                                >
+                                                                    <div className="flex items-center gap-3">
+                                                                        <Icon className={`w-4 h-4 ${active ? "text-[var(--foreground)]" : "text-[var(--muted-foreground)]"}`} />
+                                                                        <span className="text-[14px] font-medium">{item.title}</span>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-1">
+                                                                        {item.external && (
+                                                                            <span className="text-[10px] text-[var(--muted-foreground)]">↗</span>
+                                                                        )}
+                                                                        {active && <ArrowRight className="w-3.5 h-3.5 text-[var(--muted-foreground)]" />}
+                                                                    </div>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            )
                                     )}
                                 </>
                             )}
                         </div>
-
-                        {/* Optional Footer/Scroll hint if needed, handled by scrollbar */}
                     </motion.div>
                 </motion.div>
             )}

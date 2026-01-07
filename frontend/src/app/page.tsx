@@ -36,8 +36,8 @@ export default function Home() {
         onCloseQuickConnect={() => setShowQuickConnect(false)}
         onOpenQuickConnect={() => setShowQuickConnect(true)}
       />
-      <Projects />
       <AboutMe />
+      <Projects />
       <Certifications />
       <SecretSauce />
       <Marquee />

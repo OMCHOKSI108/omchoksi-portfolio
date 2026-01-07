@@ -65,9 +65,20 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="pt-8"
+              className="pt-8 flex flex-wrap items-center gap-4"
             >
-              <a href="/about#experience" className="inline-flex items-center gap-2 text-lg text-[var(--foreground)] font-bold border-b-2 border-[var(--foreground)] pb-1 hover:text-purple-500 hover:border-purple-500 transition-colors">
+              <a
+                href="https://drive.google.com/file/d/1vZFyvsRzv17dm6z1uKDXI07Z_gfTHQgC/view?usp=drive_link"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold bg-[var(--foreground)] text-[var(--background)] shadow-sm hover:opacity-90 transition-colors"
+              >
+                Download Resume <ArrowRight size={18} />
+              </a>
+              <a
+                href="/about#experience"
+                className="inline-flex items-center gap-2 text-lg text-[var(--foreground)] font-bold border-b-2 border-[var(--foreground)] pb-1 hover:text-purple-500 hover:border-purple-500 transition-colors"
+              >
                 Check my Work Experience <ArrowRight size={20} />
               </a>
             </motion.div>
